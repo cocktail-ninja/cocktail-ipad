@@ -15,4 +15,11 @@ class MainViewController: UIViewController {
         self.view.backgroundColor = UIColor.whiteColor()
         NSLog("Hello World!")
     }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+    
+        var drinksVC = DrinksViewController()
+        presentModalViewController(drinksVC, animated: false)
+    }
 }
