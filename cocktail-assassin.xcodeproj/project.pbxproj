@@ -10,6 +10,7 @@
 		237B076F1A6EA5F7001AA652 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237B076E1A6EA5F7001AA652 /* AppDelegate.swift */; };
 		237B07711A6EA5F7001AA652 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 237B07701A6EA5F7001AA652 /* Images.xcassets */; };
 		237B077D1A6EA5F7001AA652 /* cocktail_assassinTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237B077C1A6EA5F7001AA652 /* cocktail_assassinTests.swift */; };
+		237B07871A6EA7A2001AA652 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237B07861A6EA7A2001AA652 /* MainViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,6 +31,7 @@
 		237B07761A6EA5F7001AA652 /* cocktail-assassinTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "cocktail-assassinTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		237B077B1A6EA5F7001AA652 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		237B077C1A6EA5F7001AA652 /* cocktail_assassinTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cocktail_assassinTests.swift; sourceTree = "<group>"; };
+		237B07861A6EA7A2001AA652 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +74,7 @@
 			isa = PBXGroup;
 			children = (
 				237B076E1A6EA5F7001AA652 /* AppDelegate.swift */,
+				237B07861A6EA7A2001AA652 /* MainViewController.swift */,
 				237B07701A6EA5F7001AA652 /* Images.xcassets */,
 				237B076C1A6EA5F7001AA652 /* Supporting Files */,
 			);
@@ -201,6 +204,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				237B076F1A6EA5F7001AA652 /* AppDelegate.swift in Sources */,
+				237B07871A6EA7A2001AA652 /* MainViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -379,6 +383,7 @@
 				237B07821A6EA5F7001AA652 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		237B07831A6EA5F7001AA652 /* Build configuration list for PBXNativeTarget "cocktail-assassinTests" */ = {
 			isa = XCConfigurationList;
@@ -387,6 +392,7 @@
 				237B07851A6EA5F7001AA652 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
