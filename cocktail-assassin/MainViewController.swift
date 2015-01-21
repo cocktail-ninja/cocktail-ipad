@@ -8,14 +8,7 @@
 
 import UIKit
 
-class MainViewController: UIViewController {
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        self.view.backgroundColor = UIColor.whiteColor()
-        NSLog("Hello World!")
-    }
-    
+class MainViewController: UIViewController {    
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
     

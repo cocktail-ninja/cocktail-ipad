@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import QuartzCore
 
 class DrinksViewController: UIViewController, iCarouselDataSource, iCarouselDelegate {
     var items = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
@@ -16,7 +17,7 @@ class DrinksViewController: UIViewController, iCarouselDataSource, iCarouselDele
         view.backgroundColor = UIColor.cyanColor()
         
         var carousel = iCarousel(frame: view.frame)
-        carousel.type = .InvertedCylinder
+        carousel.type = .Custom
         carousel.dataSource = self
         carousel.delegate = self
 
@@ -27,21 +28,32 @@ class DrinksViewController: UIViewController, iCarouselDataSource, iCarouselDele
         return items.count
     }
     
+    func carousel(carousel: iCarousel!, itemTransformForOffset offset: CGFloat, baseTransform transform: CATransform3D) -> CATransform3D {
+        var scale : CGFloat = max(1 - powf((offset * 0.4), 2.0), 0.4)
+        return
+            CATransform3DScale(
+                CATransform3DTranslate(transform, offset * carousel.itemWidth, 0, 0),
+                scale,
+                scale,
+                1
+            )
+    }
+
     func carousel(carousel: iCarousel!, valueForOption option: iCarouselOption, withDefault value: CGFloat) -> CGFloat
-    {
-        if (option == .Spacing) {
-            return value * 1.1
-        } else if (option == .VisibleItems) {
-            return 5
+{
+        switch option {
+        case .Wrap:
+            return 1
+        default:
+            return value
         }
-        return value
     }
     
     func carousel(carousel: iCarousel!, viewForItemAtIndex index: Int, var reusingView view: UIView!) -> UIView! {
         var label: UILabel! = nil
         
         if (view == nil) {
-            view = UIView(frame:CGRectMake(0, 0, 300, 300))
+            view = UIView(frame:CGRectMake(0, 0, 320, 450))
             view.backgroundColor = UIColor.blueColor()
 
             label = UILabel(frame:view.bounds)
