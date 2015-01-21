@@ -10,7 +10,13 @@ import UIKit
 import QuartzCore
 
 class DrinksViewController: UIViewController, iCarouselDataSource, iCarouselDelegate {
-    var items = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    var items = [
+        Drink(name : "name", image : "cocktail-1"),
+        Drink(name : "name2", image : "cocktail-2"),
+        Drink(name : "name3", image : "cocktail-3"),
+        Drink(name : "name4", image : "cocktail-4"),
+        Drink(name : "name5", image : "cocktail-5")
+    ];
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +34,10 @@ class DrinksViewController: UIViewController, iCarouselDataSource, iCarouselDele
         return items.count
     }
     
+    func carousel(carousel: iCarousel!, didSelectItemAtIndex index: Int){
+        NSLog("Select: \(index)");
+    }
+    
     func carousel(carousel: iCarousel!, itemTransformForOffset offset: CGFloat, baseTransform transform: CATransform3D) -> CATransform3D {
         var scale : CGFloat = max(1 - powf((offset * 0.4), 2.0), 0.4)
         return
@@ -39,8 +49,7 @@ class DrinksViewController: UIViewController, iCarouselDataSource, iCarouselDele
             )
     }
 
-    func carousel(carousel: iCarousel!, valueForOption option: iCarouselOption, withDefault value: CGFloat) -> CGFloat
-{
+    func carousel(carousel: iCarousel!, valueForOption option: iCarouselOption, withDefault value: CGFloat) -> CGFloat {
         switch option {
         case .Wrap:
             return 1
@@ -50,25 +59,14 @@ class DrinksViewController: UIViewController, iCarouselDataSource, iCarouselDele
     }
     
     func carousel(carousel: iCarousel!, viewForItemAtIndex index: Int, var reusingView view: UIView!) -> UIView! {
-        var label: UILabel! = nil
+        var drink = items[index]
         
         if (view == nil) {
-            var imageView = UIImageView(frame:CGRectMake(0, 0, 320, 450))
-            view = imageView
-            
-            imageView.image = UIImage(named: "cocktail")
-            
-            label = UILabel(frame:view.bounds)
-            label.textAlignment = .Center
-            label.font = label.font.fontWithSize(50)
-            label.tag = 1
-            
-            view.addSubview(label)
-        } else {
-            label = view.viewWithTag(1) as UILabel!
+            view = UIImageView(frame:CGRectMake(0, 0, 250, 450))
+            view.contentMode = .ScaleAspectFit
         }
-
-        label.text = "\(items[index])"
+        
+        (view as UIImageView).image = UIImage(named: drink.image)
         return view
     }
 }

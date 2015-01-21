@@ -11,6 +11,7 @@
 		237B07711A6EA5F7001AA652 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 237B07701A6EA5F7001AA652 /* Images.xcassets */; };
 		237B077D1A6EA5F7001AA652 /* cocktail_assassinTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237B077C1A6EA5F7001AA652 /* cocktail_assassinTests.swift */; };
 		237B07871A6EA7A2001AA652 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237B07861A6EA7A2001AA652 /* MainViewController.swift */; };
+		23AC06DB1A6FA260002928CB /* Drink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23AC06DA1A6FA260002928CB /* Drink.swift */; };
 		23E6376D1A6EBE5600B71A0D /* DrinksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23E6376C1A6EBE5600B71A0D /* DrinksViewController.swift */; };
 		A7EEC9C95AAC2E94EB7D142D /* libPods-cocktail-assassin.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B2AAA5498568E4168517F68 /* libPods-cocktail-assassin.a */; };
 /* End PBXBuildFile section */
@@ -36,6 +37,7 @@
 		237B077B1A6EA5F7001AA652 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		237B077C1A6EA5F7001AA652 /* cocktail_assassinTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cocktail_assassinTests.swift; sourceTree = "<group>"; };
 		237B07861A6EA7A2001AA652 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		23AC06DA1A6FA260002928CB /* Drink.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Drink.swift; sourceTree = "<group>"; };
 		23E6376C1A6EBE5600B71A0D /* DrinksViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrinksViewController.swift; sourceTree = "<group>"; };
 		23E6376E1A6EBF5300B71A0D /* CocktailAssassin-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CocktailAssassin-Bridging-Header.h"; sourceTree = "<group>"; };
 		2B2AAA5498568E4168517F68 /* libPods-cocktail-assassin.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-cocktail-assassin.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -98,6 +100,7 @@
 				23E6376C1A6EBE5600B71A0D /* DrinksViewController.swift */,
 				237B07701A6EA5F7001AA652 /* Images.xcassets */,
 				237B076C1A6EA5F7001AA652 /* Supporting Files */,
+				23AC06DA1A6FA260002928CB /* Drink.swift */,
 			);
 			path = "cocktail-assassin";
 			sourceTree = "<group>";
@@ -269,6 +272,7 @@
 			files = (
 				23E6376D1A6EBE5600B71A0D /* DrinksViewController.swift in Sources */,
 				237B076F1A6EA5F7001AA652 /* AppDelegate.swift in Sources */,
+				23AC06DB1A6FA260002928CB /* Drink.swift in Sources */,
 				237B07871A6EA7A2001AA652 /* MainViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
