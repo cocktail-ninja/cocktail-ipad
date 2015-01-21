@@ -14,7 +14,7 @@ class DrinksViewController: UIViewController, iCarouselDataSource, iCarouselDele
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor.cyanColor()
+        view.backgroundColor = UIColor.whiteColor()
         
         var carousel = iCarousel(frame: view.frame)
         carousel.type = .Custom
@@ -53,13 +53,16 @@ class DrinksViewController: UIViewController, iCarouselDataSource, iCarouselDele
         var label: UILabel! = nil
         
         if (view == nil) {
-            view = UIView(frame:CGRectMake(0, 0, 320, 450))
-            view.backgroundColor = UIColor.blueColor()
-
+            var imageView = UIImageView(frame:CGRectMake(0, 0, 320, 450))
+            view = imageView
+            
+            imageView.image = UIImage(named: "cocktail")
+            
             label = UILabel(frame:view.bounds)
             label.textAlignment = .Center
             label.font = label.font.fontWithSize(50)
             label.tag = 1
+            
             view.addSubview(label)
         } else {
             label = view.viewWithTag(1) as UILabel!
