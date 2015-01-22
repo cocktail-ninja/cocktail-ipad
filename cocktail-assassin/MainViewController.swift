@@ -8,11 +8,15 @@
 
 import UIKit
 
-class MainViewController: UIViewController {    
+class MainViewController: UIViewController {
+    override func viewDidLoad() {
+        view.backgroundColor = UIColor.whiteColor()
+    }
+    
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
     
         var drinksVC = DrinksViewController()
-        presentModalViewController(drinksVC, animated: false)
+        presentViewController(drinksVC, animated: false, completion: nil)
     }
 }
