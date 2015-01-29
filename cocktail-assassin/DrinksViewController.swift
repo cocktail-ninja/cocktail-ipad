@@ -12,16 +12,33 @@ import QuartzCore
 class DrinksViewController: UIViewController, iCarouselDataSource, iCarouselDelegate {
     private var carousel = iCarousel()
     private var selectedDrink =  UIImageView()
+    private var pageControl = UIPageControl();
+    
     var basicImageFrame = CGRectMake(387, 134, 250, 500)
     var expandedImageFrame = CGRectMake(30, 34, 350, 700)
     
     
     private var items = [
-        Drink(name : "name", image : "cocktail-1"),
-        Drink(name : "name2", image : "cocktail-2"),
-        Drink(name : "name3", image : "cocktail-3"),
-        Drink(name : "name4", image : "cocktail-4"),
-        Drink(name : "name5", image : "cocktail-5")
+        Drink(name : "Angry Cocoa", image : "cocktail-4"),
+        Drink(name : "Apricot Lemon Boot", image : "cocktail-5"),
+        Drink(name : "Arctic Shake", image : "cocktail-1"),
+        Drink(name : "Doomed Mix", image : "cocktail-2"),
+        Drink(name : "Famous Desert Ocean", image : "cocktail-3"),
+        Drink(name : "Gambler's Murder", image : "cocktail-4"),
+        Drink(name : "Indefinite Desert Buster", image : "cocktail-5"),
+        Drink(name : "Insane Stout Martini", image : "cocktail-1"),
+        Drink(name : "Kiwi Blueberry", image : "cocktail-2"),
+        Drink(name : "Nasty Coconut", image : "cocktail-3"),
+        Drink(name : "Negative Drunken Mountain", image : "cocktail-4"),
+        Drink(name : "Peppermint Mint Chaos", image : "cocktail-5"),
+        Drink(name : "Pleasant Green", image : "cocktail-1"),
+        Drink(name : "Plum Abyss", image : "cocktail-2"),
+        Drink(name : "Random Royal Deep", image : "cocktail-3"),
+        Drink(name : "Rocky Pretender", image : "cocktail-4"),
+        Drink(name : "Sour Ecstacy", image : "cocktail-5"),
+        Drink(name : "Ultimate Ochre Dirt", image : "cocktail-1"),
+        Drink(name : "Unholy Schnapps Twister", image : "cocktail-2"),
+        Drink(name : "Vanilla Punch", image : "cocktail-3")
     ];
     
     override func viewDidLoad() {
@@ -33,92 +50,28 @@ class DrinksViewController: UIViewController, iCarouselDataSource, iCarouselDele
         carousel.dataSource = self
         carousel.delegate = self
         carousel.centerItemWhenSelected = false
+        self.view.addSubview(carousel)
         
-        view.addSubview(carousel)
+        pageControl.numberOfPages = items.count
+        pageControl.currentPageIndicatorTintColor = UIColor(red: 0.7, green: 0.7, blue: 0.7, alpha: 1)
+        pageControl.pageIndicatorTintColor = UIColor(red: 0.7, green: 0.7, blue: 0.7, alpha: 0.4)
+
+        pageControl.frame = CGRectMake(0, 718, self.view.frame.size.width, 20);
+        carousel.addSubview(pageControl);
         
-        let button   = UIButton.buttonWithType(UIButtonType.System) as UIButton
-        button.frame = CGRectMake(900, 50, 100, 50)
-        button.setTitle("X", forState: UIControlState.Normal)
-        button.addTarget(self, action: "buttonAction:", forControlEvents: UIControlEvents.TouchUpInside)
-        button.tag = 42
-        button.alpha = 0
-        
-        self.view.addSubview(button)
+        carousel.currentItemIndex = items.count / 2
+        carouselCurrentItemIndexDidChange(carousel);
     }
     
-    func buttonAction(sender:UIButton!) {
-        self.view.viewWithTag(42)?.alpha = 0
-        UIView.transitionWithView(self.view,
-            duration: 0.2,
-            options: UIViewAnimationOptions.CurveEaseInOut,
-            animations: {
-                self.selectedDrink.frame = self.basicImageFrame
-
-            }, completion: {(finished: Bool) in
-                UIView.transitionWithView(self.view,
-                    duration: 0.1,
-                    options: UIViewAnimationOptions.CurveEaseInOut,
-                    animations: {
-                        self.carousel.alpha = 1
-                    }, completion: {(finished: Bool) in
-                        self.selectedDrink.frame = CGRectZero
-                })
-                
-        })
-        
-        
-    }
     
     func numberOfItemsInCarousel(carousel: iCarousel!) -> Int {
         return items.count
     }
     
-    func carousel(theCarousel: iCarousel!, didSelectItemAtIndex index: Int){
-        selectedDrink.image = UIImage(named: items[index].image)
-        
-        selectedDrink.contentMode = .ScaleAspectFit
-        selectedDrink.frame = basicImageFrame
-        
-        
-        var offset = CGFloat((index - theCarousel.currentItemIndex) % self.items.count)
-        if (index - theCarousel.currentItemIndex > theCarousel.currentItemIndex + (self.items.count / 2)) {
-            offset = CGFloat((index - theCarousel.currentItemIndex) % self.items.count - self.items.count)
-        }
-        
-        var scale : CGFloat = max(1 - pow(offset * 0.4, 2.0), 0.4)
-        
-        selectedDrink.frame.size.width *= scale
-        selectedDrink.frame.size.height *= scale
-        
-
-        selectedDrink.frame.origin.x = (view.frame.size.width - selectedDrink.frame.size.width) / 2 + offset * theCarousel.itemWidth
-        selectedDrink.frame.origin.y = (view.frame.size.height - selectedDrink.frame.size.height) / 2
-    
-
-        theCarousel.itemViewAtIndex(index).hidden = true
-
-
-        view.addSubview(selectedDrink)
-        UIView.transitionWithView(self.view,
-            duration: 0.3,
-            options: UIViewAnimationOptions.CurveEaseInOut,
-            animations: {
-                self.selectedDrink.frame = self.expandedImageFrame
-            }, completion: nil)
-        
-        UIView.transitionWithView(self.view,
-            duration: 0.1,
-            options: UIViewAnimationOptions.CurveEaseInOut,
-            animations: {
-                theCarousel.alpha = 0
-                self.view.viewWithTag(42)?.alpha = 1
-            }, completion: { (finished: Bool) in
-                theCarousel.itemViewAtIndex(index).hidden = false
-                self.carousel.scrollToItemAtIndex(index, animated: false)
-        })
-        
-        
+    func carouselCurrentItemIndexDidChange(carousel: iCarousel!){
+        pageControl.currentPage = carousel.currentItemIndex;
     }
+    
     
     func carousel(carousel: iCarousel!, itemTransformForOffset offset: CGFloat, baseTransform transform: CATransform3D) -> CATransform3D {
         var scale : CGFloat = max(1 - pow(offset * 0.4, 2), 0.4)
@@ -141,14 +94,11 @@ class DrinksViewController: UIViewController, iCarouselDataSource, iCarouselDele
     }
     
     func carousel(carousel: iCarousel!, viewForItemAtIndex index: Int, var reusingView view: UIView!) -> UIView! {
-        var drink = items[index]
-        
         if (view == nil) {
-            view = UIImageView(frame: basicImageFrame)
-            view.contentMode = .ScaleAspectFit
+            view = DrinkCarouselItem(frame: basicImageFrame)
         }
         
-        (view as UIImageView).image = UIImage(named: drink.image)
+        (view as DrinkCarouselItem).setDrink(items[index])
         return view
     }
 }

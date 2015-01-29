@@ -7,11 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2345A2BB1A7D317D007CB356 /* OpenSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2345A2B11A7D317D007CB356 /* OpenSans-Bold.ttf */; };
+		2345A2BC1A7D317D007CB356 /* OpenSans-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2345A2B21A7D317D007CB356 /* OpenSans-BoldItalic.ttf */; };
+		2345A2BD1A7D317D007CB356 /* OpenSans-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2345A2B31A7D317D007CB356 /* OpenSans-ExtraBold.ttf */; };
+		2345A2BE1A7D317D007CB356 /* OpenSans-ExtraBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2345A2B41A7D317D007CB356 /* OpenSans-ExtraBoldItalic.ttf */; };
+		2345A2BF1A7D317D007CB356 /* OpenSans-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2345A2B51A7D317D007CB356 /* OpenSans-Italic.ttf */; };
+		2345A2C01A7D317D007CB356 /* OpenSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2345A2B61A7D317D007CB356 /* OpenSans-Light.ttf */; };
+		2345A2C11A7D317D007CB356 /* OpenSans-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2345A2B71A7D317D007CB356 /* OpenSans-LightItalic.ttf */; };
+		2345A2C21A7D317D007CB356 /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2345A2B81A7D317D007CB356 /* OpenSans-Regular.ttf */; };
+		2345A2C31A7D317D007CB356 /* OpenSans-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2345A2B91A7D317D007CB356 /* OpenSans-Semibold.ttf */; };
+		2345A2C41A7D317D007CB356 /* OpenSans-SemiboldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2345A2BA1A7D317D007CB356 /* OpenSans-SemiboldItalic.ttf */; };
 		237B076F1A6EA5F7001AA652 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237B076E1A6EA5F7001AA652 /* AppDelegate.swift */; };
 		237B07711A6EA5F7001AA652 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 237B07701A6EA5F7001AA652 /* Images.xcassets */; };
 		237B077D1A6EA5F7001AA652 /* cocktail_assassinTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237B077C1A6EA5F7001AA652 /* cocktail_assassinTests.swift */; };
 		237B07871A6EA7A2001AA652 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237B07861A6EA7A2001AA652 /* MainViewController.swift */; };
 		23AC06DB1A6FA260002928CB /* Drink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23AC06DA1A6FA260002928CB /* Drink.swift */; };
+		23C0532D1A7A810F0060CABB /* DrinkCarouselItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23C0532C1A7A810F0060CABB /* DrinkCarouselItem.swift */; };
 		23E6376D1A6EBE5600B71A0D /* DrinksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23E6376C1A6EBE5600B71A0D /* DrinksViewController.swift */; };
 		A7EEC9C95AAC2E94EB7D142D /* libPods-cocktail-assassin.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B2AAA5498568E4168517F68 /* libPods-cocktail-assassin.a */; };
 /* End PBXBuildFile section */
@@ -29,6 +40,16 @@
 /* Begin PBXFileReference section */
 		00F9EC01DE68889178A16A06 /* Pods-cocktail-assassin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-cocktail-assassin.release.xcconfig"; path = "Pods/Target Support Files/Pods-cocktail-assassin/Pods-cocktail-assassin.release.xcconfig"; sourceTree = "<group>"; };
 		1A31D6CBFE34FDA0D97BCFDE /* Pods-cocktail-assassin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-cocktail-assassin.debug.xcconfig"; path = "Pods/Target Support Files/Pods-cocktail-assassin/Pods-cocktail-assassin.debug.xcconfig"; sourceTree = "<group>"; };
+		2345A2B11A7D317D007CB356 /* OpenSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Bold.ttf"; sourceTree = "<group>"; };
+		2345A2B21A7D317D007CB356 /* OpenSans-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-BoldItalic.ttf"; sourceTree = "<group>"; };
+		2345A2B31A7D317D007CB356 /* OpenSans-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-ExtraBold.ttf"; sourceTree = "<group>"; };
+		2345A2B41A7D317D007CB356 /* OpenSans-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-ExtraBoldItalic.ttf"; sourceTree = "<group>"; };
+		2345A2B51A7D317D007CB356 /* OpenSans-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Italic.ttf"; sourceTree = "<group>"; };
+		2345A2B61A7D317D007CB356 /* OpenSans-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Light.ttf"; sourceTree = "<group>"; };
+		2345A2B71A7D317D007CB356 /* OpenSans-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-LightItalic.ttf"; sourceTree = "<group>"; };
+		2345A2B81A7D317D007CB356 /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Regular.ttf"; sourceTree = "<group>"; };
+		2345A2B91A7D317D007CB356 /* OpenSans-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Semibold.ttf"; sourceTree = "<group>"; };
+		2345A2BA1A7D317D007CB356 /* OpenSans-SemiboldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-SemiboldItalic.ttf"; sourceTree = "<group>"; };
 		237B07691A6EA5F7001AA652 /* cocktail-assassin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "cocktail-assassin.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		237B076D1A6EA5F7001AA652 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		237B076E1A6EA5F7001AA652 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -38,6 +59,7 @@
 		237B077C1A6EA5F7001AA652 /* cocktail_assassinTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cocktail_assassinTests.swift; sourceTree = "<group>"; };
 		237B07861A6EA7A2001AA652 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		23AC06DA1A6FA260002928CB /* Drink.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Drink.swift; sourceTree = "<group>"; };
+		23C0532C1A7A810F0060CABB /* DrinkCarouselItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrinkCarouselItem.swift; sourceTree = "<group>"; };
 		23E6376C1A6EBE5600B71A0D /* DrinksViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrinksViewController.swift; sourceTree = "<group>"; };
 		23E6376E1A6EBF5300B71A0D /* CocktailAssassin-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CocktailAssassin-Bridging-Header.h"; sourceTree = "<group>"; };
 		2B2AAA5498568E4168517F68 /* libPods-cocktail-assassin.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-cocktail-assassin.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -71,6 +93,31 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		2345A2981A7D3136007CB356 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				2345A2C51A7D31C8007CB356 /* Fonts */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		2345A2C51A7D31C8007CB356 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				2345A2B11A7D317D007CB356 /* OpenSans-Bold.ttf */,
+				2345A2B21A7D317D007CB356 /* OpenSans-BoldItalic.ttf */,
+				2345A2B31A7D317D007CB356 /* OpenSans-ExtraBold.ttf */,
+				2345A2B41A7D317D007CB356 /* OpenSans-ExtraBoldItalic.ttf */,
+				2345A2B51A7D317D007CB356 /* OpenSans-Italic.ttf */,
+				2345A2B61A7D317D007CB356 /* OpenSans-Light.ttf */,
+				2345A2B71A7D317D007CB356 /* OpenSans-LightItalic.ttf */,
+				2345A2B81A7D317D007CB356 /* OpenSans-Regular.ttf */,
+				2345A2B91A7D317D007CB356 /* OpenSans-Semibold.ttf */,
+				2345A2BA1A7D317D007CB356 /* OpenSans-SemiboldItalic.ttf */,
+			);
+			name = Fonts;
+			sourceTree = "<group>";
+		};
 		237B07601A6EA5F7001AA652 = {
 			isa = PBXGroup;
 			children = (
@@ -94,10 +141,12 @@
 		237B076B1A6EA5F7001AA652 /* cocktail-assassin */ = {
 			isa = PBXGroup;
 			children = (
+				2345A2981A7D3136007CB356 /* Resources */,
 				237B076E1A6EA5F7001AA652 /* AppDelegate.swift */,
 				237B07861A6EA7A2001AA652 /* MainViewController.swift */,
 				23E6376E1A6EBF5300B71A0D /* CocktailAssassin-Bridging-Header.h */,
 				23E6376C1A6EBE5600B71A0D /* DrinksViewController.swift */,
+				23C0532C1A7A810F0060CABB /* DrinkCarouselItem.swift */,
 				237B07701A6EA5F7001AA652 /* Images.xcassets */,
 				237B076C1A6EA5F7001AA652 /* Supporting Files */,
 				23AC06DA1A6FA260002928CB /* Drink.swift */,
@@ -219,7 +268,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2345A2BC1A7D317D007CB356 /* OpenSans-BoldItalic.ttf in Resources */,
+				2345A2BB1A7D317D007CB356 /* OpenSans-Bold.ttf in Resources */,
+				2345A2C01A7D317D007CB356 /* OpenSans-Light.ttf in Resources */,
+				2345A2BE1A7D317D007CB356 /* OpenSans-ExtraBoldItalic.ttf in Resources */,
+				2345A2C31A7D317D007CB356 /* OpenSans-Semibold.ttf in Resources */,
+				2345A2BF1A7D317D007CB356 /* OpenSans-Italic.ttf in Resources */,
 				237B07711A6EA5F7001AA652 /* Images.xcassets in Resources */,
+				2345A2C11A7D317D007CB356 /* OpenSans-LightItalic.ttf in Resources */,
+				2345A2C21A7D317D007CB356 /* OpenSans-Regular.ttf in Resources */,
+				2345A2BD1A7D317D007CB356 /* OpenSans-ExtraBold.ttf in Resources */,
+				2345A2C41A7D317D007CB356 /* OpenSans-SemiboldItalic.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -273,6 +332,7 @@
 				23E6376D1A6EBE5600B71A0D /* DrinksViewController.swift in Sources */,
 				237B076F1A6EA5F7001AA652 /* AppDelegate.swift in Sources */,
 				23AC06DB1A6FA260002928CB /* Drink.swift in Sources */,
+				23C0532D1A7A810F0060CABB /* DrinkCarouselItem.swift in Sources */,
 				237B07871A6EA7A2001AA652 /* MainViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
