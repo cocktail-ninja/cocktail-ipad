@@ -96,6 +96,7 @@
 		2345A2981A7D3136007CB356 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				237B07701A6EA5F7001AA652 /* Images.xcassets */,
 				2345A2C51A7D31C8007CB356 /* Fonts */,
 			);
 			name = Resources;
@@ -116,6 +117,31 @@
 				2345A2BA1A7D317D007CB356 /* OpenSans-SemiboldItalic.ttf */,
 			);
 			name = Fonts;
+			sourceTree = "<group>";
+		};
+		2345A2C61A7D367C007CB356 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				23AC06DA1A6FA260002928CB /* Drink.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		2345A2C71A7D3689007CB356 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				23C0532C1A7A810F0060CABB /* DrinkCarouselItem.swift */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		2345A2C81A7D3690007CB356 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				23E6376C1A6EBE5600B71A0D /* DrinksViewController.swift */,
+				237B07861A6EA7A2001AA652 /* MainViewController.swift */,
+			);
+			name = Controller;
 			sourceTree = "<group>";
 		};
 		237B07601A6EA5F7001AA652 = {
@@ -141,15 +167,12 @@
 		237B076B1A6EA5F7001AA652 /* cocktail-assassin */ = {
 			isa = PBXGroup;
 			children = (
+				2345A2C81A7D3690007CB356 /* Controller */,
+				2345A2C71A7D3689007CB356 /* View */,
+				2345A2C61A7D367C007CB356 /* Model */,
 				2345A2981A7D3136007CB356 /* Resources */,
 				237B076E1A6EA5F7001AA652 /* AppDelegate.swift */,
-				237B07861A6EA7A2001AA652 /* MainViewController.swift */,
-				23E6376E1A6EBF5300B71A0D /* CocktailAssassin-Bridging-Header.h */,
-				23E6376C1A6EBE5600B71A0D /* DrinksViewController.swift */,
-				23C0532C1A7A810F0060CABB /* DrinkCarouselItem.swift */,
-				237B07701A6EA5F7001AA652 /* Images.xcassets */,
 				237B076C1A6EA5F7001AA652 /* Supporting Files */,
-				23AC06DA1A6FA260002928CB /* Drink.swift */,
 			);
 			path = "cocktail-assassin";
 			sourceTree = "<group>";
@@ -157,6 +180,7 @@
 		237B076C1A6EA5F7001AA652 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				23E6376E1A6EBF5300B71A0D /* CocktailAssassin-Bridging-Header.h */,
 				237B076D1A6EA5F7001AA652 /* Info.plist */,
 			);
 			name = "Supporting Files";
