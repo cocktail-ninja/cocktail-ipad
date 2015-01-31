@@ -15,8 +15,6 @@ class DrinksViewController: UIViewController, iCarouselDataSource, iCarouselDele
     private var pageControl = UIPageControl();
     
     var basicImageFrame = CGRectMake(387, 134, 250, 500)
-    var expandedImageFrame = CGRectMake(30, 34, 350, 700)
-    
     
     private var items = [
         Drink(name : "Angry Cocoa", image : "cocktail-4"),
@@ -56,7 +54,13 @@ class DrinksViewController: UIViewController, iCarouselDataSource, iCarouselDele
         pageControl.currentPageIndicatorTintColor = UIColor(red: 0.7, green: 0.7, blue: 0.7, alpha: 1)
         pageControl.pageIndicatorTintColor = UIColor(red: 0.7, green: 0.7, blue: 0.7, alpha: 0.4)
 
-        pageControl.frame = CGRectMake(0, 718, self.view.frame.size.width, 20);
+        pageControl.frame = {
+            let viewHeight : CGFloat = 20,
+                bottomPadding : CGFloat = 20,
+                originY : CGFloat = self.view.frame.height - viewHeight - bottomPadding;
+            return CGRectMake(0, originY, self.view.frame.size.width, viewHeight)
+        }()
+        
         carousel.addSubview(pageControl);
         
         carousel.currentItemIndex = items.count / 2
@@ -74,10 +78,20 @@ class DrinksViewController: UIViewController, iCarouselDataSource, iCarouselDele
     
     
     func carousel(carousel: iCarousel!, itemTransformForOffset offset: CGFloat, baseTransform transform: CATransform3D) -> CATransform3D {
-        var scale : CGFloat = max(1 - pow(offset * 0.4, 2), 0.4)
+        var scale : CGFloat = max(1 - pow(offset * 0.3, 2), 0.3)
+        var xOffset : CGFloat = {
+            if (offset < -3 || offset > 3) {
+                return offset * carousel.itemWidth
+            } else {
+                var scaleOffset = -offset * (max(0, (abs(offset) - 1)) * 25)
+                return offset * carousel.itemWidth + scaleOffset
+            }
+
+        }()
+        
         return
             CATransform3DScale(
-                CATransform3DTranslate(transform, offset * carousel.itemWidth, 0, 0),
+                CATransform3DTranslate(transform, xOffset, 0, 0),
                 scale,
                 scale,
                 1
