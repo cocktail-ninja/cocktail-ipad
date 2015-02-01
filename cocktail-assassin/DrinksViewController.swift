@@ -11,7 +11,6 @@ import QuartzCore
 
 class DrinksViewController: UIViewController, iCarouselDataSource, iCarouselDelegate {
     private var carousel = iCarousel()
-    private var selectedDrink =  UIImageView()
     private var pageControl = UIPageControl();
     
     var basicImageFrame = CGRectMake(387, 134, 250, 500)
@@ -48,7 +47,7 @@ class DrinksViewController: UIViewController, iCarouselDataSource, iCarouselDele
         carousel.dataSource = self
         carousel.delegate = self
         carousel.centerItemWhenSelected = false
-        self.view.addSubview(carousel)
+        view.addSubview(carousel)
         
         pageControl.numberOfPages = items.count
         pageControl.currentPageIndicatorTintColor = UIColor(red: 0.7, green: 0.7, blue: 0.7, alpha: 1)
@@ -74,6 +73,11 @@ class DrinksViewController: UIViewController, iCarouselDataSource, iCarouselDele
     
     func carouselCurrentItemIndexDidChange(carousel: iCarousel!){
         pageControl.currentPage = carousel.currentItemIndex;
+    }
+    
+    func carousel(_carousel: iCarousel!, didSelectItemAtIndex index: Int) {
+        let detailsVC = DrinkDetailsViewController()
+        presentViewController(detailsVC, animated: false, completion: {})
     }
     
     
@@ -102,6 +106,8 @@ class DrinksViewController: UIViewController, iCarouselDataSource, iCarouselDele
         switch option {
         case .Wrap:
             return 1
+        case .ShowBackfaces:
+            return 0    
         default:
             return value
         }
@@ -109,10 +115,10 @@ class DrinksViewController: UIViewController, iCarouselDataSource, iCarouselDele
     
     func carousel(carousel: iCarousel!, viewForItemAtIndex index: Int, var reusingView view: UIView!) -> UIView! {
         if (view == nil) {
-            view = DrinkCarouselItem(frame: basicImageFrame)
+            view = DrinkView(frame: basicImageFrame)
         }
         
-        (view as DrinkCarouselItem).setDrink(items[index])
+        (view as DrinkView).setDrink(items[index])
         return view
     }
 }
