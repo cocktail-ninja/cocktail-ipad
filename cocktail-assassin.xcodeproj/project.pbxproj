@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2310A17C1A7FD9D200AA2463 /* ViewControllerDismissDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2310A17B1A7FD9D200AA2463 /* ViewControllerDismissDelegate.swift */; };
 		2345A2BB1A7D317D007CB356 /* OpenSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2345A2B11A7D317D007CB356 /* OpenSans-Bold.ttf */; };
 		2345A2BC1A7D317D007CB356 /* OpenSans-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2345A2B21A7D317D007CB356 /* OpenSans-BoldItalic.ttf */; };
 		2345A2BD1A7D317D007CB356 /* OpenSans-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2345A2B31A7D317D007CB356 /* OpenSans-ExtraBold.ttf */; };
@@ -20,6 +21,9 @@
 		2345A2CA1A7D5231007CB356 /* DrinkDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2345A2C91A7D5231007CB356 /* DrinkDetailsViewController.swift */; };
 		2345A2CF1A7F9786007CB356 /* UIImage+Grayscale.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2345A2CE1A7F9786007CB356 /* UIImage+Grayscale.swift */; };
 		2345A2D11A7F9E96007CB356 /* PouringView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2345A2D01A7F9E96007CB356 /* PouringView.swift */; };
+		2345A2D31A7FC19C007CB356 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2345A2D21A7FC19C007CB356 /* Constants.swift */; };
+		2345A2D51A7FC34C007CB356 /* DrinkCarouselTransformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2345A2D41A7FC34C007CB356 /* DrinkCarouselTransformation.swift */; };
+		2345A2D71A7FC4C0007CB356 /* UIView+FrameHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2345A2D61A7FC4C0007CB356 /* UIView+FrameHelper.swift */; };
 		237B076F1A6EA5F7001AA652 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237B076E1A6EA5F7001AA652 /* AppDelegate.swift */; };
 		237B07711A6EA5F7001AA652 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 237B07701A6EA5F7001AA652 /* Images.xcassets */; };
 		237B077D1A6EA5F7001AA652 /* cocktail_assassinTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237B077C1A6EA5F7001AA652 /* cocktail_assassinTests.swift */; };
@@ -43,6 +47,7 @@
 /* Begin PBXFileReference section */
 		00F9EC01DE68889178A16A06 /* Pods-cocktail-assassin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-cocktail-assassin.release.xcconfig"; path = "Pods/Target Support Files/Pods-cocktail-assassin/Pods-cocktail-assassin.release.xcconfig"; sourceTree = "<group>"; };
 		1A31D6CBFE34FDA0D97BCFDE /* Pods-cocktail-assassin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-cocktail-assassin.debug.xcconfig"; path = "Pods/Target Support Files/Pods-cocktail-assassin/Pods-cocktail-assassin.debug.xcconfig"; sourceTree = "<group>"; };
+		2310A17B1A7FD9D200AA2463 /* ViewControllerDismissDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerDismissDelegate.swift; sourceTree = "<group>"; };
 		2345A2B11A7D317D007CB356 /* OpenSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Bold.ttf"; sourceTree = "<group>"; };
 		2345A2B21A7D317D007CB356 /* OpenSans-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-BoldItalic.ttf"; sourceTree = "<group>"; };
 		2345A2B31A7D317D007CB356 /* OpenSans-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-ExtraBold.ttf"; sourceTree = "<group>"; };
@@ -56,6 +61,9 @@
 		2345A2C91A7D5231007CB356 /* DrinkDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrinkDetailsViewController.swift; sourceTree = "<group>"; };
 		2345A2CE1A7F9786007CB356 /* UIImage+Grayscale.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Grayscale.swift"; sourceTree = "<group>"; };
 		2345A2D01A7F9E96007CB356 /* PouringView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PouringView.swift; sourceTree = "<group>"; };
+		2345A2D21A7FC19C007CB356 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		2345A2D41A7FC34C007CB356 /* DrinkCarouselTransformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrinkCarouselTransformation.swift; sourceTree = "<group>"; };
+		2345A2D61A7FC4C0007CB356 /* UIView+FrameHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+FrameHelper.swift"; sourceTree = "<group>"; };
 		237B07691A6EA5F7001AA652 /* cocktail-assassin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "cocktail-assassin.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		237B076D1A6EA5F7001AA652 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		237B076E1A6EA5F7001AA652 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -97,6 +105,14 @@
 				00F9EC01DE68889178A16A06 /* Pods-cocktail-assassin.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		2310A17A1A7FD97100AA2463 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				2310A17B1A7FD9D200AA2463 /* ViewControllerDismissDelegate.swift */,
+			);
+			name = Protocol;
 			sourceTree = "<group>";
 		};
 		2345A2981A7D3136007CB356 /* Resources */ = {
@@ -148,6 +164,7 @@
 				23E6376C1A6EBE5600B71A0D /* DrinksViewController.swift */,
 				237B07861A6EA7A2001AA652 /* MainViewController.swift */,
 				2345A2C91A7D5231007CB356 /* DrinkDetailsViewController.swift */,
+				2345A2D41A7FC34C007CB356 /* DrinkCarouselTransformation.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -156,6 +173,7 @@
 			isa = PBXGroup;
 			children = (
 				2345A2CE1A7F9786007CB356 /* UIImage+Grayscale.swift */,
+				2345A2D61A7FC4C0007CB356 /* UIView+FrameHelper.swift */,
 			);
 			name = Extension;
 			sourceTree = "<group>";
@@ -183,6 +201,7 @@
 		237B076B1A6EA5F7001AA652 /* cocktail-assassin */ = {
 			isa = PBXGroup;
 			children = (
+				2310A17A1A7FD97100AA2463 /* Protocol */,
 				2345A2CD1A7EB31D007CB356 /* Extension */,
 				2345A2C81A7D3690007CB356 /* Controller */,
 				2345A2C71A7D3689007CB356 /* View */,
@@ -190,6 +209,7 @@
 				2345A2981A7D3136007CB356 /* Resources */,
 				237B076E1A6EA5F7001AA652 /* AppDelegate.swift */,
 				237B076C1A6EA5F7001AA652 /* Supporting Files */,
+				2345A2D21A7FC19C007CB356 /* Constants.swift */,
 			);
 			path = "cocktail-assassin";
 			sourceTree = "<group>";
@@ -373,11 +393,15 @@
 				2345A2CF1A7F9786007CB356 /* UIImage+Grayscale.swift in Sources */,
 				2345A2CA1A7D5231007CB356 /* DrinkDetailsViewController.swift in Sources */,
 				23E6376D1A6EBE5600B71A0D /* DrinksViewController.swift in Sources */,
+				2310A17C1A7FD9D200AA2463 /* ViewControllerDismissDelegate.swift in Sources */,
 				2345A2D11A7F9E96007CB356 /* PouringView.swift in Sources */,
 				237B076F1A6EA5F7001AA652 /* AppDelegate.swift in Sources */,
+				2345A2D51A7FC34C007CB356 /* DrinkCarouselTransformation.swift in Sources */,
 				23AC06DB1A6FA260002928CB /* Drink.swift in Sources */,
 				23C0532D1A7A810F0060CABB /* DrinkView.swift in Sources */,
 				237B07871A6EA7A2001AA652 /* MainViewController.swift in Sources */,
+				2345A2D31A7FC19C007CB356 /* Constants.swift in Sources */,
+				2345A2D71A7FC4C0007CB356 /* UIView+FrameHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
