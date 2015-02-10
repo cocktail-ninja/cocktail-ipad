@@ -9,7 +9,7 @@
 
 class DrinkService: NSObject {
     class func makeDrink(#recipe: String, onSuccess: (() -> Void)?, onFailure: (() -> Void)?){
-        request(.GET, Constants.baseUrl.prod + "/make_drink/" + recipe)
+        request(.POST, Constants.baseUrl.dev + "/make_drink/" + recipe)
             .response { (request, response, data, error) in
                 println(request, response, data, error)
                 if (response?.statusCode == 200){

@@ -8,25 +8,63 @@
 
 import UIKit
 import QuartzCore
+import CoreData
 
 class DrinksViewController: UIViewController, iCarouselDataSource, iCarouselDelegate, ViewControllerDismissDelegate {
     private var carousel = iCarousel()
     private var pageControl = UIPageControl()
     private var transitionDrinkView = UIImageView()
-    
-    private var items = [
-        Drink(name : "Rum and Coke", image : "cocktail-1"),
-        Drink(name : "Angry Cocoa", image : "cocktail-4"),
-        Drink(name : "Apricot Lemon Boot", image : "cocktail-5"),
-        Drink(name : "Arctic Shake", image : "cocktail-2"),
-        Drink(name : "Doomed Mix", image : "cocktail-3")
-    ]
 
+    lazy var managedContext : NSManagedObjectContext? = {
+        let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+        if let managedObjectContext = appDelegate.managedObjectContext {
+            return managedObjectContext
+        }
+        else {
+            return nil
+        }
+    }()
+    
+    
+    var items:[Drink] = []
+
+    func initIngredients(){
+        Ingredient.newIngredient("Rum", pumpNumber: 1, amountLeft: 100, managedContext: managedContext!)
+        Ingredient.newIngredient("Vodka", pumpNumber: 2, amountLeft: 100, managedContext: managedContext!)
+        Ingredient.newIngredient("Gin", pumpNumber: 3, amountLeft: 100, managedContext: managedContext!)
+        Ingredient.newIngredient("Lime", pumpNumber: 4, amountLeft: 50, managedContext: managedContext!)
+      
+        Ingredient.newIngredient("Coke", pumpNumber: 5, amountLeft: 400, managedContext: managedContext!)
+        Ingredient.newIngredient("Cranberry", pumpNumber: 6, amountLeft: 500, managedContext: managedContext!)
+    }
+    
+    func createDrinkWithIngredient(name:String, imageName:String, ingredients: Dictionary<String, NSNumber>) -> Drink{
+        var drink = Drink.newDrink(name, imageName: imageName, managedContext: managedContext!)
+        
+        for (ingredientName, amountNeeded) in ingredients{
+            drink.addIngredient(Ingredient.getIngredient(ingredientName, managedContext: managedContext!)!, amount: amountNeeded)
+        }
+        return drink
+    }
+    
+    func initDatabase() {
+        initIngredients()
+        items.append(createDrinkWithIngredient("Rum and Coke", imageName: "cocktail-1", ingredients:["Rum":30, "Coke":50]))
+        items.append(createDrinkWithIngredient("Vodka and Lime", imageName:"cocktail-2", ingredients:["Vodka":30, "Lime":50]))
+        items.append(createDrinkWithIngredient("Gin and Cranberry", imageName:"cocktail-3", ingredients:["Gin":30, "Cranberry":50]))
+        items.append(createDrinkWithIngredient("Metropolitan", imageName:"cocktail-4", ingredients:["Vodka":30, "Lime":50, "Cranberry":45]))
+        items.append(createDrinkWithIngredient("Mixin", imageName:"cocktail-5", ingredients:["Rum":30, "Gin":50, "Vodka":20, "Lime":10, "Cranberry":45]))
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.whiteColor()
-
+        
+        items = Drink.allDrinks(managedContext!)
+        if(items.count == 0){
+            initDatabase()
+        }
+        
         carousel.frame = view.frame
         carousel.type = .Custom
         carousel.dataSource = self
@@ -106,7 +144,7 @@ class DrinksViewController: UIViewController, iCarouselDataSource, iCarouselDele
         transitionDrinkView.setOriginX((view.frame.width/2) + DrinkCarouselTransformation.getXOffset(offset, carouselItemWidth: _carousel.itemWidth) - transitionDrinkView.frame.width/2)
         transitionDrinkView.setOriginY((view.frame.height - transitionDrinkView.frame.height)/2)
         
-        transitionDrinkView.image = UIImage(named: items[index].image)
+        transitionDrinkView.image = UIImage(named: items[index].imageName)
         
         transitionDrinkView.hidden = false
         (carousel.itemViewAtIndex(index) as UIImageView).image = nil

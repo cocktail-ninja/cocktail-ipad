@@ -6,3 +6,5 @@
 		open cocktail-assassin.xcworkspace
 		
 		
+##### NOTE
+There is a `.gitattributes` file with `*.pbxproj binary merge=union` in there, be aware!!

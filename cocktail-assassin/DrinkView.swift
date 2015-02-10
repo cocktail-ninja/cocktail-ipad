@@ -28,7 +28,7 @@ class DrinkView: UIImageView {
     }
     
     func setDrink(drink: Drink){
-        self.image = UIImage(named: drink.image)
+        self.image = UIImage(named: drink.imageName)
         nameLabel.text = drink.name
     }
 }

@@ -37,7 +37,7 @@ class DrinkDetailsViewController: UIViewController {
         
         drinkImageView.frame = Constants.drinkFrames.expandedFrame
         drinkImageView.contentMode = .ScaleAspectFit
-        drinkImageView.image = UIImage(named: drink.image)
+        drinkImageView.image = UIImage(named: drink.imageName)
         
         backButton.setTitle("Back", forState: .Normal)
         backButton.setTitleColor(ThemeColor.primary, forState: UIControlState.Normal)
@@ -130,7 +130,7 @@ class DrinkDetailsViewController: UIViewController {
     }
     
     func pour(){
-        DrinkService.makeDrink(recipe: "4-120/1-30/",
+        DrinkService.makeDrink(recipe: "4-120/1-30",
             onSuccess: { () -> Void in
                 println("onSuccess")
                 self.startPourAnimation(15)
