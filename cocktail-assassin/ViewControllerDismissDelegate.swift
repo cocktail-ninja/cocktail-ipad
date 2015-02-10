@@ -7,5 +7,5 @@
 //
 
 protocol ViewControllerDismissDelegate {
-    func onViewControllerDismiss()
+    func onViewControllerDismiss(badpattern: Int)
 }

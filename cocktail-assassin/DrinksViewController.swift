@@ -79,27 +79,41 @@ class DrinksViewController: UIViewController, iCarouselDataSource, iCarouselDele
         pageControl.currentPage = carousel.currentItemIndex
     }
     
-    func onViewControllerDismiss(){
-        UIView.transitionWithView(self.transitionDrinkView,
-            duration: 0.3,
-            options: UIViewAnimationOptions.CurveEaseIn,
-            animations: {
-                self.transitionDrinkView.frame = Constants.drinkFrames.basicFrame
-            }, completion: { finished in
-                self.carousel.reloadData()
-                
-                UIView.transitionWithView(self.view,
-                    duration: 0.2,
-                    options: UIViewAnimationOptions.CurveEaseOut,
-                    animations: {
-                        self.carousel.alpha = 1
-                    }, completion:  { finished in
-                        self.transitionDrinkView.hidden = true
-                        
-                })
-        
-        })
-        
+    func onViewControllerDismiss(badpattern: Int){
+        if (badpattern == 1){
+            UIView.transitionWithView(self.transitionDrinkView,
+                duration: 0.2,
+                options: UIViewAnimationOptions.CurveEaseOut,
+                animations: {
+                    self.transitionDrinkView.frame = Constants.drinkFrames.basicFrame
+                }, completion: { finished in
+                    self.carousel.reloadData()
+                    
+                    UIView.transitionWithView(self.view,
+                        duration: 0.2,
+                        options: UIViewAnimationOptions.CurveEaseIn,
+                        animations: {
+                            self.carousel.alpha = 1
+                        }, completion:  { finished in
+                            self.transitionDrinkView.hidden = true
+                            
+                    })
+                    
+            })
+        } else if (badpattern == 2){
+            self.carousel.reloadData()
+
+            UIView.transitionWithView(self.view,
+                duration: 0.2,
+                options: UIViewAnimationOptions.CurveEaseIn,
+                animations: {
+                    self.carousel.alpha = 1
+                }, completion:  { finished in
+                    self.transitionDrinkView.hidden = true
+            })
+        } else {
+            self.transitionDrinkView.frame = Constants.drinkFrames.basicFrame
+        }
     }
     
     func carousel(_carousel: iCarousel!, didSelectItemAtIndex index: Int) {
@@ -114,22 +128,25 @@ class DrinksViewController: UIViewController, iCarouselDataSource, iCarouselDele
         transitionDrinkView.hidden = false
         (carousel.itemViewAtIndex(index) as UIImageView).image = nil
         
+        var drinkDetailsVC = DrinkDetailsViewController(drink: self.items[index])
+        drinkDetailsVC.dismissDelegate = self
+        drinkDetailsVC.dismissDelegate = self
+        
         UIView.transitionWithView(self.view,
             duration: 0.2,
-            options: UIViewAnimationOptions.CurveEaseIn,
+            options: UIViewAnimationOptions.CurveEaseOut,
             animations: {
                 self.carousel.alpha = 0
             }, completion: { finished in
                 UIView.transitionWithView(self.transitionDrinkView,
-                    duration: 0.3,
+                    duration: 0.2,
                     options: UIViewAnimationOptions.CurveEaseOut,
                     animations: {
                         self.transitionDrinkView.frame = Constants.drinkFrames.expandedFrame
                     }, completion: { finished in
                         self.carousel.currentItemIndex = index
-                        var drinkDetailsVC = DrinkDetailsViewController(drink: self.items[index])
-                        drinkDetailsVC.dismissDelegate = self
                         self.presentViewController(drinkDetailsVC, animated: false, completion: {
+                            println("finished presenting")
                                                     })
                 })
         })
