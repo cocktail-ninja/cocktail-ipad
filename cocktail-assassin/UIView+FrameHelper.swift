@@ -21,8 +21,9 @@ extension UIView {
         self.frame.origin.y = originY
     }
     
-    func setBorder(width: CGFloat, color: CGColor = UIColor.blackColor().CGColor){
+    func setBorder(width: CGFloat, color: CGColor = UIColor.blackColor().CGColor, radius:CGFloat = 0.0){
         self.layer.borderWidth = width
         self.layer.borderColor = color
+        self.layer.cornerRadius = radius
     }
 }

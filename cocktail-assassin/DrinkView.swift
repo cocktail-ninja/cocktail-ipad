@@ -18,7 +18,7 @@ class DrinkView: UIImageView {
         
         nameLabel.frame = CGRectMake(0, frame.height, frame.width, 40)
         nameLabel.textAlignment = .Center;
-        nameLabel.font = UIFont(name: "Open Sans", size: 18)
+        nameLabel.font = UIFont(name: "HelveticaNeue-Light", size: 18)
       
         self.contentMode = .ScaleAspectFit
     }

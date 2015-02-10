@@ -12,3 +12,8 @@ struct Constants {
         static let expandedFrame = CGRectMake(80, 94, 320, 640)
     }
 }
+
+
+struct ThemeColor {
+    static let primary = UIColor(red: 0/255, green: 187/255, blue: 205/255, alpha: 1)
+}

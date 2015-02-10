@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import QuartzCore
+
 
 class DrinkDetailsViewController: UIViewController {
     let drinkImageView = UIImageView(),
@@ -15,6 +17,8 @@ class DrinkDetailsViewController: UIViewController {
         pouringView = PouringView(frame: Constants.drinkFrames.expandedFrame),
         plzHide = UIView(),
         glow = UIImageView()
+    
+    
 
     var dismissDelegate : ViewControllerDismissDelegate?
     
@@ -35,19 +39,32 @@ class DrinkDetailsViewController: UIViewController {
         drinkImageView.contentMode = .ScaleAspectFit
         drinkImageView.image = UIImage(named: drink.image)
         
-        backButton.setTitle("〈", forState: .Normal)
-        backButton.titleLabel?.font = UIFont.systemFontOfSize(40)
-        backButton.frame = CGRectMake(30, 80, 100, 60)
+        backButton.setTitle("Back", forState: .Normal)
+        backButton.setTitleColor(ThemeColor.primary, forState: UIControlState.Normal)
+        backButton.titleLabel?.font = UIFont(name: "HelveticaNeue-Light", size: CGFloat(20))
+        backButton.frame = CGRectMake(30, 30, 100, 60)
+        var backChevron = UILabel(frame: CGRectMake(-20, 0, 100, 60))
+        backChevron.text = "〈"
+        backChevron.font = UIFont.boldSystemFontOfSize(40)
+        backChevron.textColor = ThemeColor.primary
+        backButton.addSubview(backChevron)
+        
+        
         
         pourButton.setTitle("Hit me", forState: .Normal)
-        pourButton.titleLabel?.font = UIFont(name: "OpenSans", size: 32)
+        pourButton.titleLabel?.font = UIFont(name: "HelveticaNeue-Light", size: CGFloat(32))
         pourButton.frame = CGRectMake(620, 650, 300, 60)
-        pourButton.backgroundColor = UIColor.darkGrayColor()
-        pourButton.titleLabel?.textColor = UIColor.whiteColor()
+        pourButton.backgroundColor = UIColor.clearColor()
+        pourButton.setTitleColor(ThemeColor.primary, forState: .Normal)
+        pourButton.setBorder(1.0, color: ThemeColor.primary.CGColor, radius: 5.0)
+        
+        
+        
+        
         
         var label = UILabel(frame: CGRectMake(500, 100, 500, 50))
         label.text = drink.name
-        label.font = UIFont(name: "OpenSans", size: 28)
+        label.font = UIFont(name: "HelveticaNeue-Light", size: 28)
         label.textAlignment = .Center
         plzHide.addSubview(label)
         
@@ -63,7 +80,7 @@ class DrinkDetailsViewController: UIViewController {
             
             label.frame = CGRectMake(440, 220 + y, 200, 20)
             label.textAlignment = .Right
-            label.font = UIFont(name: "OpenSans", size: 16)
+            label.font = UIFont(name: "HelveticaNeue-Light", size: 16)
             label.text = ing
 
             

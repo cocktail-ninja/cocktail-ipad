@@ -20,6 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         var mainViewController = MainViewController();
         self.window!.rootViewController = mainViewController;
         self.window!.makeKeyAndVisible()
+        self.window!.tintColor = ThemeColor.primary
         return true
     }
 }
