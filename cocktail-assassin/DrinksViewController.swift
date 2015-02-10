@@ -15,26 +15,11 @@ class DrinksViewController: UIViewController, iCarouselDataSource, iCarouselDele
     private var transitionDrinkView = UIImageView()
     
     private var items = [
+        Drink(name : "Rum and Coke", image : "cocktail-1"),
         Drink(name : "Angry Cocoa", image : "cocktail-4"),
         Drink(name : "Apricot Lemon Boot", image : "cocktail-5"),
-        Drink(name : "Arctic Shake", image : "cocktail-1"),
-        Drink(name : "Doomed Mix", image : "cocktail-2"),
-        Drink(name : "Famous Desert Ocean", image : "cocktail-3"),
-        Drink(name : "Gambler's Murder", image : "cocktail-4"),
-        Drink(name : "Indefinite Desert Buster", image : "cocktail-5"),
-        Drink(name : "Insane Stout Martini", image : "cocktail-1"),
-        Drink(name : "Kiwi Blueberry", image : "cocktail-2"),
-        Drink(name : "Nasty Coconut", image : "cocktail-3"),
-        Drink(name : "Negative Drunken Mountain", image : "cocktail-4"),
-        Drink(name : "Peppermint Mint Chaos", image : "cocktail-5"),
-        Drink(name : "Pleasant Green", image : "cocktail-1"),
-        Drink(name : "Plum Abyss", image : "cocktail-2"),
-        Drink(name : "Random Royal Deep", image : "cocktail-3"),
-        Drink(name : "Rocky Pretender", image : "cocktail-4"),
-        Drink(name : "Sour Ecstacy", image : "cocktail-5"),
-        Drink(name : "Ultimate Ochre Dirt", image : "cocktail-1"),
-        Drink(name : "Unholy Schnapps Twister", image : "cocktail-2"),
-        Drink(name : "Vanilla Punch", image : "cocktail-3")
+        Drink(name : "Arctic Shake", image : "cocktail-2"),
+        Drink(name : "Doomed Mix", image : "cocktail-3")
     ]
 
     
@@ -61,8 +46,6 @@ class DrinksViewController: UIViewController, iCarouselDataSource, iCarouselDele
         }()
         
         carousel.addSubview(pageControl)
-        
-        carousel.currentItemIndex = items.count / 2
         carouselCurrentItemIndexDidChange(carousel)
         
         transitionDrinkView.contentMode = .ScaleAspectFit

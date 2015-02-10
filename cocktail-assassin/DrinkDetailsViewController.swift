@@ -130,6 +130,16 @@ class DrinkDetailsViewController: UIViewController {
     }
     
     func pour(){
+        DrinkService.makeDrink(recipe: "4-120/1-30/",
+            onSuccess: { () -> Void in
+                println("onSuccess")
+                self.startPourAnimation(15)
+            }, onFailure: { () -> Void in
+                println("onFailure")
+            })
+    }
+    
+    func startPourAnimation(duration: Double){
         println("pour")
         
         var haha = Constants.drinkFrames.basicFrame
@@ -150,7 +160,7 @@ class DrinkDetailsViewController: UIViewController {
                 self.drinkImageView.alpha = 0
                 self.drinkImageView.frame = Constants.drinkFrames.basicFrame
             }, completion: { finished in
-                self.pouringView.animate(4, onComplete: {
+                self.pouringView.animate(duration, onComplete: {
                     self.glow.hidden = false
                     UIView.transitionWithView(self.view,
                         duration: 2,
