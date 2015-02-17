@@ -14,6 +14,7 @@ class DrinkDetailsViewController: UIViewController {
     let drinkImageView = UIImageView(),
         backButton = UIButton.buttonWithType(UIButtonType.System) as UIButton,
         pourButton = UIButton.buttonWithType(UIButtonType.Custom) as UIButton,
+        resetIngredientButton = UIButton.buttonWithType(UIButtonType.Custom) as UIButton,
         pouringView = PouringView(frame: Constants.drinkFrames.expandedFrame),
         plzHide = UIView(),
         glow = UIImageView()
@@ -51,12 +52,20 @@ class DrinkDetailsViewController: UIViewController {
         
         
         
-        pourButton.setTitle("Hit me", forState: .Normal)
+        pourButton.setTitle("Insert cup and GO!", forState: .Normal)
         pourButton.titleLabel?.font = UIFont(name: "HelveticaNeue-Light", size: CGFloat(32))
         pourButton.frame = CGRectMake(620, 650, 300, 60)
         pourButton.backgroundColor = UIColor.clearColor()
         pourButton.setTitleColor(ThemeColor.primary, forState: .Normal)
         pourButton.setBorder(1.0, color: ThemeColor.primary.CGColor, radius: 5.0)
+        
+        
+        resetIngredientButton.setTitle("", forState: .Normal)
+        resetIngredientButton.titleLabel?.font = UIFont(name: "HelveticaNeue-Light", size: CGFloat(32))
+        resetIngredientButton.frame = CGRectMake(620, 600, 300, 60)
+        resetIngredientButton.backgroundColor = UIColor.clearColor()
+        resetIngredientButton.setTitleColor(ThemeColor.primary, forState: .Normal)
+        resetIngredientButton.setBorder(1.0, color: ThemeColor.primary.CGColor, radius: 5.0)
         
         
         
@@ -68,25 +77,41 @@ class DrinkDetailsViewController: UIViewController {
         label.textAlignment = .Center
         plzHide.addSubview(label)
         
+        
+        print(drink.drinkIngredients)
+        for ing in drink.drinkIngredients{
+    
+        }
+        
+        
         var ingredients = ["Vodka", "Rum", "Lemon Juice", "Cola"]
         
         var y : CGFloat = 0
         for ing in ingredients {
             var slider = UISlider(),
-                label = UILabel()
+                ingredientNamelabel = UILabel(),
+            ingredientAmountLabel = UILabel();
+            
             
             slider.frame = CGRectMake(660, 220 + y, 250, 20)
             slider.setValue(0.5, animated: false)
             
-            label.frame = CGRectMake(440, 220 + y, 200, 20)
-            label.textAlignment = .Right
-            label.font = UIFont(name: "HelveticaNeue-Light", size: 16)
-            label.text = ing
+            ingredientNamelabel.frame = CGRectMake(360, 220 + y, 200, 20)
+            ingredientNamelabel.textAlignment = .Right
+            ingredientNamelabel.font = UIFont(name: "HelveticaNeue-Bold", size: 16)
+            ingredientNamelabel.text = ing
+            
+            ingredientAmountLabel.frame = CGRectMake(440, 220 + y, 200, 20)
+            ingredientAmountLabel.textAlignment = .Right
+            ingredientAmountLabel.font = UIFont(name: "HelveticaNeue-Light", size: 16)
+            ingredientAmountLabel.text = "150ml"
+   
 
             
             y += 70
             
-            plzHide.addSubview(label)
+            plzHide.addSubview(ingredientNamelabel)
+            plzHide.addSubview(ingredientAmountLabel)
             plzHide.addSubview(slider)
         }
         

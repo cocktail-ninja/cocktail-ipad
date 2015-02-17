@@ -54,6 +54,9 @@ class DrinksViewController: UIViewController, iCarouselDataSource, iCarouselDele
         items.append(createDrinkWithIngredient("Gin and Cranberry", imageName:"cocktail-3", ingredients:["Gin":30, "Cranberry":50]))
         items.append(createDrinkWithIngredient("Metropolitan", imageName:"cocktail-4", ingredients:["Vodka":30, "Lime":50, "Cranberry":45]))
         items.append(createDrinkWithIngredient("Mixin", imageName:"cocktail-5", ingredients:["Rum":30, "Gin":50, "Vodka":20, "Lime":10, "Cranberry":45]))
+        
+        print(items);
+        
     }
     
     override func viewDidLoad() {
