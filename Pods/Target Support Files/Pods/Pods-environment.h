@@ -48,3 +48,9 @@
 #define COCOAPODS_VERSION_MINOR_iCarousel 8
 #define COCOAPODS_VERSION_PATCH_iCarousel 1
 
+// iOSSharedViewTransition
+#define COCOAPODS_POD_AVAILABLE_iOSSharedViewTransition
+#define COCOAPODS_VERSION_MAJOR_iOSSharedViewTransition 1
+#define COCOAPODS_VERSION_MINOR_iOSSharedViewTransition 0
+#define COCOAPODS_VERSION_PATCH_iOSSharedViewTransition 2
+

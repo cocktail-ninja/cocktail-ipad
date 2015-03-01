@@ -52,10 +52,12 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework 'OMGHTTPURLRQ.framework'
   install_framework 'PromiseKit.framework'
   install_framework 'iCarousel.framework'
+  install_framework 'iOSSharedViewTransition.framework'
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework 'Alamofire.framework'
   install_framework 'OMGHTTPURLRQ.framework'
   install_framework 'PromiseKit.framework'
   install_framework 'iCarousel.framework'
+  install_framework 'iOSSharedViewTransition.framework'
 fi

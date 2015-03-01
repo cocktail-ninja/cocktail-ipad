@@ -8,19 +8,22 @@
 
 import UIKit
 
-class DrinkView: UIImageView {
+class DrinkView: UIView {
     var nameLabel = UILabel()
+    var imageView = UIImageView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-
+        
+        addSubview(imageView)
         addSubview(nameLabel)
         
         nameLabel.frame = CGRectMake(0, frame.height, frame.width, 40)
         nameLabel.textAlignment = .Center;
         nameLabel.font = UIFont(name: "HelveticaNeue-Light", size: 18)
-      
-        self.contentMode = .ScaleAspectFit
+        
+        imageView.frame =  CGRectMake(0, 0, frame.width, frame.height)
+        imageView.contentMode = .ScaleAspectFit
     }
 
     required init(coder aDecoder: NSCoder) {
@@ -28,7 +31,7 @@ class DrinkView: UIImageView {
     }
     
     func setDrink(drink: Drink){
-        self.image = UIImage(named: drink.imageName)
+        imageView.image = UIImage(named: drink.imageName)
         nameLabel.text = drink.name
     }
 }

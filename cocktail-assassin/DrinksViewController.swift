@@ -11,11 +11,12 @@ import QuartzCore
 import CoreData
 import iCarousel
 import PromiseKit
+import iOSSharedViewTransition
 
-class DrinksViewController: UIViewController, iCarouselDataSource, iCarouselDelegate, ViewControllerDismissDelegate {
+class DrinksViewController: UIViewController, iCarouselDataSource, iCarouselDelegate, ASFSharedViewTransitionDataSource {
     private var carousel = iCarousel()
     private var pageControl = UIPageControl()
-    private var transitionDrinkView = UIImageView()
+    private var selectedDrinkIndex = 0
 
     lazy var managedContext : NSManagedObjectContext? = {
         let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
@@ -56,9 +57,15 @@ class DrinksViewController: UIViewController, iCarouselDataSource, iCarouselDele
         items.append(createDrinkWithIngredient("Gin and Cranberry", imageName:"cocktail-3", ingredients:["Gin":30, "Cranberry":50]))
         items.append(createDrinkWithIngredient("Metropolitan", imageName:"cocktail-4", ingredients:["Vodka":30, "Lime":50, "Cranberry":45]))
         items.append(createDrinkWithIngredient("Mixin", imageName:"cocktail-5", ingredients:["Rum":30, "Gin":50, "Vodka":20, "Lime":10, "Cranberry":45]))
-        
-        print(items);
-        
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        carousel.currentItemIndex = selectedDrinkIndex
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
     }
     
     override func viewDidLoad() {
@@ -90,12 +97,11 @@ class DrinksViewController: UIViewController, iCarouselDataSource, iCarouselDele
         
         carousel.addSubview(pageControl)
         carouselCurrentItemIndexDidChange(carousel)
-        
-        transitionDrinkView.contentMode = .ScaleAspectFit
-        transitionDrinkView.hidden = true
-        view.addSubview(transitionDrinkView)
     }
     
+    func sharedView() -> UIView! {
+        return (carousel.itemViewAtIndex(selectedDrinkIndex)! as DrinkView).imageView
+    }
     
     func numberOfItemsInCarousel(carousel: iCarousel!) -> Int {
         return items.count
@@ -105,77 +111,11 @@ class DrinksViewController: UIViewController, iCarouselDataSource, iCarouselDele
         pageControl.currentPage = carousel.currentItemIndex
     }
     
-    func onViewControllerDismiss(badpattern: Int){
-        if (badpattern == 1){
-            UIView.transitionWithView(self.transitionDrinkView,
-                duration: 0.2,
-                options: UIViewAnimationOptions.CurveEaseOut,
-                animations: {
-                    self.transitionDrinkView.frame = Constants.drinkFrames.basicFrame
-                }, completion: { finished in
-                    self.carousel.reloadData()
-                    
-                    UIView.transitionWithView(self.view,
-                        duration: 0.2,
-                        options: UIViewAnimationOptions.CurveEaseIn,
-                        animations: {
-                            self.carousel.alpha = 1
-                        }, completion:  { finished in
-                            self.transitionDrinkView.hidden = true
-                            
-                    })
-                    
-            })
-        } else if (badpattern == 2){
-            self.carousel.reloadData()
-
-            UIView.transitionWithView(self.view,
-                duration: 0.2,
-                options: UIViewAnimationOptions.CurveEaseIn,
-                animations: {
-                    self.carousel.alpha = 1
-                }, completion:  { finished in
-                    self.transitionDrinkView.hidden = true
-            })
-        } else {
-            self.transitionDrinkView.frame = Constants.drinkFrames.basicFrame
-        }
-    }
-    
     func carousel(_carousel: iCarousel!, didSelectItemAtIndex index: Int) {
-        var offset = _carousel.offsetForItemAtIndex(index)
-        transitionDrinkView.frame = Constants.drinkFrames.basicFrame
-        transitionDrinkView.scaleFrame(DrinkCarouselTransformation.getScale(offset))
-        transitionDrinkView.setOriginX((view.frame.width/2) + DrinkCarouselTransformation.getXOffset(offset, carouselItemWidth: _carousel.itemWidth) - transitionDrinkView.frame.width/2)
-        transitionDrinkView.setOriginY((view.frame.height - transitionDrinkView.frame.height)/2)
-        
-        transitionDrinkView.image = UIImage(named: items[index].imageName)
-        
-        transitionDrinkView.hidden = false
-        (carousel.itemViewAtIndex(index) as UIImageView).image = nil
-        
         var drinkDetailsVC = DrinkDetailsViewController(drink: self.items[index])
-        drinkDetailsVC.dismissDelegate = self
-        drinkDetailsVC.dismissDelegate = self
         
-        UIView.transition(self.view,
-            duration: 0.2,
-            options: UIViewAnimationOptions.CurveEaseOut,
-            animations: {
-                self.carousel.alpha = 0
-        }).then { finished -> Promise<Bool> in
-            UIView.transition(self.transitionDrinkView,
-                duration: 0.2,
-                options: UIViewAnimationOptions.CurveEaseOut,
-                animations: {
-                    self.transitionDrinkView.frame = Constants.drinkFrames.expandedFrame
-                })
-        }.then { finished -> () in
-            self.carousel.currentItemIndex = index
-            self.presentViewController(drinkDetailsVC, animated: false, completion: {
-                println("finished presenting")
-            })
-        }
+        self.selectedDrinkIndex = index
+        self.navigationController?.pushViewController(drinkDetailsVC, animated: true)
     }
     
     

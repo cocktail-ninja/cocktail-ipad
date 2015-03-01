@@ -8,10 +8,11 @@
 
 import UIKit
 import QuartzCore
+import iOSSharedViewTransition
 
 
-class DrinkDetailsViewController: UIViewController {
-    let drinkImageView = UIImageView(),
+class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataSource {
+    let drinkImageView = UIImageView(frame: Constants.drinkFrames.expandedFrame),
         backButton = UIButton.buttonWithType(UIButtonType.System) as UIButton,
         pourButton = UIButton.buttonWithType(UIButtonType.Custom) as UIButton,
         resetIngredientButton = UIButton.buttonWithType(UIButtonType.Custom) as UIButton,
@@ -20,15 +21,16 @@ class DrinkDetailsViewController: UIViewController {
         glow = UIImageView()
     
     
-
-    var dismissDelegate : ViewControllerDismissDelegate?
-    
     required init(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+    }
+    
+    func sharedView() -> UIView! {
+        return drinkImageView
     }
     
     init(drink: Drink) {
@@ -148,10 +150,7 @@ class DrinkDetailsViewController: UIViewController {
     }
     
     func dismiss(){
-        dismissViewControllerAnimated(false, completion: { complete in
-            println("dismissed")
-            self.dismissDelegate?.onViewControllerDismiss(1)
-        })
+        navigationController?.popViewControllerAnimated(true)
     }
     
     func pour(){
@@ -194,14 +193,8 @@ class DrinkDetailsViewController: UIViewController {
                             self.glow.transform = CGAffineTransformRotate(self.glow.transform, 1/2 * 3.1415926)
                             self.glow.alpha = 0
                         }, completion: { complete in
-                            
-                            self.dismissDelegate?.onViewControllerDismiss(3)
-        
-                            self.dismissViewControllerAnimated(false, completion: { complete in
-                                println("dismissed")
-                                self.dismissDelegate?.onViewControllerDismiss(2)
-                            })
-                            
+                            self.navigationController?.popViewControllerAnimated(true)
+                            return
                     })
                  })
             })

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import iOSSharedViewTransition
 
 class MainViewController: UIViewController {
     override func viewDidLoad() {
@@ -15,8 +16,16 @@ class MainViewController: UIViewController {
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-    
-        var drinksVC = DrinksViewController()
-        presentViewController(drinksVC, animated: false, completion: nil)
+        var navVC = UINavigationController(rootViewController: DrinksViewController())
+        
+        
+        navVC.navigationBarHidden = true;
+        
+        ASFSharedViewTransition.addTransitionWithFromViewControllerClass(DrinksViewController.self,
+            toViewControllerClass: DrinkDetailsViewController.self,
+            withNavigationController: navVC,
+            withDuration: 0.5)
+        
+        presentViewController(navVC, animated: false, completion: nil)
     }
 }

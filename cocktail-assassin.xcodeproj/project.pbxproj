@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2310A17C1A7FD9D200AA2463 /* ViewControllerDismissDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2310A17B1A7FD9D200AA2463 /* ViewControllerDismissDelegate.swift */; };
 		2345A2BB1A7D317D007CB356 /* OpenSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2345A2B11A7D317D007CB356 /* OpenSans-Bold.ttf */; };
 		2345A2BC1A7D317D007CB356 /* OpenSans-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2345A2B21A7D317D007CB356 /* OpenSans-BoldItalic.ttf */; };
 		2345A2BD1A7D317D007CB356 /* OpenSans-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2345A2B31A7D317D007CB356 /* OpenSans-ExtraBold.ttf */; };
@@ -50,7 +49,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		2310A17B1A7FD9D200AA2463 /* ViewControllerDismissDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerDismissDelegate.swift; sourceTree = "<group>"; };
 		2345A2B11A7D317D007CB356 /* OpenSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Bold.ttf"; sourceTree = "<group>"; };
 		2345A2B21A7D317D007CB356 /* OpenSans-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-BoldItalic.ttf"; sourceTree = "<group>"; };
 		2345A2B31A7D317D007CB356 /* OpenSans-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-ExtraBold.ttf"; sourceTree = "<group>"; };
@@ -122,7 +120,6 @@
 		2310A17A1A7FD97100AA2463 /* Protocol */ = {
 			isa = PBXGroup;
 			children = (
-				2310A17B1A7FD9D200AA2463 /* ViewControllerDismissDelegate.swift */,
 			);
 			name = Protocol;
 			sourceTree = "<group>";
@@ -442,7 +439,6 @@
 				2345A2CF1A7F9786007CB356 /* UIImage+Grayscale.swift in Sources */,
 				2345A2CA1A7D5231007CB356 /* DrinkDetailsViewController.swift in Sources */,
 				23E6376D1A6EBE5600B71A0D /* DrinksViewController.swift in Sources */,
-				2310A17C1A7FD9D200AA2463 /* ViewControllerDismissDelegate.swift in Sources */,
 				2345A2D11A7F9E96007CB356 /* PouringView.swift in Sources */,
 				237B076F1A6EA5F7001AA652 /* AppDelegate.swift in Sources */,
 				5931BC001A8A489700895B64 /* CocktailAssassin.xcdatamodeld in Sources */,
