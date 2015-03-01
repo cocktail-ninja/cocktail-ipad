@@ -1,6 +1,7 @@
-# Uncomment this line to define a global platform for your project
+source 'https://github.com/CocoaPods/Specs.git'  
+	use_frameworks!  
 platform :ios, '8.0'
 
-target 'cocktail-assassin' do
-	pod 'iCarousel', '~> 1.8'
-end
+pod 'iCarousel', '~> 1.8'
+pod 'Alamofire', '~> 1.1'
+pod 'PromiseKit/Swift'

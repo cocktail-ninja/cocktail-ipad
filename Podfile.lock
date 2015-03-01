@@ -1,0 +1,25 @@
+PODS:
+  - Alamofire (1.1.4)
+  - iCarousel (1.8.1)
+  - OMGHTTPURLRQ (2.1):
+    - OMGHTTPURLRQ/RQ (= 2.1)
+  - OMGHTTPURLRQ/FormURLEncode (2.1)
+  - OMGHTTPURLRQ/RQ (2.1):
+    - OMGHTTPURLRQ/FormURLEncode
+    - OMGHTTPURLRQ/UserAgent
+  - OMGHTTPURLRQ/UserAgent (2.1)
+  - PromiseKit/Swift (1.3.0):
+    - OMGHTTPURLRQ
+
+DEPENDENCIES:
+  - Alamofire (~> 1.1)
+  - iCarousel (~> 1.8)
+  - PromiseKit/Swift
+
+SPEC CHECKSUMS:
+  Alamofire: 524225da382071ee3e6d0badd0ee4b4dc36740de
+  iCarousel: 5acab560f10dc13da2440c89f35a0ad278b5147d
+  OMGHTTPURLRQ: f8c515dfd2f57a5d74c710978f600231f52afec5
+  PromiseKit: 4844db4448b4e387845e702b738cd87433fc02fd
+
+COCOAPODS: 0.36.0.rc.1

@@ -9,6 +9,7 @@
 import UIKit
 import QuartzCore
 import CoreData
+import iCarousel
 
 class DrinksViewController: UIViewController, iCarouselDataSource, iCarouselDelegate, ViewControllerDismissDelegate {
     private var carousel = iCarousel()

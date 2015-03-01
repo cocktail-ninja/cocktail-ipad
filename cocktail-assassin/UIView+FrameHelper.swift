@@ -6,6 +6,7 @@
 //  Copyright (c) 2015 tw. All rights reserved.
 //
 
+import UIKit
 
 extension UIView {
     func scaleFrame(scale: CGFloat) {

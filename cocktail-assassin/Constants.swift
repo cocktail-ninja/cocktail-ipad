@@ -5,6 +5,7 @@
 //  Created by Sambya Aryasa on 2/2/15.
 //  Copyright (c) 2015 tw. All rights reserved.
 //
+import UIKit
 
 struct Constants {
     struct drinkFrames {

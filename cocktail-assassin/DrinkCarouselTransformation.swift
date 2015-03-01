@@ -6,6 +6,8 @@
 //  Copyright (c) 2015 tw. All rights reserved.
 //
 
+import UIKit
+
 
 class DrinkCarouselTransformation {
     class func getScale(offset: CGFloat) -> CGFloat {
