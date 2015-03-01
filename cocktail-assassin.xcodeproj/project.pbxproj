@@ -24,6 +24,7 @@
 		2345A2D31A7FC19C007CB356 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2345A2D21A7FC19C007CB356 /* Constants.swift */; };
 		2345A2D51A7FC34C007CB356 /* DrinkCarouselTransformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2345A2D41A7FC34C007CB356 /* DrinkCarouselTransformation.swift */; };
 		2345A2D71A7FC4C0007CB356 /* UIView+FrameHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2345A2D61A7FC4C0007CB356 /* UIView+FrameHelper.swift */; };
+		234C64AF1AA37ABD003672AF /* UIView+Promise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234C64AE1AA37ABD003672AF /* UIView+Promise.swift */; };
 		237B076F1A6EA5F7001AA652 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237B076E1A6EA5F7001AA652 /* AppDelegate.swift */; };
 		237B07711A6EA5F7001AA652 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 237B07701A6EA5F7001AA652 /* Images.xcassets */; };
 		237B077D1A6EA5F7001AA652 /* cocktail_assassinTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237B077C1A6EA5F7001AA652 /* cocktail_assassinTests.swift */; };
@@ -69,6 +70,7 @@
 		234C64A21AA37476003672AF /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		234C64A41AA374A8003672AF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		234C64A61AA374C9003672AF /* libobjc.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libobjc.dylib; path = usr/lib/libobjc.dylib; sourceTree = SDKROOT; };
+		234C64AE1AA37ABD003672AF /* UIView+Promise.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Promise.swift"; sourceTree = "<group>"; };
 		237B07691A6EA5F7001AA652 /* cocktail-assassin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "cocktail-assassin.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		237B076D1A6EA5F7001AA652 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		237B076E1A6EA5F7001AA652 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -186,6 +188,7 @@
 			children = (
 				2345A2CE1A7F9786007CB356 /* UIImage+Grayscale.swift */,
 				2345A2D61A7FC4C0007CB356 /* UIView+FrameHelper.swift */,
+				234C64AE1AA37ABD003672AF /* UIView+Promise.swift */,
 			);
 			name = Extension;
 			sourceTree = "<group>";
@@ -434,6 +437,7 @@
 				23B1E7271A8A28620050A3AF /* DrinkService.swift in Sources */,
 				5931BC081A8A4E1700895B64 /* Ingredient.swift in Sources */,
 				5931BC061A8A4DC500895B64 /* Drink.swift in Sources */,
+				234C64AF1AA37ABD003672AF /* UIView+Promise.swift in Sources */,
 				5931BC071A8A4DC500895B64 /* DrinkIngredient.swift in Sources */,
 				2345A2CF1A7F9786007CB356 /* UIImage+Grayscale.swift in Sources */,
 				2345A2CA1A7D5231007CB356 /* DrinkDetailsViewController.swift in Sources */,

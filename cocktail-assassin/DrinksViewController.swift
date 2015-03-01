@@ -10,6 +10,7 @@ import UIKit
 import QuartzCore
 import CoreData
 import iCarousel
+import PromiseKit
 
 class DrinksViewController: UIViewController, iCarouselDataSource, iCarouselDelegate, ViewControllerDismissDelegate {
     private var carousel = iCarousel()
@@ -157,26 +158,24 @@ class DrinksViewController: UIViewController, iCarouselDataSource, iCarouselDele
         drinkDetailsVC.dismissDelegate = self
         drinkDetailsVC.dismissDelegate = self
         
-        UIView.transitionWithView(self.view,
+        UIView.transition(self.view,
             duration: 0.2,
             options: UIViewAnimationOptions.CurveEaseOut,
             animations: {
                 self.carousel.alpha = 0
-            }, completion: { finished in
-                UIView.transitionWithView(self.transitionDrinkView,
-                    duration: 0.2,
-                    options: UIViewAnimationOptions.CurveEaseOut,
-                    animations: {
-                        self.transitionDrinkView.frame = Constants.drinkFrames.expandedFrame
-                    }, completion: { finished in
-                        self.carousel.currentItemIndex = index
-                        self.presentViewController(drinkDetailsVC, animated: false, completion: {
-                            println("finished presenting")
-                                                    })
+        }).then { finished -> Promise<Bool> in
+            UIView.transition(self.transitionDrinkView,
+                duration: 0.2,
+                options: UIViewAnimationOptions.CurveEaseOut,
+                animations: {
+                    self.transitionDrinkView.frame = Constants.drinkFrames.expandedFrame
                 })
-        })
-        
-        
+        }.then { finished -> () in
+            self.carousel.currentItemIndex = index
+            self.presentViewController(drinkDetailsVC, animated: false, completion: {
+                println("finished presenting")
+            })
+        }
     }
     
     
