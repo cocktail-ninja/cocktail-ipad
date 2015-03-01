@@ -145,14 +145,13 @@
     // Take Snapshot of fomView
     UIView *snapshotView = [fromView snapshotViewAfterScreenUpdates:NO];
     snapshotView.frame = [containerView convertRect:fromView.frame fromView:fromView.superview];
-    fromView.hidden = YES;
+
     
     // Setup the initial view states
     toVC.view.frame = [transitionContext finalFrameForViewController:toVC];
     
     if (!reversed) {
         toVC.view.alpha = 0;
-        toView.hidden = YES;
         [containerView addSubview:toVC.view];
     }
     else {
@@ -160,6 +159,8 @@
     }
     
     [containerView addSubview:snapshotView];
+    fromView.hidden = YES;
+    toView.hidden = YES;
     
     [UIView animateWithDuration:dur animations:^{
         if (!reversed) {

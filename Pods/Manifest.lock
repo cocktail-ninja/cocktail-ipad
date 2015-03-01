@@ -15,13 +15,22 @@ PODS:
 DEPENDENCIES:
   - Alamofire (~> 1.1)
   - iCarousel (~> 1.8)
-  - iOSSharedViewTransition (~> 1.0.2)
+  - iOSSharedViewTransition (from `https://github.com/sbycrosz/iOSSharedViewTransition.git`)
   - PromiseKit/Swift
+
+EXTERNAL SOURCES:
+  iOSSharedViewTransition:
+    :git: https://github.com/sbycrosz/iOSSharedViewTransition.git
+
+CHECKOUT OPTIONS:
+  iOSSharedViewTransition:
+    :commit: cd1a79c4e1cf157540ee0846bdca2bc30f3f8f97
+    :git: https://github.com/sbycrosz/iOSSharedViewTransition.git
 
 SPEC CHECKSUMS:
   Alamofire: 524225da382071ee3e6d0badd0ee4b4dc36740de
   iCarousel: 5acab560f10dc13da2440c89f35a0ad278b5147d
-  iOSSharedViewTransition: b5d2f9d19754a73a9cd489bd87dbc17c987bba39
+  iOSSharedViewTransition: d4bdb3662b51d780b7a0646da8ff2158dbb2e43c
   OMGHTTPURLRQ: f8c515dfd2f57a5d74c710978f600231f52afec5
   PromiseKit: 4844db4448b4e387845e702b738cd87433fc02fd
 
