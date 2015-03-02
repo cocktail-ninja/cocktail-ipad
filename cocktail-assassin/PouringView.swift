@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import PromiseKit
 
 class PouringView: UIView {
     let TINT_COLOR : UIColor = UIColor(white: 0.8, alpha: 1.0)
@@ -41,14 +42,12 @@ class PouringView: UIView {
     }
     
     
-    func animate(duration: Double, onComplete: (() -> Void)) {
-        UIView.transitionWithView(self,
+    func animate(duration: Double) -> Promise<Bool> {
+        return UIView.transition(self,
             duration: duration,
-            options: UIViewAnimationOptions.CurveLinear,
+            options:  UIViewAnimationOptions.CurveLinear,
             animations: {
                 self.bwImageContainer.frame.size.height = 0
-            }, completion: { (complete) in
-               onComplete()
         })
     }
     

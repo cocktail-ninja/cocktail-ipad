@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import QuartzCore
 import iOSSharedViewTransition
 
 
@@ -18,8 +17,7 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
         resetIngredientButton = UIButton.buttonWithType(UIButtonType.Custom) as UIButton,
         pouringView = PouringView(frame: Constants.drinkFrames.expandedFrame),
         plzHide = UIView(),
-        glow = UIImageView()
-    
+        drink: Drink?
     
     required init(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -29,14 +27,11 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
     
-    func sharedView() -> UIView! {
-        return drinkImageView
-    }
-    
     init(drink: Drink) {
         super.init()
-        
+        self.drink = drink
         plzHide.frame = view.frame
+        
         
         drinkImageView.frame = Constants.drinkFrames.expandedFrame
         drinkImageView.contentMode = .ScaleAspectFit
@@ -120,11 +115,6 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
         pouringView.setImage(drinkImageView.image!)
         pouringView.alpha = 0
         
-        glow.image = UIImage(named: "glow.png")
-        glow.frame = CGRectMake((view.frame.width - 600)/2, (view.frame.height - 600)/2, 600, 600)
-        glow.contentMode = .ScaleAspectFit
-        glow.hidden = true
-        
         backButton.addTarget(self, action: "dismiss", forControlEvents: .TouchUpInside)
         pourButton.addTarget(self, action: "pour", forControlEvents: .TouchUpInside)
     }
@@ -134,7 +124,6 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
         
         view.backgroundColor = UIColor.whiteColor()
         
-        view.addSubview(glow)
         view.addSubview(drinkImageView)
         plzHide.addSubview(pourButton)
         plzHide.addSubview(backButton)
@@ -145,8 +134,6 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         println("viewDidAppear")
-        
-
     }
     
     func dismiss(){
@@ -164,39 +151,11 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
     }
     
     func startPourAnimation(duration: Double){
-        println("pour")
-        
-        var haha = Constants.drinkFrames.basicFrame
-        haha.origin = CGPointZero
-        
-        
-        UIView.transitionWithView(self.view,
-            duration: 0.2,
-            options: UIViewAnimationOptions.CurveEaseIn,
-            animations: {
-                self.plzHide.alpha = 0
-                self.pouringView.alpha = 1
-                self.pouringView.frame = Constants.drinkFrames.basicFrame
-                self.pouringView.bwImageView.frame  = haha
-                self.pouringView.imageView.frame  = haha
-                self.pouringView.bwImageContainer.frame  = haha
-                
-                self.drinkImageView.alpha = 0
-                self.drinkImageView.frame = Constants.drinkFrames.basicFrame
-            }, completion: { finished in
-                self.pouringView.animate(duration, onComplete: {
-                    self.glow.hidden = false
-                    UIView.transitionWithView(self.view,
-                        duration: 2,
-                        options: UIViewAnimationOptions.CurveLinear,
-                        animations: {
-                            self.glow.transform = CGAffineTransformRotate(self.glow.transform, 1/2 * 3.1415926)
-                            self.glow.alpha = 0
-                        }, completion: { complete in
-                            self.navigationController?.popViewControllerAnimated(true)
-                            return
-                    })
-                 })
-            })
-        }
+        var pouringVC = PouringViewController(drink: drink!, duration: duration)
+        navigationController?.pushViewController(pouringVC, animated: true)
+    }
+    
+    func sharedView() -> UIView! {
+        return drinkImageView
+    }
 }

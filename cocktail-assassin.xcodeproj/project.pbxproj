@@ -24,6 +24,8 @@
 		2345A2D51A7FC34C007CB356 /* DrinkCarouselTransformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2345A2D41A7FC34C007CB356 /* DrinkCarouselTransformation.swift */; };
 		2345A2D71A7FC4C0007CB356 /* UIView+FrameHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2345A2D61A7FC4C0007CB356 /* UIView+FrameHelper.swift */; };
 		234C64AF1AA37ABD003672AF /* UIView+Promise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234C64AE1AA37ABD003672AF /* UIView+Promise.swift */; };
+		23661CBD1AA483D900569DAD /* PouringViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23661CBC1AA483D900569DAD /* PouringViewController.swift */; };
+		23661CF21AA4A6EF00569DAD /* GlowingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23661CF11AA4A6EF00569DAD /* GlowingView.swift */; };
 		237B076F1A6EA5F7001AA652 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237B076E1A6EA5F7001AA652 /* AppDelegate.swift */; };
 		237B07711A6EA5F7001AA652 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 237B07701A6EA5F7001AA652 /* Images.xcassets */; };
 		237B077D1A6EA5F7001AA652 /* cocktail_assassinTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237B077C1A6EA5F7001AA652 /* cocktail_assassinTests.swift */; };
@@ -69,6 +71,8 @@
 		234C64A41AA374A8003672AF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		234C64A61AA374C9003672AF /* libobjc.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libobjc.dylib; path = usr/lib/libobjc.dylib; sourceTree = SDKROOT; };
 		234C64AE1AA37ABD003672AF /* UIView+Promise.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Promise.swift"; sourceTree = "<group>"; };
+		23661CBC1AA483D900569DAD /* PouringViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PouringViewController.swift; sourceTree = "<group>"; };
+		23661CF11AA4A6EF00569DAD /* GlowingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlowingView.swift; sourceTree = "<group>"; };
 		237B07691A6EA5F7001AA652 /* cocktail-assassin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "cocktail-assassin.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		237B076D1A6EA5F7001AA652 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		237B076E1A6EA5F7001AA652 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -165,6 +169,7 @@
 			children = (
 				23C0532C1A7A810F0060CABB /* DrinkView.swift */,
 				2345A2D01A7F9E96007CB356 /* PouringView.swift */,
+				23661CF11AA4A6EF00569DAD /* GlowingView.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -176,6 +181,7 @@
 				237B07861A6EA7A2001AA652 /* MainViewController.swift */,
 				2345A2C91A7D5231007CB356 /* DrinkDetailsViewController.swift */,
 				2345A2D41A7FC34C007CB356 /* DrinkCarouselTransformation.swift */,
+				23661CBC1AA483D900569DAD /* PouringViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -433,6 +439,7 @@
 			files = (
 				23B1E7271A8A28620050A3AF /* DrinkService.swift in Sources */,
 				5931BC081A8A4E1700895B64 /* Ingredient.swift in Sources */,
+				23661CBD1AA483D900569DAD /* PouringViewController.swift in Sources */,
 				5931BC061A8A4DC500895B64 /* Drink.swift in Sources */,
 				234C64AF1AA37ABD003672AF /* UIView+Promise.swift in Sources */,
 				5931BC071A8A4DC500895B64 /* DrinkIngredient.swift in Sources */,
@@ -444,6 +451,7 @@
 				5931BC001A8A489700895B64 /* CocktailAssassin.xcdatamodeld in Sources */,
 				2345A2D51A7FC34C007CB356 /* DrinkCarouselTransformation.swift in Sources */,
 				23C0532D1A7A810F0060CABB /* DrinkView.swift in Sources */,
+				23661CF21AA4A6EF00569DAD /* GlowingView.swift in Sources */,
 				237B07871A6EA7A2001AA652 /* MainViewController.swift in Sources */,
 				2345A2D31A7FC19C007CB356 /* Constants.swift in Sources */,
 				2345A2D71A7FC4C0007CB356 /* UIView+FrameHelper.swift in Sources */,

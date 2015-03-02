@@ -25,6 +25,14 @@ class MainViewController: UIViewController {
             toViewControllerClass: DrinkDetailsViewController.self,
             withNavigationController: navVC,
             withDuration: 0.5)
+        ASFSharedViewTransition.addTransitionWithFromViewControllerClass(DrinkDetailsViewController.self,
+            toViewControllerClass: PouringViewController.self,
+            withNavigationController: navVC,
+            withDuration: 0.5)
+        ASFSharedViewTransition.addTransitionWithFromViewControllerClass(PouringViewController.self,
+            toViewControllerClass: DrinksViewController.self,
+            withNavigationController: navVC,
+            withDuration: 0.5)
         
         presentViewController(navVC, animated: false, completion: nil)
     }
