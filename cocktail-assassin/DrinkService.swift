@@ -6,18 +6,16 @@
 //  Copyright (c) 2015 tw. All rights reserved.
 //
 
-import Alamofire
+import Foundation
+import PromiseKit
 
 class DrinkService: NSObject {
-    class func makeDrink(#recipe: String, onSuccess: (() -> Void)?, onFailure: (() -> Void)?){
-        Alamofire.request(.POST, Constants.baseUrl.dev + "/make_drink/" + recipe)
-            .response { (request, response, data, error) in
-                println(request, response, data, error)
-                if (response?.statusCode == 200){
-                    onSuccess?()
-                } else {
-                    onFailure?()
-                }
+    class func makeDrink(#recipe: String) -> Promise<Double> {
+        var url = Constants.baseUrl.dev + "/make_drink/" + recipe
+        return NSURLConnection.POST(url, JSON: [String: String]())
+            .then { (result : NSDictionary) -> Promise<Double> in
+                var readyInDuration = (result.objectForKey("ready_in") as Double) / 1000
+                return Promise<Double>(value: readyInDuration)
             }
     }
 }

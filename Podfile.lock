@@ -1,5 +1,4 @@
 PODS:
-  - Alamofire (1.1.4)
   - iCarousel (1.8.1)
   - iOSSharedViewTransition (1.0.2)
   - OMGHTTPURLRQ (2.1):
@@ -13,7 +12,6 @@ PODS:
     - OMGHTTPURLRQ
 
 DEPENDENCIES:
-  - Alamofire (~> 1.1)
   - iCarousel (~> 1.8)
   - iOSSharedViewTransition (from `https://github.com/sbycrosz/iOSSharedViewTransition.git`)
   - PromiseKit/Swift
@@ -28,7 +26,6 @@ CHECKOUT OPTIONS:
     :git: https://github.com/sbycrosz/iOSSharedViewTransition.git
 
 SPEC CHECKSUMS:
-  Alamofire: 524225da382071ee3e6d0badd0ee4b4dc36740de
   iCarousel: 5acab560f10dc13da2440c89f35a0ad278b5147d
   iOSSharedViewTransition: d4bdb3662b51d780b7a0646da8ff2158dbb2e43c
   OMGHTTPURLRQ: f8c515dfd2f57a5d74c710978f600231f52afec5

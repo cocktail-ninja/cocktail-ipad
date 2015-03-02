@@ -141,13 +141,10 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
     }
     
     func pour(){
-        DrinkService.makeDrink(recipe: "4-120/1-30",
-            onSuccess: { () -> Void in
-                println("onSuccess")
-                self.startPourAnimation(15)
-            }, onFailure: { () -> Void in
-                println("onFailure")
-            })
+        DrinkService.makeDrink(recipe: "4-120/1-30")
+            .then { (duration)  in
+                self.startPourAnimation(duration)                
+            }
     }
     
     func startPourAnimation(duration: Double){
