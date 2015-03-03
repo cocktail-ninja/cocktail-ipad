@@ -38,6 +38,7 @@
 		5931BC061A8A4DC500895B64 /* Drink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23AC06DA1A6FA260002928CB /* Drink.swift */; };
 		5931BC071A8A4DC500895B64 /* DrinkIngredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59AFC2E11A8A3C29006D14DF /* DrinkIngredient.swift */; };
 		5931BC081A8A4E1700895B64 /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59AFC2E21A8A3C29006D14DF /* Ingredient.swift */; };
+		EF21824B1AA5E8C900690EFD /* DrinkIngredientCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF21824A1AA5E8C900690EFD /* DrinkIngredientCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -91,6 +92,7 @@
 		59AFC2E21A8A3C29006D14DF /* Ingredient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
 		8D1068E656C146A8BB46FCBE /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD64C9E21465755B34901485 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		EF21824A1AA5E8C900690EFD /* DrinkIngredientCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrinkIngredientCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -170,6 +172,7 @@
 				23C0532C1A7A810F0060CABB /* DrinkView.swift */,
 				2345A2D01A7F9E96007CB356 /* PouringView.swift */,
 				23661CF11AA4A6EF00569DAD /* GlowingView.swift */,
+				EF21824A1AA5E8C900690EFD /* DrinkIngredientCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -437,6 +440,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EF21824B1AA5E8C900690EFD /* DrinkIngredientCell.swift in Sources */,
 				23B1E7271A8A28620050A3AF /* DrinkService.swift in Sources */,
 				5931BC081A8A4E1700895B64 /* Ingredient.swift in Sources */,
 				23661CBD1AA483D900569DAD /* PouringViewController.swift in Sources */,

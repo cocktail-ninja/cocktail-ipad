@@ -10,14 +10,16 @@ import UIKit
 import iOSSharedViewTransition
 
 
-class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataSource {
+class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataSource, UITableViewDataSource, UITableViewDelegate {
     let drinkImageView = UIImageView(frame: Constants.drinkFrames.expandedFrame),
         backButton = UIButton.buttonWithType(UIButtonType.System) as UIButton,
         pourButton = UIButton.buttonWithType(UIButtonType.Custom) as UIButton,
         resetIngredientButton = UIButton.buttonWithType(UIButtonType.Custom) as UIButton,
         pouringView = PouringView(frame: Constants.drinkFrames.expandedFrame),
         plzHide = UIView(),
+        ingredientsTableView = UITableView(),
         drink: Drink?
+    
     
     required init(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -47,8 +49,6 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
         backChevron.textColor = ThemeColor.primary
         backButton.addSubview(backChevron)
         
-        
-        
         pourButton.setTitle("Insert cup and GO!", forState: .Normal)
         pourButton.titleLabel?.font = UIFont(name: "HelveticaNeue-Light", size: CGFloat(32))
         pourButton.frame = CGRectMake(620, 650, 300, 60)
@@ -64,8 +64,13 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
         resetIngredientButton.setTitleColor(ThemeColor.primary, forState: .Normal)
         resetIngredientButton.setBorder(1.0, color: ThemeColor.primary.CGColor, radius: 5.0)
         
-        
-        
+        ingredientsTableView.frame = CGRectMake(400, 180, 550, 450)
+        ingredientsTableView.delegate = self
+        ingredientsTableView.dataSource = self
+        ingredientsTableView.scrollEnabled = false
+        ingredientsTableView.separatorStyle = .None
+        ingredientsTableView.allowsSelection = false
+        plzHide.addSubview(ingredientsTableView)
         
         
         var label = UILabel(frame: CGRectMake(500, 100, 500, 50))
@@ -74,49 +79,37 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
         label.textAlignment = .Center
         plzHide.addSubview(label)
         
-        
-        print(drink.drinkIngredients)
-        for ing in drink.drinkIngredients{
-    
-        }
-        
-        
-        var ingredients = ["Vodka", "Rum", "Lemon Juice", "Cola"]
-        
-        var y : CGFloat = 0
-        for ing in ingredients {
-            var slider = UISlider(),
-                ingredientNamelabel = UILabel(),
-            ingredientAmountLabel = UILabel();
-            
-            
-            slider.frame = CGRectMake(660, 220 + y, 250, 20)
-            slider.setValue(0.5, animated: false)
-            
-            ingredientNamelabel.frame = CGRectMake(360, 220 + y, 200, 20)
-            ingredientNamelabel.textAlignment = .Right
-            ingredientNamelabel.font = UIFont(name: "HelveticaNeue-Bold", size: 16)
-            ingredientNamelabel.text = ing
-            
-            ingredientAmountLabel.frame = CGRectMake(440, 220 + y, 200, 20)
-            ingredientAmountLabel.textAlignment = .Right
-            ingredientAmountLabel.font = UIFont(name: "HelveticaNeue-Light", size: 16)
-            ingredientAmountLabel.text = "150ml"
-   
-
-            
-            y += 70
-            
-            plzHide.addSubview(ingredientNamelabel)
-            plzHide.addSubview(ingredientAmountLabel)
-            plzHide.addSubview(slider)
-        }
-        
         pouringView.setImage(drinkImageView.image!)
         pouringView.alpha = 0
         
         backButton.addTarget(self, action: "dismiss", forControlEvents: .TouchUpInside)
         pourButton.addTarget(self, action: "pour", forControlEvents: .TouchUpInside)
+    }
+    
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1;
+    }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return drink!.drinkIngredients.count
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        var cell = tableView.dequeueReusableCellWithIdentifier("CELL") as? DrinkIngredientCell
+        if(cell == nil)
+        {
+            cell = DrinkIngredientCell(style: .Default, reuseIdentifier: "CELL")
+        }
+        
+        var drinkIngredient = drink?.drinkIngredients.allObjects[indexPath.row] as DrinkIngredient
+        
+        cell!.displayDrinkIngredient(drinkIngredient)
+        
+        return cell!
+    }
+    
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 70;
     }
     
     override func viewDidLoad() {
