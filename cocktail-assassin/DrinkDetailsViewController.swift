@@ -17,8 +17,9 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
         resetIngredientButton = UIButton.buttonWithType(UIButtonType.Custom) as UIButton,
         pouringView = PouringView(frame: Constants.drinkFrames.expandedFrame),
         plzHide = UIView(),
-        ingredientsTableView = UITableView(),
-        drink: Drink?
+        ingredientsTableView = UITableView();
+    
+    var drink: Drink?
     
     
     required init(coder aDecoder: NSCoder) {
@@ -63,6 +64,8 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
         resetIngredientButton.backgroundColor = UIColor.clearColor()
         resetIngredientButton.setTitleColor(ThemeColor.primary, forState: .Normal)
         resetIngredientButton.setBorder(1.0, color: ThemeColor.primary.CGColor, radius: 5.0)
+        view.addSubview(resetIngredientButton)
+        
         
         ingredientsTableView.frame = CGRectMake(400, 180, 550, 450)
         ingredientsTableView.delegate = self
@@ -82,6 +85,8 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
         pouringView.setImage(drinkImageView.image!)
         pouringView.alpha = 0
         
+        
+        resetIngredientButton.addTarget(self, action: "reset", forControlEvents: .TouchUpInside)
         backButton.addTarget(self, action: "dismiss", forControlEvents: .TouchUpInside)
         pourButton.addTarget(self, action: "pour", forControlEvents: .TouchUpInside)
     }
@@ -127,6 +132,11 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         println("viewDidAppear")
+    }
+    
+    func reset(){
+        drink = Drink.getDrinkByName(drink!.name)
+        ingredientsTableView.reloadData()
     }
     
     func dismiss(){

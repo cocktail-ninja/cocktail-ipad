@@ -6,6 +6,7 @@
 //  Copyright (c) 2015 Colin Harris. All rights reserved.
 //
 
+import UIKit
 import Foundation
 import CoreData
 
@@ -35,6 +36,14 @@ class Drink: NSManagedObject {
         let fetchRequest = NSFetchRequest(entityName: "Drink")
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "name", ascending:true)]
         return managedContext.executeFetchRequest(fetchRequest, error: nil) as [Drink]
+    }
+    
+    class func getDrinkByName(name: String) -> Drink? {
+        let fetchRequest = NSFetchRequest(entityName: "Drink")
+        let managedContext = UIApplication.sharedDelegate().getManagedContext()
+
+        fetchRequest.predicate = NSPredicate(format: "name = %@", name)        
+        return (managedContext?.executeFetchRequest(fetchRequest, error: nil) as [Drink]).first
     }
     
 }
