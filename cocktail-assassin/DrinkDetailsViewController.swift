@@ -101,8 +101,7 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell = tableView.dequeueReusableCellWithIdentifier("CELL") as? DrinkIngredientCell
-        if(cell == nil)
-        {
+        if(cell == nil) {
             cell = DrinkIngredientCell(style: .Default, reuseIdentifier: "CELL")
         }
         
@@ -144,7 +143,10 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
     }
     
     func pour(){
-        DrinkService.makeDrink(recipe: "4-120/1-30")
+        let ingredients = drink!.drinkIngredients.allObjects.map { $0 as DrinkIngredient }
+        let recipe = "/".join(ingredients.map {"\($0.ingredient.pumpNumber)-\($0.amount)"})
+        
+        DrinkService.makeDrink(recipe: recipe)
             .then { (duration)  in
                 self.startPourAnimation(duration)                
             }
