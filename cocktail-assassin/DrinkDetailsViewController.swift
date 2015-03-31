@@ -8,7 +8,7 @@
 
 import UIKit
 import iOSSharedViewTransition
-
+import PromiseKit
 
 class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataSource, UITableViewDataSource, UITableViewDelegate {
     let drinkImageView = UIImageView(frame: Constants.drinkFrames.expandedFrame),
@@ -84,7 +84,6 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
         pouringView.setImage(drinkImageView.image!)
         pouringView.alpha = 0
         
-        
         resetIngredientButton.addTarget(self, action: "reset", forControlEvents: .TouchUpInside)
         backButton.addTarget(self, action: "dismiss", forControlEvents: .TouchUpInside)
         pourButton.addTarget(self, action: "pour", forControlEvents: .TouchUpInside)
@@ -133,28 +132,37 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
     }
     
     func reset(){
-        Drink.revert();
+        Drink.revert()
         ingredientsTableView.reloadData()
     }
     
     func dismiss(){
-        Drink.revert();
+        Drink.revert()
         navigationController?.popViewControllerAnimated(true)
     }
     
     func pour(){
         let ingredients = drink!.drinkIngredients.allObjects.map { $0 as DrinkIngredient }
         let recipe = "/".join(ingredients.map {"\($0.ingredient.pumpNumber)-\($0.amount)"})
-        
-        DrinkService.makeDrink(recipe: recipe)
-            .then { (duration)  in
-                self.startPourAnimation(duration)                
-            }
-        Drink.revert();
+        let promise = DrinkService.makeDrink(recipe: recipe)
+     
+        promise.then{(duration) -> Promise<Void>? in
+            self.startPourAnimation(duration)
+            return nil
+         
+            }.catch{ (error) -> Promise<Void>? in
+                let alertView = UIAlertView()
+                alertView.addButtonWithTitle("Ok")
+                alertView.message = "No Drink for you!!"
+                alertView.show()
+                return nil
+        }
+
+        Drink.revert()
 
     }
     
-    func startPourAnimation(duration: Double){
+    func startPourAnimation(duration: Double) {
         var pouringVC = PouringViewController(drink: drink!, duration: duration)
         navigationController?.pushViewController(pouringVC, animated: true)
     }
