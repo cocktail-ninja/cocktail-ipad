@@ -57,13 +57,12 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
         pourButton.setTitleColor(ThemeColor.primary, forState: .Normal)
         pourButton.setBorder(1.0, color: ThemeColor.primary.CGColor, radius: 5.0)
         
-        
-        resetIngredientButton.setTitle("", forState: .Normal)
-        resetIngredientButton.titleLabel?.font = UIFont(name: "HelveticaNeue-Light", size: CGFloat(32))
-        resetIngredientButton.frame = CGRectMake(620, 600, 300, 60)
+        resetIngredientButton.setImage(UIImage(named: "reset.png"), forState: UIControlState.Normal)
+        resetIngredientButton.setTitle("Reset ingredients", forState: .Normal)
+        resetIngredientButton.titleLabel?.font = UIFont(name: "HelveticaNeue-Light", size: CGFloat(16))
+        resetIngredientButton.frame = CGRectMake(720, 560, 200, 60)
         resetIngredientButton.backgroundColor = UIColor.clearColor()
         resetIngredientButton.setTitleColor(ThemeColor.primary, forState: .Normal)
-        resetIngredientButton.setBorder(1.0, color: ThemeColor.primary.CGColor, radius: 5.0)
         view.addSubview(resetIngredientButton)
         
         
@@ -134,11 +133,12 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
     }
     
     func reset(){
-        drink = Drink.getDrinkByName(drink!.name)
+        Drink.revert();
         ingredientsTableView.reloadData()
     }
     
     func dismiss(){
+        Drink.revert();
         navigationController?.popViewControllerAnimated(true)
     }
     
@@ -150,6 +150,8 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
             .then { (duration)  in
                 self.startPourAnimation(duration)                
             }
+        Drink.revert();
+
     }
     
     func startPourAnimation(duration: Double){

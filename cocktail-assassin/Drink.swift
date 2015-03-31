@@ -46,4 +46,9 @@ class Drink: NSManagedObject {
         return (managedContext?.executeFetchRequest(fetchRequest, error: nil) as [Drink]).first
     }
     
+    class func revert(){
+        let managedContext = UIApplication.sharedDelegate().getManagedContext()
+        managedContext?.rollback();
+    }
+    
 }
