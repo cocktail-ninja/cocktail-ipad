@@ -62,7 +62,7 @@ class StartPouringButton : UIButton, MONActivityIndicatorViewDelegate {
         }
         
         hideAll()
-        view.layer.opacity = 1
+        view.fadeIn(0.5, options: .CurveEaseIn)
     }
     
     func setState(state: StartPouringButtonState) {
@@ -80,7 +80,7 @@ class StartPouringButton : UIButton, MONActivityIndicatorViewDelegate {
                 setBorder(color: ThemeColor.error.CGColor)
                 show(errorLabel)
                 let delayTime = dispatch_time(DISPATCH_TIME_NOW,
-                    Int64(1 * Double(NSEC_PER_SEC)))
+                    Int64(1.5 * Double(NSEC_PER_SEC)))
                 dispatch_after(delayTime, dispatch_get_main_queue()) {
                     self.setState(.Normal)
                 }
