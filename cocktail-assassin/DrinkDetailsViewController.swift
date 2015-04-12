@@ -4,7 +4,7 @@ import PromiseKit
 
 class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataSource, UITableViewDataSource, UITableViewDelegate {
     let drinkImageView = UIImageView(frame: Constants.drinkFrames.expandedFrame),
-        backButton = UIButton.buttonWithType(UIButtonType.System) as UIButton,
+        backButton = UIButton.buttonWithType(UIButtonType.Custom) as UIButton,
         pourButton = StartPouringButton(frame: CGRectMake(620, 650, 300, 60)),
         resetIngredientButton = UIButton.buttonWithType(UIButtonType.Custom) as UIButton,
         ingredientsTableView = UITableView();
@@ -28,15 +28,13 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
         drinkImageView.contentMode = .ScaleAspectFit
         drinkImageView.image = UIImage(named: drink.imageName)
         
-        backButton.setTitle("Back", forState: .Normal)
+        
+        backButton.setImage(UIImage(named: "back"), forState: UIControlState.Normal)
+        backButton.setTitle("  Back", forState: .Normal)
         backButton.setTitleColor(ThemeColor.primary, forState: UIControlState.Normal)
+        backButton.setTitleColor(ThemeColor.highlighted, forState: .Highlighted)
         backButton.titleLabel?.font = UIFont(name: "HelveticaNeue-Light", size: CGFloat(20))
         backButton.frame = CGRectMake(30, 30, 100, 60)
-        var backChevron = UILabel(frame: CGRectMake(-20, 0, 100, 60))
-        backChevron.text = "〈"
-        backChevron.font = UIFont.boldSystemFontOfSize(40)
-        backChevron.textColor = ThemeColor.primary
-        backButton.addSubview(backChevron)
         
         
         ingredientsTableView.frame = CGRectMake(400, 180, 550, 450)
@@ -49,11 +47,13 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
         
         
         resetIngredientButton.setImage(UIImage(named: "reset.png"), forState: UIControlState.Normal)
-        resetIngredientButton.setTitle("Reset ingredients", forState: .Normal)
+        resetIngredientButton.setTitle("  Reset ingredients", forState: .Normal)
         resetIngredientButton.titleLabel?.font = UIFont(name: "HelveticaNeue-Light", size: CGFloat(16))
-        resetIngredientButton.frame = CGRectMake(720, 560, 200, 60)
+        resetIngredientButton.frame = CGRectMake(620, 590, 300, 60)
         resetIngredientButton.backgroundColor = UIColor.clearColor()
         resetIngredientButton.setTitleColor(ThemeColor.primary, forState: .Normal)
+        resetIngredientButton.setTitleColor(ThemeColor.highlighted, forState: .Highlighted)
+        resetIngredientButton.titleLabel?.textAlignment = .Center
         view.addSubview(resetIngredientButton)
         
         var label = UILabel(frame: CGRectMake(500, 100, 500, 50))

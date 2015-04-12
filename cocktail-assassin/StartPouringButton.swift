@@ -8,7 +8,7 @@ enum StartPouringButtonState {
 }
 
 class StartPouringButton : UIButton, MONActivityIndicatorViewDelegate {
-    let normalLabel, errorLabel : UILabel
+    let errorLabel : UILabel
     let spinner : MONActivityIndicatorView
     
     required init(coder aDecoder: NSCoder) {
@@ -18,7 +18,6 @@ class StartPouringButton : UIButton, MONActivityIndicatorViewDelegate {
     override init(frame: CGRect) {
         var zeroFrame = frame;
         zeroFrame.origin = CGPointZero
-        normalLabel = UILabel(frame: zeroFrame)
         errorLabel = UILabel(frame: zeroFrame)
         spinner = MONActivityIndicatorView(frame: zeroFrame)
         
@@ -27,10 +26,11 @@ class StartPouringButton : UIButton, MONActivityIndicatorViewDelegate {
         backgroundColor = UIColor.clearColor()
         setBorder(1.0, radius: 5.0)
         
-        normalLabel.font = UIFont(name: "HelveticaNeue-Light", size: CGFloat(30))
-        normalLabel.textColor = ThemeColor.primary
-        normalLabel.text = "Hit me!"
-        normalLabel.textAlignment = .Center
+        setTitle("Hit me!", forState: .Normal)
+        titleLabel?.font = UIFont(name: "HelveticaNeue-Light", size: CGFloat(30))
+        setTitleColor(ThemeColor.primary, forState: .Normal)
+        setTitleColor(ThemeColor.highlighted, forState: .Highlighted)
+        titleLabel?.textAlignment = .Center
         
         errorLabel.font = UIFont(name: "HelveticaNeue-Light", size: CGFloat(30))
         errorLabel.textColor = ThemeColor.error
@@ -47,7 +47,6 @@ class StartPouringButton : UIButton, MONActivityIndicatorViewDelegate {
         spinner.startAnimating()
         self.placeAtCenter(spinner)
         
-        addSubview(normalLabel)
         addSubview(errorLabel)
         addSubview(spinner)
         
@@ -57,13 +56,13 @@ class StartPouringButton : UIButton, MONActivityIndicatorViewDelegate {
     
     func show(view: UIView){
         func hideAll(){
-            normalLabel.hidden = true
-            errorLabel.hidden = true
-            spinner.hidden = true
+            titleLabel?.layer.opacity = 0
+            errorLabel.layer.opacity = 0
+            spinner.layer.opacity = 0
         }
         
         hideAll()
-        view.hidden = false
+        view.layer.opacity = 1
     }
     
     func setState(state: StartPouringButtonState) {
@@ -71,7 +70,7 @@ class StartPouringButton : UIButton, MONActivityIndicatorViewDelegate {
             case .Normal:
                 enabled = true
                 setBorder(color: ThemeColor.primary.CGColor)
-                show(normalLabel)
+                show(titleLabel!)
             case .Loading:
                 enabled = false
                 setBorder(color: ThemeColor.primary.CGColor)
