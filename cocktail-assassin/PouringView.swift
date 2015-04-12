@@ -30,8 +30,9 @@ class PouringView: UIView {
         imageView.contentMode = .ScaleAspectFit
         bwImageView.contentMode = .ScaleAspectFit
         bwImageContainer.clipsToBounds = true
-        
+        bwImageContainer.alpha = 0
         bwImageContainer.addSubview(bwImageView)
+        
         addSubview(imageView)
         addSubview(bwImageContainer)
     }
@@ -43,12 +44,15 @@ class PouringView: UIView {
     
     
     func animate(duration: Double) -> Promise<Bool> {
-        return UIView.transition(self,
-            duration: duration,
-            options:  UIViewAnimationOptions.CurveLinear,
-            animations: {
-                self.bwImageContainer.frame.size.height = 0
-        })
+        return bwImageContainer.fadeIn(0.2,  options: UIViewAnimationOptions.CurveLinear)
+            .then { (completed) -> Promise<Bool> in
+                return UIView.transition(self,
+                            duration: duration,
+                            options:  UIViewAnimationOptions.CurveLinear,
+                            animations: {
+                                self.bwImageContainer.frame.size.height = 0
+                        })
+            }
     }
     
     

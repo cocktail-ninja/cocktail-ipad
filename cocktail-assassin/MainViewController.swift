@@ -28,7 +28,7 @@ class MainViewController: UIViewController {
         ASFSharedViewTransition.addTransitionWithFromViewControllerClass(DrinkDetailsViewController.self,
             toViewControllerClass: PouringViewController.self,
             withNavigationController: navVC,
-            withDuration: 0.5)
+            withDuration: 0.8)
         ASFSharedViewTransition.addTransitionWithFromViewControllerClass(PouringViewController.self,
             toViewControllerClass: DrinksViewController.self,
             withNavigationController: navVC,
