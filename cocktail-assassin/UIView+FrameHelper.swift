@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import QuartzCore
 
 extension UIView {
     func scaleFrame(scale: CGFloat) {
@@ -26,5 +27,14 @@ extension UIView {
         self.layer.borderWidth = width
         self.layer.borderColor = color
         self.layer.cornerRadius = radius
+    }
+    
+    func setBorder(color: CGColor = UIColor.blackColor().CGColor){
+        self.layer.borderColor = color
+    }
+    
+    func placeAtCenter(view: UIView){
+        self.addConstraint(NSLayoutConstraint(item: view, attribute: NSLayoutAttribute.CenterX, relatedBy: NSLayoutRelation.Equal, toItem: self, attribute: NSLayoutAttribute.CenterX, multiplier: 1, constant: 0))
+        self.addConstraint(NSLayoutConstraint(item: view, attribute: NSLayoutAttribute.CenterY, relatedBy: NSLayoutRelation.Equal, toItem: self, attribute: NSLayoutAttribute.CenterY, multiplier: 1, constant: 0))
     }
 }

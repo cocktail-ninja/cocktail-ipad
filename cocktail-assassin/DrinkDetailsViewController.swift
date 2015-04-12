@@ -1,11 +1,3 @@
-//
-//  DrinkDetailsViewController.swift
-//  cocktail-assassin
-//
-//  Created by Sambya Aryasa on 1/2/15.
-//  Copyright (c) 2015 tw. All rights reserved.
-//
-
 import UIKit
 import iOSSharedViewTransition
 import PromiseKit
@@ -13,10 +5,8 @@ import PromiseKit
 class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataSource, UITableViewDataSource, UITableViewDelegate {
     let drinkImageView = UIImageView(frame: Constants.drinkFrames.expandedFrame),
         backButton = UIButton.buttonWithType(UIButtonType.System) as UIButton,
-        pourButton = UIButton.buttonWithType(UIButtonType.Custom) as UIButton,
+        pourButton = StartPouringButton(frame: CGRectMake(620, 650, 300, 60)),
         resetIngredientButton = UIButton.buttonWithType(UIButtonType.Custom) as UIButton,
-        pouringView = PouringView(frame: Constants.drinkFrames.expandedFrame),
-        plzHide = UIView(),
         ingredientsTableView = UITableView();
     
     var drink: Drink?
@@ -33,9 +23,7 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
     init(drink: Drink) {
         super.init()
         self.drink = drink
-        plzHide.frame = view.frame
-        
-        
+                
         drinkImageView.frame = Constants.drinkFrames.expandedFrame
         drinkImageView.contentMode = .ScaleAspectFit
         drinkImageView.image = UIImage(named: drink.imageName)
@@ -50,12 +38,15 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
         backChevron.textColor = ThemeColor.primary
         backButton.addSubview(backChevron)
         
-        pourButton.setTitle("Insert cup and GO!", forState: .Normal)
-        pourButton.titleLabel?.font = UIFont(name: "HelveticaNeue-Light", size: CGFloat(32))
-        pourButton.frame = CGRectMake(620, 650, 300, 60)
-        pourButton.backgroundColor = UIColor.clearColor()
-        pourButton.setTitleColor(ThemeColor.primary, forState: .Normal)
-        pourButton.setBorder(1.0, color: ThemeColor.primary.CGColor, radius: 5.0)
+        
+        ingredientsTableView.frame = CGRectMake(400, 180, 550, 450)
+        ingredientsTableView.delegate = self
+        ingredientsTableView.dataSource = self
+        ingredientsTableView.scrollEnabled = false
+        ingredientsTableView.separatorStyle = .None
+        ingredientsTableView.allowsSelection = false
+        view.addSubview(ingredientsTableView)
+        
         
         resetIngredientButton.setImage(UIImage(named: "reset.png"), forState: UIControlState.Normal)
         resetIngredientButton.setTitle("Reset ingredients", forState: .Normal)
@@ -65,24 +56,11 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
         resetIngredientButton.setTitleColor(ThemeColor.primary, forState: .Normal)
         view.addSubview(resetIngredientButton)
         
-        
-        ingredientsTableView.frame = CGRectMake(400, 180, 550, 450)
-        ingredientsTableView.delegate = self
-        ingredientsTableView.dataSource = self
-        ingredientsTableView.scrollEnabled = false
-        ingredientsTableView.separatorStyle = .None
-        ingredientsTableView.allowsSelection = false
-        plzHide.addSubview(ingredientsTableView)
-        
-        
         var label = UILabel(frame: CGRectMake(500, 100, 500, 50))
         label.text = drink.name
         label.font = UIFont(name: "HelveticaNeue-Light", size: 28)
         label.textAlignment = .Center
-        plzHide.addSubview(label)
-        
-        pouringView.setImage(drinkImageView.image!)
-        pouringView.alpha = 0
+        view.addSubview(label)
         
         resetIngredientButton.addTarget(self, action: "reset", forControlEvents: .TouchUpInside)
         backButton.addTarget(self, action: "dismiss", forControlEvents: .TouchUpInside)
@@ -120,10 +98,8 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
         view.backgroundColor = UIColor.whiteColor()
         
         view.addSubview(drinkImageView)
-        plzHide.addSubview(pourButton)
-        plzHide.addSubview(backButton)
-        view.addSubview(pouringView)
-        view.addSubview(plzHide)
+        view.addSubview(pourButton)
+        view.addSubview(backButton)
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -146,19 +122,16 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
         let recipe = "/".join(ingredients.map {"\($0.ingredient.pumpNumber)-\($0.amount)"})
         let promise = DrinkService.makeDrink(recipe: recipe)
      
-        promise.then{(duration) -> Promise<Void>? in
+        pourButton.setState(.Loading)
+        promise.then({ (duration: Double) -> Promise<Void>? in
+            Drink.revert()
             self.startPourAnimation(duration)
             return nil
-         
-            }.catch{ (error) -> Promise<Void>? in
-                let alertView = UIAlertView()
-                alertView.addButtonWithTitle("Ok")
-                alertView.message = "No Drink for you!!"
-                alertView.show()
-                return nil
-        }
+        }).catch({ (error: NSError) -> Promise<Void>? in
+            self.pourButton.setState(.Error)
+            return nil
+        })
 
-        Drink.revert()
 
     }
     

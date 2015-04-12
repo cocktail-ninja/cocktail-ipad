@@ -35,6 +35,7 @@
 		23B338861AB85CDE002F3BE8 /* UIApplication+SharedDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23B338851AB85CDE002F3BE8 /* UIApplication+SharedDelegate.swift */; };
 		23C0532D1A7A810F0060CABB /* DrinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23C0532C1A7A810F0060CABB /* DrinkView.swift */; };
 		23E6376D1A6EBE5600B71A0D /* DrinksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23E6376C1A6EBE5600B71A0D /* DrinksViewController.swift */; };
+		23EEDBA11ADAAD8E007A28E9 /* StartPouringButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23EEDBA01ADAAD8E007A28E9 /* StartPouringButton.swift */; };
 		35260B5618394205EB41E6AB /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D1068E656C146A8BB46FCBE /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		5931BC001A8A489700895B64 /* CocktailAssassin.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5931BBFE1A8A489700895B64 /* CocktailAssassin.xcdatamodeld */; };
 		5931BC061A8A4DC500895B64 /* Drink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23AC06DA1A6FA260002928CB /* Drink.swift */; };
@@ -90,6 +91,7 @@
 		23B338851AB85CDE002F3BE8 /* UIApplication+SharedDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIApplication+SharedDelegate.swift"; sourceTree = "<group>"; };
 		23C0532C1A7A810F0060CABB /* DrinkView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrinkView.swift; sourceTree = "<group>"; };
 		23E6376C1A6EBE5600B71A0D /* DrinksViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrinksViewController.swift; sourceTree = "<group>"; };
+		23EEDBA01ADAAD8E007A28E9 /* StartPouringButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartPouringButton.swift; sourceTree = "<group>"; };
 		438845221179F32CBD1187FE /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		5931BBFF1A8A489700895B64 /* CocktailAssassin.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CocktailAssassin.xcdatamodel; sourceTree = "<group>"; };
 		59AFC2E11A8A3C29006D14DF /* DrinkIngredient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrinkIngredient.swift; sourceTree = "<group>"; };
@@ -319,6 +321,7 @@
 			isa = PBXGroup;
 			children = (
 				EF21824A1AA5E8C900690EFD /* DrinkIngredientCell.swift */,
+				23EEDBA01ADAAD8E007A28E9 /* StartPouringButton.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -529,6 +532,7 @@
 				23906C301AD9CAA100D3613D /* DrinkCarouselTransformation.swift in Sources */,
 				23B338861AB85CDE002F3BE8 /* UIApplication+SharedDelegate.swift in Sources */,
 				2345A2CA1A7D5231007CB356 /* DrinkDetailsViewController.swift in Sources */,
+				23EEDBA11ADAAD8E007A28E9 /* StartPouringButton.swift in Sources */,
 				23E6376D1A6EBE5600B71A0D /* DrinksViewController.swift in Sources */,
 				2345A2D11A7F9E96007CB356 /* PouringView.swift in Sources */,
 				237B076F1A6EA5F7001AA652 /* AppDelegate.swift in Sources */,

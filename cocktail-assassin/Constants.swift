@@ -21,4 +21,6 @@ struct Constants {
 
 struct ThemeColor {
     static let primary = UIColor(red: 0/255, green: 187/255, blue: 205/255, alpha: 1)
+    static let disabled = UIColor(red: 200/255, green: 200/255, blue: 200/255, alpha: 1)
+    static let error = UIColor.redColor()
 }
