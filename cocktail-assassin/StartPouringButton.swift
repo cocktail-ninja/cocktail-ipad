@@ -45,10 +45,10 @@ class StartPouringButton : UIButton, MONActivityIndicatorViewDelegate {
         spinner.delay = 0.1
         spinner.delegate = self
         spinner.startAnimating()
-        self.placeAtCenter(spinner)
         
         addSubview(errorLabel)
         addSubview(spinner)
+        self.placeAtCenter(spinner)
         
         setState(.Normal)
     }
