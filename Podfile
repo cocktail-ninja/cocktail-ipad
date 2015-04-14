@@ -4,5 +4,6 @@ platform :ios, '8.0'
 
 pod 'iCarousel', '~> 1.8'
 pod 'PromiseKit/Swift'
+pod 'Alamofire', '1.1.4'
 pod 'iOSSharedViewTransition', :git => 'https://github.com/sbycrosz/iOSSharedViewTransition.git'
 pod 'MONActivityIndicatorView'

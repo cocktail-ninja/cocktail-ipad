@@ -1,4 +1,5 @@
 PODS:
+  - Alamofire (1.1.4)
   - iCarousel (1.8.1)
   - iOSSharedViewTransition (1.0.2)
   - MONActivityIndicatorView (0.0.3)
@@ -13,6 +14,7 @@ PODS:
     - OMGHTTPURLRQ
 
 DEPENDENCIES:
+  - Alamofire (= 1.1.4)
   - iCarousel (~> 1.8)
   - iOSSharedViewTransition (from `https://github.com/sbycrosz/iOSSharedViewTransition.git`)
   - MONActivityIndicatorView
@@ -28,6 +30,7 @@ CHECKOUT OPTIONS:
     :git: https://github.com/sbycrosz/iOSSharedViewTransition.git
 
 SPEC CHECKSUMS:
+  Alamofire: 6a2cbaebe78a6d469bc55ee37f0a24ba22af76ac
   iCarousel: dace1cb858e3f4dc2614bee3201041247f82feda
   iOSSharedViewTransition: d4bdb3662b51d780b7a0646da8ff2158dbb2e43c
   MONActivityIndicatorView: a00611695de16d956b17d03be25ee49a8effc5f2

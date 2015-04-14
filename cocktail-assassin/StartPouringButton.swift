@@ -65,6 +65,11 @@ class StartPouringButton : UIButton, MONActivityIndicatorViewDelegate {
         view.fadeIn(0.5, options: .CurveEaseIn)
     }
     
+    func displayError(errorText: String) {
+        errorLabel.text = errorText
+        setState(.Error)
+    }
+    
     func setState(state: StartPouringButtonState) {
         switch state {
             case .Normal:
@@ -84,7 +89,6 @@ class StartPouringButton : UIButton, MONActivityIndicatorViewDelegate {
                 dispatch_after(delayTime, dispatch_get_main_queue()) {
                     self.setState(.Normal)
                 }
-            
         }
     }
     

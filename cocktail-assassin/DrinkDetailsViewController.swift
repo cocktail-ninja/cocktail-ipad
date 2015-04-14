@@ -5,7 +5,7 @@ import PromiseKit
 class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataSource, UITableViewDataSource, UITableViewDelegate {
     let drinkImageView = UIImageView(frame: Constants.drinkFrames.expandedFrame),
         backButton = UIButton.buttonWithType(UIButtonType.Custom) as UIButton,
-        pourButton = StartPouringButton(frame: CGRectMake(620, 650, 300, 60)),
+        pourButton = StartPouringButton(frame: CGRectMake(570, 650, 400, 60)),
         resetIngredientButton = UIButton.buttonWithType(UIButtonType.Custom) as UIButton,
         ingredientsTableView = UITableView();
     
@@ -120,18 +120,27 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
     func pour(){
         let ingredients = drink!.drinkIngredients.allObjects.map { $0 as DrinkIngredient }
         let recipe = "/".join(ingredients.map {"\($0.ingredient.pumpNumber)-\($0.amount)"})
-        let promise = DrinkService.makeDrink(recipe: recipe)
-     
         pourButton.setState(.Loading)
-        promise.then({ (duration: Double) -> Promise<Void>? in
+        
+        DrinkService.makeDrink(recipe: recipe).then({ (duration: Double) -> Promise<Void>? in
             Drink.revert()
             self.startPourAnimation(duration)
             return nil
-        }).catch({ (error: NSError) -> Promise<Void>? in
-            self.pourButton.setState(.Error)
-            return nil
-        })
+        }).catch { (error: NSError) -> Void in
+            self.pourButton.displayError(self.getErrorMessage(error.code));
+        }
 
+    }
+    
+    func getErrorMessage(code: Int) -> String {
+        switch(code) {
+            case 404:
+                return "404 - Glass Not Found!"
+            case 503:
+                return "I'm Busy, Wait your turn!"
+            default:
+                return "Epic Fail!"
+        }
 
     }
     

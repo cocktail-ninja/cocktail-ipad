@@ -48,6 +48,7 @@ code_sign() {
 
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
+  install_framework 'Alamofire.framework'
   install_framework 'MONActivityIndicatorView.framework'
   install_framework 'OMGHTTPURLRQ.framework'
   install_framework 'PromiseKit.framework'
@@ -55,6 +56,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework 'iOSSharedViewTransition.framework'
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_framework 'Alamofire.framework'
   install_framework 'MONActivityIndicatorView.framework'
   install_framework 'OMGHTTPURLRQ.framework'
   install_framework 'PromiseKit.framework'

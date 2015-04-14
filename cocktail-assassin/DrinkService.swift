@@ -8,16 +8,28 @@
 
 import Foundation
 import PromiseKit
+import Alamofire
 
 class DrinkService: NSObject {
+    
     class func makeDrink(#recipe: String) -> Promise<Double> {
         var url = Constants.baseUrl.dev + "/make_drink/" + recipe
-        return NSURLConnection.POST(url, JSON: [String: String]())
-            .then { (result : NSDictionary) -> Promise<Double> in
-                var readyInDuration = (result.objectForKey("ready_in") as Double) / 1000
-                
-                return Promise<Double>(value: readyInDuration)
-                
+        
+        return Promise<Double> { deferred in
+            Alamofire.request(.POST, Constants.baseUrl.dev + "/make_drink/" + recipe)
+                .responseJSON { (request, response, data, error) in
+                    if let anError = error  {
+                        deferred.reject(anError)                        
+                    } else if response?.statusCode == 200 {
+                        deferred.fulfill((data as NSDictionary)["ready_in"] as Double / 1000)
+                    } else {
+                        var statusError = NSError(domain: "DrinkService", code: response!.statusCode, userInfo: nil)
+                        deferred.reject(statusError)
+                    }
+            }
+            return
         }
+        
     }
+    
 }
