@@ -31,13 +31,16 @@ class DrinksViewController: UIViewController, iCarouselDataSource, iCarouselDele
     var items:[Drink] = []
 
     func initIngredients(){
-        Ingredient.newIngredient("Rum", pumpNumber: 1, amountLeft: 100, managedContext: managedContext!)
+        Ingredient.newIngredient("Dark Rum", pumpNumber: 1, amountLeft: 100, managedContext: managedContext!)
         Ingredient.newIngredient("Vodka", pumpNumber: 2, amountLeft: 100, managedContext: managedContext!)
         Ingredient.newIngredient("Gin", pumpNumber: 3, amountLeft: 100, managedContext: managedContext!)
-        Ingredient.newIngredient("Lime", pumpNumber: 4, amountLeft: 50, managedContext: managedContext!)
+        Ingredient.newIngredient("White Rum", pumpNumber: 4, amountLeft: 50, managedContext: managedContext!)
+        Ingredient.newIngredient("Lime Juice", pumpNumber: 5, amountLeft: 50, managedContext: managedContext!)
       
-        Ingredient.newIngredient("Coke", pumpNumber: 5, amountLeft: 400, managedContext: managedContext!)
-        Ingredient.newIngredient("Cranberry", pumpNumber: 6, amountLeft: 500, managedContext: managedContext!)
+        Ingredient.newIngredient("Coke", pumpNumber: 6, amountLeft: 400, managedContext: managedContext!)
+        Ingredient.newIngredient("Lemonade", pumpNumber: 7, amountLeft: 500, managedContext: managedContext!)
+        Ingredient.newIngredient("Tonic", pumpNumber: 8, amountLeft: 400, managedContext: managedContext!)
+        Ingredient.newIngredient("Cranberry", pumpNumber: 9, amountLeft: 500, managedContext: managedContext!)
     }
     
     func createDrinkWithIngredient(name:String, imageName:String, ingredients: Dictionary<String, NSNumber>) -> Drink{
@@ -51,11 +54,12 @@ class DrinksViewController: UIViewController, iCarouselDataSource, iCarouselDele
     
     func initDatabase() {
         initIngredients()
-        items.append(createDrinkWithIngredient("Rum and Coke", imageName: "cocktail-1", ingredients:["Rum":30, "Coke":50]))
-        items.append(createDrinkWithIngredient("Vodka and Lime", imageName:"cocktail-2", ingredients:["Vodka":30, "Lime":50]))
+        items.append(createDrinkWithIngredient("Rum and Coke", imageName: "cocktail-1", ingredients:["Dark Rum":30, "Coke":50]))
+        items.append(createDrinkWithIngredient("Vodka and Lime", imageName:"cocktail-2", ingredients:["Vodka":30, "Lime Juice":50]))
         items.append(createDrinkWithIngredient("Gin and Cranberry", imageName:"cocktail-3", ingredients:["Gin":30, "Cranberry":50]))
-        items.append(createDrinkWithIngredient("Metropolitan", imageName:"cocktail-4", ingredients:["Vodka":30, "Lime":50, "Cranberry":45]))
-        items.append(createDrinkWithIngredient("Mixin", imageName:"cocktail-5", ingredients:["Rum":30, "Gin":50, "Vodka":20, "Lime":10, "Cranberry":45]))
+        items.append(createDrinkWithIngredient("Metropolitan", imageName:"cocktail-4", ingredients:["Vodka":30, "Lime Juice":50, "Cranberry":45]))
+        items.append(createDrinkWithIngredient("Mixin", imageName:"cocktail-5", ingredients:["Dark Rum":30, "Gin":50, "Vodka":20, "Lime Juice":10, "Cranberry":45]))
+        items.append(createDrinkWithIngredient("Long Island Ice Tea", imageName:"cocktail-5", ingredients:["White Rum":30, "Gin":30, "Vodka":30, "Lime Juice":10, "Coke":200]))
     }
     
     override func viewWillAppear(animated: Bool) {
