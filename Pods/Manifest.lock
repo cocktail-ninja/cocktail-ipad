@@ -1,5 +1,5 @@
 PODS:
-  - Alamofire (1.1.4)
+  - Alamofire (1.2.0)
   - iCarousel (1.8.1)
   - iOSSharedViewTransition (1.0.2)
   - MONActivityIndicatorView (0.0.3)
@@ -10,15 +10,25 @@ PODS:
     - OMGHTTPURLRQ/FormURLEncode
     - OMGHTTPURLRQ/UserAgent
   - OMGHTTPURLRQ/UserAgent (2.1)
-  - PromiseKit/Swift (1.3.0):
+  - PromiseKit/Swift (1.5.1):
+    - PromiseKit/Swift/Foundation (= 1.5.1)
+    - PromiseKit/Swift/UIKit (= 1.5.1)
+  - PromiseKit/Swift/Foundation (1.5.1):
     - OMGHTTPURLRQ
+    - PromiseKit/Swift/NSJSONFromData
+    - PromiseKit/Swift/Promise
+  - PromiseKit/Swift/NSJSONFromData (1.5.1):
+    - PromiseKit/Swift/Promise
+  - PromiseKit/Swift/Promise (1.5.1)
+  - PromiseKit/Swift/UIKit (1.5.1):
+    - PromiseKit/Swift/Promise
 
 DEPENDENCIES:
-  - Alamofire (= 1.1.4)
+  - Alamofire (= 1.2.0)
   - iCarousel (~> 1.8)
   - iOSSharedViewTransition (from `https://github.com/sbycrosz/iOSSharedViewTransition.git`)
   - MONActivityIndicatorView
-  - PromiseKit/Swift
+  - PromiseKit/Swift (= 1.5.1)
 
 EXTERNAL SOURCES:
   iOSSharedViewTransition:
@@ -30,11 +40,11 @@ CHECKOUT OPTIONS:
     :git: https://github.com/sbycrosz/iOSSharedViewTransition.git
 
 SPEC CHECKSUMS:
-  Alamofire: 6a2cbaebe78a6d469bc55ee37f0a24ba22af76ac
+  Alamofire: d765c5c1713aa64106b0228aaa600a1e6851f68d
   iCarousel: dace1cb858e3f4dc2614bee3201041247f82feda
   iOSSharedViewTransition: d4bdb3662b51d780b7a0646da8ff2158dbb2e43c
   MONActivityIndicatorView: a00611695de16d956b17d03be25ee49a8effc5f2
   OMGHTTPURLRQ: f8c515dfd2f57a5d74c710978f600231f52afec5
-  PromiseKit: 85998f2936f9da909e251d373be5ee056f4b564b
+  PromiseKit: b1145ebb1dd0780566952689191ea31466198ee8
 
 COCOAPODS: 0.36.0.rc.1

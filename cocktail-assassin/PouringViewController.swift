@@ -16,19 +16,14 @@ class PouringViewController: UIViewController, ASFSharedViewTransitionDataSource
         successView = GlowingView(frame: Constants.drinkFrames.basicFrame),
         duration : Double?
     
-   
     required init(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-    }
-    
     init(drink: Drink, duration: Double) {
-        super.init()
-        
         self.duration = duration
+        super.init(nibName: nil, bundle: nil)
+
         var drinkImage = UIImage(named: drink.imageName)!;
         pouringView.setImage(drinkImage)
         successView.setImage(drinkImage)
@@ -41,14 +36,13 @@ class PouringViewController: UIViewController, ASFSharedViewTransitionDataSource
         view.addSubview(pouringView)
     }
     
-    
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
         animatePouring()
-            .then(addSuccessView)
-            .then(animateSuccess)
-            .then(dismiss)
+            .then(body: addSuccessView)
+            .then(body: animateSuccess)
+            .then(body: dismiss)
     }
     
     func animatePouring() -> Promise<Bool> {
@@ -64,7 +58,7 @@ class PouringViewController: UIViewController, ASFSharedViewTransitionDataSource
         return successView.animate(SUCCESS_ANIMATION_DURATION)
     }
     
-    func dismiss(finished: Bool){
+    func dismiss(finished: Bool) {
         self.navigationController?.popToRootViewControllerAnimated(true)
     }
     

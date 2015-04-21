@@ -21,7 +21,7 @@ class DrinkService: NSObject {
                     if let anError = error  {
                         deferred.reject(anError)                        
                     } else if response?.statusCode == 200 {
-                        deferred.fulfill((data as NSDictionary)["ready_in"] as Double / 1000)
+                        deferred.fulfill((data as! NSDictionary)["ready_in"] as! Double / 1000)
                     } else {
                         var statusError = NSError(domain: "DrinkService", code: response!.statusCode, userInfo: nil)
                         deferred.reject(statusError)

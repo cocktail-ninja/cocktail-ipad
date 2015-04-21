@@ -19,7 +19,7 @@ class DrinksViewController: UIViewController, iCarouselDataSource, iCarouselDele
     private var selectedDrinkIndex = 0
 
     lazy var managedContext : NSManagedObjectContext? = {
-        let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         if let managedObjectContext = appDelegate.managedObjectContext {
             return managedObjectContext
         }
@@ -27,7 +27,6 @@ class DrinksViewController: UIViewController, iCarouselDataSource, iCarouselDele
             return nil
         }
     }()
-    
     
     var items:[Drink] = []
 
@@ -100,7 +99,7 @@ class DrinksViewController: UIViewController, iCarouselDataSource, iCarouselDele
     }
     
     func sharedView() -> UIView! {
-        return (carousel.itemViewAtIndex(selectedDrinkIndex)! as DrinkView).imageView
+        return (carousel.itemViewAtIndex(selectedDrinkIndex)! as! DrinkView).imageView
     }
     
     func numberOfItemsInCarousel(carousel: iCarousel!) -> Int {
@@ -142,12 +141,14 @@ class DrinksViewController: UIViewController, iCarouselDataSource, iCarouselDele
         }
     }
     
-    func carousel(carousel: iCarousel!, viewForItemAtIndex index: Int, var reusingView view: UIView!) -> UIView! {
+    func carousel(carousel: iCarousel!, viewForItemAtIndex index: Int, reusingView view: UIView!) -> UIView! {
         if (view == nil) {
-            view = DrinkView(frame: Constants.drinkFrames.basicFrame)
+            var newView = DrinkView(frame: Constants.drinkFrames.basicFrame)
+            newView.setDrink(items[index])
+            return newView
+        } else {
+            (view as! DrinkView).setDrink(items[index])
+            return view
         }
-        
-        (view as DrinkView).setDrink(items[index])
-        return view
     }
 }

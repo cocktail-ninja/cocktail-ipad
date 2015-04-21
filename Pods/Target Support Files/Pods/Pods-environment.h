@@ -9,8 +9,8 @@
 // Alamofire
 #define COCOAPODS_POD_AVAILABLE_Alamofire
 #define COCOAPODS_VERSION_MAJOR_Alamofire 1
-#define COCOAPODS_VERSION_MINOR_Alamofire 1
-#define COCOAPODS_VERSION_PATCH_Alamofire 4
+#define COCOAPODS_VERSION_MINOR_Alamofire 2
+#define COCOAPODS_VERSION_PATCH_Alamofire 0
 
 // MONActivityIndicatorView
 #define COCOAPODS_POD_AVAILABLE_MONActivityIndicatorView
@@ -45,8 +45,32 @@
 // PromiseKit/Swift
 #define COCOAPODS_POD_AVAILABLE_PromiseKit_Swift
 #define COCOAPODS_VERSION_MAJOR_PromiseKit_Swift 1
-#define COCOAPODS_VERSION_MINOR_PromiseKit_Swift 3
-#define COCOAPODS_VERSION_PATCH_PromiseKit_Swift 0
+#define COCOAPODS_VERSION_MINOR_PromiseKit_Swift 5
+#define COCOAPODS_VERSION_PATCH_PromiseKit_Swift 1
+
+// PromiseKit/Swift/Foundation
+#define COCOAPODS_POD_AVAILABLE_PromiseKit_Swift_Foundation
+#define COCOAPODS_VERSION_MAJOR_PromiseKit_Swift_Foundation 1
+#define COCOAPODS_VERSION_MINOR_PromiseKit_Swift_Foundation 5
+#define COCOAPODS_VERSION_PATCH_PromiseKit_Swift_Foundation 1
+
+// PromiseKit/Swift/NSJSONFromData
+#define COCOAPODS_POD_AVAILABLE_PromiseKit_Swift_NSJSONFromData
+#define COCOAPODS_VERSION_MAJOR_PromiseKit_Swift_NSJSONFromData 1
+#define COCOAPODS_VERSION_MINOR_PromiseKit_Swift_NSJSONFromData 5
+#define COCOAPODS_VERSION_PATCH_PromiseKit_Swift_NSJSONFromData 1
+
+// PromiseKit/Swift/Promise
+#define COCOAPODS_POD_AVAILABLE_PromiseKit_Swift_Promise
+#define COCOAPODS_VERSION_MAJOR_PromiseKit_Swift_Promise 1
+#define COCOAPODS_VERSION_MINOR_PromiseKit_Swift_Promise 5
+#define COCOAPODS_VERSION_PATCH_PromiseKit_Swift_Promise 1
+
+// PromiseKit/Swift/UIKit
+#define COCOAPODS_POD_AVAILABLE_PromiseKit_Swift_UIKit
+#define COCOAPODS_VERSION_MAJOR_PromiseKit_Swift_UIKit 1
+#define COCOAPODS_VERSION_MINOR_PromiseKit_Swift_UIKit 5
+#define COCOAPODS_VERSION_PATCH_PromiseKit_Swift_UIKit 1
 
 // iCarousel
 #define COCOAPODS_POD_AVAILABLE_iCarousel

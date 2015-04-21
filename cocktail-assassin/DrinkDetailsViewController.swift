@@ -4,9 +4,9 @@ import PromiseKit
 
 class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataSource, UITableViewDataSource, UITableViewDelegate {
     let drinkImageView = UIImageView(frame: Constants.drinkFrames.expandedFrame),
-        backButton = UIButton.buttonWithType(UIButtonType.Custom) as UIButton,
+        backButton = UIButton.buttonWithType(UIButtonType.Custom) as! UIButton,
         pourButton = StartPouringButton(frame: CGRectMake(570, 650, 400, 60)),
-        resetIngredientButton = UIButton.buttonWithType(UIButtonType.Custom) as UIButton,
+        resetIngredientButton = UIButton.buttonWithType(UIButtonType.Custom) as! UIButton,
         ingredientsTableView = UITableView();
     
     var drink: Drink?
@@ -21,7 +21,8 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
     }
     
     init(drink: Drink) {
-        super.init()
+        super.init(nibName: nil, bundle: nil)
+        
         self.drink = drink
                 
         drinkImageView.frame = Constants.drinkFrames.expandedFrame
@@ -81,7 +82,7 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
             cell = DrinkIngredientCell(style: .Default, reuseIdentifier: "CELL")
         }
         
-        var drinkIngredient = drink?.drinkIngredients.allObjects[indexPath.row] as DrinkIngredient
+        var drinkIngredient = drink?.drinkIngredients.allObjects[indexPath.row] as! DrinkIngredient
         
         cell!.displayDrinkIngredient(drinkIngredient)
         
@@ -118,17 +119,18 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
     }
     
     func pour(){
-        let ingredients = drink!.drinkIngredients.allObjects.map { $0 as DrinkIngredient }
+        let ingredients = drink!.drinkIngredients.allObjects.map { $0 as! DrinkIngredient }
         let recipe = "/".join(ingredients.map {"\($0.ingredient.pumpNumber)-\($0.amount)"})
         pourButton.setState(.Loading)
         
-        DrinkService.makeDrink(recipe: recipe).then({ (duration: Double) -> Promise<Void>? in
+        let promise = DrinkService.makeDrink(recipe: recipe)
+        promise.then(body:{ (duration: Double) -> Void in
             Drink.revert()
             self.startPourAnimation(duration)
-            return nil
-        }).catch { (error: NSError) -> Void in
+        })
+        promise.catch(body: { (error: NSError) -> Void in
             self.pourButton.displayError(self.getErrorMessage(error.code));
-        }
+        })
 
     }
     

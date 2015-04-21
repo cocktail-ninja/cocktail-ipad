@@ -1,4 +1,5 @@
-import ObjectiveC.runtime;
+import ObjectiveC.runtime
+import Foundation.NSOperation
 
 let Q = NSOperationQueue()
 
@@ -12,5 +13,3 @@ func PMKRetain(obj: AnyObject) {
 func PMKRelease(obj: AnyObject) {
     objc_setAssociatedObject(obj, &asskey, nil, policy)
 }
-
-func noop() {}

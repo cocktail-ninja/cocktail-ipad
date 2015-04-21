@@ -17,7 +17,7 @@ class Drink: NSManagedObject {
     @NSManaged var drinkIngredients: NSSet
 
     class func newDrink(name: String, imageName: String, managedContext: NSManagedObjectContext) -> Drink {
-        var newDrink = NSEntityDescription.insertNewObjectForEntityForName("Drink", inManagedObjectContext:managedContext) as Drink
+        var newDrink = NSEntityDescription.insertNewObjectForEntityForName("Drink", inManagedObjectContext:managedContext) as! Drink
         newDrink.name = name
         newDrink.imageName = imageName
         return newDrink
@@ -35,7 +35,7 @@ class Drink: NSManagedObject {
     class func allDrinks (managedContext: NSManagedObjectContext) -> [Drink]{
         let fetchRequest = NSFetchRequest(entityName: "Drink")
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "name", ascending:true)]
-        return managedContext.executeFetchRequest(fetchRequest, error: nil) as [Drink]
+        return managedContext.executeFetchRequest(fetchRequest, error: nil) as! [Drink]
     }
     
     class func getDrinkByName(name: String) -> Drink? {
@@ -43,7 +43,7 @@ class Drink: NSManagedObject {
         let managedContext = UIApplication.sharedDelegate().getManagedContext()
 
         fetchRequest.predicate = NSPredicate(format: "name = %@", name)        
-        return (managedContext?.executeFetchRequest(fetchRequest, error: nil) as [Drink]).first
+        return (managedContext?.executeFetchRequest(fetchRequest, error: nil) as! [Drink]).first
     }
     
     class func revert(){

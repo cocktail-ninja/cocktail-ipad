@@ -17,7 +17,7 @@ class Ingredient: NSManagedObject {
     @NSManaged var drinkIngredients: NSSet
 
     class func newIngredient(type: String, pumpNumber: NSNumber, amountLeft: NSNumber, managedContext: NSManagedObjectContext) -> Ingredient {
-        var newIngredient = NSEntityDescription.insertNewObjectForEntityForName("Ingredient", inManagedObjectContext:managedContext) as Ingredient
+        var newIngredient = NSEntityDescription.insertNewObjectForEntityForName("Ingredient", inManagedObjectContext:managedContext) as! Ingredient
         newIngredient.type = type
         newIngredient.pumpNumber = pumpNumber
         newIngredient.amountLeft = amountLeft
@@ -33,6 +33,6 @@ class Ingredient: NSManagedObject {
     class func getIngredient(type: String, managedContext: NSManagedObjectContext) -> Ingredient?{
         let fetchRequest = NSFetchRequest(entityName: "Ingredient")
         fetchRequest.predicate = NSPredicate(format: "type = %@", type)
-        return (managedContext.executeFetchRequest(fetchRequest, error: nil) as [Ingredient]).first
+        return (managedContext.executeFetchRequest(fetchRequest, error: nil) as! [Ingredient]).first
     }
 }
