@@ -7,7 +7,7 @@ enum StartPouringButtonState {
     case Error
 }
 
-class StartPouringButton : UIButton, MONActivityIndicatorViewDelegate {
+class ActionButton: UIButton, MONActivityIndicatorViewDelegate {
     let errorLabel : UILabel
     let spinner : MONActivityIndicatorView
     

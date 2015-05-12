@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		10960D61DC74F6FD868E7ABC /* SelectIngredientViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 109606E630D6B6E9CBF36CEF /* SelectIngredientViewController.swift */; };
+		10960E8EF9C930EDCA2AAA54 /* AddIngredientCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1096022F3D3E04BACBB12E3D /* AddIngredientCell.swift */; };
 		2345A2BB1A7D317D007CB356 /* OpenSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2345A2B11A7D317D007CB356 /* OpenSans-Bold.ttf */; };
 		2345A2BC1A7D317D007CB356 /* OpenSans-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2345A2B21A7D317D007CB356 /* OpenSans-BoldItalic.ttf */; };
 		2345A2BD1A7D317D007CB356 /* OpenSans-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2345A2B31A7D317D007CB356 /* OpenSans-ExtraBold.ttf */; };
@@ -35,7 +37,7 @@
 		23B338861AB85CDE002F3BE8 /* UIApplication+SharedDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23B338851AB85CDE002F3BE8 /* UIApplication+SharedDelegate.swift */; };
 		23C0532D1A7A810F0060CABB /* DrinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23C0532C1A7A810F0060CABB /* DrinkView.swift */; };
 		23E6376D1A6EBE5600B71A0D /* DrinksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23E6376C1A6EBE5600B71A0D /* DrinksViewController.swift */; };
-		23EEDBA11ADAAD8E007A28E9 /* StartPouringButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23EEDBA01ADAAD8E007A28E9 /* StartPouringButton.swift */; };
+		23EEDBA11ADAAD8E007A28E9 /* ActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23EEDBA01ADAAD8E007A28E9 /* ActionButton.swift */; };
 		35260B5618394205EB41E6AB /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D1068E656C146A8BB46FCBE /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		5931BC001A8A489700895B64 /* CocktailAssassin.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5931BBFE1A8A489700895B64 /* CocktailAssassin.xcdatamodeld */; };
 		5931BC061A8A4DC500895B64 /* Drink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23AC06DA1A6FA260002928CB /* Drink.swift */; };
@@ -55,6 +57,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1096022F3D3E04BACBB12E3D /* AddIngredientCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddIngredientCell.swift; sourceTree = "<group>"; };
+		109606E630D6B6E9CBF36CEF /* SelectIngredientViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectIngredientViewController.swift; sourceTree = "<group>"; };
 		2345A2B11A7D317D007CB356 /* OpenSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Bold.ttf"; sourceTree = "<group>"; };
 		2345A2B21A7D317D007CB356 /* OpenSans-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-BoldItalic.ttf"; sourceTree = "<group>"; };
 		2345A2B31A7D317D007CB356 /* OpenSans-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-ExtraBold.ttf"; sourceTree = "<group>"; };
@@ -91,7 +95,7 @@
 		23B338851AB85CDE002F3BE8 /* UIApplication+SharedDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIApplication+SharedDelegate.swift"; sourceTree = "<group>"; };
 		23C0532C1A7A810F0060CABB /* DrinkView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrinkView.swift; sourceTree = "<group>"; };
 		23E6376C1A6EBE5600B71A0D /* DrinksViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrinksViewController.swift; sourceTree = "<group>"; };
-		23EEDBA01ADAAD8E007A28E9 /* StartPouringButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartPouringButton.swift; sourceTree = "<group>"; };
+		23EEDBA01ADAAD8E007A28E9 /* ActionButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionButton.swift; sourceTree = "<group>"; };
 		438845221179F32CBD1187FE /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		5931BBFF1A8A489700895B64 /* CocktailAssassin.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CocktailAssassin.xcdatamodel; sourceTree = "<group>"; };
 		59AFC2E11A8A3C29006D14DF /* DrinkIngredient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrinkIngredient.swift; sourceTree = "<group>"; };
@@ -273,6 +277,7 @@
 		23906C231AD9C96200D3613D /* Pages */ = {
 			isa = PBXGroup;
 			children = (
+				EFB28A951AFA416E00444757 /* Admin */,
 				23906C1F1AD9C86C00D3613D /* Pouring */,
 				23906C1E1AD9C84100D3613D /* DrinkDetails */,
 				23906C1D1AD9C82C00D3613D /* DrinksCarousel */,
@@ -313,6 +318,7 @@
 			isa = PBXGroup;
 			children = (
 				2345A2C91A7D5231007CB356 /* DrinkDetailsViewController.swift */,
+				109606E630D6B6E9CBF36CEF /* SelectIngredientViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -321,7 +327,8 @@
 			isa = PBXGroup;
 			children = (
 				EF21824A1AA5E8C900690EFD /* DrinkIngredientCell.swift */,
-				23EEDBA01ADAAD8E007A28E9 /* StartPouringButton.swift */,
+				23EEDBA01ADAAD8E007A28E9 /* ActionButton.swift */,
+				1096022F3D3E04BACBB12E3D /* AddIngredientCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -360,6 +367,13 @@
 				8D1068E656C146A8BB46FCBE /* Pods.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		EFB28A951AFA416E00444757 /* Admin */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Admin;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -532,7 +546,7 @@
 				23906C301AD9CAA100D3613D /* DrinkCarouselTransformation.swift in Sources */,
 				23B338861AB85CDE002F3BE8 /* UIApplication+SharedDelegate.swift in Sources */,
 				2345A2CA1A7D5231007CB356 /* DrinkDetailsViewController.swift in Sources */,
-				23EEDBA11ADAAD8E007A28E9 /* StartPouringButton.swift in Sources */,
+				23EEDBA11ADAAD8E007A28E9 /* ActionButton.swift in Sources */,
 				23E6376D1A6EBE5600B71A0D /* DrinksViewController.swift in Sources */,
 				2345A2D11A7F9E96007CB356 /* PouringView.swift in Sources */,
 				237B076F1A6EA5F7001AA652 /* AppDelegate.swift in Sources */,
@@ -543,6 +557,8 @@
 				237B07871A6EA7A2001AA652 /* MainViewController.swift in Sources */,
 				2345A2D31A7FC19C007CB356 /* Constants.swift in Sources */,
 				2345A2D71A7FC4C0007CB356 /* UIView+FrameHelper.swift in Sources */,
+				10960E8EF9C930EDCA2AAA54 /* AddIngredientCell.swift in Sources */,
+				10960D61DC74F6FD868E7ABC /* SelectIngredientViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

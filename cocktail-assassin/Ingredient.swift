@@ -35,4 +35,10 @@ class Ingredient: NSManagedObject {
         fetchRequest.predicate = NSPredicate(format: "type = %@", type)
         return (managedContext.executeFetchRequest(fetchRequest, error: nil) as! [Ingredient]).first
     }
+
+    class func allIngredients(managedContext: NSManagedObjectContext) -> [Ingredient] {
+        let fetchRequest = NSFetchRequest(entityName: "Ingredient")
+        return managedContext.executeFetchRequest(fetchRequest, error: nil) as! [Ingredient]
+    }
+
 }

@@ -2,16 +2,22 @@ import UIKit
 import iOSSharedViewTransition
 import PromiseKit
 
-class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataSource, UITableViewDataSource, UITableViewDelegate {
-    let drinkImageView = UIImageView(frame: Constants.drinkFrames.expandedFrame),
-        backButton = UIButton.buttonWithType(UIButtonType.Custom) as! UIButton,
-        pourButton = StartPouringButton(frame: CGRectMake(570, 650, 400, 60)),
-        resetIngredientButton = UIButton.buttonWithType(UIButtonType.Custom) as! UIButton,
-        ingredientsTableView = UITableView();
-    
+class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataSource, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, SelectIngredientDelegate, RemoveIngredientDelegate {
+    let drinkImageView = UIImageView(frame: Constants.drinkFrames.expandedFrame)
+    let backButton = UIButton.buttonWithType(UIButtonType.Custom) as! UIButton
+    let editButton = UIButton.buttonWithType(UIButtonType.Custom) as! UIButton
+    let saveButton = ActionButton(frame: CGRectMake(570, 650, 400, 60))
+    let cancelButton = UIButton.buttonWithType(UIButtonType.Custom) as! UIButton
+    let pourButton = ActionButton(frame: CGRectMake(570, 650, 400, 60))
+    let resetIngredientButton = UIButton.buttonWithType(UIButtonType.Custom) as! UIButton
+    let ingredientsTableView = UITableView()
+    let nameLabel = UILabel()
+    let nameTextField = UITextField()
+
     var drink: Drink?
-    
-    
+    var editMode = false
+    var ingredientsPopoverController: UIPopoverController?
+
     required init(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -24,28 +30,47 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
         super.init(nibName: nil, bundle: nil)
         
         self.drink = drink
-                
+
+        pourButton.setTitle("Hit me!", forState: .Normal)
+
         drinkImageView.frame = Constants.drinkFrames.expandedFrame
         drinkImageView.contentMode = .ScaleAspectFit
         drinkImageView.image = UIImage(named: drink.imageName)
+        view.addSubview(drinkImageView)
         
-        
+        editButton.frame = CGRectMake(900, 30, 100, 60)
+        editButton.setTitle("Edit", forState: .Normal)
+        editButton.setTitleColor(ThemeColor.primary, forState: UIControlState.Normal)
+        editButton.setTitleColor(ThemeColor.highlighted, forState: .Highlighted)
+        editButton.titleLabel?.font = UIFont(name: "HelveticaNeue-Light", size: CGFloat(20))
+        view.addSubview(editButton)
+
+        saveButton.setTitle("Save", forState: .Normal)
+        saveButton.hidden = true
+        view.addSubview(saveButton)
+
+        cancelButton.frame = CGRectMake(900, 30, 100, 60)
+        cancelButton.setTitle("Cancel", forState: .Normal)
+        cancelButton.setTitleColor(ThemeColor.primary, forState: UIControlState.Normal)
+        cancelButton.setTitleColor(ThemeColor.highlighted, forState: .Highlighted)
+        cancelButton.titleLabel?.font = UIFont(name: "HelveticaNeue-Light", size: CGFloat(20))
+        cancelButton.hidden = true
+        view.addSubview(cancelButton)
+
         backButton.setImage(UIImage(named: "back"), forState: UIControlState.Normal)
         backButton.setTitle("  Back", forState: .Normal)
         backButton.setTitleColor(ThemeColor.primary, forState: UIControlState.Normal)
         backButton.setTitleColor(ThemeColor.highlighted, forState: .Highlighted)
         backButton.titleLabel?.font = UIFont(name: "HelveticaNeue-Light", size: CGFloat(20))
         backButton.frame = CGRectMake(30, 30, 100, 60)
+        view.addSubview(backButton)
         
-        
-        ingredientsTableView.frame = CGRectMake(400, 180, 550, 450)
+        ingredientsTableView.frame = CGRectMake(400, 180, 550, 410)
         ingredientsTableView.delegate = self
         ingredientsTableView.dataSource = self
-        ingredientsTableView.scrollEnabled = false
         ingredientsTableView.separatorStyle = .None
-        ingredientsTableView.allowsSelection = false
+        ingredientsTableView.allowsSelection = true
         view.addSubview(ingredientsTableView)
-        
         
         resetIngredientButton.setImage(UIImage(named: "reset.png"), forState: UIControlState.Normal)
         resetIngredientButton.setTitle("  Reset ingredients", forState: .Normal)
@@ -57,14 +82,31 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
         resetIngredientButton.titleLabel?.textAlignment = .Center
         view.addSubview(resetIngredientButton)
         
-        var label = UILabel(frame: CGRectMake(500, 100, 500, 50))
-        label.text = drink.name
-        label.font = UIFont(name: "HelveticaNeue-Light", size: 28)
-        label.textAlignment = .Center
-        view.addSubview(label)
+        nameLabel.frame = CGRectMake(500, 100, 500, 50)
+        nameLabel.text = drink.name
+        nameLabel.font = UIFont(name: "HelveticaNeue-Light", size: 28)
+        nameLabel.textAlignment = .Center
+        view.addSubview(nameLabel)
         
+        nameTextField.frame = CGRectMake(500, 100, 500, 50)
+        nameTextField.text = drink.name
+        nameTextField.font = UIFont(name: "HelveticaNeue-Light", size: 28)
+        nameTextField.textAlignment = .Center
+        nameTextField.hidden = true
+        nameTextField.borderStyle = UITextBorderStyle.Line
+        nameTextField.delegate = self
+        view.addSubview(nameTextField)
+
+        let ingredients = Ingredient.allIngredients(drink.managedObjectContext!)
+        let selectIngredientController = SelectIngredientViewController(ingredients: ingredients)
+        selectIngredientController.delegate = self
+        ingredientsPopoverController = UIPopoverController(contentViewController: selectIngredientController)
+
         resetIngredientButton.addTarget(self, action: "reset", forControlEvents: .TouchUpInside)
         backButton.addTarget(self, action: "dismiss", forControlEvents: .TouchUpInside)
+        editButton.addTarget(self, action: "edit", forControlEvents: .TouchUpInside)
+        saveButton.addTarget(self, action: "save", forControlEvents: .TouchUpInside)
+        cancelButton.addTarget(self, action: "cancel", forControlEvents: .TouchUpInside)
         pourButton.addTarget(self, action: "pour", forControlEvents: .TouchUpInside)
     }
     
@@ -73,19 +115,35 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return drink!.drinkIngredients.count
+        return editMode ? drink!.drinkIngredients.count+1 : drink!.drinkIngredients.count;
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        if( indexPath.row == drink?.drinkIngredients.count ) {
+            return addIngredientCell(tableView, indexPath: indexPath)
+        } else {
+            return drinkIngredientCell(tableView, indexPath: indexPath)
+        }
+    }
+
+    func addIngredientCell(tableView: UITableView, indexPath: NSIndexPath) -> UITableViewCell {
+        var cell = UITableViewCell(style: .Default, reuseIdentifier: "ADD_INGREDIENT")
+        cell.textLabel?.text = "Add Ingredient"
+        return cell
+    }
+
+    func drinkIngredientCell(tableView: UITableView, indexPath: NSIndexPath) -> UITableViewCell {
         var cell = tableView.dequeueReusableCellWithIdentifier("CELL") as? DrinkIngredientCell
         if(cell == nil) {
             cell = DrinkIngredientCell(style: .Default, reuseIdentifier: "CELL")
         }
-        
+
         var drinkIngredient = drink?.drinkIngredients.allObjects[indexPath.row] as! DrinkIngredient
-        
+
+        cell!.editMode = self.editMode
         cell!.displayDrinkIngredient(drinkIngredient)
-        
+        cell!.delegate = self
+
         return cell!
     }
     
@@ -97,15 +155,7 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
         super.viewDidLoad()
         
         view.backgroundColor = UIColor.whiteColor()
-        
-        view.addSubview(drinkImageView)
         view.addSubview(pourButton)
-        view.addSubview(backButton)
-    }
-    
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-        println("viewDidAppear")
     }
     
     func reset(){
@@ -116,6 +166,40 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
     func dismiss(){
         Drink.revert()
         navigationController?.popViewControllerAnimated(true)
+    }
+
+    func edit() {
+        editMode = true
+        
+        updateUserInterface()
+    }
+
+    func save() {
+        editMode = false
+
+        drink?.name = nameTextField.text
+        Drink.save()
+
+        updateUserInterface()
+    }
+
+    func cancel() {
+        editMode = false
+
+        Drink.revert()
+
+        updateUserInterface()
+    }
+
+    func updateUserInterface() {
+        nameLabel.text = drink?.name
+        nameLabel.hidden = editMode
+        nameTextField.hidden = !editMode
+        editButton.hidden = editMode
+        cancelButton.hidden = !editMode
+        saveButton.hidden = !editMode
+        pourButton.hidden = editMode
+        ingredientsTableView.reloadData()
     }
     
     func pour(){
@@ -145,7 +229,31 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
         }
 
     }
-    
+
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let cell = tableView.cellForRowAtIndexPath(indexPath)!
+        let rect = CGRectMake(cell.bounds.origin.x, cell.bounds.origin.y, 70, 70)
+        ingredientsPopoverController?.presentPopoverFromRect(
+            rect, inView: cell, permittedArrowDirections: UIPopoverArrowDirection.Left, animated: true
+        )
+    }
+
+    func didSelectIngredient(ingredient: Ingredient) {
+        ingredientsPopoverController?.dismissPopoverAnimated(true)
+        if( drink!.hasIngredient(ingredient) ) {
+            var alertView = UIAlertView(title: "Ingredient Already Added", message: "", delegate: nil, cancelButtonTitle: "OK")
+            alertView.show()
+        } else {
+            drink?.addIngredient(ingredient, amount: 30)
+            updateUserInterface()
+        }
+    }
+
+    func removeDrinkIngredient(ingredient: DrinkIngredient) {
+        drink?.removeDrinkIngredient(ingredient)
+        updateUserInterface()
+    }
+
     func startPourAnimation(duration: Double) {
         var pouringVC = PouringViewController(drink: drink!, duration: duration)
         navigationController?.pushViewController(pouringVC, animated: true)
@@ -154,4 +262,5 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
     func sharedView() -> UIView! {
         return drinkImageView
     }
+
 }

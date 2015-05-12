@@ -25,11 +25,20 @@ class Drink: NSManagedObject {
     
     func addIngredient(ingredient: Ingredient, amount: NSNumber) {
         DrinkIngredient.newDrinkIngredient(self, ingredient: ingredient, amount: amount, managedContext: self.managedObjectContext!)
-        
-        var error: NSError?
-        if !self.managedObjectContext!.save(&error) {
-            println("Could not save \(error), \(error?.userInfo)")
+    }
+
+    func removeDrinkIngredient(drinkIngredient: DrinkIngredient) {
+        self.managedObjectContext?.deleteObject(drinkIngredient)
+        self.managedObjectContext?.processPendingChanges()
+    }
+    
+    func hasIngredient(ingredient: Ingredient) -> Bool {
+        for drinkIngredient in self.drinkIngredients {
+            if (drinkIngredient as! DrinkIngredient).ingredient == ingredient {
+                return true
+            }
         }
+        return false
     }
     
     class func allDrinks (managedContext: NSManagedObjectContext) -> [Drink]{
@@ -46,9 +55,17 @@ class Drink: NSManagedObject {
         return (managedContext?.executeFetchRequest(fetchRequest, error: nil) as! [Drink]).first
     }
     
-    class func revert(){
+    class func revert() {
         let managedContext = UIApplication.sharedDelegate().getManagedContext()
         managedContext?.rollback();
+    }
+
+    class func save() {
+        let managedContext = UIApplication.sharedDelegate().getManagedContext()
+        var error: NSError?
+        if !managedContext!.save(&error) {
+            println("Could not save \(error), \(error?.userInfo)")
+        }
     }
     
 }

@@ -49,6 +49,8 @@ class DrinksViewController: UIViewController, iCarouselDataSource, iCarouselDele
         for (ingredientName, amountNeeded) in ingredients{
             drink.addIngredient(Ingredient.getIngredient(ingredientName, managedContext: managedContext!)!, amount: amountNeeded)
         }
+
+        Drink.save()
         return drink
     }
     
