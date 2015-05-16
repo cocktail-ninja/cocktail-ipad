@@ -8,6 +8,7 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
     let editButton = UIButton.buttonWithType(UIButtonType.Custom) as! UIButton
     let saveButton = ActionButton(frame: CGRectMake(570, 650, 400, 60))
     let cancelButton = UIButton.buttonWithType(UIButtonType.Custom) as! UIButton
+    let deleteButton = UIButton.buttonWithType(UIButtonType.Custom) as! UIButton
     let pourButton = ActionButton(frame: CGRectMake(570, 650, 400, 60))
     let resetIngredientButton = UIButton.buttonWithType(UIButtonType.Custom) as! UIButton
     let ingredientsTableView = UITableView()
@@ -57,6 +58,14 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
         cancelButton.hidden = true
         view.addSubview(cancelButton)
 
+        deleteButton.frame = CGRectMake(800, 30, 100, 60)
+        deleteButton.setTitle("Delete", forState: .Normal)
+        deleteButton.setTitleColor(ThemeColor.primary, forState: UIControlState.Normal)
+        deleteButton.setTitleColor(ThemeColor.highlighted, forState: .Highlighted)
+        deleteButton.titleLabel?.font = UIFont(name: "HelveticaNeue-Light", size: CGFloat(20))
+        deleteButton.hidden = true
+        view.addSubview(deleteButton)
+        
         backButton.setImage(UIImage(named: "back"), forState: UIControlState.Normal)
         backButton.setTitle("  Back", forState: .Normal)
         backButton.setTitleColor(ThemeColor.primary, forState: UIControlState.Normal)
@@ -107,6 +116,7 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
         editButton.addTarget(self, action: "edit", forControlEvents: .TouchUpInside)
         saveButton.addTarget(self, action: "save", forControlEvents: .TouchUpInside)
         cancelButton.addTarget(self, action: "cancel", forControlEvents: .TouchUpInside)
+        deleteButton.addTarget(self, action: "delete", forControlEvents: .TouchUpInside)
         pourButton.addTarget(self, action: "pour", forControlEvents: .TouchUpInside)
     }
     
@@ -176,6 +186,12 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
         updateUserInterface()
     }
 
+    func delete() {
+        drink!.managedObjectContext?.deleteObject(drink!)
+        Drink.save()
+        navigationController?.popViewControllerAnimated(true)
+    }
+    
     func save() {
         editMode = false
 
@@ -186,11 +202,15 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
     }
 
     func cancel() {
-        editMode = false
-
-        Drink.revert()
-
-        updateUserInterface()
+        if( !drink!.objectID.temporaryID ) {
+            editMode = false
+            
+            Drink.revert()
+            
+            updateUserInterface()
+        } else {
+            dismiss()
+        }
     }
 
     func updateUserInterface() {
@@ -201,6 +221,7 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
         cancelButton.hidden = !editMode
         saveButton.hidden = !editMode
         pourButton.hidden = editMode
+        deleteButton.hidden = !editMode
         ingredientsTableView.reloadData()
     }
     
