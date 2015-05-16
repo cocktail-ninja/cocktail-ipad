@@ -129,6 +129,7 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
     func addIngredientCell(tableView: UITableView, indexPath: NSIndexPath) -> UITableViewCell {
         var cell = UITableViewCell(style: .Default, reuseIdentifier: "ADD_INGREDIENT")
         cell.textLabel?.text = "Add Ingredient"
+        cell.selectionStyle = .None
         return cell
     }
 
@@ -143,6 +144,7 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
         cell!.editMode = self.editMode
         cell!.displayDrinkIngredient(drinkIngredient)
         cell!.delegate = self
+        cell!.selectionStyle = .None
 
         return cell!
     }
@@ -231,11 +233,14 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
     }
 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let cell = tableView.cellForRowAtIndexPath(indexPath)!
-        let rect = CGRectMake(cell.bounds.origin.x, cell.bounds.origin.y, 70, 70)
-        ingredientsPopoverController?.presentPopoverFromRect(
-            rect, inView: cell, permittedArrowDirections: UIPopoverArrowDirection.Left, animated: true
-        )
+        tableView.deselectRowAtIndexPath(indexPath, animated: false)
+        if editMode && indexPath.row == drink?.drinkIngredients.count {
+            let cell = tableView.cellForRowAtIndexPath(indexPath)!
+            let rect = CGRectMake(cell.bounds.origin.x, cell.bounds.origin.y, 70, 70)
+            ingredientsPopoverController?.presentPopoverFromRect(
+                rect, inView: cell, permittedArrowDirections: UIPopoverArrowDirection.Left, animated: true
+            )
+        }
     }
 
     func didSelectIngredient(ingredient: Ingredient) {
