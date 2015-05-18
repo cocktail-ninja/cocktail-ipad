@@ -35,18 +35,18 @@ class DrinkService: NSObject {
         
     }
     
-    class func initIngredients(managedContext: NSManagedObjectContext) {
-        Ingredient.newIngredient("Light Rum", pumpNumber: 1, amountLeft: 100, managedContext: managedContext)
-        Ingredient.newIngredient("Vodka", pumpNumber: 2, amountLeft: 100, managedContext: managedContext)
-        Ingredient.newIngredient("Gin", pumpNumber: 3, amountLeft: 100, managedContext: managedContext)
-        Ingredient.newIngredient("Tequila", pumpNumber: 4, amountLeft: 50, managedContext: managedContext)
-        Ingredient.newIngredient("Triple Sec", pumpNumber: 5, amountLeft: 50, managedContext: managedContext)
-        
-        Ingredient.newIngredient("Coca Cola", pumpNumber: 6, amountLeft: 400, managedContext: managedContext)
-        Ingredient.newIngredient("Lemonade", pumpNumber: 7, amountLeft: 500, managedContext: managedContext)
-        Ingredient.newIngredient("Orange Juice", pumpNumber: 8, amountLeft: 400, managedContext: managedContext)
-        Ingredient.newIngredient("Cranberry Juice", pumpNumber: 9, amountLeft: 500, managedContext: managedContext)
-        Ingredient.newIngredient("Lime Juice", pumpNumber: 10, amountLeft: 500, managedContext: managedContext)
+    class func initIngredients(){
+        Ingredient.newIngredient("Light Rum", pumpNumber: 1, amountLeft: 100, ingredientClass: .Alcoholic, managedContext: managedContext!)
+        Ingredient.newIngredient("Vodka", pumpNumber: 2, amountLeft: 100, ingredientClass: .Alcoholic, managedContext: managedContext!)
+        Ingredient.newIngredient("Gin", pumpNumber: 3, amountLeft: 100, ingredientClass: .Alcoholic,managedContext: managedContext!)
+        Ingredient.newIngredient("Tequila", pumpNumber: 4, amountLeft: 50, ingredientClass: .Alcoholic, managedContext: managedContext!)
+        Ingredient.newIngredient("Triple Sec", pumpNumber: 5, amountLeft: 50, ingredientClass: .Alcoholic,managedContext: managedContext!)
+      
+        Ingredient.newIngredient("Coca Cola", pumpNumber: 6, amountLeft: 400, ingredientClass: .NonAlcoholic, managedContext: managedContext!)
+        Ingredient.newIngredient("Lemonade", pumpNumber: 7, amountLeft: 500, ingredientClass: .NonAlcoholic, managedContext: managedContext!)
+        Ingredient.newIngredient("Orange Juice", pumpNumber: 8, amountLeft: 400, ingredientClass: .NonAlcoholic, managedContext: managedContext!)
+        Ingredient.newIngredient("Cranberry Juice", pumpNumber: 9, amountLeft: 500, ingredientClass: .NonAlcoholic, managedContext: managedContext!)
+        Ingredient.newIngredient("Lime Juice", pumpNumber: 10, amountLeft: 500, ingredientClass: .NonAlcoholic, managedContext: managedContext!)
     }
     
     class func createDrinkWithIngredient(name:String, imageName:String, ingredients: Dictionary<String, NSNumber>, managedContext: NSManagedObjectContext) -> Drink {

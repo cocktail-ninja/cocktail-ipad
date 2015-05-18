@@ -22,7 +22,6 @@ class DrinkIngredientCell: UITableViewCell {
         addSubview(ingredientAmountLabel)
         addSubview(removeButton)
 		
-        slider.setConfig(minimumValue: 0, maximumValue: 90, increment: 15)
         slider.addTarget(self, action: "sliderChanged", forControlEvents: .ValueChanged)
         
         ingredientNamelabel.frame = CGRectMake(0, 25, 160, 20)
@@ -61,6 +60,12 @@ class DrinkIngredientCell: UITableViewCell {
         ingredientNamelabel.text = drinkIngredient.ingredient.type
         ingredientAmountLabel.text = "\(self.drinkIngredient!.amount)ml"
         removeButton.hidden = !editMode
+        
+        if (drinkIngredient.ingredient.ingredientClass == .Alcoholic) {
+            slider.setConfig(minimumValue: 0, maximumValue: 90, increment: 15)
+        } else {
+            slider.setConfig(minimumValue: 0, maximumValue: 300, increment: 50)
+        }
     }
     
 }
