@@ -1,10 +1,3 @@
-//
-//  DrinkIngredientCell.swift
-//  cocktail-assassin
-//
-//  Created by Colin Harris on 3/3/15.
-//  Copyright (c) 2015 tw. All rights reserved.
-//
 
 import UIKit
 
@@ -13,8 +6,7 @@ protocol RemoveIngredientDelegate {
 }
 
 class DrinkIngredientCell: UITableViewCell {
-
-    var slider = UISlider()
+    var slider = FixedIncrementSlider(frame: CGRectMake(255, 25, 250, 20))
     var ingredientNamelabel = UILabel()
     var ingredientAmountLabel = UILabel()
     var removeButton = UIButton.buttonWithType(UIButtonType.Custom) as! UIButton
@@ -29,8 +21,8 @@ class DrinkIngredientCell: UITableViewCell {
         addSubview(ingredientNamelabel)
         addSubview(ingredientAmountLabel)
         addSubview(removeButton)
-
-        slider.frame = CGRectMake(255, 25, 250, 20)
+		
+        slider.setConfig(minimumValue: 0, maximumValue: 90, increment: 15)
         slider.addTarget(self, action: "sliderChanged", forControlEvents: .ValueChanged)
         
         ingredientNamelabel.frame = CGRectMake(0, 25, 160, 20)
@@ -59,13 +51,13 @@ class DrinkIngredientCell: UITableViewCell {
     }
 
     func sliderChanged() {
-        drinkIngredient?.amount = (Int)(slider.value*200)
+        drinkIngredient?.amount = (Int)(slider.value)
         ingredientAmountLabel.text = "\(drinkIngredient!.amount)ml"
     }
     
     func displayDrinkIngredient(drinkIngredient: DrinkIngredient) {
         self.drinkIngredient = drinkIngredient
-        slider.setValue(drinkIngredient.amount.floatValue / 200, animated: false)
+        slider.setValue(drinkIngredient.amount.floatValue, animated: false)
         ingredientNamelabel.text = drinkIngredient.ingredient.type
         ingredientAmountLabel.text = "\(self.drinkIngredient!.amount)ml"
         removeButton.hidden = !editMode

@@ -26,6 +26,7 @@
 		2345A2D31A7FC19C007CB356 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2345A2D21A7FC19C007CB356 /* Constants.swift */; };
 		2345A2D71A7FC4C0007CB356 /* UIView+FrameHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2345A2D61A7FC4C0007CB356 /* UIView+FrameHelper.swift */; };
 		234C64AF1AA37ABD003672AF /* UIView+Promise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234C64AE1AA37ABD003672AF /* UIView+Promise.swift */; };
+		23654CE11B0A001400C8C247 /* FixedIncrementSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23654CE01B0A001400C8C247 /* FixedIncrementSlider.swift */; };
 		23661CBD1AA483D900569DAD /* PouringViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23661CBC1AA483D900569DAD /* PouringViewController.swift */; };
 		23661CF21AA4A6EF00569DAD /* GlowingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23661CF11AA4A6EF00569DAD /* GlowingView.swift */; };
 		237B076F1A6EA5F7001AA652 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237B076E1A6EA5F7001AA652 /* AppDelegate.swift */; };
@@ -79,6 +80,7 @@
 		234C64A41AA374A8003672AF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		234C64A61AA374C9003672AF /* libobjc.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libobjc.dylib; path = usr/lib/libobjc.dylib; sourceTree = SDKROOT; };
 		234C64AE1AA37ABD003672AF /* UIView+Promise.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Promise.swift"; sourceTree = "<group>"; };
+		23654CE01B0A001400C8C247 /* FixedIncrementSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FixedIncrementSlider.swift; sourceTree = "<group>"; };
 		23661CBC1AA483D900569DAD /* PouringViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PouringViewController.swift; sourceTree = "<group>"; };
 		23661CF11AA4A6EF00569DAD /* GlowingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlowingView.swift; sourceTree = "<group>"; };
 		237B07691A6EA5F7001AA652 /* cocktail-assassin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "cocktail-assassin.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -329,6 +331,8 @@
 				EF21824A1AA5E8C900690EFD /* DrinkIngredientCell.swift */,
 				23EEDBA01ADAAD8E007A28E9 /* ActionButton.swift */,
 				1096022F3D3E04BACBB12E3D /* AddIngredientCell.swift */,
+				23EEDBA01ADAAD8E007A28E9 /* StartPouringButton.swift */,
+				23654CE01B0A001400C8C247 /* FixedIncrementSlider.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -544,6 +548,7 @@
 				5931BC071A8A4DC500895B64 /* DrinkIngredient.swift in Sources */,
 				2345A2CF1A7F9786007CB356 /* UIImage+Grayscale.swift in Sources */,
 				23906C301AD9CAA100D3613D /* DrinkCarouselTransformation.swift in Sources */,
+				23654CE11B0A001400C8C247 /* FixedIncrementSlider.swift in Sources */,
 				23B338861AB85CDE002F3BE8 /* UIApplication+SharedDelegate.swift in Sources */,
 				2345A2CA1A7D5231007CB356 /* DrinkDetailsViewController.swift in Sources */,
 				23EEDBA11ADAAD8E007A28E9 /* ActionButton.swift in Sources */,
