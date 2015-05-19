@@ -278,7 +278,6 @@
 		23906C231AD9C96200D3613D /* Pages */ = {
 			isa = PBXGroup;
 			children = (
-				EFB28A951AFA416E00444757 /* Admin */,
 				23906C1F1AD9C86C00D3613D /* Pouring */,
 				23906C1E1AD9C84100D3613D /* DrinkDetails */,
 				23906C1D1AD9C82C00D3613D /* DrinksCarousel */,
@@ -370,13 +369,6 @@
 				8D1068E656C146A8BB46FCBE /* Pods.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		EFB28A951AFA416E00444757 /* Admin */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Admin;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
