@@ -23,7 +23,7 @@ class SelectIngredientViewController : UITableViewController, UITableViewDataSou
 
         super.init(nibName: nil, bundle: nil)
         
-        self.preferredContentSize = CGSizeMake(250,395)
+        self.preferredContentSize = CGSizeMake(250,439)
         self.tableView.scrollEnabled = false
     }
 
