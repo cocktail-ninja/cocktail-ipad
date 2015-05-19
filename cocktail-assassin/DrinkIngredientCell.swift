@@ -74,6 +74,11 @@ class DrinkIngredientCell: UITableViewCell {
             ingredientAmountLabel.hidden = true
             drinkNotesLabel.text = "Please pour \(self.drinkIngredient!.amount)ml Lime Juice yourself"
             drinkNotesLabel.hidden = false
+        } else {
+            slider.hidden = false
+            ingredientAmountLabel.hidden = false
+            drinkNotesLabel.text = ""
+            drinkNotesLabel.hidden = true
         }
         
         if (drinkIngredient.ingredient.ingredientClass == .Alcoholic) {
