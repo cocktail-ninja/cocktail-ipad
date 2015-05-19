@@ -73,23 +73,14 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
         backButton.titleLabel?.font = UIFont(name: "HelveticaNeue-Light", size: CGFloat(20))
         backButton.frame = CGRectMake(30, 30, 100, 60)
         view.addSubview(backButton)
-        
-<<<<<<< HEAD
-        ingredientsTableView.frame = CGRectMake(400, 180, 550, 410)
-        ingredientsTableView.delegate = self
-        ingredientsTableView.dataSource = self
-        ingredientsTableView.separatorStyle = .None
-        ingredientsTableView.allowsSelection = true
-        view.addSubview(ingredientsTableView)
-        
-=======
+    
         
         ingredientsTableView.frame = CGRectMake(0, 0, 560, 490)
         ingredientsTableView.delegate = self
         ingredientsTableView.dataSource = self
         ingredientsTableView.scrollEnabled = true
         ingredientsTableView.separatorStyle = .None
-        ingredientsTableView.allowsSelection = false
+        ingredientsTableView.allowsSelection = true
         ingredientsTableView.alwaysBounceVertical = false
         let inset = UIEdgeInsetsMake(30, 0, 30, 0)
         ingredientsTableView.contentInset = inset
@@ -114,7 +105,6 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
 
         view.addSubview(fadedTableView)
         
->>>>>>> make tableview looks nicer
         resetIngredientButton.setImage(UIImage(named: "reset.png"), forState: UIControlState.Normal)
         resetIngredientButton.setTitle("  Reset ingredients", forState: .Normal)
         resetIngredientButton.titleLabel?.font = UIFont(name: "HelveticaNeue-Light", size: CGFloat(16))
@@ -125,19 +115,12 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
         resetIngredientButton.titleLabel?.textAlignment = .Center
         view.addSubview(resetIngredientButton)
         
-<<<<<<< HEAD
-        nameLabel.frame = CGRectMake(500, 100, 500, 50)
+
+        nameLabel.frame = CGRectMake(500, 60, 500, 50)
         nameLabel.text = drink.name
         nameLabel.font = UIFont(name: "HelveticaNeue-Light", size: 28)
         nameLabel.textAlignment = .Center
         view.addSubview(nameLabel)
-=======
-        var label = UILabel(frame: CGRectMake(500, 60, 500, 50))
-        label.text = drink.name
-        label.font = UIFont(name: "HelveticaNeue-Light", size: 28)
-        label.textAlignment = .Center
-        view.addSubview(label)
->>>>>>> make tableview looks nicer
         
         nameTextField.frame = CGRectMake(500, 100, 500, 50)
         nameTextField.text = drink.name
