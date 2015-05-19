@@ -73,7 +73,6 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
         backButton.titleLabel?.font = UIFont(name: "HelveticaNeue-Light", size: CGFloat(20))
         backButton.frame = CGRectMake(30, 30, 100, 60)
         view.addSubview(backButton)
-    
         
         ingredientsTableView.frame = CGRectMake(0, 0, 560, 490)
         ingredientsTableView.delegate = self
@@ -114,20 +113,20 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
         resetIngredientButton.setTitleColor(ThemeColor.highlighted, forState: .Highlighted)
         resetIngredientButton.titleLabel?.textAlignment = .Center
         view.addSubview(resetIngredientButton)
-        
 
-        nameLabel.frame = CGRectMake(500, 60, 500, 50)
+        nameLabel.frame = CGRectMake(480, 75, 480, 50)
         nameLabel.text = drink.name
         nameLabel.font = UIFont(name: "HelveticaNeue-Light", size: 28)
         nameLabel.textAlignment = .Center
         view.addSubview(nameLabel)
         
-        nameTextField.frame = CGRectMake(500, 100, 500, 50)
+        nameTextField.frame = CGRectMake(480, 75, 480, 50)
         nameTextField.text = drink.name
         nameTextField.font = UIFont(name: "HelveticaNeue-Light", size: 28)
         nameTextField.textAlignment = .Center
         nameTextField.hidden = true
         nameTextField.borderStyle = UITextBorderStyle.Line
+        nameTextField.clearsOnBeginEditing = true
         nameTextField.delegate = self
         view.addSubview(nameTextField)
 
@@ -218,11 +217,16 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
     }
     
     func save() {
-        drink?.name = nameTextField.text
+        if((nameTextField.text) != ""){
+            drink?.name = nameTextField.text
         
-        editMode = false
-        Drink.save()
-        updateUserInterface()
+            editMode = false
+            Drink.save()
+            updateUserInterface()
+        }else{
+            var alertView = UIAlertView(title: "Drink name cannot be empty, silly!", message: "", delegate: nil, cancelButtonTitle: "OK")
+            alertView.show()
+        }
     }
 
     func cancel() {
