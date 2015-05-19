@@ -9,7 +9,7 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
     let saveButton = ActionButton(frame: CGRectMake(570, 650, 400, 60))
     let cancelButton = UIButton.buttonWithType(UIButtonType.Custom) as! UIButton
     let deleteButton = UIButton.buttonWithType(UIButtonType.Custom) as! UIButton
-    let pourButton = ActionButton(frame: CGRectMake(570, 650, 400, 60))
+    let pourButton = ActionButton(frame: CGRectMake(570, 660, 400, 60))
     let resetIngredientButton = UIButton.buttonWithType(UIButtonType.Custom) as! UIButton
     let ingredientsTableView = UITableView()
     let nameLabel = UILabel()
@@ -73,25 +73,50 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
         backButton.titleLabel?.font = UIFont(name: "HelveticaNeue-Light", size: CGFloat(20))
         backButton.frame = CGRectMake(30, 30, 100, 60)
         view.addSubview(backButton)
+    
         
-        ingredientsTableView.frame = CGRectMake(400, 180, 550, 410)
+        ingredientsTableView.frame = CGRectMake(0, 0, 560, 490)
         ingredientsTableView.delegate = self
         ingredientsTableView.dataSource = self
+        ingredientsTableView.scrollEnabled = true
         ingredientsTableView.separatorStyle = .None
         ingredientsTableView.allowsSelection = true
-        view.addSubview(ingredientsTableView)
+        ingredientsTableView.alwaysBounceVertical = false
+        let inset = UIEdgeInsetsMake(30, 0, 30, 0)
+        ingredientsTableView.contentInset = inset
+        ingredientsTableView.scrollIndicatorInsets = inset
+        
+        // Todo: Subclass UITableView
+        let fadedTableView = UIView(frame: CGRectMake(410, 120, 560, 490));
+        fadedTableView.backgroundColor = UIColor.redColor()
+        fadedTableView.opaque = false
+        let gradient = CAGradientLayer();
+        gradient.frame = fadedTableView.bounds;
+        gradient.colors = [
+            UIColor.clearColor().CGColor,
+            UIColor.whiteColor().CGColor,
+            UIColor.whiteColor().CGColor,
+            UIColor.clearColor().CGColor
+        ]
+        
+        gradient.locations = [0, 0.1, 0.9, 1];
+        fadedTableView.layer.mask = gradient;
+        fadedTableView.addSubview(ingredientsTableView)
+
+        view.addSubview(fadedTableView)
         
         resetIngredientButton.setImage(UIImage(named: "reset.png"), forState: UIControlState.Normal)
         resetIngredientButton.setTitle("  Reset ingredients", forState: .Normal)
         resetIngredientButton.titleLabel?.font = UIFont(name: "HelveticaNeue-Light", size: CGFloat(16))
-        resetIngredientButton.frame = CGRectMake(620, 590, 300, 60)
+        resetIngredientButton.frame = CGRectMake(620, 610, 300, 50)
         resetIngredientButton.backgroundColor = UIColor.clearColor()
         resetIngredientButton.setTitleColor(ThemeColor.primary, forState: .Normal)
         resetIngredientButton.setTitleColor(ThemeColor.highlighted, forState: .Highlighted)
         resetIngredientButton.titleLabel?.textAlignment = .Center
         view.addSubview(resetIngredientButton)
         
-        nameLabel.frame = CGRectMake(500, 100, 500, 50)
+
+        nameLabel.frame = CGRectMake(500, 60, 500, 50)
         nameLabel.text = drink.name
         nameLabel.font = UIFont(name: "HelveticaNeue-Light", size: 28)
         nameLabel.textAlignment = .Center

@@ -9,18 +9,30 @@
 import Foundation
 import CoreData
 
+enum IngredientClass: Int16 {
+    case Alcoholic
+    case NonAlcoholic
+}
+
 class Ingredient: NSManagedObject {
 
     @NSManaged var type: String
     @NSManaged var pumpNumber: NSNumber
     @NSManaged var amountLeft: NSNumber
     @NSManaged var drinkIngredients: NSSet
+    @NSManaged var rawIngredientClass: Int16
 
-    class func newIngredient(type: String, pumpNumber: NSNumber, amountLeft: NSNumber, managedContext: NSManagedObjectContext) -> Ingredient {
+    var ingredientClass:IngredientClass {
+        get { return IngredientClass(rawValue: self.rawIngredientClass)! }
+        set { self.rawIngredientClass = newValue.rawValue }
+    }
+
+    class func newIngredient(type: String, pumpNumber: NSNumber, amountLeft: NSNumber, ingredientClass: IngredientClass, managedContext: NSManagedObjectContext) -> Ingredient {
         var newIngredient = NSEntityDescription.insertNewObjectForEntityForName("Ingredient", inManagedObjectContext:managedContext) as! Ingredient
         newIngredient.type = type
         newIngredient.pumpNumber = pumpNumber
         newIngredient.amountLeft = amountLeft
+        newIngredient.ingredientClass = ingredientClass
         
         var error: NSError?
         if !managedContext.save(&error) {
