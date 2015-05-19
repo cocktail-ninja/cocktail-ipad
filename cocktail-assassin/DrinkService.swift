@@ -61,92 +61,49 @@ class DrinkService: NSObject {
     }
     
     class func initDatabase(managedContext: NSManagedObjectContext) {
-        DrinkService.initIngredients(managedContext)
+        initIngredients()
+        items.append(createDrinkWithIngredient("Long Island Ice Tea",
+            imageName: "long-island-iced-tea",
+            ingredients: ["Vodka": 15, "Light Rum": 15, "Tequila": 15, "Triple Sec": 15, "Gin": 15, "Coca Cola": 90]))
         
-        DrinkService.createDrinkWithIngredient("Dirty Texas Tea",
-            imageName: "dirty-texas-tea",
-            ingredients: ["Vodka": 23, "Light Rum": 23, "Tequila": 23, "Triple Sec": 23, "Orange Juice": 45, "Coca Cola": 150],
-            managedContext: managedContext
-        )
-        
-        DrinkService.createDrinkWithIngredient("Alpine Lemonade",
+        items.append(createDrinkWithIngredient("Alpine Lemonade",
             imageName: "alpine-lemonade",
-            ingredients: ["Vodka": 30, "Gin": 30, "Light Rum": 30, "Lemonade": 60, "Cranberry Juice": 60],
-            managedContext: managedContext
-        )
+            ingredients: ["Vodka": 30, "Gin": 30, "Light Rum": 30, "Lemonade": 60, "Cranberry Juice": 60]))
         
-        DrinkService.createDrinkWithIngredient("The Ollie",
+        items.append(createDrinkWithIngredient("The Ollie",
             imageName: "the-ollie",
-            ingredients: ["Vodka": 60, "Light Rum": 30, "Tequila": 30, "Lemonade": 150],
-            managedContext: managedContext
-        )
+            ingredients: ["Vodka": 60, "Light Rum": 30, "Tequila": 30, "Lemonade": 150]))
         
-        DrinkService.createDrinkWithIngredient("Cosmopolitan Classic",
-            imageName: "cosmopolitan-classic",
-            ingredients: ["Vodka": 23, "Triple Sec": 15, "Cranberry Juice": 30, "Lime Juice": 15],
-            managedContext: managedContext
-        )
+        items.append(createDrinkWithIngredient("Cosmopolitan Classic",
+            imageName: "cosmopolitan",
+            ingredients: ["Vodka": 15, "Triple Sec": 15, "Cranberry Juice": 30, "Lime Juice": 15]))
         
-        DrinkService.createDrinkWithIngredient("Margarita",
+        items.append(createDrinkWithIngredient("Margarita",
             imageName: "margarita",
-            ingredients: ["Tequila": 30, "Triple Sec": 30, "Lime Juice": 15],
-            managedContext: managedContext
-        )
+            ingredients: ["Tequila": 30, "Triple Sec": 30, "Lime Juice": 15]))
         
-        DrinkService.createDrinkWithIngredient("Vodka Cranberry",
+        items.append(createDrinkWithIngredient("Vodka Cranberry",
             imageName: "vodka-cranberry",
-            ingredients: ["Vodka": 30, "Cranberry Juice": 135, "Lime Juice": 15, "Orange Juice": 45],
-            managedContext: managedContext
-        )
+            ingredients: ["Vodka": 30, "Cranberry Juice": 120, "Lime Juice": 15, "Orange Juice": 30]))
         
-        DrinkService.createDrinkWithIngredient("Black Widow",
+        items.append(createDrinkWithIngredient("Black Widow",
             imageName: "black-widow",
-            ingredients: ["Vodka": 30, "Cranberry Juice": 30, "Lemonade": 30],
-            managedContext: managedContext
-        )
+            ingredients: ["Vodka": 30, "Cranberry Juice": 30, "Lemonade": 30]))
         
-        DrinkService.createDrinkWithIngredient("Rum and Coke",
+        items.append(createDrinkWithIngredient("Rum and Coke",
             imageName: "rum-and-coke",
-            ingredients: ["Light Rum": 30, "Coca Cola": 150],
-            managedContext: managedContext
-        )
+            ingredients: ["Light Rum": 30, "Coca Cola": 150]))
         
-        DrinkService.createDrinkWithIngredient("Mix Your Own!!",
+        items.append(createDrinkWithIngredient("Mix Your Own!!",
             imageName: "mix-your-own",
-            ingredients: ["Light Rum": 0, "Vodka": 0, "Gin": 0, "Tequila": 0, "Triple Sec": 0, "Coca Cola": 0, "Lemonade": 0, "Orange Juice": 0, "Cranberry Juice": 0],
-            managedContext: managedContext
-        )
+            ingredients: ["Light Rum": 0, "Vodka": 0, "Gin": 0, "Tequila": 0, "Triple Sec": 0, "Coca Cola": 0, "Lemonade": 0, "Orange Juice": 0, "Cranberry Juice": 0]))
         
-        DrinkService.createDrinkWithIngredient("Hula-Hula",
+        items.append(createDrinkWithIngredient("Hula-Hula",
             imageName: "hula-hula",
-            ingredients: ["Gin": 60, "Orange Juice": 30, "Triple Sec": 5 ],
-            managedContext: managedContext
-        )
+            ingredients: ["Gin": 60, "Orange Juice": 30, "Triple Sec": 7.5 ]))
         
-        DrinkService.createDrinkWithIngredient("Kamikaze",
+        items.append(createDrinkWithIngredient("Kamikaze",
             imageName: "kamikaze",
-            ingredients: ["Vodka": 15, "Triple Sec": 8],
-            managedContext: managedContext
-        )
-        
-        DrinkService.createDrinkWithIngredient("Gimlet",
-            imageName: "gimlet",
-            ingredients: ["Gin": 90, "Lime Juice": 30],
-            managedContext: managedContext
-        )
-        
-        DrinkService.createDrinkWithIngredient("Screwdriver",
-            imageName: "screwdriver",
-            ingredients: ["Vodka": 45, "Orange Juice": 120],
-            managedContext: managedContext
-        )
-        
-        
-        DrinkService.createDrinkWithIngredient("Vodka Lemonade",
-            imageName: "vodka-lemonade",
-            ingredients: ["Vodka": 30, "Lemonade": 150],
-            managedContext: managedContext
-        )
-    }
+            ingredients: ["Vodka": 15, "Triple Sec": 7.5]))
     
 }

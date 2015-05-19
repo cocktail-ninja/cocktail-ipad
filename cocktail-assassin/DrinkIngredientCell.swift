@@ -64,7 +64,7 @@ class DrinkIngredientCell: UITableViewCell {
         if (drinkIngredient.ingredient.ingredientClass == .Alcoholic) {
             slider.setConfig(minimumValue: 0, maximumValue: 90, increment: 15)
         } else {
-            slider.setConfig(minimumValue: 0, maximumValue: 300, increment: 50)
+            slider.setConfig(minimumValue: 0, maximumValue: 180, increment: 30)
         }
     }
     
