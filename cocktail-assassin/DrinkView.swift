@@ -30,8 +30,8 @@ class DrinkView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func displayDrink(drink: Drink){
-        imageView.image = UIImage(named: drink.imageName)
+    func displayDrink(drink: Drink) {
+        imageView.image = drink.image()
         nameLabel.text = drink.name
     }
     
