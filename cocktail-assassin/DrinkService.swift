@@ -22,7 +22,8 @@ class DrinkService: NSObject {
                     if let anError = error  {
                         deferred.reject(anError)                        
                     } else if response?.statusCode == 200 {
-                        var readyIn = (data as! NSDictionary)["ready_in"] as! Double / 1000
+                        var stringValue = (data as! NSDictionary)["ready_in"] as! NSString
+                        var readyIn = stringValue.doubleValue / 1000
                         NSLog("Ready In: \(readyIn)")
                         deferred.fulfill(readyIn)
                     } else {
