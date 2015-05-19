@@ -207,8 +207,11 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
         if(cell == nil) {
             cell = DrinkIngredientCell(style: .Default, reuseIdentifier: "CELL")
         }
-
-        var drinkIngredient = drink?.drinkIngredients.allObjects[indexPath.row] as! DrinkIngredient
+        
+        var sortedIngredients = sorted(drink?.drinkIngredients.allObjects as! [DrinkIngredient]) { first, second in
+            return first.ingredient.ingredientClass.rawValue < second.ingredient.ingredientClass.rawValue
+        }
+        var drinkIngredient = sortedIngredients[indexPath.row] as DrinkIngredient
 
         cell!.editMode = self.editMode
         cell!.displayDrinkIngredient(drinkIngredient)
