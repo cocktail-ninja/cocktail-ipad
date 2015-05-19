@@ -193,11 +193,10 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
     }
     
     func save() {
-        editMode = false
-
         drink?.name = nameTextField.text
+        
+        editMode = false
         Drink.save()
-
         updateUserInterface()
     }
 

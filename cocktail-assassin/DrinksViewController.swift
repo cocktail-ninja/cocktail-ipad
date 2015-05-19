@@ -41,11 +41,11 @@ class DrinksViewController: UIViewController, iCarouselDataSource, iCarouselDele
         
         pageControl.numberOfPages = items.count
         carousel.currentItemIndex = selectedDrinkIndex
-        carousel.reloadData()
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+        carousel.reloadData()
     }
     
     override func viewDidLoad() {
@@ -74,11 +74,7 @@ class DrinksViewController: UIViewController, iCarouselDataSource, iCarouselDele
     }
     
     func sharedView() -> UIView! {
-        if carousel.itemViewAtIndex(selectedDrinkIndex) == nil {
-            return UIView(frame: CGRectZero) // Quick hack to avoid crash after creating a new drink.
-        } else {
-            return (carousel.itemViewAtIndex(selectedDrinkIndex)! as! DrinkView).imageView
-        }
+        return (carousel.itemViewAtIndex(self.selectedDrinkIndex)! as! DrinkView).imageView
     }
     
     func numberOfItemsInCarousel(carousel: iCarousel!) -> Int {
@@ -92,7 +88,7 @@ class DrinksViewController: UIViewController, iCarouselDataSource, iCarouselDele
     func carousel(_carousel: iCarousel!, didSelectItemAtIndex index: Int) {
         var drink: Drink
         if( index == items.count ) {
-            drink = Drink.newDrink("New Drink", imageName: "new-drink", managedContext: managedContext!)
+            drink = Drink.newDrink("New Drink", imageName: "add-drink", managedContext: managedContext!)
         } else {
             drink = self.items[index]
         }
@@ -104,7 +100,6 @@ class DrinksViewController: UIViewController, iCarouselDataSource, iCarouselDele
         self.selectedDrinkIndex = index
         self.navigationController?.pushViewController(drinkDetailsVC, animated: true)
     }
-    
     
     func carousel(carousel: iCarousel!, itemTransformForOffset offset: CGFloat, baseTransform transform: CATransform3D) -> CATransform3D {
         var scale : CGFloat = DrinkCarouselTransformation.getScale(offset)
