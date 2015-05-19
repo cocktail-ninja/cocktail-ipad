@@ -2,19 +2,22 @@ import UIKit
 import iOSSharedViewTransition
 import PromiseKit
 
-class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataSource, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, SelectIngredientDelegate, RemoveIngredientDelegate {
+class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataSource, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, SelectIngredientDelegate, RemoveIngredientDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPopoverControllerDelegate {
     let drinkImageView = UIImageView(frame: Constants.drinkFrames.expandedFrame)
     let backButton = UIButton.buttonWithType(UIButtonType.Custom) as! UIButton
     let editButton = UIButton.buttonWithType(UIButtonType.Custom) as! UIButton
     let saveButton = ActionButton(frame: CGRectMake(570, 650, 400, 60))
     let cancelButton = UIButton.buttonWithType(UIButtonType.Custom) as! UIButton
     let deleteButton = UIButton.buttonWithType(UIButtonType.Custom) as! UIButton
+    let selectImageButton = UIButton.buttonWithType(UIButtonType.Custom) as! UIButton
     let pourButton = ActionButton(frame: CGRectMake(570, 660, 400, 60))
     let resetIngredientButton = UIButton.buttonWithType(UIButtonType.Custom) as! UIButton
     let ingredientsTableView = UITableView()
     let nameLabel = UILabel()
     let nameTextField = UITextField()
-
+    let imagePickerController = UIImagePickerController()
+    var popover: UIPopoverController?
+    
     var drink: Drink?
     var editMode = false
     var ingredientsPopoverController: UIPopoverController?
@@ -32,11 +35,14 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
         
         self.drink = drink
 
+        popover = UIPopoverController(contentViewController: imagePickerController)
+        popover?.delegate = self
+        
         pourButton.setTitle("Hit me!", forState: .Normal)
 
         drinkImageView.frame = Constants.drinkFrames.expandedFrame
         drinkImageView.contentMode = .ScaleAspectFit
-        drinkImageView.image = UIImage(named: drink.imageName)
+        drinkImageView.image = drink.image()
         view.addSubview(drinkImageView)
         
         editButton.frame = CGRectMake(900, 30, 100, 60)
@@ -74,6 +80,18 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
         backButton.titleLabel?.font = UIFont(name: "HelveticaNeue-Light", size: CGFloat(20))
         backButton.frame = CGRectMake(30, 30, 100, 60)
         view.addSubview(backButton)
+        
+        selectImageButton.setTitle("Select Image", forState: .Normal)
+        selectImageButton.setTitleColor(ThemeColor.primary, forState: UIControlState.Normal)
+        selectImageButton.setTitleColor(ThemeColor.highlighted, forState: .Highlighted)
+        selectImageButton.titleLabel?.font = UIFont(name: "HelveticaNeue-Light", size: CGFloat(20))
+        selectImageButton.frame = CGRectMake(30, 670, 150, 60)
+        selectImageButton.hidden = true
+        view.addSubview(selectImageButton)
+        
+        imagePickerController.delegate = self
+        imagePickerController.sourceType = .SavedPhotosAlbum
+        imagePickerController.allowsEditing = false
         
         ingredientsTableView.frame = CGRectMake(0, 0, 560, 490)
         ingredientsTableView.delegate = self
@@ -143,6 +161,22 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
         cancelButton.addTarget(self, action: "cancel", forControlEvents: .TouchUpInside)
         deleteButton.addTarget(self, action: "delete", forControlEvents: .TouchUpInside)
         pourButton.addTarget(self, action: "pour", forControlEvents: .TouchUpInside)
+        selectImageButton.addTarget(self, action: "selectImage", forControlEvents: .TouchUpInside)
+    }
+    
+    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
+        popover?.dismissPopoverAnimated(true)
+    }
+    
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
+        var image = info[UIImagePickerControllerOriginalImage] as! UIImage
+        drinkImageView.image = image
+        drink?.saveImage(image)
+        popover?.dismissPopoverAnimated(true)
+    }
+    
+    func navigationControllerSupportedInterfaceOrientations(navigationController: UINavigationController) -> Int {
+        return Int(UIInterfaceOrientationMask.Landscape.rawValue)
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -193,6 +227,15 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
         
         view.backgroundColor = UIColor.whiteColor()
         view.addSubview(pourButton)
+    }
+    
+    func selectImage() {
+        popover?.presentPopoverFromRect(
+            selectImageButton.frame,
+            inView: self.view,
+            permittedArrowDirections: UIPopoverArrowDirection.Left,
+            animated: true
+        )
     }
     
     func reset(){
@@ -251,6 +294,7 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
         saveButton.hidden = !editMode
         pourButton.hidden = editMode
         deleteButton.hidden = !editMode
+        selectImageButton.hidden = !editMode
         ingredientsTableView.reloadData()
     }
     

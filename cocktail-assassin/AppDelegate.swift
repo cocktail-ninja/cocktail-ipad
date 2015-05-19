@@ -87,6 +87,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
     }
-    
+
+    func supportedInterfaceOrientationsForWindow(window: UIWindow) -> Int {
+        return Int(UIInterfaceOrientationMask.All.rawValue)
+    }
 }
 

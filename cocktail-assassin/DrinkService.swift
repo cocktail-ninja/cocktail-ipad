@@ -42,8 +42,8 @@ class DrinkService: NSObject {
         Ingredient.newIngredient("Tequila", pumpNumber: 4, amountLeft: 50, ingredientClass: .Alcoholic, managedContext: managedContext)
         Ingredient.newIngredient("Triple Sec", pumpNumber: 5, amountLeft: 50, ingredientClass: .Alcoholic,managedContext: managedContext)
       
-        Ingredient.newIngredient("Coca Cola", pumpNumber: 6, amountLeft: 400, ingredientClass: .NonAlcoholic, managedContext: managedContext)
-        Ingredient.newIngredient("Lemonade", pumpNumber: 7, amountLeft: 500, ingredientClass: .NonAlcoholic, managedContext: managedContext)
+        Ingredient.newIngredient("Coca Cola", pumpNumber: 7, amountLeft: 400, ingredientClass: .NonAlcoholic, managedContext: managedContext)
+        Ingredient.newIngredient("Lemonade", pumpNumber: 6, amountLeft: 500, ingredientClass: .NonAlcoholic, managedContext: managedContext)
         Ingredient.newIngredient("Orange Juice", pumpNumber: 8, amountLeft: 400, ingredientClass: .NonAlcoholic, managedContext: managedContext)
         Ingredient.newIngredient("Cranberry Juice", pumpNumber: 9, amountLeft: 500, ingredientClass: .NonAlcoholic, managedContext: managedContext)
         Ingredient.newIngredient("Lime Juice", pumpNumber: 10, amountLeft: 500, ingredientClass: .NonAlcoholic, managedContext: managedContext)

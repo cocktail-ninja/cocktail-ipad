@@ -20,9 +20,27 @@ class Drink: NSManagedObject {
     class func newDrink(name: String, imageName: String, editable: Bool, managedContext: NSManagedObjectContext) -> Drink {
         var newDrink = NSEntityDescription.insertNewObjectForEntityForName("Drink", inManagedObjectContext:managedContext) as! Drink
         newDrink.name = name
-        newDrink.imageName = imageName
+        newDrink.saveImage(UIImage(named: imageName)!)
         newDrink.editable = editable
         return newDrink
+    }
+    
+    func saveImage(image: UIImage) {
+        var documentPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)[0] as! String
+        var identifier = self.objectID.URIRepresentation().absoluteString
+        identifier = identifier?.stringByReplacingOccurrencesOfString("x-coredata://", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil)
+        identifier = identifier?.stringByReplacingOccurrencesOfString("/", withString: "-", options: NSStringCompareOptions.LiteralSearch, range: nil)
+        var imageName = "\(identifier!).png"
+        var imagePath = documentPath.stringByAppendingPathComponent(imageName)
+        var imageData = UIImagePNGRepresentation(image)
+        imageData.writeToFile(imagePath, atomically:true)
+        self.imageName = imageName
+    }
+    
+    func image() -> UIImage {
+        var documentPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)[0] as! String
+        var imagePath = documentPath.stringByAppendingPathComponent(self.imageName)
+        return UIImage(contentsOfFile: imagePath)!
     }
     
     func addIngredient(ingredient: Ingredient, amount: NSNumber) {
