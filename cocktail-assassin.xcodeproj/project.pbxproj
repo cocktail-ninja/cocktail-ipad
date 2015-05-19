@@ -45,7 +45,6 @@
 		5931BC071A8A4DC500895B64 /* DrinkIngredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59AFC2E11A8A3C29006D14DF /* DrinkIngredient.swift */; };
 		5931BC081A8A4E1700895B64 /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59AFC2E21A8A3C29006D14DF /* Ingredient.swift */; };
 		EF21824B1AA5E8C900690EFD /* DrinkIngredientCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF21824A1AA5E8C900690EFD /* DrinkIngredientCell.swift */; };
-		EF86E23B1B075C1D0089E19A /* ImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF86E23A1B075C1D0089E19A /* ImageService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -106,7 +105,6 @@
 		8D1068E656C146A8BB46FCBE /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD64C9E21465755B34901485 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		EF21824A1AA5E8C900690EFD /* DrinkIngredientCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrinkIngredientCell.swift; sourceTree = "<group>"; };
-		EF86E23A1B075C1D0089E19A /* ImageService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -331,9 +329,8 @@
 			isa = PBXGroup;
 			children = (
 				EF21824A1AA5E8C900690EFD /* DrinkIngredientCell.swift */,
-				23EEDBA01ADAAD8E007A28E9 /* ActionButton.swift */,
 				1096022F3D3E04BACBB12E3D /* AddIngredientCell.swift */,
-				23EEDBA01ADAAD8E007A28E9 /* StartPouringButton.swift */,
+				23EEDBA01ADAAD8E007A28E9 /* ActionButton.swift */,
 				23654CE01B0A001400C8C247 /* FixedIncrementSlider.swift */,
 			);
 			name = Views;
@@ -360,7 +357,6 @@
 			isa = PBXGroup;
 			children = (
 				23B1E7261A8A28620050A3AF /* DrinkService.swift */,
-				EF86E23A1B075C1D0089E19A /* ImageService.swift */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -566,7 +562,6 @@
 				2345A2D31A7FC19C007CB356 /* Constants.swift in Sources */,
 				2345A2D71A7FC4C0007CB356 /* UIView+FrameHelper.swift in Sources */,
 				10960E8EF9C930EDCA2AAA54 /* AddIngredientCell.swift in Sources */,
-				EF86E23B1B075C1D0089E19A /* ImageService.swift in Sources */,
 				10960D61DC74F6FD868E7ABC /* SelectIngredientViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
