@@ -44,6 +44,7 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
         editButton.setTitleColor(ThemeColor.primary, forState: UIControlState.Normal)
         editButton.setTitleColor(ThemeColor.highlighted, forState: .Highlighted)
         editButton.titleLabel?.font = UIFont(name: "HelveticaNeue-Light", size: CGFloat(20))
+        editButton.hidden = !drink.editable
         view.addSubview(editButton)
 
         saveButton.setTitle("Save", forState: .Normal)

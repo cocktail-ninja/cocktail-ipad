@@ -88,7 +88,7 @@ class DrinksViewController: UIViewController, iCarouselDataSource, iCarouselDele
     func carousel(_carousel: iCarousel!, didSelectItemAtIndex index: Int) {
         var drink: Drink
         if( index == items.count ) {
-            drink = Drink.newDrink("New Drink", imageName: "add-drink", managedContext: managedContext!)
+            drink = Drink.newDrink("New Drink", imageName: "add-drink", editable: true, managedContext: managedContext!)
         } else {
             drink = self.items[index]
         }
