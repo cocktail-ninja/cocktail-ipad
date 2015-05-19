@@ -37,7 +37,6 @@ class ActionButton: UIButton, MONActivityIndicatorViewDelegate {
         errorLabel.text = "No drinks for you!"
         errorLabel.textAlignment = .Center
         
-        
         spinner.numberOfCircles = 5
         spinner.radius = 6
         spinner.internalSpacing = 15
