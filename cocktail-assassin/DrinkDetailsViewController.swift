@@ -16,6 +16,7 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
     let nameLabel = UILabel()
     let nameTextField = UITextField()
     let imagePickerController = UIImagePickerController()
+
     var popover: UIPopoverController?
     
     var drink: Drink?
@@ -263,15 +264,27 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
         navigationController?.popViewControllerAnimated(true)
     }
     
+    func validateDrink() -> String{
+        var errorMessage = ""
+        if((nameTextField.text) == ""){
+            errorMessage = "Name for the drink?\n"
+        }
+        if(drink?.drinkIngredients.count == 0){
+            errorMessage =  "\(errorMessage) You need at least one ingredient, silly. =P"
+        }
+        return errorMessage
+    }
+
     func save() {
-        if((nameTextField.text) != ""){
+        var errorMessage = validateDrink()
+        if( errorMessage == ""){
             drink?.name = nameTextField.text
         
             editMode = false
             Drink.save()
             updateUserInterface()
         }else{
-            var alertView = UIAlertView(title: "Drink name cannot be empty, silly!", message: "", delegate: nil, cancelButtonTitle: "OK")
+            var alertView = UIAlertView(title: errorMessage, message: "", delegate: nil, cancelButtonTitle: "OK")
             alertView.show()
         }
     }
