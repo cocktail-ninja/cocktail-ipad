@@ -315,7 +315,7 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
     }
     
     func pour(){
-        let ingredients = drink!.drinkIngredients.allObjects.map { $0 as! DrinkIngredient }
+        let ingredients = drink!.drinkIngredients.allObjects.filter { return $0.ingredient.pumpNumber != 10  } as! [DrinkIngredient]
         let recipe = "/".join(ingredients.map {"\($0.ingredient.pumpNumber)-\($0.amount)"})
         pourButton.setState(.Loading)
         
