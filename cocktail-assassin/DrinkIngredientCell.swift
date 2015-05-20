@@ -64,7 +64,6 @@ class DrinkIngredientCell: UITableViewCell {
     
     func displayDrinkIngredient(drinkIngredient: DrinkIngredient) {
         self.drinkIngredient = drinkIngredient
-        slider.setValue(drinkIngredient.amount.floatValue, animated: false)
         ingredientNamelabel.text = drinkIngredient.ingredient.type
         ingredientAmountLabel.text = "\(self.drinkIngredient!.amount)ml"
         removeButton.hidden = !editMode
@@ -86,6 +85,8 @@ class DrinkIngredientCell: UITableViewCell {
         } else {
             slider.setConfig(minimumValue: 0, maximumValue: 180, increment: 30)
         }
+        
+        slider.setValue(drinkIngredient.amount.floatValue, animated: false)
     }
     
 }

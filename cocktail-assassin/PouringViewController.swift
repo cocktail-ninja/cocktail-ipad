@@ -24,7 +24,7 @@ class PouringViewController: UIViewController, ASFSharedViewTransitionDataSource
         self.duration = duration
         super.init(nibName: nil, bundle: nil)
 
-        var drinkImage = UIImage(named: drink.imageName)!;
+        var drinkImage = drink.image();
         pouringView.setImage(drinkImage)
         successView.setImage(drinkImage)
     }
