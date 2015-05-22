@@ -35,7 +35,7 @@ class DrinkIngredientCell: UITableViewCell {
         ingredientAmountLabel.font = UIFont(name: "HelveticaNeue-Light", size: 16)
         
         drinkNotesLabel.frame = CGRectMake(200, 25, 325, 20)
-        drinkNotesLabel.textColor = UIColor.greenColor()
+        drinkNotesLabel.textColor = ThemeColor.primary
         drinkNotesLabel.font = UIFont(name: "HelveticaNeue-Light", size: 16)
         drinkNotesLabel.textAlignment = .Left
         drinkNotesLabel.hidden = true

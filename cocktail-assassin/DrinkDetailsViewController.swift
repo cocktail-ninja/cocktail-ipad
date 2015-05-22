@@ -210,7 +210,8 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
         }
         
         var sortedIngredients = sorted(drink?.drinkIngredients.allObjects as! [DrinkIngredient]) { first, second in
-            return first.ingredient.ingredientClass.rawValue < second.ingredient.ingredientClass.rawValue
+            return first.ingredient.ingredientClass.rawValue <= second.ingredient.ingredientClass.rawValue &&
+                first.ingredient.type != "Lime Juice"
         }
         var drinkIngredient = sortedIngredients[indexPath.row] as DrinkIngredient
 
