@@ -24,7 +24,7 @@ class PouringViewController: UIViewController, ASFSharedViewTransitionDataSource
         self.duration = duration
         super.init(nibName: nil, bundle: nil)
 
-        var drinkImage = drink.image();
+        let drinkImage = drink.image();
         pouringView.setImage(drinkImage)
         successView.setImage(drinkImage)
     }
@@ -40,9 +40,9 @@ class PouringViewController: UIViewController, ASFSharedViewTransitionDataSource
         super.viewDidAppear(animated)
         
         animatePouring()
-            .then(body: addSuccessView)
-            .then(body: animateSuccess)
-            .then(body: dismiss)
+            .then(addSuccessView)
+            .then(animateSuccess)
+            .then(dismiss)
     }
     
     func animatePouring() -> Promise<Bool> {
@@ -51,7 +51,7 @@ class PouringViewController: UIViewController, ASFSharedViewTransitionDataSource
     
     func addSuccessView(finished: Bool) -> Promise<Bool> {
         view.addSubview(successView)
-        return Promise<Bool>(value: true)
+        return Promise<Bool>(true)
     }
     
     func animateSuccess(finished: Bool) -> Promise<Bool> {

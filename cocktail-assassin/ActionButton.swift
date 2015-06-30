@@ -73,15 +73,15 @@ class ActionButton: UIButton, MONActivityIndicatorViewDelegate {
         switch state {
             case .Normal:
                 enabled = true
-                setBorder(color: ThemeColor.primary.CGColor)
+                setBorder(ThemeColor.primary.CGColor)
                 show(titleLabel!)
             case .Loading:
                 enabled = false
-                setBorder(color: ThemeColor.primary.CGColor)
+                setBorder(ThemeColor.primary.CGColor)
                 show(spinner)
             case .Error:
                 enabled = false
-                setBorder(color: ThemeColor.error.CGColor)
+                setBorder(ThemeColor.error.CGColor)
                 show(errorLabel)
                 let delayTime = dispatch_time(DISPATCH_TIME_NOW,
                     Int64(1.5 * Double(NSEC_PER_SEC)))

@@ -18,7 +18,7 @@ class DrinkCarouselTransformation {
         if (offset < -3 || offset > 3) {
             return offset * carouselItemWidth
         } else {
-            var scaleOffset = -offset * (max(0, (abs(offset) - 1)) * 25)
+            let scaleOffset = -offset * (max(0, (abs(offset) - 1)) * 25)
             return offset * carouselItemWidth + scaleOffset
         }
     }

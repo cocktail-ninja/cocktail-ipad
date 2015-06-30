@@ -13,25 +13,26 @@ import CoreData
 
 class DrinkService: NSObject {
     
-    class func makeDrink(#recipe: String) -> Promise<Double> {
-        var url = Constants.baseUrl.prod + "/make_drink/" + recipe
+    class func makeDrink(recipe recipe: String) -> Promise<Double?> {
+        let url = Constants.baseUrl.prod + "/make_drink/" + recipe
         
-        return Promise<Double> { deferred in
-            Alamofire.request(.POST, url)
+        return Promise<Double?> { fulfill, reject in
+            let innerFulfill = fulfill
+            let innerReject = reject
+            Alamofire.request(.POST, URLString: url)
                 .responseJSON { (request, response, data, error) in
                     if let anError = error  {
-                        deferred.reject(anError)                        
+                        innerReject(anError)
                     } else if response?.statusCode == 200 {
-                        var stringValue = (data as! NSDictionary)["ready_in"] as! NSString
-                        var readyIn = stringValue.doubleValue / 1000
+                        let stringValue = (data as! NSDictionary)["ready_in"] as! NSString
+                        let readyIn = stringValue.doubleValue / 1000
                         NSLog("Ready In: \(readyIn)")
-                        deferred.fulfill(readyIn)
+                        innerFulfill(readyIn)
                     } else {
-                        var statusError = NSError(domain: "DrinkService", code: response!.statusCode, userInfo: nil)
-                        deferred.reject(statusError)
+                        let statusError = NSError(domain: "DrinkService", code: response!.statusCode, userInfo: nil)
+                        innerReject(statusError)
                     }
             }
-            return
         }
         
     }
@@ -50,7 +51,7 @@ class DrinkService: NSObject {
     }
     
     class func createDrinkWithIngredient(name:String, imageName:String, ingredients: Dictionary<String, NSNumber>, editable: Bool, managedContext: NSManagedObjectContext) -> Drink {
-        var drink = Drink.newDrink(name, imageName: imageName, editable: editable, managedContext: managedContext)
+        let drink = Drink.newDrink(name, imageName: imageName, editable: editable, managedContext: managedContext)
         
         for (ingredientName, amountNeeded) in ingredients{
             drink.addIngredient(Ingredient.getIngredient(ingredientName, managedContext: managedContext)!, amount: amountNeeded)

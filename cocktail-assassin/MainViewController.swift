@@ -16,7 +16,7 @@ class MainViewController: UIViewController {
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        var navVC = UINavigationController(rootViewController: DrinksViewController())
+        let navVC = UINavigationController(rootViewController: DrinksViewController())
         
         
         navVC.navigationBarHidden = true;

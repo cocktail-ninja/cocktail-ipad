@@ -28,29 +28,39 @@ class Ingredient: NSManagedObject {
     }
 
     class func newIngredient(type: String, pumpNumber: NSNumber, amountLeft: NSNumber, ingredientClass: IngredientClass, managedContext: NSManagedObjectContext) -> Ingredient {
-        var newIngredient = NSEntityDescription.insertNewObjectForEntityForName("Ingredient", inManagedObjectContext:managedContext) as! Ingredient
+        let newIngredient = NSEntityDescription.insertNewObjectForEntityForName("Ingredient", inManagedObjectContext:managedContext) as! Ingredient
         newIngredient.type = type
         newIngredient.pumpNumber = pumpNumber
         newIngredient.amountLeft = amountLeft
         newIngredient.ingredientClass = ingredientClass
         
-        var error: NSError?
-        if !managedContext.save(&error) {
-            println("Could not save Ingredient \(error), \(error?.userInfo)")
+        do {
+            try managedContext.save()
+        } catch let error as NSError {
+            print("Could not save Ingredient \(error), \(error.userInfo)")
         }
 
         return newIngredient
     }
     
-    class func getIngredient(type: String, managedContext: NSManagedObjectContext) -> Ingredient?{
+    class func getIngredient(type: String, managedContext: NSManagedObjectContext) -> Ingredient? {
         let fetchRequest = NSFetchRequest(entityName: "Ingredient")
         fetchRequest.predicate = NSPredicate(format: "type = %@", type)
-        return (managedContext.executeFetchRequest(fetchRequest, error: nil) as! [Ingredient]).first
+        do {
+            let results = try managedContext.executeFetchRequest(fetchRequest) as! [Ingredient]
+            return results.first
+        } catch {
+            return nil
+        }
     }
 
     class func allIngredients(managedContext: NSManagedObjectContext) -> [Ingredient] {
         let fetchRequest = NSFetchRequest(entityName: "Ingredient")
-        return managedContext.executeFetchRequest(fetchRequest, error: nil) as! [Ingredient]
+        do {
+            return try managedContext.executeFetchRequest(fetchRequest) as! [Ingredient]
+        } catch {
+            return [Ingredient]()
+        }
     }
 
 }

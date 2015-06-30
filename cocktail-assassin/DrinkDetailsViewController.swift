@@ -4,14 +4,14 @@ import PromiseKit
 
 class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataSource, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, SelectIngredientDelegate, RemoveIngredientDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPopoverControllerDelegate {
     let drinkImageView = UIImageView(frame: Constants.drinkFrames.expandedFrame)
-    let backButton = UIButton.buttonWithType(UIButtonType.Custom) as! UIButton
-    let editButton = UIButton.buttonWithType(UIButtonType.Custom) as! UIButton
+    let backButton = UIButton(type: UIButtonType.Custom)
+    let editButton = UIButton(type: UIButtonType.Custom)
     let saveButton = ActionButton(frame: CGRectMake(570, 650, 400, 60))
-    let cancelButton = UIButton.buttonWithType(UIButtonType.Custom) as! UIButton
-    let deleteButton = UIButton.buttonWithType(UIButtonType.Custom) as! UIButton
-    let selectImageButton = UIButton.buttonWithType(UIButtonType.Custom) as! UIButton
+    let cancelButton = UIButton(type: UIButtonType.Custom)
+    let deleteButton = UIButton(type: UIButtonType.Custom)
+    let selectImageButton = UIButton(type: UIButtonType.Custom)
     let pourButton = ActionButton(frame: CGRectMake(570, 660, 400, 60))
-    let resetIngredientButton = UIButton.buttonWithType(UIButtonType.Custom) as! UIButton
+    let resetIngredientButton = UIButton(type: UIButtonType.Custom)
     let ingredientsTableView = UITableView()
     let nameLabel = UILabel()
     let nameTextField = UITextField()
@@ -169,15 +169,15 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
         popover?.dismissPopoverAnimated(true)
     }
     
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
-        var image = info[UIImagePickerControllerOriginalImage] as! UIImage
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String: AnyObject]) {
+        let image = info[UIImagePickerControllerOriginalImage] as! UIImage
         drinkImageView.image = image
         drink?.saveImage(image)
         popover?.dismissPopoverAnimated(true)
     }
     
-    func navigationControllerSupportedInterfaceOrientations(navigationController: UINavigationController) -> Int {
-        return Int(UIInterfaceOrientationMask.Landscape.rawValue)
+    func navigationControllerSupportedInterfaceOrientations(navigationController: UINavigationController) -> UIInterfaceOrientationMask {
+        return UIInterfaceOrientationMask.Landscape
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -197,7 +197,7 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
     }
 
     func addIngredientCell(tableView: UITableView, indexPath: NSIndexPath) -> UITableViewCell {
-        var cell = UITableViewCell(style: .Default, reuseIdentifier: "ADD_INGREDIENT")
+        let cell = UITableViewCell(style: .Default, reuseIdentifier: "ADD_INGREDIENT")
         cell.textLabel?.text = "Add Ingredient"
         cell.selectionStyle = .None
         return cell
@@ -209,11 +209,11 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
             cell = DrinkIngredientCell(style: .Default, reuseIdentifier: "CELL")
         }
         
-        var sortedIngredients = sorted(drink?.drinkIngredients.allObjects as! [DrinkIngredient]) { first, second in
+        var sortedIngredients = (drink?.drinkIngredients.allObjects as! [DrinkIngredient]).sort { first, second in
             return first.ingredient.ingredientClass.rawValue <= second.ingredient.ingredientClass.rawValue &&
                 first.ingredient.type != "Lime Juice"
         }
-        var drinkIngredient = sortedIngredients[indexPath.row] as DrinkIngredient
+        let drinkIngredient = sortedIngredients[indexPath.row] as DrinkIngredient
 
         cell!.editMode = self.editMode
         cell!.displayDrinkIngredient(drinkIngredient)
@@ -277,15 +277,15 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
     }
 
     func save() {
-        var errorMessage = validateDrink()
-        if( errorMessage == ""){
-            drink?.name = nameTextField.text
+        let errorMessage = validateDrink()
+        if errorMessage == "" {
+            drink?.name = nameTextField.text!
         
             editMode = false
             Drink.save()
             updateUserInterface()
         }else{
-            var alertView = UIAlertView(title: errorMessage, message: "", delegate: nil, cancelButtonTitle: "OK")
+            let alertView = UIAlertView(title: errorMessage, message: "", delegate: nil, cancelButtonTitle: "OK")
             alertView.show()
         }
     }
@@ -320,14 +320,12 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
         let recipe = "/".join(ingredients.map {"\($0.ingredient.pumpNumber)-\($0.amount)"})
         pourButton.setState(.Loading)
         
-        let promise = DrinkService.makeDrink(recipe: recipe)
-        promise.then(body:{ (duration: Double) -> Void in
+        DrinkService.makeDrink(recipe: recipe).then { duration -> Void in
             Drink.revert()
-            self.startPourAnimation(duration)
-        })
-        promise.catch(body: { (error: NSError) -> Void in
-            self.pourButton.displayError(self.getErrorMessage(error.code));
-        })
+            self.startPourAnimation(duration!)
+        }.rescue { (error) in
+            self.pourButton.displayError(self.getErrorMessage(error.code))
+        }
 
     }
     
@@ -357,7 +355,7 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
     func didSelectIngredient(ingredient: Ingredient) {
         ingredientsPopoverController?.dismissPopoverAnimated(true)
         if( drink!.hasIngredient(ingredient) ) {
-            var alertView = UIAlertView(title: "Ingredient Already Added", message: "", delegate: nil, cancelButtonTitle: "OK")
+            let alertView = UIAlertView(title: "Ingredient Already Added", message: "", delegate: nil, cancelButtonTitle: "OK")
             alertView.show()
         } else {
             drink?.addIngredient(ingredient, amount: 30)
@@ -371,7 +369,7 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
     }
 
     func startPourAnimation(duration: Double) {
-        var pouringVC = PouringViewController(drink: drink!, duration: duration)
+        let pouringVC = PouringViewController(drink: drink!, duration: duration)
         navigationController?.pushViewController(pouringVC, animated: true)
     }
     

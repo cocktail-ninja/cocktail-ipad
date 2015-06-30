@@ -93,7 +93,7 @@ class DrinksViewController: UIViewController, iCarouselDataSource, iCarouselDele
             drink = self.items[index]
         }
         
-        var drinkDetailsVC = DrinkDetailsViewController(drink: drink)
+        let drinkDetailsVC = DrinkDetailsViewController(drink: drink)
         if( index == items.count ) {
             drinkDetailsVC.edit()
         }
@@ -102,8 +102,8 @@ class DrinksViewController: UIViewController, iCarouselDataSource, iCarouselDele
     }
     
     func carousel(carousel: iCarousel!, itemTransformForOffset offset: CGFloat, baseTransform transform: CATransform3D) -> CATransform3D {
-        var scale : CGFloat = DrinkCarouselTransformation.getScale(offset)
-        var xOffset : CGFloat = DrinkCarouselTransformation.getXOffset(offset, carouselItemWidth: carousel.itemWidth)
+        let scale : CGFloat = DrinkCarouselTransformation.getScale(offset)
+        let xOffset : CGFloat = DrinkCarouselTransformation.getXOffset(offset, carouselItemWidth: carousel.itemWidth)
         return
             CATransform3DScale(
                 CATransform3DTranslate(transform, xOffset, 0, 0),

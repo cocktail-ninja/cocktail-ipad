@@ -1,1 +1,2 @@
-PODS_PROMISEKIT_OTHER_LDFLAGS = -framework "AssetsLibrary"
+PODS_PROMISEKIT_OTHER_LDFLAGS = -framework "Foundation" -framework "UIKit"
+PODS_PROMISEKIT_SWIFT_INSTALL_OBJC_HEADER = NO

@@ -12,12 +12,12 @@ extension UIImage {
     func toGrayscale(tintColor: UIColor) -> UIImage! {
         let filter = CIFilter(name: "CIColorMonochrome")
         
-        filter.setValue(CoreImage.CIImage(CGImage: self.CGImage), forKey: kCIInputImageKey)
-        filter.setValue(CIColor(color: tintColor), forKey: kCIInputColorKey)
+        filter!.setValue(CoreImage.CIImage(CGImage: self.CGImage!), forKey: kCIInputImageKey)
+        filter!.setValue(CIColor(color: tintColor), forKey: kCIInputColorKey)
 
-        let outputImage = filter.outputImage
+        let outputImage = filter!.outputImage
         let context = CIContext(options: nil)
-        var cgImage = context.createCGImage(outputImage, fromRect: outputImage.extent())
+        let cgImage = context.createCGImage(outputImage, fromRect: outputImage.extent)
         
         return UIImage(CGImage: cgImage)
     }

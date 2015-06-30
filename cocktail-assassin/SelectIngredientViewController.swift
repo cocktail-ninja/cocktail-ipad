@@ -9,7 +9,7 @@ protocol SelectIngredientDelegate {
     func didSelectIngredient(ingredient: Ingredient)
 }
 
-class SelectIngredientViewController : UITableViewController, UITableViewDataSource, UITableViewDelegate {
+class SelectIngredientViewController : UITableViewController {
 
     var ingredients: Array<Ingredient>
     var delegate: SelectIngredientDelegate?
@@ -36,12 +36,12 @@ class SelectIngredientViewController : UITableViewController, UITableViewDataSou
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCellWithIdentifier("CELL") as? UITableViewCell
+        var cell = tableView.dequeueReusableCellWithIdentifier("CELL")
         if(cell == nil) {
             cell = UITableViewCell(style: .Default, reuseIdentifier: "CELL")
         }
 
-        var ingredient = ingredients[indexPath.row]
+        let ingredient = ingredients[indexPath.row]
 
         cell!.textLabel?.text = ingredient.type
 

@@ -18,7 +18,7 @@ class Drink: NSManagedObject {
     @NSManaged var drinkIngredients: NSSet
 
     class func newDrink(name: String, imageName: String, editable: Bool, managedContext: NSManagedObjectContext) -> Drink {
-        var newDrink = NSEntityDescription.insertNewObjectForEntityForName("Drink", inManagedObjectContext:managedContext) as! Drink
+        let newDrink = NSEntityDescription.insertNewObjectForEntityForName("Drink", inManagedObjectContext:managedContext) as! Drink
         newDrink.name = name
         newDrink.saveImage(UIImage(named: imageName)!)
         newDrink.editable = editable
@@ -26,20 +26,20 @@ class Drink: NSManagedObject {
     }
     
     func saveImage(image: UIImage) {
-        var documentPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)[0] as! String
+        let documentPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)[0] as String
         var identifier = self.objectID.URIRepresentation().absoluteString
-        identifier = identifier?.stringByReplacingOccurrencesOfString("x-coredata://", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil)
-        identifier = identifier?.stringByReplacingOccurrencesOfString("/", withString: "-", options: NSStringCompareOptions.LiteralSearch, range: nil)
-        var imageName = "\(identifier!).png"
-        var imagePath = documentPath.stringByAppendingPathComponent(imageName)
-        var imageData = UIImagePNGRepresentation(image)
-        imageData.writeToFile(imagePath, atomically:true)
+        identifier = identifier.stringByReplacingOccurrencesOfString("x-coredata://", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil)
+        identifier = identifier.stringByReplacingOccurrencesOfString("/", withString: "-", options: NSStringCompareOptions.LiteralSearch, range: nil)
+        let imageName = "\(identifier).png"
+        let imagePath = documentPath.stringByAppendingPathComponent(imageName)
+        let imageData = UIImagePNGRepresentation(image)
+        imageData!.writeToFile(imagePath, atomically:true)
         self.imageName = imageName
     }
     
     func image() -> UIImage {
-        var documentPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)[0] as! String
-        var imagePath = documentPath.stringByAppendingPathComponent(self.imageName)
+        let documentPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)[0] as String
+        let imagePath = documentPath.stringByAppendingPathComponent(self.imageName)
         return UIImage(contentsOfFile: imagePath)!
     }
     
@@ -61,18 +61,27 @@ class Drink: NSManagedObject {
         return false
     }
     
-    class func allDrinks (managedContext: NSManagedObjectContext) -> [Drink]{
+    class func allDrinks (managedContext: NSManagedObjectContext) -> [Drink] {
         let fetchRequest = NSFetchRequest(entityName: "Drink")
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "name", ascending:true)]
-        return managedContext.executeFetchRequest(fetchRequest, error: nil) as! [Drink]
+        do {
+            return try managedContext.executeFetchRequest(fetchRequest) as! [Drink]
+        } catch {
+            return [Drink]()
+        }
     }
     
     class func getDrinkByName(name: String) -> Drink? {
         let fetchRequest = NSFetchRequest(entityName: "Drink")
         let managedContext = UIApplication.sharedDelegate().getManagedContext()
 
-        fetchRequest.predicate = NSPredicate(format: "name = %@", name)        
-        return (managedContext?.executeFetchRequest(fetchRequest, error: nil) as! [Drink]).first
+        fetchRequest.predicate = NSPredicate(format: "name = %@", name)
+        do {
+            let results = try managedContext?.executeFetchRequest(fetchRequest) as! [Drink]
+            return results.first
+        } catch {
+            return nil
+        }
     }
     
     class func revert() {
@@ -82,9 +91,10 @@ class Drink: NSManagedObject {
 
     class func save() {
         let managedContext = UIApplication.sharedDelegate().getManagedContext()
-        var error: NSError?
-        if !managedContext!.save(&error) {
-            println("Could not save \(error), \(error?.userInfo)")
+        do {
+            try managedContext!.save()
+        } catch let error as NSError {
+            print("Could not save \(error), \(error.userInfo)")
         }
     }
     

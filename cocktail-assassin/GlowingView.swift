@@ -46,7 +46,7 @@ class GlowingView: UIView {
     func animate(duration: Double) -> Promise<Bool> {
         return when([fadeInGlow(duration * 0.2), spinGlowView(duration)])
             .then { (results) -> Promise<Bool> in
-                return Promise<Bool>(value: true)
+                return Promise<Bool>(true)
             }
     }
     

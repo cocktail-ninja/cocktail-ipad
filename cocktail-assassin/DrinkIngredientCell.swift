@@ -10,7 +10,7 @@ class DrinkIngredientCell: UITableViewCell {
     var ingredientNamelabel = UILabel()
     var ingredientAmountLabel = UILabel()
     var drinkNotesLabel = UILabel()
-    var removeButton = UIButton.buttonWithType(UIButtonType.Custom) as! UIButton
+    var removeButton = UIButton(type: UIButtonType.Custom)
     var drinkIngredient: DrinkIngredient?
     var delegate: RemoveIngredientDelegate?
     var editMode = false

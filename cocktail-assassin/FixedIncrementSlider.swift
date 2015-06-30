@@ -24,7 +24,7 @@ class FixedIncrementSlider: UIControl {
         slider.addTarget(self, action: "sliderChanged", forControlEvents: .ValueChanged)
     }
     
-    func setConfig(#minimumValue: Float, maximumValue: Float, increment: Float) {
+    func setConfig(minimumValue minimumValue: Float, maximumValue: Float, increment: Float) {
         self.increment = increment
         slider.minimumValue = minimumValue / increment
         slider.maximumValue = maximumValue / increment
