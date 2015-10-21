@@ -15,7 +15,7 @@ class GlowingView: UIView {
     let GLOW_VIEW_DIAMETER : CGFloat = 600
     let imageView, glowView : UIImageView
     
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     

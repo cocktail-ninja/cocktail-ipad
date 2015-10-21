@@ -11,7 +11,7 @@ class ActionButton: UIButton, MONActivityIndicatorViewDelegate {
     let errorLabel : UILabel
     let spinner : MONActivityIndicatorView
     
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     

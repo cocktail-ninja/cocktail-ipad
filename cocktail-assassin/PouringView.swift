@@ -14,7 +14,7 @@ class PouringView: UIView {
     let bwImageView, imageView : UIImageView
     let bwImageContainer : UIView
     
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     

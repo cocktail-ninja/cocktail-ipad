@@ -49,7 +49,7 @@ class DrinkIngredientCell: UITableViewCell {
         removeButton.titleLabel?.font = UIFont(name: "HelveticaNeue-Light", size: 16)
     }
     
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
 
@@ -64,11 +64,11 @@ class DrinkIngredientCell: UITableViewCell {
     
     func displayDrinkIngredient(drinkIngredient: DrinkIngredient) {
         self.drinkIngredient = drinkIngredient
-        ingredientNamelabel.text = drinkIngredient.ingredient.type
+        ingredientNamelabel.text = drinkIngredient.ingredient.ingredientType.rawValue
         ingredientAmountLabel.text = "\(self.drinkIngredient!.amount)ml"
         removeButton.hidden = !editMode
         
-        if(self.drinkIngredient?.ingredient.type == "Lime Juice" && !editMode){
+        if(self.drinkIngredient?.ingredient.ingredientType == .LimeJuice && !editMode){
             slider.hidden = true
             ingredientAmountLabel.hidden = true
             drinkNotesLabel.text = "Please pour \(self.drinkIngredient!.amount)ml Lime Juice yourself"

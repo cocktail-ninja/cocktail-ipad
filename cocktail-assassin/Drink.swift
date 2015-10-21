@@ -26,7 +26,7 @@ class Drink: NSManagedObject {
     }
     
     func saveImage(image: UIImage) {
-        let documentPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)[0] as String
+        let documentPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)[0] as NSString
         var identifier = self.objectID.URIRepresentation().absoluteString
         identifier = identifier.stringByReplacingOccurrencesOfString("x-coredata://", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil)
         identifier = identifier.stringByReplacingOccurrencesOfString("/", withString: "-", options: NSStringCompareOptions.LiteralSearch, range: nil)
@@ -38,7 +38,7 @@ class Drink: NSManagedObject {
     }
     
     func image() -> UIImage {
-        let documentPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)[0] as String
+        let documentPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)[0] as NSString
         let imagePath = documentPath.stringByAppendingPathComponent(self.imageName)
         return UIImage(contentsOfFile: imagePath)!
     }

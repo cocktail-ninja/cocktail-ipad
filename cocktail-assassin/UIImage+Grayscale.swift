@@ -17,7 +17,7 @@ extension UIImage {
 
         let outputImage = filter!.outputImage
         let context = CIContext(options: nil)
-        let cgImage = context.createCGImage(outputImage, fromRect: outputImage.extent)
+        let cgImage = context.createCGImage(outputImage!, fromRect: outputImage!.extent)
         
         return UIImage(CGImage: cgImage)
     }

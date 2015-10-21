@@ -1,6 +1,6 @@
 PODS:
-  - Alamofire (1.2.3)
-  - iCarousel (1.8.1)
+  - Alamofire (3.0.1)
+  - iCarousel (1.8.2)
   - iOSSharedViewTransition (1.0.2)
   - MONActivityIndicatorView (0.0.3)
   - OMGHTTPURLRQ (3.0.0):
@@ -10,31 +10,29 @@ PODS:
     - OMGHTTPURLRQ/FormURLEncode
     - OMGHTTPURLRQ/UserAgent
   - OMGHTTPURLRQ/UserAgent (3.0.0)
-  - PromiseKit/CorePromise (2.0.6)
-  - PromiseKit/Foundation (2.0.6):
+  - PromiseKit (3.0.0):
+    - PromiseKit/Foundation (= 3.0.0)
+    - PromiseKit/QuartzCore (= 3.0.0)
+    - PromiseKit/UIKit (= 3.0.0)
+  - PromiseKit/CorePromise (3.0.0)
+  - PromiseKit/Foundation (3.0.0):
     - OMGHTTPURLRQ (~> 3.0.0)
     - PromiseKit/CorePromise
-  - PromiseKit/Swift (2.0.6):
-    - PromiseKit/Swift/Foundation (= 2.0.6)
-    - PromiseKit/Swift/UIKit (= 2.0.6)
-  - PromiseKit/Swift/Foundation (2.0.6):
-    - PromiseKit/Foundation
-  - PromiseKit/Swift/UIKit (2.0.6):
-    - PromiseKit/UIKit
-  - PromiseKit/UIKit (2.0.6):
+  - PromiseKit/QuartzCore (3.0.0):
+    - PromiseKit/CorePromise
+  - PromiseKit/UIKit (3.0.0):
     - PromiseKit/CorePromise
 
 DEPENDENCIES:
-  - Alamofire (from `https://github.com/Alamofire/Alamofire`, branch `swift-2.0`)
+  - Alamofire (from `https://github.com/Alamofire/Alamofire`)
   - iCarousel (~> 1.8)
   - iOSSharedViewTransition (from `https://github.com/sbycrosz/iOSSharedViewTransition.git`)
   - MONActivityIndicatorView
   - OMGHTTPURLRQ (from `https://github.com/mxcl/OMGHTTPURLRQ`, tag `3.0.0`)
-  - PromiseKit/Swift (from `https://github.com/mxcl/PromiseKit`, branch `swift-2.0-beta2`)
+  - PromiseKit (from `https://github.com/mxcl/PromiseKit`)
 
 EXTERNAL SOURCES:
   Alamofire:
-    :branch: swift-2.0
     :git: https://github.com/Alamofire/Alamofire
   iOSSharedViewTransition:
     :git: https://github.com/sbycrosz/iOSSharedViewTransition.git
@@ -42,12 +40,11 @@ EXTERNAL SOURCES:
     :git: https://github.com/mxcl/OMGHTTPURLRQ
     :tag: 3.0.0
   PromiseKit:
-    :branch: swift-2.0-beta2
     :git: https://github.com/mxcl/PromiseKit
 
 CHECKOUT OPTIONS:
   Alamofire:
-    :commit: fd71afb3a0af2042b9f05a6b9f29317ad4903703
+    :commit: 0f816eedf8d6b7c9a656697e50462145506e48f9
     :git: https://github.com/Alamofire/Alamofire
   iOSSharedViewTransition:
     :commit: cd1a79c4e1cf157540ee0846bdca2bc30f3f8f97
@@ -56,15 +53,15 @@ CHECKOUT OPTIONS:
     :git: https://github.com/mxcl/OMGHTTPURLRQ
     :tag: 3.0.0
   PromiseKit:
-    :commit: 550b5690e28cfcb7ce78ef5ae2a7e6cd046fcbe0
+    :commit: 988473285090de504774297e1fece8c0a52ab272
     :git: https://github.com/mxcl/PromiseKit
 
 SPEC CHECKSUMS:
-  Alamofire: 5550bf0b575ed1a4bf9be572f9463e1015cc169e
-  iCarousel: dace1cb858e3f4dc2614bee3201041247f82feda
-  iOSSharedViewTransition: d4bdb3662b51d780b7a0646da8ff2158dbb2e43c
+  Alamofire: 2457e1b2e6c46bb05c3a598c542b7bfd08893775
+  iCarousel: 67c8a43da5a46795b56aadfc96cd36a16f6149b2
+  iOSSharedViewTransition: efa7edf8a400e589c2fdf8ec51af8e4280e47133
   MONActivityIndicatorView: a00611695de16d956b17d03be25ee49a8effc5f2
   OMGHTTPURLRQ: 45cd892e5643206a5a359307621df7678625ebec
-  PromiseKit: dfcf7239124187e3730e4856af085dd7b9a5e7f2
+  PromiseKit: 665540a1eb43156446872dcf49ed7dee6ebbe13b
 
-COCOAPODS: 0.37.2
+COCOAPODS: 0.38.2

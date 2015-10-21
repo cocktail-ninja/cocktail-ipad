@@ -77,15 +77,15 @@ class DrinksViewController: UIViewController, iCarouselDataSource, iCarouselDele
         return (carousel.itemViewAtIndex(self.selectedDrinkIndex)! as! DrinkView).imageView
     }
     
-    func numberOfItemsInCarousel(carousel: iCarousel!) -> Int {
+    func numberOfItemsInCarousel(carousel: iCarousel) -> Int {
         return items.count + 1
     }
     
-    func carouselCurrentItemIndexDidChange(carousel: iCarousel!){
+    func carouselCurrentItemIndexDidChange(carousel: iCarousel) {
         pageControl.currentPage = carousel.currentItemIndex
     }
     
-    func carousel(_carousel: iCarousel!, didSelectItemAtIndex index: Int) {
+    func carousel(_carousel: iCarousel, didSelectItemAtIndex index: Int) {
         var drink: Drink
         if( index == items.count ) {
             drink = Drink.newDrink("New Drink", imageName: "add-drink", editable: true, managedContext: managedContext!)
@@ -101,7 +101,7 @@ class DrinksViewController: UIViewController, iCarouselDataSource, iCarouselDele
         self.navigationController?.pushViewController(drinkDetailsVC, animated: true)
     }
     
-    func carousel(carousel: iCarousel!, itemTransformForOffset offset: CGFloat, baseTransform transform: CATransform3D) -> CATransform3D {
+    func carousel(carousel: iCarousel, itemTransformForOffset offset: CGFloat, baseTransform transform: CATransform3D) -> CATransform3D {
         let scale : CGFloat = DrinkCarouselTransformation.getScale(offset)
         let xOffset : CGFloat = DrinkCarouselTransformation.getXOffset(offset, carouselItemWidth: carousel.itemWidth)
         return
@@ -113,7 +113,7 @@ class DrinksViewController: UIViewController, iCarouselDataSource, iCarouselDele
             )
     }
 
-    func carousel(carousel: iCarousel!, valueForOption option: iCarouselOption, withDefault value: CGFloat) -> CGFloat {
+    func carousel(carousel: iCarousel, valueForOption option: iCarouselOption, withDefault value: CGFloat) -> CGFloat {
         switch option {
         case .Wrap:
             return 1
@@ -124,8 +124,8 @@ class DrinksViewController: UIViewController, iCarouselDataSource, iCarouselDele
         }
     }
     
-    func carousel(carousel: iCarousel!, viewForItemAtIndex index: Int, reusingView view: UIView!) -> UIView! {
-        var theView = view as? DrinkView;
+    func carousel(carousel: iCarousel, viewForItemAtIndex index: Int, reusingView view: UIView?) -> UIView {
+        var theView = view as? DrinkView
         if theView == nil {
             theView = DrinkView(frame: Constants.drinkFrames.basicFrame)
         }
@@ -134,6 +134,6 @@ class DrinksViewController: UIViewController, iCarouselDataSource, iCarouselDele
         } else {
             theView?.displayDrink(items[index])
         }
-        return theView
+        return theView!
     }
 }
