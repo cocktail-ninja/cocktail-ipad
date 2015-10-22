@@ -144,8 +144,9 @@
     
     // Take Snapshot of fomView
     UIView *snapshotView = [fromView snapshotViewAfterScreenUpdates:NO];
+    [self debug:@"orig snapshot" frame:snapshotView.frame];
     snapshotView.frame = [containerView convertRect:fromView.frame fromView:fromView.superview];
-
+    [self debug:@"snapshot converted frame" frame:snapshotView.frame];
     
     // Setup the initial view states
     toVC.view.frame = [transitionContext finalFrameForViewController:toVC];
@@ -171,10 +172,15 @@
         }
         
         // Move the SnapshotView
+        [self debug:@"converting from" frame:toView.frame];
+        [self debug:@"in view" frame:toView.superview.frame];
         snapshotView.frame = [containerView convertRect:toView.frame fromView:toView.superview];
+//        snapshotView.frame = CGRectMake(snapshotView.frame.origin.x + 10.0, snapshotView.frame.origin.y + 20.0, snapshotView.frame.size.width, snapshotView.frame.size.height);
+        [self debug:@"animate to" frame:snapshotView.frame];
         
     } completion:^(BOOL finished) {
         // Clean up
+        [self debug:@"animation finished" frame:snapshotView.frame];
         toView.hidden = NO;
         fromView.hidden = NO;
         [snapshotView removeFromSuperview];
@@ -182,6 +188,10 @@
         // Declare that we've finished
         [transitionContext completeTransition:!transitionContext.transitionWasCancelled];
     }];
+}
+
+- (void)debug:(NSString *)message frame:(CGRect)frame {
+    NSLog(@"%@ - %f, %f, %f, %f", message, frame.origin.x, frame.origin.y, frame.size.width, frame.size.height);
 }
 
 - (NSTimeInterval)transitionDuration:(id<UIViewControllerContextTransitioning>)transitionContext

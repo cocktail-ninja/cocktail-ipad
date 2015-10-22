@@ -82,7 +82,10 @@ class DrinksViewController: UIViewController, iCarouselDataSource, iCarouselDele
     }
     
     func sharedView() -> UIView! {
-        return (carousel.itemViewAtIndex(self.selectedDrinkIndex)! as! DrinkView).imageView
+        let drinkView = carousel.itemViewAtIndex(self.selectedDrinkIndex)! as! DrinkView
+        print("Carousel Drink Image: \(drinkView.imageView.frame)")
+        print("Drink Image Template: \(drinkViewTemplate.frame)")
+        return drinkView.imageView
     }
     
     func numberOfItemsInCarousel(carousel: iCarousel) -> Int {
@@ -101,7 +104,10 @@ class DrinksViewController: UIViewController, iCarouselDataSource, iCarouselDele
             drink = self.items[index]
         }
         
-        let drinkDetailsVC = DrinkDetailsViewController(drink: drink)
+//        let drinkDetailsVC = DrinkDetailsViewController(drink: drink)
+        let drinkDetailsVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("DrinkDetails") as! NewDrinkDetailsViewController
+        drinkDetailsVC.drink = drink
+        drinkDetailsVC.imageSize = drinkViewTemplate.frame.size
         if( index == items.count ) {
             drinkDetailsVC.edit()
         }

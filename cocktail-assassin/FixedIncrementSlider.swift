@@ -1,7 +1,7 @@
 import UIKit
 
 class FixedIncrementSlider: UIControl {
-    let slider: UISlider
+    var slider: UISlider!
     var increment: Float = 1
     var value: Float {
         set {
@@ -13,15 +13,21 @@ class FixedIncrementSlider: UIControl {
     }
     
     override init(frame: CGRect) {
-        var zeroFrame = frame;
-        zeroFrame.origin = CGPointZero
-        
-        slider = UISlider(frame: zeroFrame)
-        
         super.init(frame: frame)
-        addSubview(slider)
-        
+        addSlider()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+//        addSlider()
+    }
+    
+    func addSlider() {
+        let size = CGSize(width: frame.size.width, height: 32)
+        slider = UISlider(frame: CGRect(origin: CGPointZero, size: size))
         slider.addTarget(self, action: "sliderChanged", forControlEvents: .ValueChanged)
+        addSubview(slider)
+        self.layoutSubviews()
     }
     
     func setConfig(minimumValue minimumValue: Float, maximumValue: Float, increment: Float) {
@@ -37,10 +43,6 @@ class FixedIncrementSlider: UIControl {
     
     func setValue(value: Float, animated: Bool) {
         slider.setValue(value / increment, animated: animated)
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
 
 }

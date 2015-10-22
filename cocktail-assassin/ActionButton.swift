@@ -12,7 +12,14 @@ class ActionButton: UIButton, MONActivityIndicatorViewDelegate {
     let spinner : MONActivityIndicatorView
     
     required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        var zeroFrame = CGRect(origin: CGPointZero, size: CGSize(width: 100, height: 50));
+        zeroFrame.origin = CGPointZero
+        errorLabel = UILabel(frame: zeroFrame)
+        spinner = MONActivityIndicatorView(frame: zeroFrame)
+        
+        super.init(coder: aDecoder)
+        
+        configure()
     }
     
     override init(frame: CGRect) {
@@ -23,6 +30,10 @@ class ActionButton: UIButton, MONActivityIndicatorViewDelegate {
         
         super.init(frame: frame)
         
+        configure()
+    }
+    
+    func configure() {
         backgroundColor = UIColor.clearColor()
         setBorder(1.0, radius: 5.0)
         
@@ -51,7 +62,6 @@ class ActionButton: UIButton, MONActivityIndicatorViewDelegate {
         
         setState(.Normal)
     }
-    
     
     func show(view: UIView){
         func hideAll(){

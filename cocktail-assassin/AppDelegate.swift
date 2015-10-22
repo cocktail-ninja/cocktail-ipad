@@ -26,6 +26,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         )
 
         ASFSharedViewTransition.addTransitionWithFromViewControllerClass(
+            DrinksViewController.self,
+            toViewControllerClass: NewDrinkDetailsViewController.self,
+            withNavigationController: navigationController,
+            withDuration: 0.5
+        )
+        
+        ASFSharedViewTransition.addTransitionWithFromViewControllerClass(
             DrinkDetailsViewController.self,
             toViewControllerClass: PouringViewController.self,
             withNavigationController: navigationController,

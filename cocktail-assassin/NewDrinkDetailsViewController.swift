@@ -2,88 +2,69 @@ import UIKit
 import iOSSharedViewTransition
 import PromiseKit
 
-class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataSource, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, SelectIngredientDelegate, RemoveIngredientDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPopoverControllerDelegate {
-    let drinkImageView = UIImageView(frame: Constants.drinkFrames.expandedFrame)
-    let backButton = UIButton(type: UIButtonType.Custom)
-    let editButton = UIButton(type: UIButtonType.Custom)
+class NewDrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataSource, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, SelectIngredientDelegate, RemoveIngredientDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPopoverControllerDelegate {
+    
+    @IBOutlet var drinkImageView: UIImageView!
+    @IBOutlet var backButton: UIButton!
+    @IBOutlet var editButton: UIButton!
+    @IBOutlet var pourButton: ActionButton!
+    @IBOutlet var ingredientsTableView: UITableView!
+    @IBOutlet var nameLabel: UILabel!
+    
+    var selectedIndexPath: NSIndexPath?
+    var drink: Drink?
+    var imageSize: CGSize!
+    @IBOutlet var imageWidth: NSLayoutConstraint!
+    @IBOutlet var imageHeight: NSLayoutConstraint!
+    
+    // Edit mode UI
+    var editMode = false
+    let nameTextField = UITextField()
+    let imagePickerController = UIImagePickerController()
+    let resetIngredientButton = UIButton(type: UIButtonType.Custom)
+    var selectIngredientController: SelectIngredientViewController?
     let saveButton = ActionButton(frame: CGRectMake(570, 650, 400, 60))
     let cancelButton = UIButton(type: UIButtonType.Custom)
     let deleteButton = UIButton(type: UIButtonType.Custom)
     let selectImageButton = UIButton(type: UIButtonType.Custom)
-    let pourButton = ActionButton(frame: CGRectMake(570, 660, 400, 60))
-    let resetIngredientButton = UIButton(type: UIButtonType.Custom)
-    let ingredientsTableView = UITableView()
-    let nameLabel = UILabel()
-    let nameTextField = UITextField()
-    let imagePickerController = UIImagePickerController()
-    
-    var drink: Drink?
-    var editMode = false
-    var selectIngredientController: SelectIngredientViewController?
 
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-    }
-    
-    init(drink: Drink) {
-        super.init(nibName: nil, bundle: nil)
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        print("viewDidLoad - Detail Drink Image: \(drinkImageView.frame)")
         
-        self.drink = drink
-
+        imageWidth.constant = imageSize.width
+        imageHeight.constant = imageSize.height
+        
         imagePickerController.modalPresentationStyle = .FormSheet
         
         pourButton.setTitle("Hit me!", forState: .Normal)
-
-        drinkImageView.frame = Constants.drinkFrames.expandedFrame
-        drinkImageView.contentMode = .ScaleAspectFit
-        drinkImageView.image = drink.image()
-        drinkImageView.backgroundColor = UIColor.blueColor()
-        view.addSubview(drinkImageView)
         
-        editButton.frame = CGRectMake(900, 30, 100, 60)
-        editButton.setTitle("Edit", forState: .Normal)
-        editButton.setTitleColor(ThemeColor.primary, forState: UIControlState.Normal)
-        editButton.setTitleColor(ThemeColor.highlighted, forState: .Highlighted)
-        editButton.titleLabel?.font = UIFont(name: "HelveticaNeue-Light", size: CGFloat(20))
-        editButton.hidden = !drink.editable
-        editButton.backgroundColor = UIColor.blueColor()
-        view.addSubview(editButton)
-
+        view.backgroundColor = UIColor.whiteColor()
+        
+        drinkImageView.contentMode = .ScaleAspectFit
+        drinkImageView.image = drink?.image()
+//        drinkImageView.backgroundColor = UIColor.blueColor()
+        
         saveButton.setTitle("Save", forState: .Normal)
         saveButton.hidden = true
-        saveButton.backgroundColor = UIColor.blueColor()
         view.addSubview(saveButton)
-
+        
         cancelButton.frame = CGRectMake(900, 30, 100, 60)
         cancelButton.setTitle("Cancel", forState: .Normal)
         cancelButton.setTitleColor(ThemeColor.primary, forState: UIControlState.Normal)
         cancelButton.setTitleColor(ThemeColor.highlighted, forState: .Highlighted)
         cancelButton.titleLabel?.font = UIFont(name: "HelveticaNeue-Light", size: CGFloat(20))
         cancelButton.hidden = true
-        cancelButton.backgroundColor = UIColor.blueColor()
         view.addSubview(cancelButton)
-
+        
         deleteButton.frame = CGRectMake(800, 30, 100, 60)
         deleteButton.setTitle("Delete", forState: .Normal)
         deleteButton.setTitleColor(ThemeColor.primary, forState: UIControlState.Normal)
         deleteButton.setTitleColor(ThemeColor.highlighted, forState: .Highlighted)
         deleteButton.titleLabel?.font = UIFont(name: "HelveticaNeue-Light", size: CGFloat(20))
         deleteButton.hidden = true
-        deleteButton.backgroundColor = UIColor.blueColor()
         view.addSubview(deleteButton)
-        
-        backButton.setImage(UIImage(named: "back"), forState: UIControlState.Normal)
-        backButton.setTitle("  Back", forState: .Normal)
-        backButton.setTitleColor(ThemeColor.primary, forState: UIControlState.Normal)
-        backButton.setTitleColor(ThemeColor.highlighted, forState: .Highlighted)
-        backButton.titleLabel?.font = UIFont(name: "HelveticaNeue-Light", size: CGFloat(20))
-        backButton.frame = CGRectMake(30, 30, 100, 60)
-        backButton.backgroundColor = UIColor.blueColor()
-        view.addSubview(backButton)
+
         
         selectImageButton.setTitle("Select Image", forState: .Normal)
         selectImageButton.setTitleColor(ThemeColor.primary, forState: UIControlState.Normal)
@@ -91,43 +72,43 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
         selectImageButton.titleLabel?.font = UIFont(name: "HelveticaNeue-Light", size: CGFloat(20))
         selectImageButton.frame = CGRectMake(30, 670, 150, 60)
         selectImageButton.hidden = true
-        selectImageButton.backgroundColor = UIColor.blueColor()
         view.addSubview(selectImageButton)
         
         imagePickerController.delegate = self
         imagePickerController.sourceType = .SavedPhotosAlbum
         imagePickerController.allowsEditing = false
         
-        ingredientsTableView.frame = CGRectMake(0, 0, 560, 490)
         ingredientsTableView.delegate = self
         ingredientsTableView.dataSource = self
         ingredientsTableView.scrollEnabled = true
         ingredientsTableView.separatorStyle = .None
         ingredientsTableView.allowsSelection = true
         ingredientsTableView.alwaysBounceVertical = false
-        let inset = UIEdgeInsetsMake(30, 0, 30, 0)
-        ingredientsTableView.contentInset = inset
-        ingredientsTableView.scrollIndicatorInsets = inset
-        ingredientsTableView.backgroundColor = UIColor.blueColor()
+//        let inset = UIEdgeInsetsMake(30, 0, 30, 0)
+//        ingredientsTableView.contentInset = inset
+//        ingredientsTableView.scrollIndicatorInsets = inset
         
         // Todo: Subclass UITableView
-        let fadedTableView = UIView(frame: CGRectMake(410, 120, 560, 490));
-        fadedTableView.backgroundColor = UIColor.redColor()
-        fadedTableView.opaque = false
-        let gradient = CAGradientLayer();
-        gradient.frame = fadedTableView.bounds;
-        gradient.colors = [
-            UIColor.clearColor().CGColor,
-            UIColor.whiteColor().CGColor,
-            UIColor.whiteColor().CGColor,
-            UIColor.clearColor().CGColor
-        ]
+//        let fadedTableView = UIView(frame: ingredientsTableView.frame);
+//        fadedTableView.backgroundColor = UIColor.redColor()
+//        fadedTableView.opaque = false
         
-        gradient.locations = [0, 0.1, 0.9, 1];
-        fadedTableView.layer.mask = gradient;
-        fadedTableView.addSubview(ingredientsTableView)
-
-        view.addSubview(fadedTableView)
+        
+//        ingredientsTableView.opaque = false
+//        let gradient = CAGradientLayer();
+//        gradient.frame = ingredientsTableView.bounds;
+//        gradient.colors = [
+//            UIColor.clearColor().CGColor,
+//            UIColor.whiteColor().CGColor,
+//            UIColor.whiteColor().CGColor,
+//            UIColor.clearColor().CGColor
+//        ]
+//        gradient.locations = [0, 0.1, 0.9, 1];
+//        ingredientsTableView.layer.mask = gradient
+        
+        
+//        fadedTableView.addSubview(ingredientsTableView)        
+//        view.addSubview(fadedTableView)
         
         resetIngredientButton.setImage(UIImage(named: "reset.png"), forState: UIControlState.Normal)
         resetIngredientButton.setTitle("  Reset ingredients", forState: .Normal)
@@ -137,32 +118,29 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
         resetIngredientButton.setTitleColor(ThemeColor.primary, forState: .Normal)
         resetIngredientButton.setTitleColor(ThemeColor.highlighted, forState: .Highlighted)
         resetIngredientButton.titleLabel?.textAlignment = .Center
-        resetIngredientButton.backgroundColor = UIColor.blueColor()
         view.addSubview(resetIngredientButton)
-
-        nameLabel.frame = CGRectMake(480, 75, 480, 50)
-        nameLabel.text = drink.name
+        
         nameLabel.font = UIFont(name: "HelveticaNeue-Light", size: 28)
         nameLabel.textAlignment = .Center
-        nameLabel.backgroundColor = UIColor.blueColor()
-        view.addSubview(nameLabel)
+        nameLabel.text = drink?.name
         
         nameTextField.frame = CGRectMake(480, 75, 480, 50)
-        nameTextField.text = drink.name
+        nameTextField.text = drink?.name
         nameTextField.font = UIFont(name: "HelveticaNeue-Light", size: 28)
         nameTextField.textAlignment = .Center
         nameTextField.hidden = true
         nameTextField.borderStyle = UITextBorderStyle.Line
         nameTextField.clearsOnBeginEditing = true
         nameTextField.delegate = self
-        nameTextField.backgroundColor = UIColor.blueColor()
         view.addSubview(nameTextField)
-
-        let ingredients = Ingredient.allIngredients(drink.managedObjectContext!)
-        self.selectIngredientController = SelectIngredientViewController(ingredients: ingredients)
+        
+        if let drink = drink {
+            let ingredients = Ingredient.allIngredients(drink.managedObjectContext!)
+            self.selectIngredientController = SelectIngredientViewController(ingredients: ingredients)
+        }
         selectIngredientController?.delegate = self
         selectIngredientController?.modalPresentationStyle = UIModalPresentationStyle.FormSheet
-
+        
         resetIngredientButton.addTarget(self, action: "reset", forControlEvents: .TouchUpInside)
         backButton.addTarget(self, action: "dismiss", forControlEvents: .TouchUpInside)
         editButton.addTarget(self, action: "edit", forControlEvents: .TouchUpInside)
@@ -171,6 +149,31 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
         deleteButton.addTarget(self, action: "delete", forControlEvents: .TouchUpInside)
         pourButton.addTarget(self, action: "pour", forControlEvents: .TouchUpInside)
         selectImageButton.addTarget(self, action: "selectImage", forControlEvents: .TouchUpInside)
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        print("viewWillAppear - Detail Drink Image: \(drinkImageView.frame)")
+        view.layoutSubviews()
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        print("viewDidAppear - Detail Drink Image: \(drinkImageView.frame)")
+    }
+    
+    func debugLayout() {
+        editButton.backgroundColor = UIColor.blueColor()
+        drinkImageView.backgroundColor = UIColor.blueColor()
+        saveButton.backgroundColor = UIColor.blueColor()
+        cancelButton.backgroundColor = UIColor.blueColor()
+        deleteButton.backgroundColor = UIColor.blueColor()
+        backButton.backgroundColor = UIColor.blueColor()
+        selectImageButton.backgroundColor = UIColor.blueColor()
+        ingredientsTableView.backgroundColor = UIColor.greenColor()
+        resetIngredientButton.backgroundColor = UIColor.blueColor()        
+        nameLabel.backgroundColor = UIColor.blueColor()
+        nameTextField.backgroundColor = UIColor.blueColor()
     }
     
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
@@ -212,11 +215,8 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
     }
 
     func drinkIngredientCell(tableView: UITableView, indexPath: NSIndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCellWithIdentifier("CELL") as? DrinkIngredientCell
-        if(cell == nil) {
-            cell = DrinkIngredientCell(style: .Default, reuseIdentifier: "CELL")
-        }
-        
+        let cell = tableView.dequeueReusableCellWithIdentifier("IngredientCell") as? DrinkIngredientCell
+
         var sortedIngredients = (drink?.drinkIngredients.allObjects as! [DrinkIngredient]).sort { first, second in
             return first.ingredient.ingredientClass.rawValue <= second.ingredient.ingredientClass.rawValue &&
                 first.ingredient.ingredientType != .LimeJuice
@@ -232,14 +232,7 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 70;
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        view.backgroundColor = UIColor.whiteColor()
-        view.addSubview(pourButton)
+        return indexPath == selectedIndexPath ? 85 : 38
     }
     
     func selectImage() {
@@ -257,6 +250,7 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
     }
 
     func edit() {
+        print("edit - Detail Drink Image: \(drinkImageView.frame)")
         editMode = true
         
         updateUserInterface()
@@ -348,10 +342,12 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
     }
 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        tableView.deselectRowAtIndexPath(indexPath, animated: false)
+        selectedIndexPath = selectedIndexPath == indexPath ? nil : indexPath
         if editMode && indexPath.row == drink?.drinkIngredients.count {
             self.presentViewController(self.selectIngredientController!, animated: true) { }
         }
+        ingredientsTableView.beginUpdates()
+        ingredientsTableView.endUpdates()
     }
 
     func didSelectIngredient(ingredient: Ingredient) {
@@ -376,6 +372,21 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
     }
     
     func sharedView() -> UIView! {
+        print("NewDrinkDetailsViewController.sharedView - Detail Drink Image: \(drinkImageView.frame)")
+        
+//        drinkImageView.frame = CGRect(origin: drinkImageView.frame.origin, size: imageSize)
+        
+        // Massive Hack! - Spent too long messing around with this stuff. This will do for now.
+        if UIDevice.currentDevice().userInterfaceIdiom == .Phone {
+            if drinkImageView.frame.origin.x < 10 {
+                drinkImageView.frame = CGRect(origin: CGPoint(x: 76.0, y: 27.0), size: imageSize)
+            }
+        } else {
+            if drinkImageView.frame.origin.x < 100 {
+                drinkImageView.frame = CGRect(origin: CGPoint(x: 118.0, y: 67.0), size: imageSize)
+            }
+        }
+        
         return drinkImageView
     }
 
