@@ -17,7 +17,7 @@ class DrinksViewController: UIViewController, iCarouselDataSource, iCarouselDele
     @IBOutlet private var carousel: iCarousel!
     @IBOutlet private var pageControl: UIPageControl!
     @IBOutlet private var drinkViewTemplate: UIView!
-    private var adminButton = UIButton(type: UIButtonType.RoundedRect)
+    @IBOutlet private var adminButton: UIButton!
     private var selectedDrinkIndex = 0
 
     lazy var managedContext : NSManagedObjectContext? = {
@@ -63,18 +63,13 @@ class DrinksViewController: UIViewController, iCarouselDataSource, iCarouselDele
         pageControl.pageIndicatorTintColor = UIColor(red: 0.7, green: 0.7, blue: 0.7, alpha: 0.4)
         pageControl.addTarget(self, action: "pageControlChanged", forControlEvents: .ValueChanged)
         carouselCurrentItemIndexDidChange(carousel)
-        
-        adminButton.setTitle("Admin", forState: .Normal)
-        adminButton.addTarget(self, action: "adminClicked", forControlEvents: .TouchUpInside)
-        adminButton.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
-        view.addSubview(adminButton)
     }
     
     func pageControlChanged() {
         carousel.scrollToItemAtIndex(pageControl.currentPage, animated: true)
     }
     
-    func adminClicked() {
+    @IBAction func adminClicked() {
         let adminController = AdminViewController(managedObjectContext: managedContext!)
         let navigationController = UINavigationController(rootViewController: adminController)
         adminController.modalPresentationStyle = .FormSheet

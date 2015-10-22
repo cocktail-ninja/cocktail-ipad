@@ -57,6 +57,18 @@
                                 <rect key="frame" x="0.0" y="563" width="600" height="37"/>
                                 <animations/>
                             </pageControl>
+                            <button opaque="NO" alpha="0.29999999999999999" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xh7-Kz-Qq6">
+                                <rect key="frame" x="558" y="10" width="32" height="32"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="32" id="2KW-zW-HFC"/>
+                                    <constraint firstAttribute="height" constant="32" id="c7j-ch-Tui"/>
+                                </constraints>
+                                <state key="normal" image="admin"/>
+                                <connections>
+                                    <action selector="adminClicked" destination="GZw-v1-iSH" eventType="touchUpInside" id="oJU-W9-cFW"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -67,11 +79,15 @@
                             <constraint firstItem="lrz-ec-NfB" firstAttribute="trailing" secondItem="Dqc-Ei-2Ff" secondAttribute="trailing" id="PAj-68-dlT"/>
                             <constraint firstItem="Dqc-Ei-2Ff" firstAttribute="leading" secondItem="Qa4-MI-9Rp" secondAttribute="leading" id="QTv-5a-NyK"/>
                             <constraint firstItem="lrz-ec-NfB" firstAttribute="bottom" secondItem="Jov-Aj-Lew" secondAttribute="top" id="ZEp-QE-EDf"/>
+                            <constraint firstItem="Xh7-Kz-Qq6" firstAttribute="trailing" secondItem="Qa4-MI-9Rp" secondAttribute="trailingMargin" constant="10" id="g4e-wf-tIt"/>
+                            <constraint firstItem="Xh7-Kz-Qq6" firstAttribute="top" secondItem="Qiz-Lb-hgU" secondAttribute="bottom" constant="10" id="oGt-Xj-8rQ"/>
                             <constraint firstItem="Dqc-Ei-2Ff" firstAttribute="top" secondItem="Qa4-MI-9Rp" secondAttribute="top" id="pfg-5K-fcG"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="GsL-eK-xZl"/>
+                    <nil key="simulatedStatusBarMetrics"/>
                     <connections>
+                        <outlet property="adminButton" destination="Xh7-Kz-Qq6" id="pQe-CN-T8t"/>
                         <outlet property="carousel" destination="Dqc-Ei-2Ff" id="raz-aA-KJd"/>
                         <outlet property="drinkViewTemplate" destination="TTz-l8-0Nc" id="Myw-ul-nHK"/>
                         <outlet property="pageControl" destination="lrz-ec-NfB" id="eIx-dL-DzJ"/>
@@ -281,6 +297,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="admin" width="32" height="32"/>
         <image name="back" width="32" height="32"/>
         <image name="edit" width="32" height="32"/>
         <image name="long-island-iced-tea" width="324" height="933"/>
