@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import iOSSharedViewTransition
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -15,12 +16,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject : AnyObject]?) -> Bool {
-        self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        let navigationController = self.window!.rootViewController as! UINavigationController
         
-        let mainViewController = MainViewController()
-        self.window!.rootViewController = mainViewController
-        self.window!.makeKeyAndVisible()
-        self.window!.tintColor = ThemeColor.primary
+        ASFSharedViewTransition.addTransitionWithFromViewControllerClass(
+            DrinksViewController.self,
+            toViewControllerClass: DrinkDetailsViewController.self,
+            withNavigationController: navigationController,
+            withDuration: 0.5
+        )
+
+        ASFSharedViewTransition.addTransitionWithFromViewControllerClass(
+            DrinkDetailsViewController.self,
+            toViewControllerClass: PouringViewController.self,
+            withNavigationController: navigationController,
+            withDuration: 0.8
+        )
+
+        ASFSharedViewTransition.addTransitionWithFromViewControllerClass(
+            PouringViewController.self,
+            toViewControllerClass: DrinksViewController.self,
+            withNavigationController: navigationController,
+            withDuration: 0.5
+        )
+
+            
         return true
     }
     

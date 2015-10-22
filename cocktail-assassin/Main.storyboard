@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="AJ3-g5-KFe">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+    </dependencies>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="eyB-oq-IHd">
+            <objects>
+                <navigationController navigationBarHidden="YES" id="AJ3-g5-KFe" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="N5a-dn-Cki">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="GZw-v1-iSH" kind="relationship" relationship="rootViewController" id="Cu6-aY-lfw"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="00D-mj-i82" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-518" y="240"/>
+        </scene>
+        <!--Drinks View Controller-->
+        <scene sceneID="mWl-6L-Se6">
+            <objects>
+                <viewController id="GZw-v1-iSH" customClass="DrinksViewController" customModule="cocktail_assassin" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Qiz-Lb-hgU"/>
+                        <viewControllerLayoutGuide type="bottom" id="Jov-Aj-Lew"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Qa4-MI-9Rp">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dqc-Ei-2Ff" customClass="iCarousel">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="563"/>
+                                <subviews>
+                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TTz-l8-0Nc">
+                                        <rect key="frame" x="225" y="42" width="150" height="479"/>
+                                        <animations/>
+                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
+                                </subviews>
+                                <animations/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="TTz-l8-0Nc" firstAttribute="centerX" secondItem="Dqc-Ei-2Ff" secondAttribute="centerX" id="33r-7N-1k7"/>
+                                    <constraint firstItem="TTz-l8-0Nc" firstAttribute="centerY" secondItem="Dqc-Ei-2Ff" secondAttribute="centerY" id="AW9-ed-xET"/>
+                                    <constraint firstItem="TTz-l8-0Nc" firstAttribute="width" secondItem="Dqc-Ei-2Ff" secondAttribute="width" multiplier="0.25" id="ciV-yk-YbF"/>
+                                    <constraint firstItem="TTz-l8-0Nc" firstAttribute="height" secondItem="Dqc-Ei-2Ff" secondAttribute="height" multiplier="0.85" id="j2x-ND-tFj"/>
+                                </constraints>
+                            </view>
+                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="lrz-ec-NfB">
+                                <rect key="frame" x="0.0" y="563" width="600" height="37"/>
+                                <animations/>
+                            </pageControl>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="Dqc-Ei-2Ff" secondAttribute="trailing" id="50l-3E-cn9"/>
+                            <constraint firstItem="Dqc-Ei-2Ff" firstAttribute="bottom" secondItem="Jov-Aj-Lew" secondAttribute="top" constant="-37" id="9VS-mT-Ubb"/>
+                            <constraint firstItem="lrz-ec-NfB" firstAttribute="leading" secondItem="Dqc-Ei-2Ff" secondAttribute="leading" id="NQm-tg-S4L"/>
+                            <constraint firstItem="lrz-ec-NfB" firstAttribute="trailing" secondItem="Dqc-Ei-2Ff" secondAttribute="trailing" id="PAj-68-dlT"/>
+                            <constraint firstItem="Dqc-Ei-2Ff" firstAttribute="leading" secondItem="Qa4-MI-9Rp" secondAttribute="leading" id="QTv-5a-NyK"/>
+                            <constraint firstItem="lrz-ec-NfB" firstAttribute="bottom" secondItem="Jov-Aj-Lew" secondAttribute="top" id="ZEp-QE-EDf"/>
+                            <constraint firstItem="Dqc-Ei-2Ff" firstAttribute="top" secondItem="Qa4-MI-9Rp" secondAttribute="top" id="pfg-5K-fcG"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="GsL-eK-xZl"/>
+                    <connections>
+                        <outlet property="carousel" destination="Dqc-Ei-2Ff" id="raz-aA-KJd"/>
+                        <outlet property="drinkViewTemplate" destination="TTz-l8-0Nc" id="Myw-ul-nHK"/>
+                        <outlet property="pageControl" destination="lrz-ec-NfB" id="eIx-dL-DzJ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cBR-dv-uKu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="211" y="173"/>
+        </scene>
+    </scenes>
+</document>

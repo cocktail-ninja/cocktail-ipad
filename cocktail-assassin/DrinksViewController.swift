@@ -14,8 +14,9 @@ import PromiseKit
 import iOSSharedViewTransition
 
 class DrinksViewController: UIViewController, iCarouselDataSource, iCarouselDelegate, ASFSharedViewTransitionDataSource {
-    private var carousel = iCarousel()
-    private var pageControl = UIPageControl()
+    @IBOutlet private var carousel: iCarousel!
+    @IBOutlet private var pageControl: UIPageControl!
+    @IBOutlet private var drinkViewTemplate: UIView!
     private var adminButton = UIButton(type: UIButtonType.RoundedRect)
     private var selectedDrinkIndex = 0
 
@@ -53,24 +54,14 @@ class DrinksViewController: UIViewController, iCarouselDataSource, iCarouselDele
         super.viewDidLoad()
         view.backgroundColor = UIColor.whiteColor()
         
-        carousel.frame = view.frame
         carousel.type = .Custom
         carousel.dataSource = self
         carousel.delegate = self
         carousel.centerItemWhenSelected = false
-        view.addSubview(carousel)
         
         pageControl.currentPageIndicatorTintColor = UIColor(red: 0.7, green: 0.7, blue: 0.7, alpha: 1)
         pageControl.pageIndicatorTintColor = UIColor(red: 0.7, green: 0.7, blue: 0.7, alpha: 0.4)
-
-        pageControl.frame = {
-            let viewHeight : CGFloat = 20,
-                bottomPadding : CGFloat = 20,
-                originY : CGFloat = self.view.frame.height - viewHeight - bottomPadding;
-            return CGRectMake(0, originY, self.view.frame.size.width, viewHeight)
-        }()
-        
-        carousel.addSubview(pageControl)
+        pageControl.addTarget(self, action: "pageControlChanged", forControlEvents: .ValueChanged)
         carouselCurrentItemIndexDidChange(carousel)
         
         adminButton.setTitle("Admin", forState: .Normal)
@@ -79,8 +70,11 @@ class DrinksViewController: UIViewController, iCarouselDataSource, iCarouselDele
         view.addSubview(adminButton)
     }
     
+    func pageControlChanged() {
+        carousel.scrollToItemAtIndex(pageControl.currentPage, animated: true)
+    }
+    
     func adminClicked() {
-        print("adminClicked")
         let adminController = AdminViewController(managedObjectContext: managedContext!)
         let navigationController = UINavigationController(rootViewController: adminController)
         adminController.modalPresentationStyle = .FormSheet
@@ -139,15 +133,13 @@ class DrinksViewController: UIViewController, iCarouselDataSource, iCarouselDele
     }
     
     func carousel(carousel: iCarousel, viewForItemAtIndex index: Int, reusingView view: UIView?) -> UIView {
-        var theView = view as? DrinkView
-        if theView == nil {
-            theView = DrinkView(frame: Constants.drinkFrames.basicFrame)
-        }
-        if( index == items.count ) {
-            theView?.displayAddDrink()
+        let theView = view as? DrinkView ?? DrinkView(frame: drinkViewTemplate.frame)
+        if index == items.count {
+            theView.displayAddDrink()
         } else {
-            theView?.displayDrink(items[index])
+            theView.displayDrink(items[index])
         }
-        return theView!
+        return theView
     }
+
 }
