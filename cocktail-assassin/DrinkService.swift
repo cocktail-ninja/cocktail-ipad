@@ -52,6 +52,20 @@ class DrinkService: NSObject {
         Ingredient.newIngredient(.LimeJuice,      pumpNumber: 11, amountLeft: 500, ingredientClass: .NonAlcoholic, managedContext: managedContext)
     }
     
+    class func initComponents(managedContext: NSManagedObjectContext) {
+        Component.newComponent(.Valve, id: "V1", name: "Valve 1", managedContext: managedContext)
+        Component.newComponent(.Valve, id: "V2", name: "Valve 2", managedContext: managedContext)
+        Component.newComponent(.Valve, id: "V3", name: "Valve 3", managedContext: managedContext)
+        Component.newComponent(.Valve, id: "V4", name: "Valve 4", managedContext: managedContext)
+        
+        Component.newComponent(.Pump, id: "P1", name: "Pump 1", managedContext: managedContext)
+        Component.newComponent(.Pump, id: "P2", name: "Pump 2", managedContext: managedContext)
+        Component.newComponent(.Pump, id: "P3", name: "Pump 3", managedContext: managedContext)
+        Component.newComponent(.Pump, id: "P4", name: "Pump 4", managedContext: managedContext)
+        Component.newComponent(.Pump, id: "P5", name: "Pump 5", managedContext: managedContext)
+        Component.newComponent(.Pump, id: "P6", name: "Pump 6", managedContext: managedContext)
+    }
+    
     class func createDrinkWithIngredient(name:String, imageName:String, ingredients: [IngredientType: NSNumber], editable: Bool, managedContext: NSManagedObjectContext) -> Drink {
         let drink = Drink.newDrink(name, imageName: imageName, editable: editable, managedContext: managedContext)
         
@@ -64,6 +78,7 @@ class DrinkService: NSObject {
     }
     
     class func initDatabase(managedContext: NSManagedObjectContext) {
+        DrinkService.initComponents(managedContext)
         DrinkService.initIngredients(managedContext)
 
         DrinkService.createDrinkWithIngredient("Long Island Ice Tea",

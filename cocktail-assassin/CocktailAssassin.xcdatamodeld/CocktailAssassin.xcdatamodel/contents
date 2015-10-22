@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7549" systemVersion="14D136" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="8195" systemVersion="15A284" minimumToolsVersion="Automatic">
+    <entity name="Component" representedClassName=".Component" syncable="YES">
+        <attribute name="id" attributeType="String" syncable="YES"/>
+        <attribute name="name" attributeType="String" syncable="YES"/>
+        <attribute name="type" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <relationship name="ingredient" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Ingredient" inverseName="component" inverseEntity="Ingredient" syncable="YES"/>
+    </entity>
     <entity name="Drink" representedClassName="cocktail_assassin.Drink" syncable="YES">
         <attribute name="editable" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="imageName" optional="YES" attributeType="String" syncable="YES"/>
@@ -13,14 +19,17 @@
     </entity>
     <entity name="Ingredient" representedClassName="cocktail_assassin.Ingredient" syncable="YES">
         <attribute name="amountLeft" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="componentId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="pumpNumber" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="rawIngredientClass" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="component" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Component" inverseName="ingredient" inverseEntity="Component" syncable="YES"/>
         <relationship name="drinkIngredients" optional="YES" toMany="YES" deletionRule="Deny" destinationEntity="DrinkIngredient" inverseName="ingredient" inverseEntity="DrinkIngredient" syncable="YES"/>
     </entity>
     <elements>
         <element name="Drink" positionX="-63" positionY="-18" width="128" height="105"/>
         <element name="DrinkIngredient" positionX="-54" positionY="-9" width="128" height="88"/>
-        <element name="Ingredient" positionX="-36" positionY="9" width="128" height="120"/>
+        <element name="Ingredient" positionX="-36" positionY="9" width="128" height="150"/>
+        <element name="Component" positionX="-54" positionY="45" width="128" height="105"/>
     </elements>
 </model>

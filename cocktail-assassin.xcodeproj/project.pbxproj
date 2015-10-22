@@ -46,6 +46,8 @@
 		5931BC081A8A4E1700895B64 /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59AFC2E21A8A3C29006D14DF /* Ingredient.swift */; };
 		EF21824B1AA5E8C900690EFD /* DrinkIngredientCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF21824A1AA5E8C900690EFD /* DrinkIngredientCell.swift */; };
 		EF6310021BD6195500390511 /* IngredientsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF6310011BD6195500390511 /* IngredientsService.swift */; settings = {ASSET_TAGS = (); }; };
+		EF6310051BD79C5A00390511 /* AdminViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF6310041BD79C5A00390511 /* AdminViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		EF6310071BD8559400390511 /* Component.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF6310061BD8559400390511 /* Component.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -107,6 +109,8 @@
 		BD64C9E21465755B34901485 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		EF21824A1AA5E8C900690EFD /* DrinkIngredientCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrinkIngredientCell.swift; sourceTree = "<group>"; };
 		EF6310011BD6195500390511 /* IngredientsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IngredientsService.swift; sourceTree = "<group>"; };
+		EF6310041BD79C5A00390511 /* AdminViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdminViewController.swift; sourceTree = "<group>"; };
+		EF6310061BD8559400390511 /* Component.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Component.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -166,6 +170,7 @@
 		2345A2C61A7D367C007CB356 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				EF6310061BD8559400390511 /* Component.swift */,
 				23AC06DA1A6FA260002928CB /* Drink.swift */,
 				59AFC2E21A8A3C29006D14DF /* Ingredient.swift */,
 			);
@@ -280,7 +285,7 @@
 		23906C231AD9C96200D3613D /* Pages */ = {
 			isa = PBXGroup;
 			children = (
-				EF6310031BD61B7900390511 /* Mapping */,
+				EF6310031BD61B7900390511 /* Admin */,
 				23906C1F1AD9C86C00D3613D /* Pouring */,
 				23906C1E1AD9C84100D3613D /* DrinkDetails */,
 				23906C1D1AD9C82C00D3613D /* DrinksCarousel */,
@@ -383,11 +388,12 @@
 			name = Services;
 			sourceTree = "<group>";
 		};
-		EF6310031BD61B7900390511 /* Mapping */ = {
+		EF6310031BD61B7900390511 /* Admin */ = {
 			isa = PBXGroup;
 			children = (
+				EF6310041BD79C5A00390511 /* AdminViewController.swift */,
 			);
-			name = Mapping;
+			name = Admin;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -552,6 +558,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EF6310021BD6195500390511 /* IngredientsService.swift in Sources */,
+				EF6310071BD8559400390511 /* Component.swift in Sources */,
 				EF21824B1AA5E8C900690EFD /* DrinkIngredientCell.swift in Sources */,
 				23B1E7271A8A28620050A3AF /* DrinkService.swift in Sources */,
 				5931BC081A8A4E1700895B64 /* Ingredient.swift in Sources */,
@@ -569,6 +576,7 @@
 				2345A2D11A7F9E96007CB356 /* PouringView.swift in Sources */,
 				237B076F1A6EA5F7001AA652 /* AppDelegate.swift in Sources */,
 				23B338841AB85BF6002F3BE8 /* AppDelegate+ManagedContext.swift in Sources */,
+				EF6310051BD79C5A00390511 /* AdminViewController.swift in Sources */,
 				5931BC001A8A489700895B64 /* CocktailAssassin.xcdatamodeld in Sources */,
 				23C0532D1A7A810F0060CABB /* DrinkView.swift in Sources */,
 				23661CF21AA4A6EF00569DAD /* GlowingView.swift in Sources */,

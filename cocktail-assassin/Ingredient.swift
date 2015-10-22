@@ -40,6 +40,7 @@ class Ingredient: NSManagedObject {
     @NSManaged var amountLeft: NSNumber
     @NSManaged var drinkIngredients: NSSet
     @NSManaged var rawIngredientClass: Int16
+    @NSManaged var component: Component?
 
     var ingredientClass:IngredientClass {
         get { return IngredientClass(rawValue: self.rawIngredientClass)! }

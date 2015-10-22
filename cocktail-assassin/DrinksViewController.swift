@@ -16,6 +16,7 @@ import iOSSharedViewTransition
 class DrinksViewController: UIViewController, iCarouselDataSource, iCarouselDelegate, ASFSharedViewTransitionDataSource {
     private var carousel = iCarousel()
     private var pageControl = UIPageControl()
+    private var adminButton = UIButton(type: UIButtonType.RoundedRect)
     private var selectedDrinkIndex = 0
 
     lazy var managedContext : NSManagedObjectContext? = {
@@ -71,6 +72,19 @@ class DrinksViewController: UIViewController, iCarouselDataSource, iCarouselDele
         
         carousel.addSubview(pageControl)
         carouselCurrentItemIndexDidChange(carousel)
+        
+        adminButton.setTitle("Admin", forState: .Normal)
+        adminButton.addTarget(self, action: "adminClicked", forControlEvents: .TouchUpInside)
+        adminButton.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
+        view.addSubview(adminButton)
+    }
+    
+    func adminClicked() {
+        print("adminClicked")
+        let adminController = AdminViewController(managedObjectContext: managedContext!)
+        let navigationController = UINavigationController(rootViewController: adminController)
+        adminController.modalPresentationStyle = .FormSheet
+        self.presentViewController(navigationController, animated: true, completion: nil)
     }
     
     func sharedView() -> UIView! {
