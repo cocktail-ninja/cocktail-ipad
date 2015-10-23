@@ -35,18 +35,14 @@ class DrinkIngredientCell: UITableViewCell {
         drinkNotesLabel?.hidden = true
         
         removeButton.hidden = !editMode
-        removeButton.layer.cornerRadius = 0.5 * removeButton.bounds.size.width
-        removeButton.setTitle("-", forState: .Normal)
-        removeButton.backgroundColor = UIColor.redColor()
         removeButton.addTarget(self, action: "removeClicked", forControlEvents: .TouchUpInside)
-        removeButton.titleLabel?.font = UIFont(name: "HelveticaNeue-Light", size: 16)
     }
     
-    func removeClicked() {
+    @IBAction func removeClicked() {
         delegate?.removeDrinkIngredient(drinkIngredient!)
     }
 
-    func sliderChanged() {
+    @IBAction func sliderChanged() {
         let value = Int(slider.value + Float(increment / 2))
         let adjustedValue = (value / increment) * increment
         slider.setValue(Float(adjustedValue), animated: true)

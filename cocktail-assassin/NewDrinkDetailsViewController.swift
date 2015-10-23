@@ -49,22 +49,12 @@ class NewDrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDa
         saveButton.hidden = true
         view.addSubview(saveButton)
         
-        cancelButton.frame = CGRectMake(900, 30, 100, 60)
-        cancelButton.setTitle("Cancel", forState: .Normal)
-        cancelButton.setTitleColor(ThemeColor.primary, forState: UIControlState.Normal)
-        cancelButton.setTitleColor(ThemeColor.highlighted, forState: .Highlighted)
-        cancelButton.titleLabel?.font = UIFont(name: "HelveticaNeue-Light", size: CGFloat(20))
+        cancelButton.setImage(UIImage(named: "cancel"), forState: .Normal)
         cancelButton.hidden = true
         view.addSubview(cancelButton)
         
-        deleteButton.frame = CGRectMake(800, 30, 100, 60)
-        deleteButton.setTitle("Delete", forState: .Normal)
-        deleteButton.setTitleColor(ThemeColor.primary, forState: UIControlState.Normal)
-        deleteButton.setTitleColor(ThemeColor.highlighted, forState: .Highlighted)
-        deleteButton.titleLabel?.font = UIFont(name: "HelveticaNeue-Light", size: CGFloat(20))
         deleteButton.hidden = true
         view.addSubview(deleteButton)
-
         
         selectImageButton.setTitle("Select Image", forState: .Normal)
         selectImageButton.setTitleColor(ThemeColor.primary, forState: UIControlState.Normal)
@@ -92,7 +82,6 @@ class NewDrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDa
 //        let fadedTableView = UIView(frame: ingredientsTableView.frame);
 //        fadedTableView.backgroundColor = UIColor.redColor()
 //        fadedTableView.opaque = false
-        
         
 //        ingredientsTableView.opaque = false
 //        let gradient = CAGradientLayer();
@@ -124,7 +113,7 @@ class NewDrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDa
         nameLabel.textAlignment = .Center
         nameLabel.text = drink?.name
         
-        nameTextField.frame = CGRectMake(480, 75, 480, 50)
+        nameTextField.frame = nameLabel.frame
         nameTextField.text = drink?.name
         nameTextField.font = UIFont(name: "HelveticaNeue-Light", size: 28)
         nameTextField.textAlignment = .Center
@@ -133,6 +122,7 @@ class NewDrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDa
         nameTextField.clearsOnBeginEditing = true
         nameTextField.delegate = self
         view.addSubview(nameTextField)
+//        copyConstraintsFromView(nameLabel, toView: nameTextField)
         
         if let drink = drink {
             let ingredients = Ingredient.allIngredients(drink.managedObjectContext!)
@@ -149,6 +139,36 @@ class NewDrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDa
         deleteButton.addTarget(self, action: "delete", forControlEvents: .TouchUpInside)
         pourButton.addTarget(self, action: "pour", forControlEvents: .TouchUpInside)
         selectImageButton.addTarget(self, action: "selectImage", forControlEvents: .TouchUpInside)
+    }
+    
+    func copyConstraintsFromView(sourceView: UIView, toView destView: UIView)
+    {
+        for constraint in sourceView.superview!.constraints {
+            if constraint.firstItem as? NSObject == sourceView {
+                let newConstraint = NSLayoutConstraint(
+                    item: destView,
+                    attribute: constraint.firstAttribute,
+                    relatedBy: constraint.relation,
+                    toItem: constraint.secondItem,
+                    attribute: constraint.secondAttribute,
+                    multiplier: constraint.multiplier,
+                    constant: constraint.constant
+                )
+                sourceView.superview!.addConstraint(newConstraint)
+            }
+            else if constraint.secondItem as? NSObject == sourceView {
+                let newConstraint = NSLayoutConstraint(
+                    item: constraint.firstItem,
+                    attribute: constraint.firstAttribute,
+                    relatedBy: constraint.relation,
+                    toItem: destView,
+                    attribute: constraint.secondAttribute,
+                    multiplier: constraint.multiplier,
+                    constant: constraint.constant
+                )
+                sourceView.superview!.addConstraint(newConstraint)
+            }
+        }
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -251,6 +271,8 @@ class NewDrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDa
 
     func edit() {
         print("edit - Detail Drink Image: \(drinkImageView.frame)")
+        nameTextField.frame = nameLabel.frame
+        cancelButton.frame = editButton.frame
         editMode = true
         
         updateUserInterface()
