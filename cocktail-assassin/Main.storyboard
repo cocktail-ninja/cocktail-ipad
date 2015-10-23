@@ -199,8 +199,12 @@
                                                         </mask>
                                                     </variation>
                                                 </label>
+                                                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="gBa-16-ssD">
+                                                    <rect key="frame" x="6" y="36" width="290" height="31"/>
+                                                    <animations/>
+                                                </slider>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qWv-ui-bWU">
-                                                    <rect key="frame" x="8" y="8" width="22" height="22"/>
+                                                    <rect key="frame" x="315" y="7" width="22" height="22"/>
                                                     <animations/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="22" id="HrU-V0-Jx5"/>
@@ -208,18 +212,14 @@
                                                     </constraints>
                                                     <state key="normal" image="remove"/>
                                                 </button>
-                                                <slider opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="gBa-16-ssD">
-                                                    <rect key="frame" x="36" y="36" width="228" height="31"/>
-                                                    <animations/>
-                                                </slider>
                                             </subviews>
                                             <animations/>
                                             <constraints>
-                                                <constraint firstAttribute="trailingMargin" secondItem="gBa-16-ssD" secondAttribute="trailing" constant="30" id="0Vv-Sm-l1T"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="gBa-16-ssD" secondAttribute="trailing" constant="40" id="0Vv-Sm-l1T"/>
                                                 <constraint firstItem="80p-0X-mrk" firstAttribute="baseline" secondItem="Vm0-hh-ny5" secondAttribute="baseline" id="7qn-WR-FAd"/>
                                                 <constraint firstItem="80p-0X-mrk" firstAttribute="leading" secondItem="Vm0-hh-ny5" secondAttribute="trailing" constant="8" symbolic="YES" id="BhE-Hz-lJh"/>
-                                                <constraint firstAttribute="leadingMargin" secondItem="gBa-16-ssD" secondAttribute="leading" constant="-30" id="LKT-3Q-Wfu"/>
-                                                <constraint firstAttribute="leadingMargin" secondItem="qWv-ui-bWU" secondAttribute="leading" id="gDW-Ke-pj0"/>
+                                                <constraint firstAttribute="leadingMargin" secondItem="gBa-16-ssD" secondAttribute="leading" id="LKT-3Q-Wfu"/>
+                                                <constraint firstAttribute="trailing" secondItem="qWv-ui-bWU" secondAttribute="trailing" constant="5" id="QJa-87-mxQ"/>
                                                 <constraint firstItem="gBa-16-ssD" firstAttribute="top" secondItem="Vm0-hh-ny5" secondAttribute="bottom" constant="8" id="hUi-Jh-TpZ"/>
                                                 <constraint firstItem="Vm0-hh-ny5" firstAttribute="width" secondItem="bAa-dY-aSR" secondAttribute="width" multiplier="0.49" id="lVP-NU-Y1s"/>
                                                 <constraint firstItem="80p-0X-mrk" firstAttribute="trailing" secondItem="bAa-dY-aSR" secondAttribute="trailingMargin" id="sLT-U5-6jp"/>
@@ -236,6 +236,40 @@
                                             <outlet property="removeButton" destination="qWv-ui-bWU" id="u75-Wa-TpC"/>
                                             <outlet property="slider" destination="gBa-16-ssD" id="9d5-YZ-dCl"/>
                                         </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="AddIngredient" rowHeight="38" id="iMP-ny-Arf">
+                                        <rect key="frame" x="0.0" y="113" width="342" height="38"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="iMP-ny-Arf" id="kUt-Yh-4fh">
+                                            <rect key="frame" x="0.0" y="0.0" width="342" height="37.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Add Ingredient" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5e1-Hd-FCn">
+                                                    <rect key="frame" x="8" y="8" width="299" height="20.5"/>
+                                                    <animations/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="18"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="add" translatesAutoresizingMaskIntoConstraints="NO" id="AEU-Zz-zie">
+                                                    <rect key="frame" x="315" y="7" width="22" height="22"/>
+                                                    <animations/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="22" id="deQ-hN-Nrl"/>
+                                                        <constraint firstAttribute="width" constant="22" id="yF1-2K-Ys5"/>
+                                                    </constraints>
+                                                </imageView>
+                                            </subviews>
+                                            <animations/>
+                                            <constraints>
+                                                <constraint firstAttribute="topMargin" secondItem="5e1-Hd-FCn" secondAttribute="top" id="7ji-ge-lAC"/>
+                                                <constraint firstAttribute="leadingMargin" secondItem="5e1-Hd-FCn" secondAttribute="leading" id="JjA-WV-w5d"/>
+                                                <constraint firstItem="AEU-Zz-zie" firstAttribute="centerY" secondItem="5e1-Hd-FCn" secondAttribute="centerY" id="LWi-KZ-xCy"/>
+                                                <constraint firstAttribute="trailing" secondItem="AEU-Zz-zie" secondAttribute="trailing" constant="5" id="gsz-1P-z1v"/>
+                                                <constraint firstItem="AEU-Zz-zie" firstAttribute="leading" secondItem="5e1-Hd-FCn" secondAttribute="trailing" constant="8" id="jnn-di-EqR"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <animations/>
                                     </tableViewCell>
                                 </prototypes>
                                 <variation key="widthClass=regular" ambiguous="YES" misplaced="YES">
@@ -301,6 +335,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="add" width="32" height="32"/>
         <image name="admin" width="32" height="32"/>
         <image name="back" width="32" height="32"/>
         <image name="edit" width="32" height="32"/>

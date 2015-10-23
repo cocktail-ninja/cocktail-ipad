@@ -36,6 +36,7 @@ class DrinkIngredientCell: UITableViewCell {
         
         removeButton.hidden = !editMode
         removeButton.addTarget(self, action: "removeClicked", forControlEvents: .TouchUpInside)
+//        self.backgroundColor = UIColor.grayColor()
     }
     
     @IBAction func removeClicked() {

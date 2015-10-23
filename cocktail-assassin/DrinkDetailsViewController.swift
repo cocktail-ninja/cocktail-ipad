@@ -287,9 +287,10 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
             editMode = false
             Drink.save()
             updateUserInterface()
-        }else{
-            let alertController = UIAlertController(title: errorMessage, message: "", preferredStyle: .Alert)
-            self.presentViewController(alertController, animated: true) { }
+        } else {
+            let alertController = UIAlertController(title: "", message: errorMessage, preferredStyle: .Alert)
+            alertController.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+            self.presentViewController(alertController, animated: true, completion: nil)
         }
     }
 
@@ -357,7 +358,11 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
     func didSelectIngredient(ingredient: Ingredient) {
         selectIngredientController?.dismissViewControllerAnimated(true) { }
         if( drink!.hasIngredient(ingredient) ) {
-            let alertController = UIAlertController(title: "Ingredient Already Added", message: "", preferredStyle: .Alert)
+            let alertController = UIAlertController(title: "Ingredient Already Added", message: "asdf", preferredStyle: .Alert)
+            let action = UIAlertAction(title: "OK", style: .Default) { action in
+                // do nothing
+            }
+            alertController.addAction(action)
             self.presentViewController(alertController, animated: true) { }
         } else {
             drink?.addIngredient(ingredient, amount: 30)

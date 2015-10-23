@@ -41,9 +41,7 @@ class NewDrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDa
         
         view.backgroundColor = UIColor.whiteColor()
         
-        drinkImageView.contentMode = .ScaleAspectFit
         drinkImageView.image = drink?.image()
-//        drinkImageView.backgroundColor = UIColor.blueColor()
         
         saveButton.setTitle("Save", forState: .Normal)
         saveButton.hidden = true
@@ -221,23 +219,17 @@ class NewDrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDa
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if( indexPath.row == drink?.drinkIngredients.count ) {
-            return addIngredientCell(tableView, indexPath: indexPath)
+            return tableView.dequeueReusableCellWithIdentifier("AddIngredient")!
         } else {
             return drinkIngredientCell(tableView, indexPath: indexPath)
         }
     }
 
-    func addIngredientCell(tableView: UITableView, indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: .Default, reuseIdentifier: "ADD_INGREDIENT")
-        cell.textLabel?.text = "Add Ingredient"
-        cell.selectionStyle = .None
-        return cell
-    }
-
     func drinkIngredientCell(tableView: UITableView, indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("IngredientCell") as? DrinkIngredientCell
 
-        var sortedIngredients = (drink?.drinkIngredients.allObjects as! [DrinkIngredient]).sort { first, second in
+        let ingredients = drink?.drinkIngredients.allObjects as! [DrinkIngredient]
+        var sortedIngredients = ingredients.sort { first, second in
             return first.ingredient.ingredientClass.rawValue <= second.ingredient.ingredientClass.rawValue &&
                 first.ingredient.ingredientType != .LimeJuice
         }
@@ -273,7 +265,9 @@ class NewDrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDa
         print("edit - Detail Drink Image: \(drinkImageView.frame)")
         nameTextField.frame = nameLabel.frame
         cancelButton.frame = editButton.frame
+        saveButton.frame = pourButton.frame
         editMode = true
+        selectedIndexPath = nil
         
         updateUserInterface()
     }
@@ -290,7 +284,7 @@ class NewDrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDa
             errorMessage = "Name for the drink?\n"
         }
         if(drink?.drinkIngredients.count == 0){
-            errorMessage =  "\(errorMessage) You need at least one ingredient, silly. =P"
+            errorMessage =  "\(errorMessage) You need at least one ingredient, silly. 😋"
         }
         return errorMessage
     }
@@ -299,22 +293,22 @@ class NewDrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDa
         let errorMessage = validateDrink()
         if errorMessage == "" {
             drink?.name = nameTextField.text!
-        
             editMode = false
+            selectedIndexPath = nil
             Drink.save()
             updateUserInterface()
         }else{
             let alertController = UIAlertController(title: errorMessage, message: "", preferredStyle: .Alert)
-            self.presentViewController(alertController, animated: true) { }
+            alertController.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+            self.presentViewController(alertController, animated: true, completion: nil)
         }
     }
 
     func cancel() {
         if( !drink!.objectID.temporaryID ) {
             editMode = false
-            
+            selectedIndexPath = nil
             Drink.revert()
-            
             updateUserInterface()
         } else {
             dismiss()
@@ -364,19 +358,21 @@ class NewDrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDa
     }
 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        selectedIndexPath = selectedIndexPath == indexPath ? nil : indexPath
         if editMode && indexPath.row == drink?.drinkIngredients.count {
             self.presentViewController(self.selectIngredientController!, animated: true) { }
+        } else {
+            selectedIndexPath = selectedIndexPath == indexPath ? nil : indexPath
+            ingredientsTableView.beginUpdates()
+            ingredientsTableView.endUpdates()
         }
-        ingredientsTableView.beginUpdates()
-        ingredientsTableView.endUpdates()
     }
 
     func didSelectIngredient(ingredient: Ingredient) {
         selectIngredientController?.dismissViewControllerAnimated(true) { }
         if( drink!.hasIngredient(ingredient) ) {
             let alertController = UIAlertController(title: "Ingredient Already Added", message: "", preferredStyle: .Alert)
-            self.presentViewController(alertController, animated: true) { }
+            alertController.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+            self.presentViewController(alertController, animated: true, completion: nil)
         } else {
             drink?.addIngredient(ingredient, amount: 30)
             updateUserInterface()
