@@ -99,8 +99,7 @@ class DrinksViewController: UIViewController, iCarouselDataSource, iCarouselDele
             drink = self.items[index]
         }
         
-//        let drinkDetailsVC = DrinkDetailsViewController(drink: drink)
-        let drinkDetailsVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("DrinkDetails") as! NewDrinkDetailsViewController
+        let drinkDetailsVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("DrinkDetails") as! DrinkDetailsViewController
         drinkDetailsVC.drink = drink
         drinkDetailsVC.imageSize = drinkViewTemplate.frame.size
         if( index == items.count ) {

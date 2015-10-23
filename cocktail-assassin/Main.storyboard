@@ -97,10 +97,10 @@
             </objects>
             <point key="canvasLocation" x="207" y="240"/>
         </scene>
-        <!--New Drink Details View Controller-->
+        <!--Drink Details View Controller-->
         <scene sceneID="ga9-bL-bJa">
             <objects>
-                <viewController storyboardIdentifier="DrinkDetails" id="JuE-Vw-o68" customClass="NewDrinkDetailsViewController" customModule="cocktail_assassin" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DrinkDetails" id="JuE-Vw-o68" customClass="DrinkDetailsViewController" customModule="cocktail_assassin" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Fe7-jK-7FW"/>
                         <viewControllerLayoutGuide type="bottom" id="uqR-3q-cwu"/>
@@ -112,20 +112,24 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9hl-xK-S3s">
                                 <rect key="frame" x="20" y="34" width="218" height="546"/>
                                 <subviews>
-                                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="long-island-iced-tea" translatesAutoresizingMaskIntoConstraints="NO" id="kOD-ZV-Z76">
-                                        <rect key="frame" x="-19" y="-38" width="256" height="621"/>
+                                    <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IBm-ae-BCG">
+                                        <rect key="frame" x="0.0" y="0.0" width="218" height="546"/>
                                         <animations/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="256" id="1R6-Xy-5By"/>
-                                            <constraint firstAttribute="height" constant="621" id="bfi-dW-QyU"/>
+                                            <constraint firstAttribute="height" constant="546" id="m0M-6Q-Jga"/>
+                                            <constraint firstAttribute="width" constant="218" id="tPw-c1-tYk"/>
                                         </constraints>
-                                    </imageView>
+                                        <state key="normal" image="long-island-iced-tea"/>
+                                        <connections>
+                                            <action selector="selectImage" destination="JuE-Vw-o68" eventType="touchUpInside" id="Jpg-C1-lZG"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="kOD-ZV-Z76" firstAttribute="centerX" secondItem="9hl-xK-S3s" secondAttribute="centerX" id="cb4-hL-dsc"/>
-                                    <constraint firstItem="kOD-ZV-Z76" firstAttribute="centerY" secondItem="9hl-xK-S3s" secondAttribute="centerY" id="vmd-6P-42S"/>
+                                    <constraint firstItem="IBm-ae-BCG" firstAttribute="centerX" secondItem="9hl-xK-S3s" secondAttribute="centerX" id="WM2-qN-NG5"/>
+                                    <constraint firstItem="IBm-ae-BCG" firstAttribute="centerY" secondItem="9hl-xK-S3s" secondAttribute="centerY" id="Ybd-0h-8th"/>
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Long Island Ice Tea" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QMY-qO-t7H">
@@ -320,10 +324,10 @@
                     </view>
                     <connections>
                         <outlet property="backButton" destination="JFn-9t-WIY" id="iaT-F3-H70"/>
-                        <outlet property="drinkImageView" destination="kOD-ZV-Z76" id="sS2-y7-7dI"/>
+                        <outlet property="drinkImageView" destination="IBm-ae-BCG" id="MPH-i8-0sz"/>
                         <outlet property="editButton" destination="iSR-JK-Nkl" id="cYb-cp-CIB"/>
-                        <outlet property="imageHeight" destination="bfi-dW-QyU" id="42i-ng-n34"/>
-                        <outlet property="imageWidth" destination="1R6-Xy-5By" id="buI-1U-E73"/>
+                        <outlet property="imageHeight" destination="m0M-6Q-Jga" id="Abf-sM-ZzV"/>
+                        <outlet property="imageWidth" destination="tPw-c1-tYk" id="awG-55-vS6"/>
                         <outlet property="ingredientsTableView" destination="CGP-bv-F49" id="Tbe-Kz-k3P"/>
                         <outlet property="nameLabel" destination="QMY-qO-t7H" id="BXm-jY-TYa"/>
                         <outlet property="pourButton" destination="VDu-wS-ixW" id="p9p-ey-mkE"/>
