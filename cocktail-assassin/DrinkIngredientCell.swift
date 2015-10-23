@@ -23,12 +23,6 @@ class DrinkIngredientCell: UITableViewCell {
 
         slider.addTarget(self, action: "sliderChanged", forControlEvents: .ValueChanged)
         
-        ingredientNameLabel.textAlignment = .Right
-        ingredientNameLabel.font = UIFont(name: "HelveticaNeue-Bold", size: 18)
-        
-        ingredientAmountLabel.textAlignment = .Left
-        ingredientAmountLabel.font = UIFont(name: "HelveticaNeue-Light", size: 18)
-        
         drinkNotesLabel?.textColor = ThemeColor.primary
         drinkNotesLabel?.font = UIFont(name: "HelveticaNeue-Light", size: 16)
         drinkNotesLabel?.textAlignment = .Left
@@ -36,7 +30,6 @@ class DrinkIngredientCell: UITableViewCell {
         
         removeButton.hidden = !editMode
         removeButton.addTarget(self, action: "removeClicked", forControlEvents: .TouchUpInside)
-//        self.backgroundColor = UIColor.grayColor()
     }
     
     @IBAction func removeClicked() {

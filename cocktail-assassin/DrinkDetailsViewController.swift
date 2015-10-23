@@ -30,7 +30,6 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("viewDidLoad - Detail Drink Image: \(drinkImageView.frame)")
         
         imageWidth.constant = imageSize.width
         imageHeight.constant = imageSize.height
@@ -49,7 +48,10 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
         saveButton.hidden = true
         view.addSubview(saveButton)
         
+        editButton.imageView?.contentMode = .ScaleAspectFit
+        
         cancelButton.setImage(UIImage(named: "cancel"), forState: .Normal)
+        cancelButton.imageView?.contentMode = .ScaleAspectFit
         cancelButton.hidden = true
         view.addSubview(cancelButton)
         
@@ -99,15 +101,15 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
 //        fadedTableView.addSubview(ingredientsTableView)        
 //        view.addSubview(fadedTableView)
         
-        resetIngredientButton.setImage(UIImage(named: "reset.png"), forState: UIControlState.Normal)
-        resetIngredientButton.setTitle("  Reset ingredients", forState: .Normal)
-        resetIngredientButton.titleLabel?.font = UIFont(name: "HelveticaNeue-Light", size: CGFloat(16))
-        resetIngredientButton.frame = CGRectMake(620, 610, 300, 50)
-        resetIngredientButton.backgroundColor = UIColor.clearColor()
-        resetIngredientButton.setTitleColor(ThemeColor.primary, forState: .Normal)
-        resetIngredientButton.setTitleColor(ThemeColor.highlighted, forState: .Highlighted)
-        resetIngredientButton.titleLabel?.textAlignment = .Center
-        view.addSubview(resetIngredientButton)
+//        resetIngredientButton.setImage(UIImage(named: "reset.png"), forState: UIControlState.Normal)
+//        resetIngredientButton.setTitle("  Reset ingredients", forState: .Normal)
+//        resetIngredientButton.titleLabel?.font = UIFont(name: "HelveticaNeue-Light", size: CGFloat(16))
+//        resetIngredientButton.frame = CGRectMake(620, 610, 300, 50)
+//        resetIngredientButton.backgroundColor = UIColor.clearColor()
+//        resetIngredientButton.setTitleColor(ThemeColor.primary, forState: .Normal)
+//        resetIngredientButton.setTitleColor(ThemeColor.highlighted, forState: .Highlighted)
+//        resetIngredientButton.titleLabel?.textAlignment = .Center
+//        view.addSubview(resetIngredientButton)
         
         nameLabel.font = UIFont(name: "HelveticaNeue-Light", size: 28)
         nameLabel.textAlignment = .Center
@@ -115,7 +117,7 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
         
         nameTextField.frame = nameLabel.frame
         nameTextField.text = drink?.name
-        nameTextField.font = UIFont(name: "HelveticaNeue-Light", size: 28)
+//        nameTextField.font = UIFont(name: "HelveticaNeue-Light", size: 28)
         nameTextField.textAlignment = .Center
         nameTextField.hidden = true
         nameTextField.borderStyle = UITextBorderStyle.Line
@@ -174,13 +176,11 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        print("viewWillAppear - Detail Drink Image: \(drinkImageView.frame)")
         view.layoutSubviews()
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        print("viewDidAppear - Detail Drink Image: \(drinkImageView.frame)")
         if editMode {
             edit()
             if nameTextField.text == "" {
@@ -254,7 +254,15 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return indexPath == selectedIndexPath ? 85 : 38
+        if isCompact {
+            return indexPath == selectedIndexPath ? 85 : 38
+        } else {
+            return 90
+        }
+    }
+    
+    var isCompact: Bool {
+        return UIDevice.currentDevice().userInterfaceIdiom == .Phone
     }
     
     @IBAction func selectImage() {
@@ -274,10 +282,9 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
     }
     
     func edit() {
-        print("edit - Detail Drink Image: \(drinkImageView.frame)")
-//        nameTextField.frame = nameLabel.frame
-//        nameTextField.frame = CGRect(x: nameLabel.frame.origin.x + 2, y: nameLabel.frame.origin.y + 2, width: nameLabel.frame.size.width - 4, height: nameLabel.frame.size.height - 4)
+        nameTextField.text = nameLabel.text
         nameTextField.frame = nameLabel.frame.transform(2, y: 2, width: -4, height: -4)
+        nameTextField.font = nameLabel.font
         cancelButton.frame = editButton.frame
         saveButton.frame = pourButton.frame
         editMode = true
@@ -321,6 +328,7 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
     func cancel() {
         if( !drink!.objectID.temporaryID ) {
             editMode = false
+            nameTextField.resignFirstResponder()
             selectedIndexPath = nil
             Drink.revert()
             updateUserInterface()
