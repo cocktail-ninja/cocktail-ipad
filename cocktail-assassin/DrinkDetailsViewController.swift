@@ -181,6 +181,12 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         print("viewDidAppear - Detail Drink Image: \(drinkImageView.frame)")
+        if editMode {
+            edit()
+            if nameTextField.text == "" {
+                nameTextField.becomeFirstResponder()
+            }            
+        }
     }
     
     func debugLayout() {
@@ -413,6 +419,13 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
         }
         
         return drinkImageView
+    }
+    
+    // MARK - UITextFieldDelegate
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        nameTextField.resignFirstResponder()
+        return true
     }
 
 }

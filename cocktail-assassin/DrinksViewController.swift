@@ -94,7 +94,7 @@ class DrinksViewController: UIViewController, iCarouselDataSource, iCarouselDele
     func carousel(_carousel: iCarousel, didSelectItemAtIndex index: Int) {
         var drink: Drink
         if( index == items.count ) {
-            drink = Drink.newDrink("New Drink", imageName: "add-drink", editable: true, managedContext: managedContext!)
+            drink = Drink.newDrink("", imageName: "add-drink", editable: true, managedContext: managedContext!)
         } else {
             drink = self.items[index]
         }
@@ -103,7 +103,7 @@ class DrinksViewController: UIViewController, iCarouselDataSource, iCarouselDele
         drinkDetailsVC.drink = drink
         drinkDetailsVC.imageSize = drinkViewTemplate.frame.size
         if( index == items.count ) {
-            drinkDetailsVC.edit()
+            drinkDetailsVC.editMode = true
         }
         self.selectedDrinkIndex = index
         self.navigationController?.pushViewController(drinkDetailsVC, animated: true)

@@ -26,9 +26,9 @@ enum IngredientType: String {
     case Vodka = "Vodka"
     case Gin = "Gin"
     case Tequila = "Tequila"
-    case LightRum = "Lime Rum"
+    case LightRum = "Light Rum"
     case DarkRum = "Dark Rum"
-    case TripleSec = "Tripple Sec"
+    case TripleSec = "Triple Sec"
 }
 
 class Ingredient: NSManagedObject {
