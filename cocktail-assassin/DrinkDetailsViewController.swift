@@ -183,7 +183,7 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
         
         // TODO: get this to work!
         DrinkService.makeDrink(recipe: recipe).then() { duration -> Void in
-            self.coreDataStack.reset()
+            self.coreDataStack.revert()
             self.startPourAnimation(duration)
             }.error() { error in
                 print("What is ErrorType ?? \(error)")
@@ -210,7 +210,7 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
             editMode = false
             nameTextField.resignFirstResponder()
             selectedIndexPath = nil
-            coreDataStack.reset()
+            coreDataStack.revert()
             ingredientsTableView.reloadData()
             updateUserInterface()
         } else {
@@ -246,12 +246,12 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
     }
     
     func reset() {
-        coreDataStack.reset()
+        coreDataStack.revert()
         ingredientsTableView.reloadData()
     }
     
     func dismiss() {
-        coreDataStack.reset()
+        coreDataStack.revert()
         navigationController?.popViewControllerAnimated(true)
     }
     

@@ -47,6 +47,10 @@ public class CoreDataStack {
     public func reset() {
         context.reset()
     }
+
+    public func revert() {
+        context.rollback()
+    }
     
     public func save(context: NSManagedObjectContext) {
         if !privateContext.hasChanges && !context.hasChanges {
