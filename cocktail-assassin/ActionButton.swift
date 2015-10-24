@@ -8,28 +8,20 @@ enum StartPouringButtonState {
 }
 
 class ActionButton: UIButton, MONActivityIndicatorViewDelegate {
-    let errorLabel : UILabel
-    let spinner : MONActivityIndicatorView
+    let errorLabel: UILabel
+    let spinner: MONActivityIndicatorView
     
     required init?(coder aDecoder: NSCoder) {
-        var zeroFrame = CGRect(origin: CGPointZero, size: CGSize(width: 100, height: 50));
-        zeroFrame.origin = CGPointZero
-        errorLabel = UILabel(frame: zeroFrame)
-        spinner = MONActivityIndicatorView(frame: zeroFrame)
-        
+        errorLabel = UILabel(frame: CGRectZero)
+        spinner = MONActivityIndicatorView(frame: CGRectZero)
         super.init(coder: aDecoder)
-        
         configure()
     }
     
     override init(frame: CGRect) {
-        var zeroFrame = frame;
-        zeroFrame.origin = CGPointZero
-        errorLabel = UILabel(frame: zeroFrame)
-        spinner = MONActivityIndicatorView(frame: zeroFrame)
-        
+        errorLabel = UILabel(frame: CGRectZero)
+        spinner = MONActivityIndicatorView(frame: CGRectZero)
         super.init(frame: frame)
-        
         configure()
     }
     
@@ -43,11 +35,13 @@ class ActionButton: UIButton, MONActivityIndicatorViewDelegate {
         setTitleColor(ThemeColor.highlighted, forState: .Highlighted)
         titleLabel?.textAlignment = .Center
         
+        errorLabel.frame = CGRect(origin: CGPointZero, size: CGSize(width: 350, height: 48))
         errorLabel.font = UIFont(name: "HelveticaNeue-Light", size: CGFloat(30))
         errorLabel.textColor = ThemeColor.error
         errorLabel.text = "No drinks for you!"
         errorLabel.textAlignment = .Center
-        
+
+        spinner.frame = CGRect(origin: CGPointZero, size: CGSize(width: 350, height: 48))
         spinner.numberOfCircles = 5
         spinner.radius = 6
         spinner.internalSpacing = 15
@@ -55,6 +49,7 @@ class ActionButton: UIButton, MONActivityIndicatorViewDelegate {
         spinner.delay = 0.1
         spinner.delegate = self
         spinner.startAnimating()
+        spinner.center = self.center
         
         addSubview(errorLabel)
         addSubview(spinner)
@@ -63,14 +58,17 @@ class ActionButton: UIButton, MONActivityIndicatorViewDelegate {
         setState(.Normal)
     }
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        errorLabel.frame = errorLabel.frame.setSize(frame.size)
+        spinner.frame = spinner.frame.setSize(frame.size)
+    }
+    
     func show(view: UIView){
-        func hideAll(){
-            titleLabel?.layer.opacity = 0
-            errorLabel.layer.opacity = 0
-            spinner.layer.opacity = 0
-        }
+        setTitle(view == titleLabel ? "Hit me!" : "", forState: .Normal)
+        errorLabel.alpha = 0.0
+        spinner.alpha = 0.0
         
-        hideAll()
         view.fadeIn(0.5, options: .CurveEaseIn)
     }
     

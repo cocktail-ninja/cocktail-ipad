@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		10960D61DC74F6FD868E7ABC /* SelectIngredientViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 109606E630D6B6E9CBF36CEF /* SelectIngredientViewController.swift */; };
-		10960E8EF9C930EDCA2AAA54 /* AddIngredientCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1096022F3D3E04BACBB12E3D /* AddIngredientCell.swift */; };
 		23191FC81B023830003AFB2E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 23191FC71B023830003AFB2E /* Images.xcassets */; };
 		2345A2BB1A7D317D007CB356 /* OpenSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2345A2B11A7D317D007CB356 /* OpenSans-Bold.ttf */; };
 		2345A2BC1A7D317D007CB356 /* OpenSans-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2345A2B21A7D317D007CB356 /* OpenSans-BoldItalic.ttf */; };
@@ -45,6 +44,7 @@
 		EF21824B1AA5E8C900690EFD /* DrinkIngredientCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF21824A1AA5E8C900690EFD /* DrinkIngredientCell.swift */; };
 		EF30F8731BD934E3007E8341 /* AmountSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF30F8721BD934E3007E8341 /* AmountSlider.swift */; settings = {ASSET_TAGS = (); }; };
 		EF30F8751BDA10DA007E8341 /* CGRect+Transform.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF30F8741BDA10DA007E8341 /* CGRect+Transform.swift */; settings = {ASSET_TAGS = (); }; };
+		EF3C62971BDB062600DF9FDC /* NSLayoutConstraint+Copy.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3C62961BDB062600DF9FDC /* NSLayoutConstraint+Copy.swift */; settings = {ASSET_TAGS = (); }; };
 		EF6310021BD6195500390511 /* IngredientsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF6310011BD6195500390511 /* IngredientsService.swift */; settings = {ASSET_TAGS = (); }; };
 		EF6310051BD79C5A00390511 /* AdminViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF6310041BD79C5A00390511 /* AdminViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		EF6310071BD8559400390511 /* Component.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF6310061BD8559400390511 /* Component.swift */; settings = {ASSET_TAGS = (); }; };
@@ -64,7 +64,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1096022F3D3E04BACBB12E3D /* AddIngredientCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddIngredientCell.swift; sourceTree = "<group>"; };
 		109606E630D6B6E9CBF36CEF /* SelectIngredientViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectIngredientViewController.swift; sourceTree = "<group>"; };
 		23191FC71B023830003AFB2E /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		2345A2B11A7D317D007CB356 /* OpenSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Bold.ttf"; sourceTree = "<group>"; };
@@ -111,6 +110,7 @@
 		EF21824A1AA5E8C900690EFD /* DrinkIngredientCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrinkIngredientCell.swift; sourceTree = "<group>"; };
 		EF30F8721BD934E3007E8341 /* AmountSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AmountSlider.swift; sourceTree = "<group>"; };
 		EF30F8741BDA10DA007E8341 /* CGRect+Transform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGRect+Transform.swift"; sourceTree = "<group>"; };
+		EF3C62961BDB062600DF9FDC /* NSLayoutConstraint+Copy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSLayoutConstraint+Copy.swift"; sourceTree = "<group>"; };
 		EF6310011BD6195500390511 /* IngredientsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IngredientsService.swift; sourceTree = "<group>"; };
 		EF6310041BD79C5A00390511 /* AdminViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdminViewController.swift; sourceTree = "<group>"; };
 		EF6310061BD8559400390511 /* Component.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Component.swift; sourceTree = "<group>"; };
@@ -193,6 +193,7 @@
 				23B338831AB85BF6002F3BE8 /* AppDelegate+ManagedContext.swift */,
 				23B338851AB85CDE002F3BE8 /* UIApplication+SharedDelegate.swift */,
 				EF30F8741BDA10DA007E8341 /* CGRect+Transform.swift */,
+				EF3C62961BDB062600DF9FDC /* NSLayoutConstraint+Copy.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -337,7 +338,6 @@
 			isa = PBXGroup;
 			children = (
 				EF21824A1AA5E8C900690EFD /* DrinkIngredientCell.swift */,
-				1096022F3D3E04BACBB12E3D /* AddIngredientCell.swift */,
 				23EEDBA01ADAAD8E007A28E9 /* ActionButton.swift */,
 				23654CE01B0A001400C8C247 /* FixedIncrementSlider.swift */,
 				EF30F8721BD934E3007E8341 /* AmountSlider.swift */,
@@ -575,6 +575,7 @@
 				23906C301AD9CAA100D3613D /* DrinkCarouselTransformation.swift in Sources */,
 				23654CE11B0A001400C8C247 /* FixedIncrementSlider.swift in Sources */,
 				23B338861AB85CDE002F3BE8 /* UIApplication+SharedDelegate.swift in Sources */,
+				EF3C62971BDB062600DF9FDC /* NSLayoutConstraint+Copy.swift in Sources */,
 				23EEDBA11ADAAD8E007A28E9 /* ActionButton.swift in Sources */,
 				23E6376D1A6EBE5600B71A0D /* DrinksViewController.swift in Sources */,
 				2345A2D11A7F9E96007CB356 /* PouringView.swift in Sources */,
@@ -587,7 +588,6 @@
 				23661CF21AA4A6EF00569DAD /* GlowingView.swift in Sources */,
 				2345A2D31A7FC19C007CB356 /* Constants.swift in Sources */,
 				2345A2D71A7FC4C0007CB356 /* UIView+FrameHelper.swift in Sources */,
-				10960E8EF9C930EDCA2AAA54 /* AddIngredientCell.swift in Sources */,
 				10960D61DC74F6FD868E7ABC /* SelectIngredientViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

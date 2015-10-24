@@ -22,5 +22,16 @@ extension CGRect {
     func transform(x: CGFloat, y: CGFloat, width: CGFloat, height: CGFloat) -> CGRect {
         return CGRect.transform(self, x: x, y: y, width: width, height: height)
     }
+
+    static func setSize(rect: CGRect, size: CGSize) -> CGRect {
+        return CGRect(
+            origin: rect.origin,
+            size: size
+        )
+    }
+    
+    func setSize(size: CGSize) -> CGRect {
+        return CGRect.setSize(self, size: size)
+    }
     
 }
