@@ -8,6 +8,8 @@
 import UIKit
 
 struct Constants {
+    
+    // TODO: remove these after they're removed from the pouring drink view.
     struct drinkFrames {
         static let basicFrame = CGRectMake(387, 134, 250, 500)
         static let expandedFrame = CGRectMake(80, 94, 320, 640)

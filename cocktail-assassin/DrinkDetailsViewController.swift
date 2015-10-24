@@ -4,6 +4,7 @@ import PromiseKit
 
 class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataSource, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, SelectIngredientDelegate, RemoveIngredientDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPopoverControllerDelegate {
 
+    var coreDataStack: CoreDataStack!
     var drink: Drink?
     var imageSize: CGSize!
     var selectedIndexPath: NSIndexPath?
@@ -182,7 +183,7 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
         
         // TODO: get this to work!
         DrinkService.makeDrink(recipe: recipe).then() { duration -> Void in
-            Drink.revert()
+            self.coreDataStack.reset()
             self.startPourAnimation(duration)
             }.error() { error in
                 print("What is ErrorType ?? \(error)")
@@ -209,7 +210,7 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
             editMode = false
             nameTextField.resignFirstResponder()
             selectedIndexPath = nil
-            Drink.revert()
+            coreDataStack.reset()
             ingredientsTableView.reloadData()
             updateUserInterface()
         } else {
@@ -223,7 +224,7 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
             drink?.name = nameTextField.text!
             editMode = false
             selectedIndexPath = nil
-            Drink.save()
+            coreDataStack.save()
             updateUserInterface()
         } else {
             let alertController = UIAlertController(title: errorMessage, message: "", preferredStyle: .Alert)
@@ -234,7 +235,7 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
     
     @IBAction func delete() {
         drink!.managedObjectContext?.deleteObject(drink!)
-        Drink.save()
+        coreDataStack.save()
         navigationController?.popViewControllerAnimated(true)
     }
 
@@ -245,12 +246,12 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
     }
     
     func reset() {
-        Drink.revert()
+        coreDataStack.reset()
         ingredientsTableView.reloadData()
     }
     
     func dismiss() {
-        Drink.revert()
+        coreDataStack.reset()
         navigationController?.popViewControllerAnimated(true)
     }
     

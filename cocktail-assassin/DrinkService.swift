@@ -66,85 +66,85 @@ class DrinkService: NSObject {
         Component.newComponent(.Pump, id: "P6", name: "Pump 6", managedContext: managedContext)
     }
     
-    class func createDrinkWithIngredient(name:String, imageName:String, ingredients: [IngredientType: NSNumber], editable: Bool, managedContext: NSManagedObjectContext) -> Drink {
-        let drink = Drink.newDrink(name, imageName: imageName, editable: editable, managedContext: managedContext)
+    class func createDrinkWithIngredient(name:String, imageName:String, ingredients: [IngredientType: NSNumber], editable: Bool, coreDataStack: CoreDataStack) -> Drink {
+        let drink = Drink.newDrink(name, imageName: imageName, editable: editable, managedContext: coreDataStack.context)
         
         for (ingredientType, amountNeeded) in ingredients{
-            drink.addIngredient(Ingredient.getIngredient(ingredientType, managedContext: managedContext)!, amount: amountNeeded)
+            drink.addIngredient(Ingredient.getIngredient(ingredientType, managedContext: coreDataStack.context)!, amount: amountNeeded)
         }
         
-        Drink.save()
+        coreDataStack.save()
         return drink
     }
     
-    class func initDatabase(managedContext: NSManagedObjectContext) {
-        DrinkService.initComponents(managedContext)
-        DrinkService.initIngredients(managedContext)
+    class func initDatabase(coreDataStack: CoreDataStack) {
+        DrinkService.initComponents(coreDataStack.context)
+        DrinkService.initIngredients(coreDataStack.context)
 
         DrinkService.createDrinkWithIngredient("Long Island Ice Tea",
             imageName: "long-island-iced-tea",
             ingredients: [.Vodka: 15, .LightRum: 15, .Tequila: 15, .TripleSec: 15, .Gin: 15, .Coke: 90],
             editable: false,
-            managedContext: managedContext)
+            coreDataStack: coreDataStack)
         
         DrinkService.createDrinkWithIngredient("Alpine Lemonade",
             imageName: "alpine-lemonade",
             ingredients: [.Vodka: 30, .Gin: 30, .LightRum: 30, .Lemonade: 60, .CranberryJuice: 60],
             editable: false,
-            managedContext: managedContext)
+            coreDataStack: coreDataStack)
         
         DrinkService.createDrinkWithIngredient("The Ollie",
             imageName: "the-ollie",
             ingredients: [.Vodka: 60, .LightRum: 30, .Tequila: 30, .Lemonade: 150],
             editable: false,
-            managedContext: managedContext)
+            coreDataStack: coreDataStack)
         
         DrinkService.createDrinkWithIngredient("Cosmopolitan Classic",
             imageName: "cosmopolitan",
             ingredients: [.Vodka: 15, .TripleSec: 15, .CranberryJuice: 30, .LimeJuice: 15],
             editable: false,
-            managedContext: managedContext)
+            coreDataStack: coreDataStack)
         
         DrinkService.createDrinkWithIngredient("Margarita",
             imageName: "margarita",
             ingredients: [.Tequila: 30, .TripleSec: 30, .LimeJuice: 15],
             editable: false,
-            managedContext: managedContext)
+            coreDataStack: coreDataStack)
         
         DrinkService.createDrinkWithIngredient("Vodka Cranberry",
             imageName: "vodka-cranberry",
             ingredients: [.Vodka: 30, .CranberryJuice: 120, .LimeJuice: 15, .OrangeJuice: 30],
             editable: false,
-            managedContext: managedContext)
+            coreDataStack: coreDataStack)
         
         DrinkService.createDrinkWithIngredient("Black Widow",
             imageName: "black-widow",
             ingredients: [.Vodka: 30, .CranberryJuice: 30, .Lemonade: 30],
             editable: false,
-            managedContext: managedContext)
+            coreDataStack: coreDataStack)
         
         DrinkService.createDrinkWithIngredient("Rum and Coke",
             imageName: "rum-and-coke",
             ingredients: [.LightRum: 30, .Coke: 150],
             editable: false,
-            managedContext: managedContext)
+            coreDataStack: coreDataStack)
         
         DrinkService.createDrinkWithIngredient("Mix Your Own!!",
             imageName: "mix-your-own",
             ingredients: [.LightRum: 0, .Vodka: 0, .Gin: 0, .Tequila: 0, .TripleSec: 0, .Coke: 0, .Lemonade: 0, .OrangeJuice: 0, .CranberryJuice: 0],
             editable: false,
-            managedContext: managedContext)
+            coreDataStack: coreDataStack)
         
         DrinkService.createDrinkWithIngredient("Hula-Hula",
             imageName: "hula-hula",
             ingredients: [.Gin: 60, .OrangeJuice: 30, .TripleSec: 7.5 ],
             editable: false,
-            managedContext: managedContext)
+            coreDataStack: coreDataStack)
         
         DrinkService.createDrinkWithIngredient("Kamikaze",
             imageName: "kamikaze",
             ingredients: [.Vodka: 15, .TripleSec: 7.5],
             editable: false,
-            managedContext: managedContext)
+            coreDataStack: coreDataStack)
     }
 }

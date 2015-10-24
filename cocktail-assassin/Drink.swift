@@ -61,40 +61,24 @@ class Drink: NSManagedObject {
         return false
     }
     
-    class func allDrinks (managedContext: NSManagedObjectContext) -> [Drink] {
-        let fetchRequest = NSFetchRequest(entityName: "Drink")
-        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "name", ascending:true)]
+    class func allDrinks(context: NSManagedObjectContext) -> [Drink] {
+        let request = NSFetchRequest(entityName: "Drink")
+        request.sortDescriptors = [NSSortDescriptor(key: "name", ascending:true)]
         do {
-            return try managedContext.executeFetchRequest(fetchRequest) as! [Drink]
+            return try context.executeFetchRequest(request) as! [Drink]
         } catch {
             return [Drink]()
         }
     }
     
-    class func getDrinkByName(name: String) -> Drink? {
-        let fetchRequest = NSFetchRequest(entityName: "Drink")
-        let managedContext = UIApplication.sharedDelegate().getManagedContext()
-
-        fetchRequest.predicate = NSPredicate(format: "name = %@", name)
+    class func getDrinkByName(name: String, context: NSManagedObjectContext) -> Drink? {
+        let request = NSFetchRequest(entityName: "Drink")
+        request.predicate = NSPredicate(format: "name = %@", name)
         do {
-            let results = try managedContext?.executeFetchRequest(fetchRequest) as! [Drink]
+            let results = try context.executeFetchRequest(request) as! [Drink]
             return results.first
         } catch {
             return nil
-        }
-    }
-    
-    class func revert() {
-        let managedContext = UIApplication.sharedDelegate().getManagedContext()
-        managedContext?.rollback();
-    }
-
-    class func save() {
-        let managedContext = UIApplication.sharedDelegate().getManagedContext()
-        do {
-            try managedContext!.save()
-        } catch let error as NSError {
-            print("Could not save \(error), \(error.userInfo)")
         }
     }
     

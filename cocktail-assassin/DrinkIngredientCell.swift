@@ -51,8 +51,6 @@ class DrinkIngredientCell: UITableViewCell {
         ingredientNameLabel.text = drinkIngredient.ingredient.ingredientType.rawValue
         ingredientAmountLabel.text = "\(self.drinkIngredient!.amount)ml"
         removeButton?.hidden = !editMode
-//        slider?.hidden = false
-        ingredientAmountLabel.hidden = false
         
         if (drinkIngredient.ingredient.ingredientClass == .Alcoholic) {
             slider?.minimumValue = 0

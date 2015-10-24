@@ -17,7 +17,7 @@
                         <animations/>
                     </navigationBar>
                     <connections>
-                        <segue destination="GZw-v1-iSH" kind="relationship" relationship="rootViewController" id="Cu6-aY-lfw"/>
+                        <segue destination="2zi-Ub-OtT" kind="relationship" relationship="rootViewController" id="NfE-wd-VJC"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="00D-mj-i82" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -96,7 +96,46 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cBR-dv-uKu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="207" y="240"/>
+            <point key="canvasLocation" x="861" y="240"/>
+        </scene>
+        <!--Loading View Controler-->
+        <scene sceneID="ko6-nv-cPh">
+            <objects>
+                <viewController id="2zi-Ub-OtT" customClass="LoadingViewControler" customModule="cocktail_assassin" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="2t8-Ja-2iT"/>
+                        <viewControllerLayoutGuide type="bottom" id="QMR-9U-NvV"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="vhX-pP-nfJ">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Y1W-Ih-jOF" customClass="MONActivityIndicatorView">
+                                <rect key="frame" x="225" y="280" width="150" height="40"/>
+                                <animations/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="1ze-81-QFT"/>
+                                    <constraint firstAttribute="width" constant="150" id="H46-EH-ofP"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Y1W-Ih-jOF" firstAttribute="centerX" secondItem="vhX-pP-nfJ" secondAttribute="centerX" id="gIO-YX-OJY"/>
+                            <constraint firstItem="Y1W-Ih-jOF" firstAttribute="centerY" secondItem="vhX-pP-nfJ" secondAttribute="centerY" id="jny-Bq-m8m"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="TtR-8Z-2vL"/>
+                    <connections>
+                        <outlet property="loadingIndicator" destination="Y1W-Ih-jOF" id="rQy-gz-UhG"/>
+                        <segue destination="GZw-v1-iSH" kind="show" identifier="Drinks" id="etM-k2-Yb0"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="P84-fD-1eR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="186" y="240"/>
         </scene>
         <!--Drink Details View Controller-->
         <scene sceneID="ga9-bL-bJa">
@@ -350,7 +389,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MgB-02-JHU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="951" y="240"/>
+            <point key="canvasLocation" x="1569" y="240"/>
         </scene>
     </scenes>
     <resources>

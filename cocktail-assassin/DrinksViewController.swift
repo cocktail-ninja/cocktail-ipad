@@ -14,33 +14,21 @@ import PromiseKit
 import iOSSharedViewTransition
 
 class DrinksViewController: UIViewController, iCarouselDataSource, iCarouselDelegate, ASFSharedViewTransitionDataSource {
+    
+    var coreDataStack: CoreDataStack!
+    
     @IBOutlet private var carousel: iCarousel!
     @IBOutlet private var pageControl: UIPageControl!
     @IBOutlet private var drinkViewTemplate: UIView!
     @IBOutlet private var adminButton: UIButton!
+    
     private var selectedDrinkIndex = 0
-
-    lazy var managedContext : NSManagedObjectContext? = {
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        if let managedObjectContext = appDelegate.managedObjectContext {
-            return managedObjectContext
-        }
-        else {
-            return nil
-        }
-    }()
     
     var items:[Drink] = []
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
-        items = Drink.allDrinks(managedContext!)
-        if(items.count == 0){
-            DrinkService.initDatabase(managedContext!)
-            items = Drink.allDrinks(managedContext!)
-        }
-        
+        items = Drink.allDrinks(coreDataStack.context)        
         pageControl.numberOfPages = items.count
         carousel.currentItemIndex = selectedDrinkIndex
     }
@@ -70,7 +58,7 @@ class DrinksViewController: UIViewController, iCarouselDataSource, iCarouselDele
     }
     
     @IBAction func adminClicked() {
-        let adminController = AdminViewController(managedObjectContext: managedContext!)
+        let adminController = AdminViewController(coreDataStack: coreDataStack)
         let navigationController = UINavigationController(rootViewController: adminController)
         adminController.modalPresentationStyle = .FormSheet
         self.presentViewController(navigationController, animated: true, completion: nil)
@@ -94,7 +82,7 @@ class DrinksViewController: UIViewController, iCarouselDataSource, iCarouselDele
     func carousel(_carousel: iCarousel, didSelectItemAtIndex index: Int) {
         var drink: Drink
         if( index == items.count ) {
-            drink = Drink.newDrink("", imageName: "add-drink", editable: true, managedContext: managedContext!)
+            drink = Drink.newDrink("", imageName: "add-drink", editable: true, managedContext: coreDataStack.context)
         } else {
             drink = self.items[index]
         }
@@ -102,6 +90,7 @@ class DrinksViewController: UIViewController, iCarouselDataSource, iCarouselDele
         let drinkDetailsVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("DrinkDetails") as! DrinkDetailsViewController
         drinkDetailsVC.drink = drink
         drinkDetailsVC.imageSize = drinkViewTemplate.frame.size
+        drinkDetailsVC.coreDataStack = coreDataStack
         if( index == items.count ) {
             drinkDetailsVC.editMode = true
         }
@@ -142,4 +131,19 @@ class DrinksViewController: UIViewController, iCarouselDataSource, iCarouselDele
         return theView
     }
 
+}
+
+class DrinkCarouselTransformation {
+    class func getScale(offset: CGFloat) -> CGFloat {
+        return max(1 - pow(offset * 0.3, 2), 0.3)
+    }
+    
+    class func getXOffset(offset: CGFloat, carouselItemWidth: CGFloat) -> CGFloat {
+        if (offset < -3 || offset > 3) {
+            return offset * carouselItemWidth
+        } else {
+            let scaleOffset = -offset * (max(0, (abs(offset) - 1)) * 25)
+            return offset * carouselItemWidth + scaleOffset
+        }
+    }
 }

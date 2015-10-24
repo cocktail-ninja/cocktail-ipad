@@ -12,16 +12,16 @@ import CoreData
 
 class AdminViewController: UITableViewController, SelectIngredientDelegate {
     
-    var managedObjectContext: NSManagedObjectContext
+    var coreDataStack: CoreDataStack
     var selectIngredientController: SelectIngredientViewController?
     let sections: [[Component]]
     var selectedComponent: Component?
 
-    init(managedObjectContext: NSManagedObjectContext) {
-        self.managedObjectContext = managedObjectContext
+    init(coreDataStack: CoreDataStack) {
+        self.coreDataStack = coreDataStack
         self.sections = [
-            Component.componentsOfType(.Valve, managedContext: managedObjectContext),
-            Component.componentsOfType(.Pump, managedContext: managedObjectContext)
+            Component.componentsOfType(.Valve, managedContext: coreDataStack.context),
+            Component.componentsOfType(.Pump, managedContext: coreDataStack.context)
         ]
         super.init(nibName: nil, bundle: nil)
     }
@@ -40,23 +40,19 @@ class AdminViewController: UITableViewController, SelectIngredientDelegate {
         view.backgroundColor = UIColor.whiteColor()
         view.frame = CGRect(x: 0, y: 0, width: 400, height: 400)
         
-        let ingredients = Ingredient.allIngredients(managedObjectContext)
+        let ingredients = Ingredient.allIngredients(coreDataStack.context)
         self.selectIngredientController = SelectIngredientViewController(ingredients: ingredients)
         selectIngredientController?.delegate = self
         selectIngredientController?.modalPresentationStyle = UIModalPresentationStyle.FormSheet
     }
     
     func cancelClicked() {
-        managedObjectContext.reset()
+        coreDataStack.reset()
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     func doneClicked() {
-        do {
-            try managedObjectContext.save()
-        } catch {
-            print("Error saving component mapping!")
-        }
+        coreDataStack.save()
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
