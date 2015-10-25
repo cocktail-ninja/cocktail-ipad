@@ -7,6 +7,7 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
     var coreDataStack: CoreDataStack!
     var drink: Drink?
     var imageSize: CGSize!
+    var imageFrame: CGRect!
     var selectedIndexPath: NSIndexPath?
     
     @IBOutlet var headerView: UIView!
@@ -14,7 +15,7 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
     @IBOutlet var nameLabel: UILabel!
     @IBOutlet var editButton: UIButton!
     
-    @IBOutlet var drinkImageView: UIButton!
+    @IBOutlet var drinkImageView: UIImageView!
     @IBOutlet var ingredientsTableView: UITableView!
     @IBOutlet var pourButton: ActionButton!
     
@@ -41,9 +42,8 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
         imagePickerController.modalPresentationStyle = .CurrentContext
         
         view.backgroundColor = UIColor.whiteColor()
-        
-        drinkImageView.setImage(drink?.image(), forState: .Normal)
-        drinkImageView.imageView?.contentMode = .ScaleAspectFit
+
+        drinkImageView.image = drink?.image()
         drinkImageView.userInteractionEnabled = false
         
         editButton.imageView?.contentMode = .ScaleAspectFit
@@ -94,7 +94,7 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
         pourButton.addTarget(self, action: "pour", forControlEvents: .TouchUpInside)
         
         setupEditingUI()
-    }        
+    }
     
     func setupEditingUI() {
         cancelButton.setImage(UIImage(named: "cancel"), forState: .Normal)
@@ -138,11 +138,6 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
         imagePickerController.delegate = self
         imagePickerController.sourceType = .SavedPhotosAlbum
         imagePickerController.allowsEditing = false
-    }
-    
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        view.layoutSubviews()
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -194,7 +189,7 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
     
     @IBAction func edit() {
         nameTextField.text = nameLabel.text
-        nameTextField.frame = nameLabel.frame //.transform(2, y: 2, width: -4, height: -4)
+        nameTextField.frame = nameLabel.frame
         nameTextField.font = nameLabel.font
         cancelButton.frame = editButton.frame
         saveButton.frame = pourButton.frame
@@ -318,23 +313,16 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
     }
 
     func startPourAnimation(duration: Double) {
-        let pouringVC = PouringViewController(drink: drink!, duration: duration)
+        let pouringVC = PouringViewController(drink: drink!, duration: duration, imageSize: imageSize)
         navigationController?.pushViewController(pouringVC, animated: true)
     }
     
-    func sharedView() -> UIView! {        
-//        drinkImageView.frame = CGRect(origin: drinkImageView.frame.origin, size: imageSize)
-        
-        // Massive Hack! - Spent too long messing around with this stuff. This will do for now.
-        if UIDevice.currentDevice().userInterfaceIdiom == .Phone {
-            if drinkImageView.frame.origin.x < 10 {
-                drinkImageView.frame = CGRect(origin: CGPoint(x: 76.0, y: 27.0), size: imageSize)
-            }
-        } else {
-            if drinkImageView.frame.origin.x < 100 {
-                drinkImageView.frame = CGRect(origin: CGPoint(x: 118.0, y: 67.0), size: imageSize)
-            }
-        }
+    func sharedView() -> UIView! {
+        // Massive Hack! - Spent too long messing around with this stuff.
+        drinkImageView.frame = CGRect(
+            origin: CGPoint(x: 50, y: view.frame.size.height - imageSize.height - 20),
+            size: imageSize
+        )
         
         return drinkImageView
     }
@@ -424,7 +412,7 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String: AnyObject]) {
         let image = info[UIImagePickerControllerOriginalImage] as! UIImage
-        drinkImageView.setImage(image, forState: .Normal)
+        drinkImageView.image = image
         drink?.saveImage(image)
         imagePickerController.dismissViewControllerAnimated(true) { }
     }

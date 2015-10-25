@@ -24,8 +24,6 @@ class DrinkView: UIView {
         
         imageView.frame =  CGRectMake(0, 0, frame.width, frame.height)
         imageView.contentMode = .ScaleAspectFit
-        
-//        self.backgroundColor = UIColor.greenColor()
     }
 
     required init?(coder aDecoder: NSCoder) {

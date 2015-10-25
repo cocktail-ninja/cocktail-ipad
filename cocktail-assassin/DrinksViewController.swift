@@ -23,8 +23,7 @@ class DrinksViewController: UIViewController, iCarouselDataSource, iCarouselDele
     @IBOutlet private var adminButton: UIButton!
     
     private var selectedDrinkIndex = 0
-    
-    var items:[Drink] = []
+    private var items:[Drink] = []
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
@@ -53,7 +52,7 @@ class DrinksViewController: UIViewController, iCarouselDataSource, iCarouselDele
         carouselCurrentItemIndexDidChange(carousel)
     }
     
-    func pageControlChanged() {
+    @IBAction func pageControlChanged() {
         carousel.scrollToItemAtIndex(pageControl.currentPage, animated: true)
     }
     
@@ -66,10 +65,10 @@ class DrinksViewController: UIViewController, iCarouselDataSource, iCarouselDele
     
     func sharedView() -> UIView! {
         let drinkView = carousel.itemViewAtIndex(self.selectedDrinkIndex)! as! DrinkView
-        print("Carousel Drink Image: \(drinkView.imageView.frame)")
-        print("Drink Image Template: \(drinkViewTemplate.frame)")
         return drinkView.imageView
     }
+    
+    // MARK: iCarousel Delegate Methods
     
     func numberOfItemsInCarousel(carousel: iCarousel) -> Int {
         return items.count + 1
