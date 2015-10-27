@@ -3,6 +3,7 @@ import UIKit
 
 protocol RemoveIngredientDelegate {
     func removeDrinkIngredient(ingredient: DrinkIngredient)
+    func amountChanged(ingredient: DrinkIngredient)
 }
 
 class DrinkIngredientCell: UITableViewCell {
@@ -44,6 +45,7 @@ class DrinkIngredientCell: UITableViewCell {
             drinkIngredient?.amount = (Int)(slider.value)
         }
         ingredientAmountLabel.text = "\(drinkIngredient!.amount)ml"
+        delegate?.amountChanged(drinkIngredient!)
     }
     
     func displayDrinkIngredient(drinkIngredient: DrinkIngredient) {
@@ -58,7 +60,7 @@ class DrinkIngredientCell: UITableViewCell {
             increment = 5
         } else {
             slider?.minimumValue = 0
-            slider?.maximumValue = 180
+            slider?.maximumValue = 200
             increment = 10
         }
         

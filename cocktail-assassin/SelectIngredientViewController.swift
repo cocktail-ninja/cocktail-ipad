@@ -7,11 +7,11 @@ import UIKit
 
 protocol SelectIngredientDelegate {
     func didSelectIngredient(ingredient: Ingredient)
+    func didCancel()
 }
 
-class SelectIngredientViewController : UIViewController, UITableViewDataSource, UITableViewDelegate {
+class SelectIngredientViewController : UITableViewController {
 
-    var tableView: UITableView
     var ingredients: Array<Ingredient>
     var delegate: SelectIngredientDelegate?
 
@@ -21,44 +21,33 @@ class SelectIngredientViewController : UIViewController, UITableViewDataSource, 
 
     init(ingredients: [Ingredient]) {
         self.ingredients = ingredients
-        // TODO: need to ad a navbar
-        self.tableView = UITableView(frame: CGRectZero, style: .Plain)
         
         super.init(nibName: nil, bundle: nil)
         
-        tableView.delegate = self
-        tableView.dataSource = self
-        self.view.addSubview(tableView)
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        
-        var constraint = NSLayoutConstraint.constraintsWithVisualFormat(
-            "|[tableView]|",
-            options: [],
-            metrics: nil,
-            views: ["tableView":tableView]
-        )
-        view.addConstraints(constraint)
-        constraint = NSLayoutConstraint.constraintsWithVisualFormat(
-            "V:|[tableView]|",
-            options: [],
-            metrics: nil,
-            views: ["tableView":tableView]
-        )
-        view.addConstraints(constraint)
-        
-        self.preferredContentSize = CGSizeMake(250,439)
-        self.tableView.scrollEnabled = false
+//        self.preferredContentSize = CGSizeMake(250,439)
+//        self.tableView.scrollEnabled = false
     }
 
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        self.navigationItem.title = "Select Ingredient"
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Cancel, target: self, action: "cancelClicked")
+    }
+    
+    func cancelClicked() {
+        delegate?.didCancel()
+    }
+    
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1;
     }
 
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return ingredients.count;
     }
 
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell = tableView.dequeueReusableCellWithIdentifier("CELL")
         if(cell == nil) {
             cell = UITableViewCell(style: .Default, reuseIdentifier: "CELL")
@@ -71,7 +60,7 @@ class SelectIngredientViewController : UIViewController, UITableViewDataSource, 
         return cell!
     }
 
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         delegate?.didSelectIngredient(ingredients[indexPath.row])
     }
     

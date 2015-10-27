@@ -48,6 +48,7 @@
 		EF6310091BD8849F00390511 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF6310081BD8849F00390511 /* Main.storyboard */; settings = {ASSET_TAGS = (); }; };
 		EF63100B1BD8890500390511 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF63100A1BD8890500390511 /* Launch Screen.storyboard */; settings = {ASSET_TAGS = (); }; };
 		EF63100D1BD8DA4800390511 /* DrinkDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF63100C1BD8DA4800390511 /* DrinkDetailsViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		EF975AE01BDFA79B00C099A5 /* DrinkTotalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF975ADF1BDFA79B00C099A5 /* DrinkTotalCell.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -111,6 +112,7 @@
 		EF6310081BD8849F00390511 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		EF63100A1BD8890500390511 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		EF63100C1BD8DA4800390511 /* DrinkDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrinkDetailsViewController.swift; sourceTree = "<group>"; };
+		EF975ADF1BDFA79B00C099A5 /* DrinkTotalCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrinkTotalCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -256,6 +258,7 @@
 				23EEDBA01ADAAD8E007A28E9 /* ActionButton.swift */,
 				23661CF11AA4A6EF00569DAD /* GlowingView.swift */,
 				2345A2D01A7F9E96007CB356 /* PouringView.swift */,
+				EF975ADF1BDFA79B00C099A5 /* DrinkTotalCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -285,8 +288,8 @@
 				23E6376C1A6EBE5600B71A0D /* DrinksViewController.swift */,
 				EF63100C1BD8DA4800390511 /* DrinkDetailsViewController.swift */,
 				23661CBC1AA483D900569DAD /* PouringViewController.swift */,
-				109606E630D6B6E9CBF36CEF /* SelectIngredientViewController.swift */,
 				EF6310041BD79C5A00390511 /* AdminViewController.swift */,
+				109606E630D6B6E9CBF36CEF /* SelectIngredientViewController.swift */,
 				EF3C629B1BDB262200DF9FDC /* LoadingViewController.swift */,
 			);
 			name = Controllers;
@@ -455,6 +458,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EF975AE01BDFA79B00C099A5 /* DrinkTotalCell.swift in Sources */,
 				EF6310071BD8559400390511 /* Component.swift in Sources */,
 				EF21824B1AA5E8C900690EFD /* DrinkIngredientCell.swift in Sources */,
 				23B1E7271A8A28620050A3AF /* DrinkService.swift in Sources */,

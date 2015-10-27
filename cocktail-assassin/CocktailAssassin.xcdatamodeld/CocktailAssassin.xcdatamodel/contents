@@ -27,9 +27,9 @@
         <relationship name="drinkIngredients" optional="YES" toMany="YES" deletionRule="Deny" destinationEntity="DrinkIngredient" inverseName="ingredient" inverseEntity="DrinkIngredient" syncable="YES"/>
     </entity>
     <elements>
+        <element name="Component" positionX="-54" positionY="45" width="128" height="105"/>
         <element name="Drink" positionX="-63" positionY="-18" width="128" height="105"/>
         <element name="DrinkIngredient" positionX="-54" positionY="-9" width="128" height="88"/>
         <element name="Ingredient" positionX="-36" positionY="9" width="128" height="150"/>
-        <element name="Component" positionX="-54" positionY="45" width="128" height="105"/>
     </elements>
 </model>

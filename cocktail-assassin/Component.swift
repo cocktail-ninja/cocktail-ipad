@@ -48,19 +48,21 @@ class Component: NSManagedObject {
     }
     
     class func all(managedContext: NSManagedObjectContext) -> [Component] {
-        let fetchRequest = NSFetchRequest(entityName: EntityName)
+        let request = NSFetchRequest(entityName: EntityName)
+        request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
         do {
-            return try managedContext.executeFetchRequest(fetchRequest) as! [Component]
+            return try managedContext.executeFetchRequest(request) as! [Component]
         } catch {
             return [Component]()
         }
     }
     
     class func componentsOfType(type: ComponentType, managedContext: NSManagedObjectContext) -> [Component] {
-        let fetchRequest = NSFetchRequest(entityName: EntityName)
-        fetchRequest.predicate = NSPredicate(format: "type = %@", argumentArray: [NSNumber(short: type.rawValue)])
+        let request = NSFetchRequest(entityName: EntityName)
+        request.predicate = NSPredicate(format: "type = %@", argumentArray: [NSNumber(short: type.rawValue)])
+        request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]        
         do {
-            return try managedContext.executeFetchRequest(fetchRequest) as! [Component]
+            return try managedContext.executeFetchRequest(request) as! [Component]
         } catch {
             return [Component]()
         }

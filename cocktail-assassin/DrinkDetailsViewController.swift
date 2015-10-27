@@ -172,6 +172,11 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
             return
         }
         
+        if drink!.total() > 260 {
+            self.pourButton.displayError("Overflow!")
+            return
+        }
+        
         let ingredientComponents = ingredients.map {"\($0.ingredient.component!.id)-\($0.amount)"}
         let recipe = ingredientComponents.joinWithSeparator("/")
         pourButton.setState(.Loading)
@@ -296,7 +301,7 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
     }
     
     func didSelectIngredient(ingredient: Ingredient) {
-        selectIngredientController?.dismissViewControllerAnimated(true) { }
+        selectIngredientController?.dismissViewControllerAnimated(true, completion: nil)
         if( drink!.hasIngredient(ingredient) ) {
             let alertController = UIAlertController(title: "Ingredient Already Added", message: "", preferredStyle: .Alert)
             alertController.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
@@ -306,12 +311,20 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
             updateUserInterface()
         }
     }
+    
+    func didCancel() {
+        selectIngredientController?.dismissViewControllerAnimated(true) { }
+    }
 
     func removeDrinkIngredient(ingredient: DrinkIngredient) {
         drink?.removeDrinkIngredient(ingredient)
         updateUserInterface()
     }
 
+    func amountChanged(ingredient: DrinkIngredient) {
+        ingredientsTableView.reloadData()
+    }
+    
     func startPourAnimation(duration: Double) {
         let pouringVC = PouringViewController(drink: drink!, duration: duration, imageSize: imageSize)
         navigationController?.pushViewController(pouringVC, animated: true)
@@ -334,7 +347,7 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return editMode ? drink!.drinkIngredients.count+1 : drink!.drinkIngredients.count;
+        return editMode ? drink!.drinkIngredients.count+1 : drink!.drinkIngredients.count+1;
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -348,7 +361,13 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if( indexPath.row == drink?.drinkIngredients.count ) {
-            return tableView.dequeueReusableCellWithIdentifier("AddIngredient")!
+            if editMode {
+                return tableView.dequeueReusableCellWithIdentifier("AddIngredient")!
+            } else {
+                let cell = tableView.dequeueReusableCellWithIdentifier("TotalCell") as! DrinkTotalCell
+                cell.update(drink!)
+                return cell
+            }
         } else {
             return drinkIngredientCell(tableView, indexPath: indexPath)
         }
@@ -371,7 +390,8 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if editMode && indexPath.row == drink?.drinkIngredients.count {
-            self.presentViewController(self.selectIngredientController!, animated: true) { }
+            let navController = UINavigationController(rootViewController: self.selectIngredientController!)
+            self.presentViewController(navController, animated: true) { }
         } else if isCompact() {
             ingredientsTableView.beginUpdates()
             
@@ -386,10 +406,16 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
             if selectedIndexPath != indexPath {
                 selectedIndexPath = indexPath
                 if let cell = tableView.cellForRowAtIndexPath(indexPath) as? DrinkIngredientCell {
-                    UIView.animateWithDuration(0.3) {
-                        cell.slider?.alpha = 1.0
-                    }
+                    UIView.animateWithDuration(
+                        0.3,
+                        animations: {
+                            cell.slider?.alpha = 1.0
+                        }
+                    )
                 }
+                var rect = tableView.rectForRowAtIndexPath(indexPath)
+                rect = rect.transform(0, y: 0, width: 0, height: rect.size.height * 0.75)
+                tableView.scrollRectToVisible(rect, animated: true)
             } else {
                 selectedIndexPath = nil
             }

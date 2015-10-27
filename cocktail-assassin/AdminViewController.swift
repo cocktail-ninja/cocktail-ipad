@@ -58,9 +58,12 @@ class AdminViewController: UITableViewController, SelectIngredientDelegate {
     
     func didSelectIngredient(ingredient: Ingredient) {
         selectedComponent?.ingredient = ingredient
-        selectIngredientController!.dismissViewControllerAnimated(true) {
-            self.tableView.reloadData()
-        }
+        self.navigationController?.popViewControllerAnimated(true)
+        self.tableView.reloadData()
+    }
+    
+    func didCancel() {
+        self.navigationController?.popViewControllerAnimated(true)        
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -80,6 +83,10 @@ class AdminViewController: UITableViewController, SelectIngredientDelegate {
         return cell!
     }
     
+    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return section == 0 ? "Valve" : "Pump"
+    }
+    
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return sections.count
     }
@@ -90,7 +97,7 @@ class AdminViewController: UITableViewController, SelectIngredientDelegate {
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         selectedComponent = sections[indexPath.section][indexPath.row]
-        self.presentViewController(selectIngredientController!, animated: true, completion: nil)
+        self.navigationController?.pushViewController(selectIngredientController!, animated: true)
     }
     
 }

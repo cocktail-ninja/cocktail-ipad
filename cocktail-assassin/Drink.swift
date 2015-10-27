@@ -81,5 +81,12 @@ class Drink: NSManagedObject {
             return nil
         }
     }
+ 
+    func total() -> Int {
+        let ingredients = drinkIngredients.allObjects as! [DrinkIngredient]
+        return ingredients.reduce(0) { total, ingredient in
+            return total + ingredient.amount.integerValue
+        }
+    }
     
 }

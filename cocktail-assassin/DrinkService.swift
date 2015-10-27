@@ -13,6 +13,10 @@ import CoreData
 
 class DrinkService: NSObject {
     
+    class func maximumDrinkAmount() -> Int {
+        return 260
+    }
+    
     class func makeDrink(recipe recipe: String) -> Promise<Double> {
         let url = Constants.baseUrl.prod + "/make_drink/" + recipe
         
