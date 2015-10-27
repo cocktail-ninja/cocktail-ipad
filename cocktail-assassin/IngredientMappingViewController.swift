@@ -1,0 +1,108 @@
+//
+//  IngredientMappingViewController.swift
+//  cocktail-assassin
+//
+//  Created by Colin Harris on 27/10/15.
+//  Copyright © 2015 tw. All rights reserved.
+//
+
+import Foundation
+import UIKit
+import CoreData
+
+class IngredientMappingViewController: UITableViewController, SelectIngredientDelegate {
+    
+    var coreDataStack: CoreDataStack
+    var selectIngredientController: SelectIngredientViewController?
+    let sections: [[Component]]
+    var selectedComponent: Component?
+    
+    init(coreDataStack: CoreDataStack) {
+        self.coreDataStack = coreDataStack
+        self.sections = [
+            Component.componentsOfType(.Valve, managedContext: coreDataStack.context),
+            Component.componentsOfType(.Pump, managedContext: coreDataStack.context)
+        ]
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        self.navigationItem.title = "Ingredient Mapping"
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Cancel, target: self, action: "cancelClicked")
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Done, target: self, action: "doneClicked")
+        
+        view.backgroundColor = UIColor.whiteColor()
+        view.frame = CGRect(x: 0, y: 0, width: 400, height: 400)
+        
+        let ingredients = Ingredient.allIngredients(coreDataStack.context)
+        self.selectIngredientController = SelectIngredientViewController(ingredients: ingredients)
+        selectIngredientController?.delegate = self
+        selectIngredientController?.modalPresentationStyle = UIModalPresentationStyle.FormSheet
+    }
+    
+    func cancelClicked() {
+        coreDataStack.reset()
+        dismiss()
+    }
+    
+    func doneClicked() {
+        coreDataStack.save()
+        dismiss()
+    }
+    
+    func dismiss() {
+//        self.dismissViewControllerAnimated(true, completion: nil)
+        navigationController?.popViewControllerAnimated(true)
+    }
+    
+    func didSelectIngredient(ingredient: Ingredient) {
+        selectedComponent?.ingredient = ingredient
+        self.navigationController?.popViewControllerAnimated(true)
+        self.tableView.reloadData()
+    }
+    
+    func didCancel() {
+        self.navigationController?.popViewControllerAnimated(true)
+    }
+    
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        var cell = tableView.dequeueReusableCellWithIdentifier("CELL")
+        
+        if(cell == nil) {
+            cell = UITableViewCell(style: .Subtitle, reuseIdentifier: "CELL")
+        }
+        
+        let component = sections[indexPath.section][indexPath.row]
+        cell!.textLabel?.text = component.name
+        
+        if let ingredient = component.ingredient {
+            cell!.detailTextLabel?.text = ingredient.ingredientType.rawValue
+        }
+        
+        return cell!
+    }
+    
+    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return section == 0 ? "Valve" : "Pump"
+    }
+    
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return sections.count
+    }
+    
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return sections[section].count
+    }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        selectedComponent = sections[indexPath.section][indexPath.row]
+        self.navigationController?.pushViewController(selectIngredientController!, animated: true)
+    }
+    
+}

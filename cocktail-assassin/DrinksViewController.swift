@@ -57,9 +57,11 @@ class DrinksViewController: UIViewController, iCarouselDataSource, iCarouselDele
     }
     
     @IBAction func adminClicked() {
-        let adminController = AdminViewController(coreDataStack: coreDataStack)
-        let navigationController = UINavigationController(rootViewController: adminController)
-        adminController.modalPresentationStyle = .FormSheet
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let controller = storyboard.instantiateViewControllerWithIdentifier("AdminViewController") as! AdminViewController
+        controller.coreDataStack = coreDataStack
+        
+        let navigationController = UINavigationController(rootViewController: controller)
         self.presentViewController(navigationController, animated: true, completion: nil)
     }
     

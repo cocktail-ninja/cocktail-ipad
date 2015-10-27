@@ -8,96 +8,22 @@
 
 import Foundation
 import UIKit
-import CoreData
 
-class AdminViewController: UITableViewController, SelectIngredientDelegate {
+class AdminViewController: UIViewController {
     
-    var coreDataStack: CoreDataStack
-    var selectIngredientController: SelectIngredientViewController?
-    let sections: [[Component]]
-    var selectedComponent: Component?
-
-    init(coreDataStack: CoreDataStack) {
-        self.coreDataStack = coreDataStack
-        self.sections = [
-            Component.componentsOfType(.Valve, managedContext: coreDataStack.context),
-            Component.componentsOfType(.Pump, managedContext: coreDataStack.context)
-        ]
-        super.init(nibName: nil, bundle: nil)
-    }
-
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    var coreDataStack: CoreDataStack!
+    
+    @IBAction func mappingCLicked() {
+        let controller = IngredientMappingViewController(coreDataStack: coreDataStack)
+        navigationController?.pushViewController(controller, animated: true)
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        self.navigationItem.title = "Ingredient Mapping"
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Cancel, target: self, action: "cancelClicked")
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Done, target: self, action: "doneClicked")
-        
-        view.backgroundColor = UIColor.whiteColor()
-        view.frame = CGRect(x: 0, y: 0, width: 400, height: 400)
-        
-        let ingredients = Ingredient.allIngredients(coreDataStack.context)
-        self.selectIngredientController = SelectIngredientViewController(ingredients: ingredients)
-        selectIngredientController?.delegate = self
-        selectIngredientController?.modalPresentationStyle = UIModalPresentationStyle.FormSheet
-    }
-    
-    func cancelClicked() {
-        coreDataStack.reset()
-        self.dismissViewControllerAnimated(true, completion: nil)
-    }
-    
-    func doneClicked() {
-        coreDataStack.save()
-        self.dismissViewControllerAnimated(true, completion: nil)
-    }
-    
-    func didSelectIngredient(ingredient: Ingredient) {
-        selectedComponent?.ingredient = ingredient
-        self.navigationController?.popViewControllerAnimated(true)
-        self.tableView.reloadData()
-    }
-    
-    func didCancel() {
-        self.navigationController?.popViewControllerAnimated(true)        
-    }
-    
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCellWithIdentifier("CELL")
-        
-        if(cell == nil) {
-            cell = UITableViewCell(style: .Subtitle, reuseIdentifier: "CELL")
-        }
-        
-        let component = sections[indexPath.section][indexPath.row]
-        cell!.textLabel?.text = component.name
-        
-        if let ingredient = component.ingredient {
-            cell!.detailTextLabel?.text = ingredient.ingredientType.rawValue
-        }
-        
-        return cell!
-    }
-    
-    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return section == 0 ? "Valve" : "Pump"
-    }
-    
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return sections.count
-    }
-    
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return sections[section].count
-    }
-    
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        selectedComponent = sections[indexPath.section][indexPath.row]
-        self.navigationController?.pushViewController(selectIngredientController!, animated: true)
+    @IBAction func cleaningClicked() {
+//        let controller = CleaningViewController()
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let controller = storyboard.instantiateViewControllerWithIdentifier("CleaningViewController") as! CleaningViewController
+        controller.coreDataStack = coreDataStack
+        navigationController?.pushViewController(controller, animated: true)
     }
     
 }

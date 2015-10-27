@@ -49,6 +49,10 @@
 		EF63100B1BD8890500390511 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF63100A1BD8890500390511 /* Launch Screen.storyboard */; settings = {ASSET_TAGS = (); }; };
 		EF63100D1BD8DA4800390511 /* DrinkDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF63100C1BD8DA4800390511 /* DrinkDetailsViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		EF975AE01BDFA79B00C099A5 /* DrinkTotalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF975ADF1BDFA79B00C099A5 /* DrinkTotalCell.swift */; settings = {ASSET_TAGS = (); }; };
+		EFE6217F1BDFB89B001D9660 /* IngredientMappingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE6217E1BDFB89B001D9660 /* IngredientMappingViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		EFE621821BDFB8B2001D9660 /* CleaningViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE621811BDFB8B2001D9660 /* CleaningViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		EFE621841BDFC046001D9660 /* ComponentCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE621831BDFC046001D9660 /* ComponentCollectionCell.swift */; settings = {ASSET_TAGS = (); }; };
+		EFE621861BDFD0F0001D9660 /* SliderCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE621851BDFD0F0001D9660 /* SliderCollectionCell.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -113,6 +117,10 @@
 		EF63100A1BD8890500390511 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		EF63100C1BD8DA4800390511 /* DrinkDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrinkDetailsViewController.swift; sourceTree = "<group>"; };
 		EF975ADF1BDFA79B00C099A5 /* DrinkTotalCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrinkTotalCell.swift; sourceTree = "<group>"; };
+		EFE6217E1BDFB89B001D9660 /* IngredientMappingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IngredientMappingViewController.swift; sourceTree = "<group>"; };
+		EFE621811BDFB8B2001D9660 /* CleaningViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CleaningViewController.swift; sourceTree = "<group>"; };
+		EFE621831BDFC046001D9660 /* ComponentCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComponentCollectionCell.swift; sourceTree = "<group>"; };
+		EFE621851BDFD0F0001D9660 /* SliderCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SliderCollectionCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -259,6 +267,8 @@
 				23661CF11AA4A6EF00569DAD /* GlowingView.swift */,
 				2345A2D01A7F9E96007CB356 /* PouringView.swift */,
 				EF975ADF1BDFA79B00C099A5 /* DrinkTotalCell.swift */,
+				EFE621831BDFC046001D9660 /* ComponentCollectionCell.swift */,
+				EFE621851BDFD0F0001D9660 /* SliderCollectionCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -285,14 +295,24 @@
 		EF3C629A1BDB230800DF9FDC /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				EFE621801BDFB8A0001D9660 /* Admin */,
 				23E6376C1A6EBE5600B71A0D /* DrinksViewController.swift */,
 				EF63100C1BD8DA4800390511 /* DrinkDetailsViewController.swift */,
 				23661CBC1AA483D900569DAD /* PouringViewController.swift */,
-				EF6310041BD79C5A00390511 /* AdminViewController.swift */,
 				109606E630D6B6E9CBF36CEF /* SelectIngredientViewController.swift */,
 				EF3C629B1BDB262200DF9FDC /* LoadingViewController.swift */,
 			);
 			name = Controllers;
+			sourceTree = "<group>";
+		};
+		EFE621801BDFB8A0001D9660 /* Admin */ = {
+			isa = PBXGroup;
+			children = (
+				EF6310041BD79C5A00390511 /* AdminViewController.swift */,
+				EFE6217E1BDFB89B001D9660 /* IngredientMappingViewController.swift */,
+				EFE621811BDFB8B2001D9660 /* CleaningViewController.swift */,
+			);
+			name = Admin;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -469,6 +489,7 @@
 				5931BC071A8A4DC500895B64 /* DrinkIngredient.swift in Sources */,
 				EF30F8751BDA10DA007E8341 /* CGRect+Transform.swift in Sources */,
 				2345A2CF1A7F9786007CB356 /* UIImage+Grayscale.swift in Sources */,
+				EFE621841BDFC046001D9660 /* ComponentCollectionCell.swift in Sources */,
 				23B338861AB85CDE002F3BE8 /* UIApplication+SharedDelegate.swift in Sources */,
 				EF3C62991BDB21E400DF9FDC /* CoreDataStack.swift in Sources */,
 				EF3C62971BDB062600DF9FDC /* NSLayoutConstraint+Copy.swift in Sources */,
@@ -482,6 +503,9 @@
 				23C0532D1A7A810F0060CABB /* DrinkView.swift in Sources */,
 				23661CF21AA4A6EF00569DAD /* GlowingView.swift in Sources */,
 				EF3C629C1BDB262200DF9FDC /* LoadingViewController.swift in Sources */,
+				EFE621821BDFB8B2001D9660 /* CleaningViewController.swift in Sources */,
+				EFE621861BDFD0F0001D9660 /* SliderCollectionCell.swift in Sources */,
+				EFE6217F1BDFB89B001D9660 /* IngredientMappingViewController.swift in Sources */,
 				2345A2D31A7FC19C007CB356 /* Constants.swift in Sources */,
 				2345A2D71A7FC4C0007CB356 /* UIView+FrameHelper.swift in Sources */,
 				10960D61DC74F6FD868E7ABC /* SelectIngredientViewController.swift in Sources */,
