@@ -10,34 +10,26 @@ import Foundation
 import UIKit
 import CoreData
 
-class IngredientMappingViewController: UITableViewController, SelectIngredientDelegate {
+class IngredientMappingViewController: UICollectionViewController, SelectIngredientDelegate, ComponentCollectionCellDelegate {
     
-    var coreDataStack: CoreDataStack
-    let sections: [[Component]]
+    let MARGIN = 20
+    var coreDataStack: CoreDataStack!
+    var sections: [[Component]]!
     var selectedComponent: Component?
-    
-    init(coreDataStack: CoreDataStack) {
-        self.coreDataStack = coreDataStack
-        self.sections = [
-            Component.componentsOfType(.Pump, managedContext: coreDataStack.context),
-            Component.componentsOfType(.Valve, managedContext: coreDataStack.context)
-        ]
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        self.sections = [
+            Component.componentsOfType(.Valve, managedContext: coreDataStack.context),
+            Component.componentsOfType(.Pump, managedContext: coreDataStack.context)
+        ]
         
         self.navigationItem.title = "Ingredient Mapping"
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Cancel, target: self, action: "cancelClicked")
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Done, target: self, action: "doneClicked")
         
-        view.backgroundColor = UIColor.whiteColor()
-        view.frame = CGRect(x: 0, y: 0, width: 400, height: 400)
+        collectionView?.contentInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
     }
     
     func cancelClicked() {
@@ -57,40 +49,51 @@ class IngredientMappingViewController: UITableViewController, SelectIngredientDe
     func didSelectIngredient(ingredient: Ingredient?) {
         selectedComponent?.ingredient = ingredient
         self.navigationController?.popViewControllerAnimated(true)
-        self.tableView.reloadData()
+        self.collectionView?.reloadData()
     }
     
     func didCancel() {
         self.navigationController?.popViewControllerAnimated(true)
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCellWithIdentifier("CELL")
-        if cell == nil {
-            cell = UITableViewCell(style: .Subtitle, reuseIdentifier: "CELL")
-        }
-        
-        let component = sections[indexPath.section][indexPath.row]
-        cell!.textLabel?.text = component.name
-        cell!.detailTextLabel?.text = component.ingredient?.ingredientType.rawValue ?? ""
-        
-        return cell!
+    
+    // MARK: Collection View Methods
+    
+    enum CleaningSection: Int {
+        case Valves = 0
+        case Pumps = 1
     }
     
-    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return section == 0 ? "Pump" : "Valve"
+    func componentForIndexPath(indexPath: NSIndexPath) -> Component {
+        return sections[indexPath.section][indexPath.row]
     }
     
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return sections.count
-    }
-    
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return sections[section].count
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        selectedComponent = sections[indexPath.section][indexPath.row]
+    override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+        return 2
+    }
+    
+    override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("ComponentCell", forIndexPath: indexPath) as! ComponentMappingCell
+        cell.delegate = self
+        let component = componentForIndexPath(indexPath)
+        cell.update(component)
+        return cell
+    }
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+        let count = self.collectionView(collectionView, numberOfItemsInSection: indexPath.section)
+        let width = (view.frame.size.width - CGFloat((count-1) * MARGIN) - 40) / CGFloat(count)
+        return CGSize(width: width, height: 100)
+    }
+    
+    // MARK: ComponentCollectionCellDelegate
+    
+    func componentSelected(component: Component) {
+        selectedComponent = component
         
         let selectIngredientController = SelectIngrediantForComponentViewController(component: selectedComponent!, coreDataStack: coreDataStack)
         selectIngredientController.delegate = self

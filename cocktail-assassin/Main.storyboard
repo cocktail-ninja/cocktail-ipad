@@ -657,6 +657,96 @@
             </objects>
             <point key="canvasLocation" x="1569" y="240"/>
         </scene>
+        <!--Ingredient Mapping View Controller-->
+        <scene sceneID="nZP-os-thn">
+            <objects>
+                <collectionViewController storyboardIdentifier="IngredientMappingViewController" id="zPo-vy-hXo" customClass="IngredientMappingViewController" customModule="cocktail_assassin" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="YB0-Zq-NhU">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="jE2-ti-AEo">
+                            <size key="itemSize" width="100" height="100"/>
+                            <size key="headerReferenceSize" width="50" height="22"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ComponentCell" id="OIz-ed-ZBR" customClass="ComponentMappingCell" customModule="cocktail_assassin" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="22" width="100" height="100"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xaa-aY-ppj">
+                                            <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                                            <animations/>
+                                            <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
+                                            <state key="normal" title="Valve 1">
+                                                <color key="titleColor" red="0.0" green="0.46274998779999998" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            </state>
+                                            <state key="selected">
+                                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <state key="highlighted">
+                                                <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="buttonClicked" destination="OIz-ed-ZBR" eventType="touchUpInside" id="y5m-yZ-NS6"/>
+                                            </connections>
+                                        </button>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Coke" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m1v-xb-xkc">
+                                            <rect key="frame" x="8" y="71" width="84" height="21"/>
+                                            <animations/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <animations/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <animations/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="xaa-aY-ppj" firstAttribute="leading" secondItem="OIz-ed-ZBR" secondAttribute="leadingMargin" constant="-8" id="8MV-uc-wim"/>
+                                    <constraint firstAttribute="bottomMargin" secondItem="xaa-aY-ppj" secondAttribute="bottom" constant="-8" id="AyB-qd-e0a"/>
+                                    <constraint firstAttribute="bottomMargin" secondItem="m1v-xb-xkc" secondAttribute="bottom" id="CgG-x2-cHI"/>
+                                    <constraint firstAttribute="trailingMargin" secondItem="m1v-xb-xkc" secondAttribute="trailing" id="DtU-Ku-cno"/>
+                                    <constraint firstAttribute="leadingMargin" secondItem="m1v-xb-xkc" secondAttribute="leading" id="bGK-Py-Ef2"/>
+                                    <constraint firstItem="xaa-aY-ppj" firstAttribute="top" secondItem="OIz-ed-ZBR" secondAttribute="topMargin" constant="-8" id="dXF-Hi-yUV"/>
+                                    <constraint firstItem="m1v-xb-xkc" firstAttribute="bottom" secondItem="xaa-aY-ppj" secondAttribute="bottom" constant="8" id="j3f-mQ-vA7"/>
+                                    <constraint firstAttribute="trailingMargin" secondItem="xaa-aY-ppj" secondAttribute="trailing" constant="-8" id="slM-gN-9at"/>
+                                </constraints>
+                                <size key="customSize" width="100" height="100"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="j3f-mQ-vA7"/>
+                                    </mask>
+                                </variation>
+                                <connections>
+                                    <outlet property="button" destination="xaa-aY-ppj" id="aGU-OD-HD1"/>
+                                    <outlet property="ingredientLabel" destination="m1v-xb-xkc" id="iXE-jG-xTl"/>
+                                </connections>
+                            </collectionViewCell>
+                        </cells>
+                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="z5r-So-apB">
+                            <rect key="frame" x="0.0" y="0.0" width="600" height="22"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                            <animations/>
+                        </collectionReusableView>
+                        <connections>
+                            <outlet property="dataSource" destination="zPo-vy-hXo" id="vXq-fe-iCD"/>
+                            <outlet property="delegate" destination="zPo-vy-hXo" id="SOh-Dd-tqq"/>
+                        </connections>
+                    </collectionView>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="a8j-Rz-7p6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="861" y="-1192"/>
+        </scene>
     </scenes>
     <resources>
         <image name="add" width="32" height="32"/>

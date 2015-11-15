@@ -40,6 +40,7 @@
 		5931BC081A8A4E1700895B64 /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59AFC2E21A8A3C29006D14DF /* Ingredient.swift */; };
 		EF02DB541BF8E4BD00A4A29A /* SelectIngredientForComponentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF02DB531BF8E4BD00A4A29A /* SelectIngredientForComponentViewController.swift */; };
 		EF02DB561BF8E87300A4A29A /* SelectIngredientForDrinkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF02DB551BF8E87300A4A29A /* SelectIngredientForDrinkViewController.swift */; };
+		EF02DB581BF9037200A4A29A /* ComponentMappingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF02DB571BF9037200A4A29A /* ComponentMappingCell.swift */; };
 		EF21824B1AA5E8C900690EFD /* DrinkIngredientCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF21824A1AA5E8C900690EFD /* DrinkIngredientCell.swift */; };
 		EF30F8751BDA10DA007E8341 /* CGRect+Transform.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF30F8741BDA10DA007E8341 /* CGRect+Transform.swift */; };
 		EF3C62971BDB062600DF9FDC /* NSLayoutConstraint+Copy.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3C62961BDB062600DF9FDC /* NSLayoutConstraint+Copy.swift */; };
@@ -110,6 +111,7 @@
 		BD64C9E21465755B34901485 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		EF02DB531BF8E4BD00A4A29A /* SelectIngredientForComponentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectIngredientForComponentViewController.swift; sourceTree = "<group>"; };
 		EF02DB551BF8E87300A4A29A /* SelectIngredientForDrinkViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectIngredientForDrinkViewController.swift; sourceTree = "<group>"; };
+		EF02DB571BF9037200A4A29A /* ComponentMappingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComponentMappingCell.swift; sourceTree = "<group>"; };
 		EF21824A1AA5E8C900690EFD /* DrinkIngredientCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrinkIngredientCell.swift; sourceTree = "<group>"; };
 		EF30F8741BDA10DA007E8341 /* CGRect+Transform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGRect+Transform.swift"; sourceTree = "<group>"; };
 		EF3C62961BDB062600DF9FDC /* NSLayoutConstraint+Copy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSLayoutConstraint+Copy.swift"; sourceTree = "<group>"; };
@@ -273,6 +275,7 @@
 				EF975ADF1BDFA79B00C099A5 /* DrinkTotalCell.swift */,
 				EFE621831BDFC046001D9660 /* ComponentCollectionCell.swift */,
 				EFE621851BDFD0F0001D9660 /* SliderCollectionCell.swift */,
+				EF02DB571BF9037200A4A29A /* ComponentMappingCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -496,6 +499,7 @@
 				EF30F8751BDA10DA007E8341 /* CGRect+Transform.swift in Sources */,
 				2345A2CF1A7F9786007CB356 /* UIImage+Grayscale.swift in Sources */,
 				EFE621841BDFC046001D9660 /* ComponentCollectionCell.swift in Sources */,
+				EF02DB581BF9037200A4A29A /* ComponentMappingCell.swift in Sources */,
 				23B338861AB85CDE002F3BE8 /* UIApplication+SharedDelegate.swift in Sources */,
 				EF02DB541BF8E4BD00A4A29A /* SelectIngredientForComponentViewController.swift in Sources */,
 				EF3C62991BDB21E400DF9FDC /* CoreDataStack.swift in Sources */,

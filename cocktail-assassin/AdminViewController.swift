@@ -19,7 +19,10 @@ class AdminViewController: UIViewController {
     }
     
     @IBAction func mappingCLicked() {
-        let controller = IngredientMappingViewController(coreDataStack: coreDataStack)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let controller = storyboard.instantiateViewControllerWithIdentifier("IngredientMappingViewController") as! IngredientMappingViewController
+        controller.coreDataStack = coreDataStack
+
         navigationController?.pushViewController(controller, animated: true)
     }
     

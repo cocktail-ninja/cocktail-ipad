@@ -80,12 +80,6 @@ class CleaningViewController: UICollectionViewController, ComponentCollectionCel
 
     }
     
-    @IBAction func sliderChanged(slider: UISlider) {
-        seconds = Int(slider.value)
-        let cell = self.collectionView!.cellForItemAtIndexPath(NSIndexPath(forRow: 0, inSection: 0)) as! SliderCollectionCell
-        cell.sliderLabel.text = "Run for \(seconds) seconds"
-    }
-    
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         
         switch CleaningSection(rawValue: indexPath.section)! {
@@ -100,6 +94,12 @@ class CleaningViewController: UICollectionViewController, ComponentCollectionCel
             let width = (view.frame.size.width - CGFloat((count-1) * MARGIN) - 40) / CGFloat(count)
             return CGSize(width: width, height: 100)
         }
+    }
+    
+    @IBAction func sliderChanged(slider: UISlider) {
+        seconds = Int(slider.value)
+        let cell = self.collectionView!.cellForItemAtIndexPath(NSIndexPath(forRow: 0, inSection: 0)) as! SliderCollectionCell
+        cell.sliderLabel.text = "Run for \(seconds) seconds"
     }
     
     func componentSelected(component: Component) {
