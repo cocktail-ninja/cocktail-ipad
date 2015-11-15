@@ -27,7 +27,8 @@ class DrinksViewController: UIViewController, iCarouselDataSource, iCarouselDele
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        items = Drink.allDrinks(coreDataStack.context)        
+        navigationController?.setNavigationBarHidden(true, animated: true)
+        items = Drink.allDrinks(coreDataStack.context)
         pageControl.numberOfPages = items.count
         carousel.currentItemIndex = selectedDrinkIndex
     }
@@ -60,9 +61,7 @@ class DrinksViewController: UIViewController, iCarouselDataSource, iCarouselDele
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let controller = storyboard.instantiateViewControllerWithIdentifier("AdminViewController") as! AdminViewController
         controller.coreDataStack = coreDataStack
-        
-        let navigationController = UINavigationController(rootViewController: controller)
-        self.presentViewController(navigationController, animated: true, completion: nil)
+        self.navigationController?.pushViewController(controller, animated: true)
     }
     
     func sharedView() -> UIView! {

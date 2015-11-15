@@ -48,9 +48,11 @@ class Ingredient: NSManagedObject {
     }
     
     var ingredientType: IngredientType {
-        get {
-            return IngredientType(rawValue: type)!
-        }
+        return IngredientType(rawValue: type)!
+    }
+    
+    var name: String {
+        return ingredientType.rawValue
     }
 
     class func newIngredient(type: IngredientType, pumpNumber: NSNumber, amountLeft: NSNumber, ingredientClass: IngredientClass, managedContext: NSManagedObjectContext) -> Ingredient {
@@ -87,6 +89,10 @@ class Ingredient: NSManagedObject {
         } catch {
             return [Ingredient]()
         }
+    }
+    
+    func isAlcoholic() -> Bool {
+        return ingredientClass == .Alcoholic
     }
 
 }

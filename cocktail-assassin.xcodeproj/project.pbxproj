@@ -38,21 +38,23 @@
 		5931BC061A8A4DC500895B64 /* Drink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23AC06DA1A6FA260002928CB /* Drink.swift */; };
 		5931BC071A8A4DC500895B64 /* DrinkIngredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59AFC2E11A8A3C29006D14DF /* DrinkIngredient.swift */; };
 		5931BC081A8A4E1700895B64 /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59AFC2E21A8A3C29006D14DF /* Ingredient.swift */; };
+		EF02DB541BF8E4BD00A4A29A /* SelectIngredientForComponentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF02DB531BF8E4BD00A4A29A /* SelectIngredientForComponentViewController.swift */; };
+		EF02DB561BF8E87300A4A29A /* SelectIngredientForDrinkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF02DB551BF8E87300A4A29A /* SelectIngredientForDrinkViewController.swift */; };
 		EF21824B1AA5E8C900690EFD /* DrinkIngredientCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF21824A1AA5E8C900690EFD /* DrinkIngredientCell.swift */; };
-		EF30F8751BDA10DA007E8341 /* CGRect+Transform.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF30F8741BDA10DA007E8341 /* CGRect+Transform.swift */; settings = {ASSET_TAGS = (); }; };
-		EF3C62971BDB062600DF9FDC /* NSLayoutConstraint+Copy.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3C62961BDB062600DF9FDC /* NSLayoutConstraint+Copy.swift */; settings = {ASSET_TAGS = (); }; };
-		EF3C62991BDB21E400DF9FDC /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3C62981BDB21E400DF9FDC /* CoreDataStack.swift */; settings = {ASSET_TAGS = (); }; };
-		EF3C629C1BDB262200DF9FDC /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3C629B1BDB262200DF9FDC /* LoadingViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		EF6310051BD79C5A00390511 /* AdminViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF6310041BD79C5A00390511 /* AdminViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		EF6310071BD8559400390511 /* Component.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF6310061BD8559400390511 /* Component.swift */; settings = {ASSET_TAGS = (); }; };
-		EF6310091BD8849F00390511 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF6310081BD8849F00390511 /* Main.storyboard */; settings = {ASSET_TAGS = (); }; };
-		EF63100B1BD8890500390511 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF63100A1BD8890500390511 /* Launch Screen.storyboard */; settings = {ASSET_TAGS = (); }; };
-		EF63100D1BD8DA4800390511 /* DrinkDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF63100C1BD8DA4800390511 /* DrinkDetailsViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		EF975AE01BDFA79B00C099A5 /* DrinkTotalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF975ADF1BDFA79B00C099A5 /* DrinkTotalCell.swift */; settings = {ASSET_TAGS = (); }; };
-		EFE6217F1BDFB89B001D9660 /* IngredientMappingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE6217E1BDFB89B001D9660 /* IngredientMappingViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		EFE621821BDFB8B2001D9660 /* CleaningViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE621811BDFB8B2001D9660 /* CleaningViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		EFE621841BDFC046001D9660 /* ComponentCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE621831BDFC046001D9660 /* ComponentCollectionCell.swift */; settings = {ASSET_TAGS = (); }; };
-		EFE621861BDFD0F0001D9660 /* SliderCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE621851BDFD0F0001D9660 /* SliderCollectionCell.swift */; settings = {ASSET_TAGS = (); }; };
+		EF30F8751BDA10DA007E8341 /* CGRect+Transform.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF30F8741BDA10DA007E8341 /* CGRect+Transform.swift */; };
+		EF3C62971BDB062600DF9FDC /* NSLayoutConstraint+Copy.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3C62961BDB062600DF9FDC /* NSLayoutConstraint+Copy.swift */; };
+		EF3C62991BDB21E400DF9FDC /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3C62981BDB21E400DF9FDC /* CoreDataStack.swift */; };
+		EF3C629C1BDB262200DF9FDC /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3C629B1BDB262200DF9FDC /* LoadingViewController.swift */; };
+		EF6310051BD79C5A00390511 /* AdminViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF6310041BD79C5A00390511 /* AdminViewController.swift */; };
+		EF6310071BD8559400390511 /* Component.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF6310061BD8559400390511 /* Component.swift */; };
+		EF6310091BD8849F00390511 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF6310081BD8849F00390511 /* Main.storyboard */; };
+		EF63100B1BD8890500390511 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF63100A1BD8890500390511 /* Launch Screen.storyboard */; };
+		EF63100D1BD8DA4800390511 /* DrinkDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF63100C1BD8DA4800390511 /* DrinkDetailsViewController.swift */; };
+		EF975AE01BDFA79B00C099A5 /* DrinkTotalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF975ADF1BDFA79B00C099A5 /* DrinkTotalCell.swift */; };
+		EFE6217F1BDFB89B001D9660 /* IngredientMappingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE6217E1BDFB89B001D9660 /* IngredientMappingViewController.swift */; };
+		EFE621821BDFB8B2001D9660 /* CleaningViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE621811BDFB8B2001D9660 /* CleaningViewController.swift */; };
+		EFE621841BDFC046001D9660 /* ComponentCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE621831BDFC046001D9660 /* ComponentCollectionCell.swift */; };
+		EFE621861BDFD0F0001D9660 /* SliderCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE621851BDFD0F0001D9660 /* SliderCollectionCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -106,6 +108,8 @@
 		59AFC2E21A8A3C29006D14DF /* Ingredient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
 		8D1068E656C146A8BB46FCBE /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD64C9E21465755B34901485 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		EF02DB531BF8E4BD00A4A29A /* SelectIngredientForComponentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectIngredientForComponentViewController.swift; sourceTree = "<group>"; };
+		EF02DB551BF8E87300A4A29A /* SelectIngredientForDrinkViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectIngredientForDrinkViewController.swift; sourceTree = "<group>"; };
 		EF21824A1AA5E8C900690EFD /* DrinkIngredientCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrinkIngredientCell.swift; sourceTree = "<group>"; };
 		EF30F8741BDA10DA007E8341 /* CGRect+Transform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGRect+Transform.swift"; sourceTree = "<group>"; };
 		EF3C62961BDB062600DF9FDC /* NSLayoutConstraint+Copy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSLayoutConstraint+Copy.swift"; sourceTree = "<group>"; };
@@ -301,6 +305,7 @@
 				23661CBC1AA483D900569DAD /* PouringViewController.swift */,
 				109606E630D6B6E9CBF36CEF /* SelectIngredientViewController.swift */,
 				EF3C629B1BDB262200DF9FDC /* LoadingViewController.swift */,
+				EF02DB551BF8E87300A4A29A /* SelectIngredientForDrinkViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -311,6 +316,7 @@
 				EF6310041BD79C5A00390511 /* AdminViewController.swift */,
 				EFE6217E1BDFB89B001D9660 /* IngredientMappingViewController.swift */,
 				EFE621811BDFB8B2001D9660 /* CleaningViewController.swift */,
+				EF02DB531BF8E4BD00A4A29A /* SelectIngredientForComponentViewController.swift */,
 			);
 			name = Admin;
 			sourceTree = "<group>";
@@ -491,6 +497,7 @@
 				2345A2CF1A7F9786007CB356 /* UIImage+Grayscale.swift in Sources */,
 				EFE621841BDFC046001D9660 /* ComponentCollectionCell.swift in Sources */,
 				23B338861AB85CDE002F3BE8 /* UIApplication+SharedDelegate.swift in Sources */,
+				EF02DB541BF8E4BD00A4A29A /* SelectIngredientForComponentViewController.swift in Sources */,
 				EF3C62991BDB21E400DF9FDC /* CoreDataStack.swift in Sources */,
 				EF3C62971BDB062600DF9FDC /* NSLayoutConstraint+Copy.swift in Sources */,
 				23EEDBA11ADAAD8E007A28E9 /* ActionButton.swift in Sources */,
@@ -507,6 +514,7 @@
 				EFE621861BDFD0F0001D9660 /* SliderCollectionCell.swift in Sources */,
 				EFE6217F1BDFB89B001D9660 /* IngredientMappingViewController.swift in Sources */,
 				2345A2D31A7FC19C007CB356 /* Constants.swift in Sources */,
+				EF02DB561BF8E87300A4A29A /* SelectIngredientForDrinkViewController.swift in Sources */,
 				2345A2D71A7FC4C0007CB356 /* UIView+FrameHelper.swift in Sources */,
 				10960D61DC74F6FD868E7ABC /* SelectIngredientViewController.swift in Sources */,
 			);

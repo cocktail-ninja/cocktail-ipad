@@ -13,17 +13,21 @@ class AdminViewController: UIViewController {
     
     var coreDataStack: CoreDataStack!
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        navigationController?.setNavigationBarHidden(false, animated: true)
+    }
+    
     @IBAction func mappingCLicked() {
         let controller = IngredientMappingViewController(coreDataStack: coreDataStack)
         navigationController?.pushViewController(controller, animated: true)
     }
     
     @IBAction func cleaningClicked() {
-//        let controller = CleaningViewController()
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let controller = storyboard.instantiateViewControllerWithIdentifier("CleaningViewController") as! CleaningViewController
         controller.coreDataStack = coreDataStack
         navigationController?.pushViewController(controller, animated: true)
     }
-    
+
 }

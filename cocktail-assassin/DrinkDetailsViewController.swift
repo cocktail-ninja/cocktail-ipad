@@ -129,8 +129,7 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
 //        view.addSubview(deleteButton)
         
         if let drink = drink {
-            let ingredients = Ingredient.allIngredients(drink.managedObjectContext!)
-            self.selectIngredientController = SelectIngredientViewController(ingredients: ingredients)
+            self.selectIngredientController = SelectIngredientForDrinkViewController(drink: drink, coreDataStack: coreDataStack)
         }
         selectIngredientController?.delegate = self
         selectIngredientController?.modalPresentationStyle = UIModalPresentationStyle.FormSheet
@@ -300,7 +299,10 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
         return UIDevice.currentDevice().userInterfaceIdiom == .Phone
     }
     
-    func didSelectIngredient(ingredient: Ingredient) {
+    func didSelectIngredient(ingredient: Ingredient?) {
+        guard let ingredient = ingredient else {
+            return
+        }
         selectIngredientController?.dismissViewControllerAnimated(true, completion: nil)
         if( drink!.hasIngredient(ingredient) ) {
             let alertController = UIAlertController(title: "Ingredient Already Added", message: "", preferredStyle: .Alert)

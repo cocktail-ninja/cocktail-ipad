@@ -68,4 +68,15 @@ class Component: NSManagedObject {
             return [Component]()
         }
     }
+    
+    class func componentMappedToIngredient(ingredient: Ingredient, context: NSManagedObjectContext) -> Component? {
+        let request = NSFetchRequest(entityName: "Component")
+        request.predicate = NSPredicate(format: "ingredient = %@", ingredient)
+        do {
+            let results = try context.executeFetchRequest(request) as! [Component]
+            return results.first
+        } catch {
+            return nil
+        }
+    }
 }

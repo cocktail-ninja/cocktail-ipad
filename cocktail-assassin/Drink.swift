@@ -47,6 +47,11 @@ class Drink: NSManagedObject {
         DrinkIngredient.newDrinkIngredient(self, ingredient: ingredient, amount: amount, managedContext: self.managedObjectContext!)
     }
 
+    func containsIngredient(ingredient: Ingredient) -> Bool {
+        let ingredients = self.drinkIngredients.map() { ($0 as! DrinkIngredient).ingredient } as [Ingredient]
+        return ingredients.contains(ingredient)
+    }
+    
     func removeDrinkIngredient(drinkIngredient: DrinkIngredient) {
         self.managedObjectContext?.deleteObject(drinkIngredient)
         self.managedObjectContext?.processPendingChanges()
