@@ -12,7 +12,7 @@ protocol SelectIngredientDelegate {
 
 class SelectIngredientViewController : UITableViewController {
 
-    var ingredients: Array<Ingredient>
+    var ingredients: [Ingredient]
     var delegate: SelectIngredientDelegate?
 
     required init(coder aDecoder: NSCoder) {

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="AJ3-g5-KFe">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="AJ3-g5-KFe">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
@@ -100,39 +100,62 @@
                                     <rect key="frame" x="0.0" y="0.0" width="540.5" height="80"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="30" minValue="0.0" maxValue="60" translatesAutoresizingMaskIntoConstraints="NO" id="QOU-Nl-Kyr">
-                                            <rect key="frame" x="6" y="10" width="528.5" height="31"/>
-                                            <animations/>
-                                            <connections>
-                                                <action selector="sliderChanged:" destination="pvh-GK-YrK" eventType="valueChanged" id="NBt-kl-9OV"/>
-                                            </connections>
-                                        </slider>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Run for 30 seconds" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mjR-bw-IsL">
-                                            <rect key="frame" x="170" y="39" width="200" height="21"/>
+                                            <rect key="frame" x="110" y="39" width="320" height="20.5"/>
                                             <animations/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="200" id="T7e-LL-Vl6"/>
+                                                <constraint firstAttribute="width" constant="320" id="T7e-LL-Vl6"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RdA-Oa-gR9">
+                                            <rect key="frame" x="496" y="8" width="44" height="35"/>
+                                            <animations/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="44" id="aZJ-9V-Fif"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
+                                            <state key="normal" title="GO!"/>
+                                            <connections>
+                                                <action selector="runSelectedPumpsClicked" destination="pvh-GK-YrK" eventType="touchUpInside" id="v1g-wL-0kj"/>
+                                            </connections>
+                                        </button>
+                                        <progressView hidden="YES" opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progressViewStyle="bar" translatesAutoresizingMaskIntoConstraints="NO" id="21s-ND-Pju">
+                                            <rect key="frame" x="8" y="24" width="480" height="2.5"/>
+                                            <animations/>
+                                        </progressView>
+                                        <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="30" minValue="0.0" maxValue="60" translatesAutoresizingMaskIntoConstraints="NO" id="QOU-Nl-Kyr">
+                                            <rect key="frame" x="6" y="10" width="484" height="31"/>
+                                            <animations/>
+                                            <connections>
+                                                <action selector="sliderChanged:" destination="pvh-GK-YrK" eventType="valueChanged" id="NBt-kl-9OV"/>
+                                            </connections>
+                                        </slider>
                                     </subviews>
                                     <animations/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <animations/>
                                 <constraints>
+                                    <constraint firstAttribute="leadingMargin" secondItem="21s-ND-Pju" secondAttribute="leading" id="4ER-ts-T43"/>
+                                    <constraint firstItem="RdA-Oa-gR9" firstAttribute="centerY" secondItem="QOU-Nl-Kyr" secondAttribute="centerY" id="8wI-x1-ox1"/>
                                     <constraint firstAttribute="leadingMargin" secondItem="QOU-Nl-Kyr" secondAttribute="leading" id="9e5-Id-nxd"/>
                                     <constraint firstItem="mjR-bw-IsL" firstAttribute="top" secondItem="QOU-Nl-Kyr" secondAttribute="bottom" constant="-1" id="MLU-eb-zdY"/>
+                                    <constraint firstItem="RdA-Oa-gR9" firstAttribute="leading" secondItem="21s-ND-Pju" secondAttribute="trailing" constant="8" id="UTY-Xb-zDb"/>
                                     <constraint firstItem="QOU-Nl-Kyr" firstAttribute="top" secondItem="lW9-Qt-Wdf" secondAttribute="topMargin" constant="2" id="aZL-Y7-AO5"/>
                                     <constraint firstItem="mjR-bw-IsL" firstAttribute="centerX" secondItem="lW9-Qt-Wdf" secondAttribute="centerX" id="ffK-KW-C5V"/>
-                                    <constraint firstAttribute="trailingMargin" secondItem="QOU-Nl-Kyr" secondAttribute="trailing" id="t98-5a-2Ch"/>
+                                    <constraint firstItem="21s-ND-Pju" firstAttribute="top" secondItem="lW9-Qt-Wdf" secondAttribute="topMargin" constant="16" id="ofO-5X-E9q"/>
+                                    <constraint firstItem="RdA-Oa-gR9" firstAttribute="leading" secondItem="QOU-Nl-Kyr" secondAttribute="trailing" constant="8" id="ogO-SK-tO5"/>
+                                    <constraint firstAttribute="trailing" secondItem="RdA-Oa-gR9" secondAttribute="trailing" id="xvl-wL-idN"/>
                                 </constraints>
                                 <size key="customSize" width="540.5" height="80"/>
                                 <connections>
+                                    <outlet property="progressBar" destination="21s-ND-Pju" id="rds-FI-aBE"/>
                                     <outlet property="slider" destination="QOU-Nl-Kyr" id="Ie5-Hc-jZr"/>
                                     <outlet property="sliderLabel" destination="mjR-bw-IsL" id="myk-UI-CV7"/>
+                                    <outlet property="startButton" destination="RdA-Oa-gR9" id="5xa-3U-c9G"/>
                                 </connections>
                             </collectionViewCell>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ComponentCell" id="Bg2-VW-6NU" customClass="ComponentCollectionCell" customModule="cocktail_assassin" customModuleProvider="target">
@@ -142,11 +165,19 @@
                                     <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sER-jm-Jae">
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sER-jm-Jae">
                                             <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
                                             <animations/>
                                             <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
-                                            <state key="normal" title="Valve 1"/>
+                                            <state key="normal" title="Valve 1">
+                                                <color key="titleColor" red="0.0" green="0.46274998779999998" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            </state>
+                                            <state key="selected">
+                                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <state key="highlighted">
+                                                <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            </state>
                                             <connections>
                                                 <action selector="buttonClicked" destination="Bg2-VW-6NU" eventType="touchUpInside" id="okX-33-RgW"/>
                                             </connections>

@@ -16,8 +16,8 @@ class CleaningViewController: UICollectionViewController, ComponentCollectionCel
     var coreDataStack: CoreDataStack!
     var valves: [Component]!
     var pumps: [Component]!
-    var buttonsEnabled: Bool = true
     var seconds: Int = 30
+    var cleaningInProgress: Bool = false
     
     enum CleaningSection: Int {
         case Slider = 0
@@ -56,20 +56,25 @@ class CleaningViewController: UICollectionViewController, ComponentCollectionCel
         switch CleaningSection(rawValue: indexPath.section)! {
         case .Slider:
             let cell = collectionView.dequeueReusableCellWithReuseIdentifier("SliderCell", forIndexPath: indexPath) as! SliderCollectionCell
+            if cleaningInProgress {
+                cell.animateProgressWithDuration(Double(seconds))
+            } else {
+                cell.showSlider()
+            }
             return cell
         case .Valves:
             let cell = collectionView.dequeueReusableCellWithReuseIdentifier("ComponentCell", forIndexPath: indexPath) as! ComponentCollectionCell
             cell.delegate = self
             let valve = valves[indexPath.row]
             cell.update(valve)
-            cell.button.enabled = buttonsEnabled
+            cell.buttonEnabled = !cleaningInProgress
             return cell
         case .Pumps:
             let cell = collectionView.dequeueReusableCellWithReuseIdentifier("ComponentCell", forIndexPath: indexPath) as! ComponentCollectionCell
             cell.delegate = self
             let pump = pumps[indexPath.row]
             cell.update(pump)
-            cell.button.enabled = buttonsEnabled
+            cell.buttonEnabled = !cleaningInProgress
             return cell
         }
 
@@ -97,26 +102,29 @@ class CleaningViewController: UICollectionViewController, ComponentCollectionCel
         }
     }
     
-    func componentClicked(component: Component) {
-        print("Component: \(component.name) clicked!")
-        disableButtons()
-        let flowrate = component.type == .Valve ? 52 : 2
-        let ml = seconds * flowrate
-        DrinkService.makeDrink(recipe: "\(component.id)-\(ml)").then { duration in
-            self.performSelector("enableButtons", withObject: nil, afterDelay: duration)
-        }.error { error in
-            self.enableButtons()
+    func componentSelected(component: Component) {
+        // do nothing...
+    }
+    
+    @IBAction func runSelectedPumpsClicked() {
+        let valveRecipe = valves.filter { $0.selected }.map() { "\($0.id)-\(self.seconds * 52)" }
+        let pumpRecipe = pumps.filter { $0.selected }.map() { "\($0.id)-\(self.seconds * 2)" }
+        let recipe = (valveRecipe + pumpRecipe).joinWithSeparator("/")
+        
+        DrinkService.makeDrink(recipe: recipe).then() { duration -> Void in
+            self.seconds = Int(duration)
+            self.cleaningInProgress = true
+            self.collectionView?.reloadData()
+            self.performSelector("cleaningFinished", withObject: nil, afterDelay: duration)
+        }.error() { error in
+            print("What is ErrorType ?? \(error)")
+            self.cleaningFinished()
         }
     }
     
-    func enableButtons() {
-        buttonsEnabled = true
-        self.collectionView!.reloadData()
-    }
-    
-    func disableButtons() {
-        buttonsEnabled = false
-        self.collectionView!.reloadData()
+    func cleaningFinished() {
+        cleaningInProgress = false
+        collectionView?.reloadData()
     }
     
 }
