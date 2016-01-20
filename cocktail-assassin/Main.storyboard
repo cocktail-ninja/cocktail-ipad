@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="AJ3-g5-KFe">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="AJ3-g5-KFe">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
@@ -14,7 +14,6 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="N5a-dn-Cki">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <animations/>
                     </navigationBar>
                     <connections>
                         <segue destination="2zi-Ub-OtT" kind="relationship" relationship="rootViewController" id="NfE-wd-VJC"/>
@@ -38,7 +37,6 @@
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G9w-G8-4CG">
                                 <rect key="frame" x="160" y="20" width="280" height="100"/>
-                                <animations/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="711-Vq-bqg"/>
                                     <constraint firstAttribute="width" constant="280" id="gdf-Yc-s4K"/>
@@ -51,7 +49,6 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QBm-fn-DO0">
                                 <rect key="frame" x="160" y="128" width="280" height="100"/>
-                                <animations/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="5V9-Gf-9sG"/>
                                     <constraint firstAttribute="width" constant="280" id="mfq-yJ-00k"/>
@@ -63,7 +60,6 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="G9w-G8-4CG" firstAttribute="top" secondItem="af6-32-9v8" secondAttribute="bottom" id="FFT-Ob-aVd"/>
@@ -86,7 +82,6 @@
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="qDs-7I-1sW">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <animations/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="NzE-SK-IEM">
                             <size key="itemSize" width="100" height="100"/>
@@ -104,17 +99,15 @@
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Run for 30 seconds" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mjR-bw-IsL">
                                             <rect key="frame" x="110" y="39" width="320" height="20.5"/>
-                                            <animations/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="320" id="T7e-LL-Vl6"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RdA-Oa-gR9">
                                             <rect key="frame" x="496" y="8" width="44" height="35"/>
-                                            <animations/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="44" id="aZJ-9V-Fif"/>
                                             </constraints>
@@ -126,20 +119,16 @@
                                         </button>
                                         <progressView hidden="YES" opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progressViewStyle="bar" translatesAutoresizingMaskIntoConstraints="NO" id="21s-ND-Pju">
                                             <rect key="frame" x="8" y="24" width="480" height="2.5"/>
-                                            <animations/>
                                         </progressView>
                                         <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="30" minValue="0.0" maxValue="60" translatesAutoresizingMaskIntoConstraints="NO" id="QOU-Nl-Kyr">
                                             <rect key="frame" x="6" y="10" width="484" height="31"/>
-                                            <animations/>
                                             <connections>
                                                 <action selector="sliderChanged:" destination="pvh-GK-YrK" eventType="valueChanged" id="NBt-kl-9OV"/>
                                             </connections>
                                         </slider>
                                     </subviews>
-                                    <animations/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
-                                <animations/>
                                 <constraints>
                                     <constraint firstAttribute="leadingMargin" secondItem="21s-ND-Pju" secondAttribute="leading" id="4ER-ts-T43"/>
                                     <constraint firstItem="RdA-Oa-gR9" firstAttribute="centerY" secondItem="QOU-Nl-Kyr" secondAttribute="centerY" id="8wI-x1-ox1"/>
@@ -169,7 +158,6 @@
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sER-jm-Jae">
                                             <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
-                                            <animations/>
                                             <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
                                             <state key="normal" title="Valve 1">
                                                 <color key="titleColor" red="0.0" green="0.46274998779999998" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -185,10 +173,8 @@
                                             </connections>
                                         </button>
                                     </subviews>
-                                    <animations/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
-                                <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="sER-jm-Jae" firstAttribute="top" secondItem="Bg2-VW-6NU" secondAttribute="topMargin" constant="-8" id="B0G-v5-3uk"/>
@@ -205,7 +191,6 @@
                         <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="idl-aa-OOi">
                             <rect key="frame" x="0.0" y="0.0" width="600" height="22"/>
                             <autoresizingMask key="autoresizingMask"/>
-                            <animations/>
                         </collectionReusableView>
                         <connections>
                             <outlet property="dataSource" destination="pvh-GK-YrK" id="z3B-2F-uaI"/>
@@ -234,11 +219,9 @@
                                 <subviews>
                                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TTz-l8-0Nc">
                                         <rect key="frame" x="225" y="42" width="150" height="480"/>
-                                        <animations/>
                                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
                                 </subviews>
-                                <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="TTz-l8-0Nc" firstAttribute="centerX" secondItem="Dqc-Ei-2Ff" secondAttribute="centerX" id="33r-7N-1k7"/>
@@ -247,11 +230,9 @@
                             </view>
                             <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="lrz-ec-NfB">
                                 <rect key="frame" x="0.0" y="563" width="600" height="37"/>
-                                <animations/>
                             </pageControl>
                             <button opaque="NO" alpha="0.29999999999999999" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xh7-Kz-Qq6">
                                 <rect key="frame" x="544" y="10" width="46" height="46"/>
-                                <animations/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="Xh7-Kz-Qq6" secondAttribute="height" multiplier="1:1" id="Ijd-Xw-Srs"/>
                                 </constraints>
@@ -261,7 +242,6 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="Dqc-Ei-2Ff" secondAttribute="trailing" id="50l-3E-cn9"/>
@@ -305,7 +285,6 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Y1W-Ih-jOF" customClass="MONActivityIndicatorView">
                                 <rect key="frame" x="225" y="280" width="150" height="40"/>
-                                <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="1ze-81-QFT"/>
@@ -313,7 +292,6 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Y1W-Ih-jOF" firstAttribute="centerX" secondItem="vhX-pP-nfJ" secondAttribute="centerX" id="gIO-YX-OJY"/>
@@ -347,7 +325,6 @@
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JFn-9t-WIY">
                                         <rect key="frame" x="0.0" y="13" width="46" height="46"/>
-                                        <animations/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="JFn-9t-WIY" secondAttribute="height" multiplier="1:1" id="bEX-9s-q6R"/>
                                         </constraints>
@@ -355,7 +332,6 @@
                                     </button>
                                     <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iSR-JK-Nkl">
                                         <rect key="frame" x="514" y="13" width="46" height="46"/>
-                                        <animations/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="iSR-JK-Nkl" secondAttribute="height" multiplier="1:1" id="JId-da-KzK"/>
                                         </constraints>
@@ -363,9 +339,8 @@
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Long Island Ice Tea" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QMY-qO-t7H">
                                         <rect key="frame" x="206" y="12" width="300" height="48"/>
-                                        <animations/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="32"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                         <variation key="heightClass=regular">
                                             <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="38"/>
@@ -375,7 +350,6 @@
                                         </variation>
                                     </label>
                                 </subviews>
-                                <animations/>
                                 <constraints>
                                     <constraint firstItem="JFn-9t-WIY" firstAttribute="leading" secondItem="xXN-GE-sJX" secondAttribute="leading" id="6GJ-cK-N6Z"/>
                                     <constraint firstItem="iSR-JK-Nkl" firstAttribute="leading" secondItem="QMY-qO-t7H" secondAttribute="trailing" constant="8" id="B6J-eQ-7x5"/>
@@ -393,16 +367,13 @@
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9hl-xK-S3s">
                                 <rect key="frame" x="20" y="82" width="210" height="498"/>
-                                <animations/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VDu-wS-ixW" customClass="ActionButton" customModule="cocktail_assassin" customModuleProvider="target">
                                 <rect key="frame" x="230" y="534" width="350" height="46"/>
-                                <animations/>
                                 <state key="normal" title="Hit me!"/>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="85" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="CGP-bv-F49">
                                 <rect key="frame" x="230" y="90" width="350" height="436"/>
-                                <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" shouldIndentWhileEditing="NO" reuseIdentifier="IngredientCell" rowHeight="90" id="NqD-P4-0eW" customClass="DrinkIngredientCell" customModule="cocktail_assassin" customModuleProvider="target">
@@ -414,12 +385,11 @@
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cranberry Juice" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lu2-2N-8p5">
                                                     <rect key="frame" x="8" y="8" width="164" height="32"/>
-                                                    <animations/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="32" id="XG5-SC-cgD"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="20"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                     <variation key="heightClass=regular">
                                                         <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="28"/>
@@ -427,16 +397,14 @@
                                                 </label>
                                                 <slider opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="adR-x6-OaU">
                                                     <rect key="frame" x="51" y="46" width="249" height="31"/>
-                                                    <animations/>
                                                 </slider>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="30ml" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4k2-Fs-aED">
                                                     <rect key="frame" x="177" y="8" width="164.5" height="32"/>
-                                                    <animations/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="32" id="Qsc-nw-c97"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="20"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                     <variation key="heightClass=regular">
                                                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="28"/>
@@ -444,7 +412,6 @@
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YEV-17-ea9">
                                                     <rect key="frame" x="310" y="8" width="32" height="32"/>
-                                                    <animations/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="32" id="MVj-Us-3fX"/>
                                                         <constraint firstAttribute="height" constant="32" id="w6Z-EK-mlz"/>
@@ -452,7 +419,6 @@
                                                     <state key="normal" title="Button" image="remove"/>
                                                 </button>
                                             </subviews>
-                                            <animations/>
                                             <constraints>
                                                 <constraint firstAttribute="trailingMargin" secondItem="YEV-17-ea9" secondAttribute="trailing" id="Kah-EF-7Gd"/>
                                                 <constraint firstAttribute="leadingMargin" secondItem="Lu2-2N-8p5" secondAttribute="leading" id="Rn1-U0-UrK"/>
@@ -467,7 +433,6 @@
                                                 <constraint firstAttribute="topMargin" secondItem="Lu2-2N-8p5" secondAttribute="top" id="xYy-nR-XRN"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <animations/>
                                         <connections>
                                             <outlet property="ingredientAmountLabel" destination="4k2-Fs-aED" id="1ZD-vp-jom"/>
                                             <outlet property="ingredientNameLabel" destination="Lu2-2N-8p5" id="sVD-hU-tz6"/>
@@ -484,9 +449,8 @@
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Ingredient" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5e1-Hd-FCn">
                                                     <rect key="frame" x="88" y="8" width="175" height="43.5"/>
-                                                    <animations/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="20"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                     <variation key="heightClass=regular">
                                                         <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="28"/>
@@ -494,13 +458,11 @@
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="add" translatesAutoresizingMaskIntoConstraints="NO" id="AEU-Zz-zie">
                                                     <rect key="frame" x="58" y="15" width="30" height="30"/>
-                                                    <animations/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="AEU-Zz-zie" secondAttribute="height" multiplier="1:1" id="pCg-9p-B1u"/>
                                                     </constraints>
                                                 </imageView>
                                             </subviews>
-                                            <animations/>
                                             <constraints>
                                                 <constraint firstAttribute="topMargin" secondItem="5e1-Hd-FCn" secondAttribute="top" id="7ji-ge-lAC"/>
                                                 <constraint firstItem="5e1-Hd-FCn" firstAttribute="width" secondItem="kUt-Yh-4fh" secondAttribute="width" multiplier="0.5" id="8QV-fV-8DZ"/>
@@ -512,7 +474,6 @@
                                                 <constraint firstAttribute="bottomMargin" secondItem="5e1-Hd-FCn" secondAttribute="bottom" id="zmH-fJ-Xpm"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <animations/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TotalCell" id="i3s-Oa-0g4" customClass="DrinkTotalCell" customModule="cocktail_assassin" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="178" width="350" height="85"/>
@@ -523,12 +484,11 @@
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N9O-6j-kVO">
                                                     <rect key="frame" x="8" y="8" width="164" height="32"/>
-                                                    <animations/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="32" id="vGk-d0-p3a"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="20"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                     <variation key="heightClass=regular">
                                                         <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="28"/>
@@ -536,12 +496,11 @@
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="30ml" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ylu-Om-R4m">
                                                     <rect key="frame" x="177" y="8" width="164.5" height="32"/>
-                                                    <animations/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="32" id="yr1-os-sj4"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="20"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                     <variation key="heightClass=regular">
                                                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="28"/>
@@ -549,12 +508,11 @@
                                                 </label>
                                                 <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Standard Drinks" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p3t-A8-h8h">
                                                     <rect key="frame" x="8" y="45" width="164" height="32"/>
-                                                    <animations/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="32" id="jhS-Y5-06b"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="20"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                     <variation key="heightClass=regular">
                                                         <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="28"/>
@@ -562,19 +520,17 @@
                                                 </label>
                                                 <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2.4" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="REG-W5-cl2">
                                                     <rect key="frame" x="177" y="45" width="164.5" height="32"/>
-                                                    <animations/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="32" id="cUu-Ew-eAo"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="20"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                     <variation key="heightClass=regular">
                                                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="28"/>
                                                     </variation>
                                                 </label>
                                             </subviews>
-                                            <animations/>
                                             <constraints>
                                                 <constraint firstItem="p3t-A8-h8h" firstAttribute="width" secondItem="CDq-LN-2fm" secondAttribute="width" multiplier="0.47" id="0gg-wx-kww"/>
                                                 <constraint firstItem="ylu-Om-R4m" firstAttribute="top" secondItem="CDq-LN-2fm" secondAttribute="topMargin" id="BAc-cC-I85"/>
@@ -590,7 +546,6 @@
                                                 <constraint firstAttribute="leadingMargin" secondItem="p3t-A8-h8h" secondAttribute="leading" id="w4A-kx-arn"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <animations/>
                                         <connections>
                                             <outlet property="totalAmountLabel" destination="ylu-Om-R4m" id="8bA-XR-ddc"/>
                                             <outlet property="totalLabel" destination="N9O-6j-kVO" id="BsT-Bv-w4l"/>
@@ -606,14 +561,12 @@
                             </tableView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="long-island-iced-tea" translatesAutoresizingMaskIntoConstraints="NO" id="Zey-Qe-W0v">
                                 <rect key="frame" x="50" y="100" width="150" height="480"/>
-                                <animations/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="150" id="IJr-LU-exH"/>
                                     <constraint firstAttribute="height" constant="480" id="z2p-CN-PAg"/>
                                 </constraints>
                             </imageView>
                         </subviews>
-                        <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="CGP-bv-F49" secondAttribute="trailing" id="1Ka-yK-yB6"/>
@@ -664,7 +617,6 @@
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="YB0-Zq-NhU">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <animations/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="jE2-ti-AEo">
                             <size key="itemSize" width="100" height="100"/>
@@ -682,7 +634,6 @@
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xaa-aY-ppj">
                                             <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
-                                            <animations/>
                                             <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
                                             <state key="normal" title="Valve 1">
                                                 <color key="titleColor" red="0.0" green="0.46274998779999998" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -699,16 +650,13 @@
                                         </button>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Coke" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m1v-xb-xkc">
                                             <rect key="frame" x="8" y="71" width="84" height="21"/>
-                                            <animations/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
-                                    <animations/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
-                                <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="xaa-aY-ppj" firstAttribute="leading" secondItem="OIz-ed-ZBR" secondAttribute="leadingMargin" constant="-8" id="8MV-uc-wim"/>
@@ -735,7 +683,6 @@
                         <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="z5r-So-apB">
                             <rect key="frame" x="0.0" y="0.0" width="600" height="22"/>
                             <autoresizingMask key="autoresizingMask"/>
-                            <animations/>
                         </collectionReusableView>
                         <connections>
                             <outlet property="dataSource" destination="zPo-vy-hXo" id="vXq-fe-iCD"/>

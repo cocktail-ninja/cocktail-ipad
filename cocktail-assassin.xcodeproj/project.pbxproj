@@ -52,10 +52,26 @@
 		EF63100B1BD8890500390511 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF63100A1BD8890500390511 /* Launch Screen.storyboard */; };
 		EF63100D1BD8DA4800390511 /* DrinkDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF63100C1BD8DA4800390511 /* DrinkDetailsViewController.swift */; };
 		EF975AE01BDFA79B00C099A5 /* DrinkTotalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF975ADF1BDFA79B00C099A5 /* DrinkTotalCell.swift */; };
+		EFC168381C4F6E46003062E4 /* DrinkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFC168371C4F6E46003062E4 /* DrinkService.swift */; };
+		EFC1683A1C4F6E90003062E4 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFC168391C4F6E90003062E4 /* Constants.swift */; };
+		EFC1683C1C4F7F6D003062E4 /* PourDrinkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFC1683B1C4F7F6D003062E4 /* PourDrinkController.swift */; };
 		EFE6217F1BDFB89B001D9660 /* IngredientMappingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE6217E1BDFB89B001D9660 /* IngredientMappingViewController.swift */; };
 		EFE621821BDFB8B2001D9660 /* CleaningViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE621811BDFB8B2001D9660 /* CleaningViewController.swift */; };
 		EFE621841BDFC046001D9660 /* ComponentCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE621831BDFC046001D9660 /* ComponentCollectionCell.swift */; };
 		EFE621861BDFD0F0001D9660 /* SliderCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE621851BDFD0F0001D9660 /* SliderCollectionCell.swift */; };
+		EFEAD8891C469CCC00C362DE /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EFEAD8871C469CCC00C362DE /* Interface.storyboard */; };
+		EFEAD88B1C469CCC00C362DE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EFEAD88A1C469CCC00C362DE /* Assets.xcassets */; };
+		EFEAD8921C469CCC00C362DE /* cocktail-assassin-watch Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = EFEAD8911C469CCC00C362DE /* cocktail-assassin-watch Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		EFEAD8991C469CCC00C362DE /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFEAD8981C469CCC00C362DE /* InterfaceController.swift */; };
+		EFEAD89B1C469CCC00C362DE /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFEAD89A1C469CCC00C362DE /* ExtensionDelegate.swift */; };
+		EFEAD89D1C469CCC00C362DE /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFEAD89C1C469CCC00C362DE /* NotificationController.swift */; };
+		EFEAD89F1C469CCC00C362DE /* GlanceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFEAD89E1C469CCC00C362DE /* GlanceController.swift */; };
+		EFEAD8A11C469CCC00C362DE /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFEAD8A01C469CCC00C362DE /* ComplicationController.swift */; };
+		EFEAD8A31C469CCC00C362DE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EFEAD8A21C469CCC00C362DE /* Assets.xcassets */; };
+		EFEAD8A71C469CCC00C362DE /* cocktail-assassin-watch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = EFEAD8851C469CCC00C362DE /* cocktail-assassin-watch.app */; };
+		EFEAD8B11C46AE3C00C362DE /* CocktailRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFEAD8B01C46AE3C00C362DE /* CocktailRowController.swift */; };
+		EFEAD8B31C46AF4100C362DE /* Drink.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFEAD8B21C46AF4100C362DE /* Drink.swift */; };
+		EFEAD8B51C47299600C362DE /* DrinkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFEAD8B41C47299600C362DE /* DrinkController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,7 +82,46 @@
 			remoteGlobalIDString = 237B07681A6EA5F7001AA652;
 			remoteInfo = "cocktail-assassin";
 		};
+		EFEAD8931C469CCC00C362DE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 237B07611A6EA5F7001AA652 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EFEAD8901C469CCC00C362DE;
+			remoteInfo = "cocktail-assassin-watch Extension";
+		};
+		EFEAD8A51C469CCC00C362DE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 237B07611A6EA5F7001AA652 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EFEAD8841C469CCC00C362DE;
+			remoteInfo = "cocktail-assassin-watch";
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		EFEAD8AD1C469CCC00C362DE /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				EFEAD8921C469CCC00C362DE /* cocktail-assassin-watch Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EFEAD8AF1C469CCC00C362DE /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				EFEAD8A71C469CCC00C362DE /* cocktail-assassin-watch.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		109606E630D6B6E9CBF36CEF /* SelectIngredientViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectIngredientViewController.swift; sourceTree = "<group>"; };
@@ -123,10 +178,29 @@
 		EF63100A1BD8890500390511 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		EF63100C1BD8DA4800390511 /* DrinkDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrinkDetailsViewController.swift; sourceTree = "<group>"; };
 		EF975ADF1BDFA79B00C099A5 /* DrinkTotalCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrinkTotalCell.swift; sourceTree = "<group>"; };
+		EFC168371C4F6E46003062E4 /* DrinkService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrinkService.swift; sourceTree = "<group>"; };
+		EFC168391C4F6E90003062E4 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		EFC1683B1C4F7F6D003062E4 /* PourDrinkController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PourDrinkController.swift; sourceTree = "<group>"; };
 		EFE6217E1BDFB89B001D9660 /* IngredientMappingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IngredientMappingViewController.swift; sourceTree = "<group>"; };
 		EFE621811BDFB8B2001D9660 /* CleaningViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CleaningViewController.swift; sourceTree = "<group>"; };
 		EFE621831BDFC046001D9660 /* ComponentCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComponentCollectionCell.swift; sourceTree = "<group>"; };
 		EFE621851BDFD0F0001D9660 /* SliderCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SliderCollectionCell.swift; sourceTree = "<group>"; };
+		EFEAD8851C469CCC00C362DE /* cocktail-assassin-watch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "cocktail-assassin-watch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		EFEAD8881C469CCC00C362DE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
+		EFEAD88A1C469CCC00C362DE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		EFEAD88C1C469CCC00C362DE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EFEAD8911C469CCC00C362DE /* cocktail-assassin-watch Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "cocktail-assassin-watch Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		EFEAD8971C469CCC00C362DE /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
+		EFEAD8981C469CCC00C362DE /* InterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceController.swift; sourceTree = "<group>"; };
+		EFEAD89A1C469CCC00C362DE /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
+		EFEAD89C1C469CCC00C362DE /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
+		EFEAD89E1C469CCC00C362DE /* GlanceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlanceController.swift; sourceTree = "<group>"; };
+		EFEAD8A01C469CCC00C362DE /* ComplicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
+		EFEAD8A21C469CCC00C362DE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		EFEAD8A41C469CCC00C362DE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EFEAD8B01C46AE3C00C362DE /* CocktailRowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CocktailRowController.swift; sourceTree = "<group>"; };
+		EFEAD8B21C46AF4100C362DE /* Drink.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Drink.swift; sourceTree = "<group>"; };
+		EFEAD8B41C47299600C362DE /* DrinkController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrinkController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +213,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		237B07731A6EA5F7001AA652 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EFEAD88E1C469CCC00C362DE /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -215,6 +296,8 @@
 			children = (
 				237B076B1A6EA5F7001AA652 /* cocktail-assassin */,
 				237B07791A6EA5F7001AA652 /* cocktail-assassinTests */,
+				EFEAD8861C469CCC00C362DE /* cocktail-assassin-watch */,
+				EFEAD8951C469CCC00C362DE /* cocktail-assassin-watch Extension */,
 				237B076A1A6EA5F7001AA652 /* Products */,
 				11EC26A8AD9A15F7D6E959BD /* Pods */,
 				52EB9BD00F9E07763522F55F /* Frameworks */,
@@ -226,6 +309,8 @@
 			children = (
 				237B07691A6EA5F7001AA652 /* cocktail-assassin.app */,
 				237B07761A6EA5F7001AA652 /* cocktail-assassinTests.xctest */,
+				EFEAD8851C469CCC00C362DE /* cocktail-assassin-watch.app */,
+				EFEAD8911C469CCC00C362DE /* cocktail-assassin-watch Extension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -324,6 +409,45 @@
 			name = Admin;
 			sourceTree = "<group>";
 		};
+		EFEAD8861C469CCC00C362DE /* cocktail-assassin-watch */ = {
+			isa = PBXGroup;
+			children = (
+				EFEAD8871C469CCC00C362DE /* Interface.storyboard */,
+				EFEAD88A1C469CCC00C362DE /* Assets.xcassets */,
+				EFEAD88C1C469CCC00C362DE /* Info.plist */,
+			);
+			path = "cocktail-assassin-watch";
+			sourceTree = "<group>";
+		};
+		EFEAD8951C469CCC00C362DE /* cocktail-assassin-watch Extension */ = {
+			isa = PBXGroup;
+			children = (
+				EFEAD8981C469CCC00C362DE /* InterfaceController.swift */,
+				EFEAD8B41C47299600C362DE /* DrinkController.swift */,
+				EFEAD8B01C46AE3C00C362DE /* CocktailRowController.swift */,
+				EFEAD89A1C469CCC00C362DE /* ExtensionDelegate.swift */,
+				EFEAD89C1C469CCC00C362DE /* NotificationController.swift */,
+				EFEAD89E1C469CCC00C362DE /* GlanceController.swift */,
+				EFEAD8A01C469CCC00C362DE /* ComplicationController.swift */,
+				EFEAD8A21C469CCC00C362DE /* Assets.xcassets */,
+				EFEAD8A41C469CCC00C362DE /* Info.plist */,
+				EFEAD8961C469CCC00C362DE /* Supporting Files */,
+				EFEAD8B21C46AF4100C362DE /* Drink.swift */,
+				EFC168371C4F6E46003062E4 /* DrinkService.swift */,
+				EFC168391C4F6E90003062E4 /* Constants.swift */,
+				EFC1683B1C4F7F6D003062E4 /* PourDrinkController.swift */,
+			);
+			path = "cocktail-assassin-watch Extension";
+			sourceTree = "<group>";
+		};
+		EFEAD8961C469CCC00C362DE /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				EFEAD8971C469CCC00C362DE /* PushNotificationPayload.apns */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -337,10 +461,12 @@
 				237B07671A6EA5F7001AA652 /* Resources */,
 				88B4087A1B5A06CD4A65444E /* Copy Pods Resources */,
 				4A6CBE3676333E8B50CAB53B /* Embed Pods Frameworks */,
+				EFEAD8AF1C469CCC00C362DE /* Embed Watch Content */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				EFEAD8A61C469CCC00C362DE /* PBXTargetDependency */,
 			);
 			name = "cocktail-assassin";
 			productName = "cocktail-assassin";
@@ -365,6 +491,40 @@
 			productReference = 237B07761A6EA5F7001AA652 /* cocktail-assassinTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		EFEAD8841C469CCC00C362DE /* cocktail-assassin-watch */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EFEAD8AE1C469CCC00C362DE /* Build configuration list for PBXNativeTarget "cocktail-assassin-watch" */;
+			buildPhases = (
+				EFEAD8831C469CCC00C362DE /* Resources */,
+				EFEAD8AD1C469CCC00C362DE /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EFEAD8941C469CCC00C362DE /* PBXTargetDependency */,
+			);
+			name = "cocktail-assassin-watch";
+			productName = "cocktail-assassin-watch";
+			productReference = EFEAD8851C469CCC00C362DE /* cocktail-assassin-watch.app */;
+			productType = "com.apple.product-type.application.watchapp2";
+		};
+		EFEAD8901C469CCC00C362DE /* cocktail-assassin-watch Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EFEAD8AC1C469CCC00C362DE /* Build configuration list for PBXNativeTarget "cocktail-assassin-watch Extension" */;
+			buildPhases = (
+				EFEAD88D1C469CCC00C362DE /* Sources */,
+				EFEAD88E1C469CCC00C362DE /* Frameworks */,
+				EFEAD88F1C469CCC00C362DE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "cocktail-assassin-watch Extension";
+			productName = "cocktail-assassin-watch Extension";
+			productReference = EFEAD8911C469CCC00C362DE /* cocktail-assassin-watch Extension.appex */;
+			productType = "com.apple.product-type.watchkit2-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -372,7 +532,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftMigration = 0700;
-				LastSwiftUpdateCheck = 0700;
+				LastSwiftUpdateCheck = 0720;
 				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = tw;
 				TargetAttributes = {
@@ -384,6 +544,14 @@
 						CreatedOnToolsVersion = 6.0;
 						TestTargetID = 237B07681A6EA5F7001AA652;
 					};
+					EFEAD8841C469CCC00C362DE = {
+						CreatedOnToolsVersion = 7.2;
+						DevelopmentTeam = 9269KSNZG8;
+					};
+					EFEAD8901C469CCC00C362DE = {
+						CreatedOnToolsVersion = 7.2;
+						DevelopmentTeam = 9269KSNZG8;
+					};
 				};
 			};
 			buildConfigurationList = 237B07641A6EA5F7001AA652 /* Build configuration list for PBXProject "cocktail-assassin" */;
@@ -392,6 +560,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = 237B07601A6EA5F7001AA652;
 			productRefGroup = 237B076A1A6EA5F7001AA652 /* Products */;
@@ -400,6 +569,8 @@
 			targets = (
 				237B07681A6EA5F7001AA652 /* cocktail-assassin */,
 				237B07751A6EA5F7001AA652 /* cocktail-assassinTests */,
+				EFEAD8841C469CCC00C362DE /* cocktail-assassin-watch */,
+				EFEAD8901C469CCC00C362DE /* cocktail-assassin-watch Extension */,
 			);
 		};
 /* End PBXProject section */
@@ -429,6 +600,23 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EFEAD8831C469CCC00C362DE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EFEAD88B1C469CCC00C362DE /* Assets.xcassets in Resources */,
+				EFEAD8891C469CCC00C362DE /* Interface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EFEAD88F1C469CCC00C362DE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EFEAD8A31C469CCC00C362DE /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -532,6 +720,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		EFEAD88D1C469CCC00C362DE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EFEAD8B11C46AE3C00C362DE /* CocktailRowController.swift in Sources */,
+				EFC168381C4F6E46003062E4 /* DrinkService.swift in Sources */,
+				EFEAD89D1C469CCC00C362DE /* NotificationController.swift in Sources */,
+				EFEAD89B1C469CCC00C362DE /* ExtensionDelegate.swift in Sources */,
+				EFEAD8A11C469CCC00C362DE /* ComplicationController.swift in Sources */,
+				EFC1683A1C4F6E90003062E4 /* Constants.swift in Sources */,
+				EFEAD8B51C47299600C362DE /* DrinkController.swift in Sources */,
+				EFEAD8991C469CCC00C362DE /* InterfaceController.swift in Sources */,
+				EFC1683C1C4F7F6D003062E4 /* PourDrinkController.swift in Sources */,
+				EFEAD8B31C46AF4100C362DE /* Drink.swift in Sources */,
+				EFEAD89F1C469CCC00C362DE /* GlanceController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -540,7 +746,28 @@
 			target = 237B07681A6EA5F7001AA652 /* cocktail-assassin */;
 			targetProxy = 237B07771A6EA5F7001AA652 /* PBXContainerItemProxy */;
 		};
+		EFEAD8941C469CCC00C362DE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EFEAD8901C469CCC00C362DE /* cocktail-assassin-watch Extension */;
+			targetProxy = EFEAD8931C469CCC00C362DE /* PBXContainerItemProxy */;
+		};
+		EFEAD8A61C469CCC00C362DE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EFEAD8841C469CCC00C362DE /* cocktail-assassin-watch */;
+			targetProxy = EFEAD8A51C469CCC00C362DE /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		EFEAD8871C469CCC00C362DE /* Interface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EFEAD8881C469CCC00C362DE /* Base */,
+			);
+			name = Interface.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		237B077E1A6EA5F7001AA652 /* Debug */ = {
@@ -691,6 +918,88 @@
 			};
 			name = Release;
 		};
+		EFEAD8A81C469CCC00C362DE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				IBSC_MODULE = cocktail_assassin_watch_Extension;
+				INFOPLIST_FILE = "cocktail-assassin-watch/Info.plist";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.twsg.cocktail-assassin.watchkitapp";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 2.1;
+			};
+			name = Debug;
+		};
+		EFEAD8A91C469CCC00C362DE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				IBSC_MODULE = cocktail_assassin_watch_Extension;
+				INFOPLIST_FILE = "cocktail-assassin-watch/Info.plist";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.twsg.cocktail-assassin.watchkitapp";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 2.1;
+			};
+			name = Release;
+		};
+		EFEAD8AA1C469CCC00C362DE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "cocktail-assassin-watch Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.twsg.cocktail-assassin.watchkitapp.watchkitextension";
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 2.1;
+			};
+			name = Debug;
+		};
+		EFEAD8AB1C469CCC00C362DE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "cocktail-assassin-watch Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.twsg.cocktail-assassin.watchkitapp.watchkitextension";
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 2.1;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -717,6 +1026,24 @@
 			buildConfigurations = (
 				237B07841A6EA5F7001AA652 /* Debug */,
 				237B07851A6EA5F7001AA652 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EFEAD8AC1C469CCC00C362DE /* Build configuration list for PBXNativeTarget "cocktail-assassin-watch Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EFEAD8AA1C469CCC00C362DE /* Debug */,
+				EFEAD8AB1C469CCC00C362DE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EFEAD8AE1C469CCC00C362DE /* Build configuration list for PBXNativeTarget "cocktail-assassin-watch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EFEAD8A81C469CCC00C362DE /* Debug */,
+				EFEAD8A91C469CCC00C362DE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

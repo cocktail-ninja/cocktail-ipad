@@ -17,6 +17,7 @@ class DrinkService: NSObject {
         return 260
     }
     
+    // Recipe = "P1-30/P2-15/V3-150"
     class func makeDrink(recipe recipe: String) -> Promise<Double> {
         let url = Constants.baseUrl.prod + "/make_drink/" + recipe
         
@@ -38,6 +39,8 @@ class DrinkService: NSObject {
                             reject(error)
                     }
             }
+            // Dev
+//            fulfill(5.0)
         }
         
     }
