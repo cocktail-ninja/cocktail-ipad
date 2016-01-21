@@ -16,7 +16,7 @@
                                     <group key="rootItem" width="1" height="40.5" alignment="left" id="44a-6K-RLQ">
                                         <items>
                                             <imageView width="23" height="45" alignment="left" image="long-island-ice-tea" contentMode="scaleAspectFit" id="m2P-Mx-5Cf"/>
-                                            <label width="103" height="47.5" alignment="left" text="Long Island Ice Tea" textAlignment="center" numberOfLines="2" id="UwN-e8-MHC"/>
+                                            <label width="103" height="47.5" alignment="left" text="Long Island Iced Tea" textAlignment="center" numberOfLines="2" id="UwN-e8-MHC"/>
                                         </items>
                                     </group>
                                     <connections>

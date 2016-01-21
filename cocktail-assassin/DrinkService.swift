@@ -88,7 +88,7 @@ class DrinkService: NSObject {
         DrinkService.initComponents(coreDataStack.context)
         DrinkService.initIngredients(coreDataStack.context)
 
-        DrinkService.createDrinkWithIngredient("Long Island Ice Tea",
+        DrinkService.createDrinkWithIngredient("Long Island Iced Tea",
             imageName: "long-island-iced-tea",
             ingredients: [.Vodka: 15, .LightRum: 15, .Tequila: 15, .TripleSec: 15, .Gin: 15, .Coke: 90],
             editable: false,

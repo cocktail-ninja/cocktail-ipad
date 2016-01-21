@@ -12,7 +12,7 @@ class DrinkService {
     var drinks = [Drink]()
     
     init() {
-        drinks.append(Drink(title: "Long Island Ice Tea", image: "long-island-iced-tea"))
+        drinks.append(Drink(title: "Long Island Iced Tea", image: "long-island-iced-tea"))
         drinks.append(Drink(title: "Alpine Lemonade", image: "alpine-lemonade"))
         drinks.append(Drink(title: "The Ollie", image: "the-ollie"))
         drinks.append(Drink(title: "Cosmopolitan Classic", image: "cosmopolitan"))

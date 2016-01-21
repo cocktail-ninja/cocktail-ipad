@@ -96,6 +96,12 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
         setupEditingUI()
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        let canEdit = AdminService.sharedInstance.isAdmin || drink!.editable
+        editButton.hidden = !canEdit
+    }
+    
     func setupEditingUI() {
         cancelButton.setImage(UIImage(named: "cancel"), forState: .Normal)
         cancelButton.imageView?.contentMode = .ScaleAspectFit
@@ -192,7 +198,7 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
     }
     
     @IBAction func edit() {
-        nameTextField.text = nameLabel.text
+        nameTextField.text = drink!.name
         nameTextField.frame = nameLabel.frame
         nameTextField.font = nameLabel.font
         cancelButton.frame = editButton.frame
@@ -429,6 +435,12 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         nameTextField.resignFirstResponder()
+        return true
+    }
+    
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        let text = textField.text! as NSString
+        drink!.name = text.stringByReplacingCharactersInRange(range, withString:string)
         return true
     }
     
