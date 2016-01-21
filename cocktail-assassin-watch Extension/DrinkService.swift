@@ -7,22 +7,31 @@
 //
 
 import Foundation
+import WatchConnectivity
+
 class DrinkService {
     
     var drinks = [Drink]()
     
-    init() {
-        drinks.append(Drink(title: "Long Island Iced Tea", image: "long-island-iced-tea"))
-        drinks.append(Drink(title: "Alpine Lemonade", image: "alpine-lemonade"))
-        drinks.append(Drink(title: "The Ollie", image: "the-ollie"))
-        drinks.append(Drink(title: "Cosmopolitan Classic", image: "cosmopolitan"))
-        drinks.append(Drink(title: "Margarita", image: "margarita"))
-        drinks.append(Drink(title: "Vodka Cranberry", image: "vodka-cranberry"))
-        drinks.append(Drink(title: "Black Widow", image: "black-widow"))
-        drinks.append(Drink(title: "Rum and Coke", image: "rum-and-coke"))
-        //drinks.append(Drink(title: "Mix Your Own!!", image: "mix-your-own"))
-        drinks.append(Drink(title: "Hula-Hula", image: "hula-hula"))
-        drinks.append(Drink(title: "Kamikaze", image: "kamikaze"))
+    func loadDrinks(session: WCSession, callback: ((NSError?) -> Void)?) {
+        session.sendMessage(
+            ["request": "drinks"],
+            replyHandler: { (response) -> Void in
+                puts("received response! \(response)")
+                let drinkRecords = response["drinks"] as! [[String: String]]
+                let newDrinks = drinkRecords.map() { drinkData in
+                    return Drink(title: drinkData["title"]!, image: drinkData["image"]!)
+                }
+                self.drinks = newDrinks.filter() { drink in
+                    return drink.title != "Mix Your Own!!"
+                }
+                callback?(nil)
+            },
+            errorHandler: { (error) -> Void in
+                puts("received error response! \(error)")
+                callback?(error)
+            }
+        )
     }
     
 }

@@ -2,11 +2,11 @@
   "images" : [
     {
       "idiom" : "universal",
+      "filename" : "busy_bartender.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "spinner3@2x.png",
       "scale" : "2x"
     },
     {

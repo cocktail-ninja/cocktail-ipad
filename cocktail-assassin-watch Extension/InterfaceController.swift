@@ -16,12 +16,13 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
     @IBOutlet weak var cocktailPicker: WKInterfacePicker?
     @IBOutlet weak var cocktailTable: WKInterfaceTable?
     var cocktails = [Drink]()
+    let drinkService = DrinkService()
     var session: WCSession?
     
     override func awakeWithContext(context: AnyObject?) {
         super.awakeWithContext(context)
         
-        cocktails = DrinkService().drinks
+        cocktails = drinkService.drinks
     }
 
     override func willActivate() {
@@ -50,20 +51,15 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
     override func didAppear() {
         super.didAppear()
         
-//        session!.sendMessage(
-//            ["request": "drinks"],
-//            replyHandler: { (response) -> Void in
-//                puts("received response! \(response)")
-//                let drinkRecords = response["drinks"] as! [[String: String]]
-//                self.cocktails = drinkRecords.map() { drinkData in
-//                    return Drink(title: drinkData["title"]!, image: drinkData["image"]!)
-//                }
-//                self.updateRows()
-//            },
-//            errorHandler: { (error) -> Void in
-//                puts("received error response! \(error)")
-//            }
-//        )
+        drinkService.loadDrinks(session!) { error in
+            if let error = error {
+                print("Failed to load drinks. Error: \(error.localizedDescription)")
+            } else {
+                print("Updating drink list")
+                self.cocktails = self.drinkService.drinks
+                self.updateRows()
+            }
+        }
     }
 
     override func didDeactivate() {

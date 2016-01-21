@@ -104,7 +104,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
         let drinkData = drinks.map() { drink in
             return [
                 "title": drink.name,
-                "image": drink.imageName
+                "image": drink.origImageName
             ]
         }
         return ["drinks": drinkData]

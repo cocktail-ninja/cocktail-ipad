@@ -14,12 +14,14 @@ class Drink: NSManagedObject {
 
     @NSManaged var name: String
     @NSManaged var imageName: String
+    @NSManaged var origImageName: String
     @NSManaged var editable: Bool
     @NSManaged var drinkIngredients: NSSet
 
     class func newDrink(name: String, imageName: String, editable: Bool, managedContext: NSManagedObjectContext) -> Drink {
         let newDrink = NSEntityDescription.insertNewObjectForEntityForName("Drink", inManagedObjectContext:managedContext) as! Drink
         newDrink.name = name
+        newDrink.origImageName = imageName
         newDrink.saveImage(UIImage(named: imageName)!)
         newDrink.editable = editable
         return newDrink
