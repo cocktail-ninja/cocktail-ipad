@@ -51,6 +51,8 @@
 		EF6310091BD8849F00390511 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF6310081BD8849F00390511 /* Main.storyboard */; };
 		EF63100B1BD8890500390511 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF63100A1BD8890500390511 /* Launch Screen.storyboard */; };
 		EF63100D1BD8DA4800390511 /* DrinkDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF63100C1BD8DA4800390511 /* DrinkDetailsViewController.swift */; };
+		EF6F92681C50698B00812796 /* AdminPasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF6F92671C50698B00812796 /* AdminPasswordController.swift */; };
+		EF6F926A1C50701900812796 /* AdminService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF6F92691C50701900812796 /* AdminService.swift */; };
 		EF975AE01BDFA79B00C099A5 /* DrinkTotalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF975ADF1BDFA79B00C099A5 /* DrinkTotalCell.swift */; };
 		EFC168381C4F6E46003062E4 /* DrinkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFC168371C4F6E46003062E4 /* DrinkService.swift */; };
 		EFC1683A1C4F6E90003062E4 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFC168391C4F6E90003062E4 /* Constants.swift */; };
@@ -177,6 +179,8 @@
 		EF6310081BD8849F00390511 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		EF63100A1BD8890500390511 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		EF63100C1BD8DA4800390511 /* DrinkDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrinkDetailsViewController.swift; sourceTree = "<group>"; };
+		EF6F92671C50698B00812796 /* AdminPasswordController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdminPasswordController.swift; sourceTree = "<group>"; };
+		EF6F92691C50701900812796 /* AdminService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdminService.swift; sourceTree = "<group>"; };
 		EF975ADF1BDFA79B00C099A5 /* DrinkTotalCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrinkTotalCell.swift; sourceTree = "<group>"; };
 		EFC168371C4F6E46003062E4 /* DrinkService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrinkService.swift; sourceTree = "<group>"; };
 		EFC168391C4F6E90003062E4 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -369,6 +373,7 @@
 			isa = PBXGroup;
 			children = (
 				23B1E7261A8A28620050A3AF /* DrinkService.swift */,
+				EF6F92691C50701900812796 /* AdminService.swift */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -405,6 +410,7 @@
 				EFE6217E1BDFB89B001D9660 /* IngredientMappingViewController.swift */,
 				EFE621811BDFB8B2001D9660 /* CleaningViewController.swift */,
 				EF02DB531BF8E4BD00A4A29A /* SelectIngredientForComponentViewController.swift */,
+				EF6F92671C50698B00812796 /* AdminPasswordController.swift */,
 			);
 			name = Admin;
 			sourceTree = "<group>";
@@ -676,6 +682,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EF975AE01BDFA79B00C099A5 /* DrinkTotalCell.swift in Sources */,
+				EF6F92681C50698B00812796 /* AdminPasswordController.swift in Sources */,
 				EF6310071BD8559400390511 /* Component.swift in Sources */,
 				EF21824B1AA5E8C900690EFD /* DrinkIngredientCell.swift in Sources */,
 				23B1E7271A8A28620050A3AF /* DrinkService.swift in Sources */,
@@ -709,6 +716,7 @@
 				EF02DB561BF8E87300A4A29A /* SelectIngredientForDrinkViewController.swift in Sources */,
 				2345A2D71A7FC4C0007CB356 /* UIView+FrameHelper.swift in Sources */,
 				10960D61DC74F6FD868E7ABC /* SelectIngredientViewController.swift in Sources */,
+				EF6F926A1C50701900812796 /* AdminService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

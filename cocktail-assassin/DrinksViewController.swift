@@ -58,10 +58,20 @@ class DrinksViewController: UIViewController, iCarouselDataSource, iCarouselDele
     }
     
     @IBAction func adminClicked() {
+        self.navigationController?.pushViewController(adminMenuOrLoginController(), animated: true)
+    }
+    
+    private func adminMenuOrLoginController() -> UIViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let controller = storyboard.instantiateViewControllerWithIdentifier("AdminViewController") as! AdminViewController
-        controller.coreDataStack = coreDataStack
-        self.navigationController?.pushViewController(controller, animated: true)
+        if AdminService.sharedInstance.isAdmin {
+            let controller = storyboard.instantiateViewControllerWithIdentifier("AdminViewController") as! AdminViewController
+            controller.coreDataStack = coreDataStack
+            return controller
+        } else {
+            let controller = storyboard.instantiateViewControllerWithIdentifier("AdminPasswordController") as! AdminPasswordController
+            controller.coreDataStack = coreDataStack
+            return controller
+        }
     }
     
     func sharedView() -> UIView! {

@@ -33,4 +33,9 @@ class AdminViewController: UIViewController {
         navigationController?.pushViewController(controller, animated: true)
     }
 
+    @IBAction func logoutClicked() {
+        AdminService.sharedInstance.logout()
+        navigationController?.popViewControllerAnimated(true)
+    }
+    
 }
