@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="AJ3-g5-KFe">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="AJ3-g5-KFe">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
@@ -173,21 +173,25 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RdA-Oa-gR9">
-                                            <rect key="frame" x="496" y="8" width="44" height="35"/>
+                                            <rect key="frame" x="466" y="8" width="74" height="35"/>
+                                            <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="44" id="aZJ-9V-Fif"/>
+                                                <constraint firstAttribute="width" constant="74" id="aZJ-9V-Fif"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                                             <state key="normal" title="GO!"/>
+                                            <state key="selected" title="GO!">
+                                                <color key="titleColor" red="0.51052631578947372" green="0.021052631578947434" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            </state>
                                             <connections>
                                                 <action selector="runSelectedPumpsClicked" destination="pvh-GK-YrK" eventType="touchUpInside" id="v1g-wL-0kj"/>
                                             </connections>
                                         </button>
                                         <progressView hidden="YES" opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progressViewStyle="bar" translatesAutoresizingMaskIntoConstraints="NO" id="21s-ND-Pju">
-                                            <rect key="frame" x="8" y="24" width="480" height="2.5"/>
+                                            <rect key="frame" x="8" y="24" width="450" height="2.5"/>
                                         </progressView>
                                         <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="30" minValue="0.0" maxValue="60" translatesAutoresizingMaskIntoConstraints="NO" id="QOU-Nl-Kyr">
-                                            <rect key="frame" x="6" y="10" width="484" height="31"/>
+                                            <rect key="frame" x="6" y="10" width="454" height="31"/>
                                             <connections>
                                                 <action selector="sliderChanged:" destination="pvh-GK-YrK" eventType="valueChanged" id="NBt-kl-9OV"/>
                                             </connections>

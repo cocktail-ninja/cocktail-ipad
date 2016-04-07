@@ -33,7 +33,7 @@
 		23C0532D1A7A810F0060CABB /* DrinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23C0532C1A7A810F0060CABB /* DrinkView.swift */; };
 		23E6376D1A6EBE5600B71A0D /* DrinksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23E6376C1A6EBE5600B71A0D /* DrinksViewController.swift */; };
 		23EEDBA11ADAAD8E007A28E9 /* ActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23EEDBA01ADAAD8E007A28E9 /* ActionButton.swift */; };
-		35260B5618394205EB41E6AB /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D1068E656C146A8BB46FCBE /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		35260B5618394205EB41E6AB /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D1068E656C146A8BB46FCBE /* Pods.framework */; };
 		5931BC001A8A489700895B64 /* CocktailAssassin.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5931BBFE1A8A489700895B64 /* CocktailAssassin.xcdatamodeld */; };
 		5931BC061A8A4DC500895B64 /* Drink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23AC06DA1A6FA260002928CB /* Drink.swift */; };
 		5931BC071A8A4DC500895B64 /* DrinkIngredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59AFC2E11A8A3C29006D14DF /* DrinkIngredient.swift */; };
