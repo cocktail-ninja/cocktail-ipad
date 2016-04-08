@@ -115,7 +115,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
         let drink = Drink.getDrinkByName(drinkName, context: coreDataStack.context)
         
         let ingredients = drink!.drinkIngredients.allObjects as! [DrinkIngredient]
-        let ingredientComponents = ingredients.map {"\($0.ingredient.component!.id)-\($0.amount)"}
+        var ingredientComponents = ingredients.map {
+            if let component = $0.ingredient.component {
+                return "\(component.id)-\($0.amount)"
+            } else {
+                return ""
+            }
+        } as [String]
+        ingredientComponents = ingredientComponents.filter() { value in
+            return value != ""
+        } as [String]
         let recipe = ingredientComponents.joinWithSeparator("/")
         
         DrinkService.makeDrink(recipe: recipe).then() { duration -> Void in
