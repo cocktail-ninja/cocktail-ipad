@@ -168,8 +168,7 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
     }
     
     @IBAction func pour() {
-        let ingredients = drink!.drinkIngredients.allObjects.filter { return $0.ingredient.pumpNumber != 10  } as! [DrinkIngredient]
-        
+        let ingredients = drink!.drinkIngredients.allObjects as! [DrinkIngredient]
         let missingIngredients = ingredients.filter { $0.ingredient.component == nil }
         if missingIngredients.count > 0 {
             let missingIngredient = missingIngredients[0]
