@@ -33,11 +33,11 @@
 		23C0532D1A7A810F0060CABB /* DrinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23C0532C1A7A810F0060CABB /* DrinkView.swift */; };
 		23E6376D1A6EBE5600B71A0D /* DrinksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23E6376C1A6EBE5600B71A0D /* DrinksViewController.swift */; };
 		23EEDBA11ADAAD8E007A28E9 /* ActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23EEDBA01ADAAD8E007A28E9 /* ActionButton.swift */; };
-		35260B5618394205EB41E6AB /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D1068E656C146A8BB46FCBE /* Pods.framework */; };
 		5931BC001A8A489700895B64 /* CocktailAssassin.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5931BBFE1A8A489700895B64 /* CocktailAssassin.xcdatamodeld */; };
 		5931BC061A8A4DC500895B64 /* Drink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23AC06DA1A6FA260002928CB /* Drink.swift */; };
 		5931BC071A8A4DC500895B64 /* DrinkIngredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59AFC2E11A8A3C29006D14DF /* DrinkIngredient.swift */; };
 		5931BC081A8A4E1700895B64 /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59AFC2E21A8A3C29006D14DF /* Ingredient.swift */; };
+		B21C5196E449F570A191182D /* Pods_cocktail_assassin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5005CB7B7D3059B492E867E /* Pods_cocktail_assassin.framework */; };
 		EF02DB541BF8E4BD00A4A29A /* SelectIngredientForComponentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF02DB531BF8E4BD00A4A29A /* SelectIngredientForComponentViewController.swift */; };
 		EF02DB561BF8E87300A4A29A /* SelectIngredientForDrinkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF02DB551BF8E87300A4A29A /* SelectIngredientForDrinkViewController.swift */; };
 		EF02DB581BF9037200A4A29A /* ComponentMappingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF02DB571BF9037200A4A29A /* ComponentMappingCell.swift */; };
@@ -160,12 +160,13 @@
 		23C0532C1A7A810F0060CABB /* DrinkView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrinkView.swift; sourceTree = "<group>"; };
 		23E6376C1A6EBE5600B71A0D /* DrinksViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrinksViewController.swift; sourceTree = "<group>"; };
 		23EEDBA01ADAAD8E007A28E9 /* ActionButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionButton.swift; sourceTree = "<group>"; };
-		438845221179F32CBD1187FE /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		5931BBFF1A8A489700895B64 /* CocktailAssassin.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CocktailAssassin.xcdatamodel; sourceTree = "<group>"; };
 		59AFC2E11A8A3C29006D14DF /* DrinkIngredient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrinkIngredient.swift; sourceTree = "<group>"; };
 		59AFC2E21A8A3C29006D14DF /* Ingredient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
 		8D1068E656C146A8BB46FCBE /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		BD64C9E21465755B34901485 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		A5005CB7B7D3059B492E867E /* Pods_cocktail_assassin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_cocktail_assassin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CB38E34227D038F21613C9F8 /* Pods-cocktail-assassin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-cocktail-assassin.release.xcconfig"; path = "Pods/Target Support Files/Pods-cocktail-assassin/Pods-cocktail-assassin.release.xcconfig"; sourceTree = "<group>"; };
+		D02BAA83C0B313F3EAA5903C /* Pods-cocktail-assassin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-cocktail-assassin.debug.xcconfig"; path = "Pods/Target Support Files/Pods-cocktail-assassin/Pods-cocktail-assassin.debug.xcconfig"; sourceTree = "<group>"; };
 		EF02DB531BF8E4BD00A4A29A /* SelectIngredientForComponentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectIngredientForComponentViewController.swift; sourceTree = "<group>"; };
 		EF02DB551BF8E87300A4A29A /* SelectIngredientForDrinkViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectIngredientForDrinkViewController.swift; sourceTree = "<group>"; };
 		EF02DB571BF9037200A4A29A /* ComponentMappingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComponentMappingCell.swift; sourceTree = "<group>"; };
@@ -212,11 +213,18 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				35260B5618394205EB41E6AB /* Pods.framework in Frameworks */,
+				B21C5196E449F570A191182D /* Pods_cocktail_assassin.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		237B07731A6EA5F7001AA652 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3ABD3E2B8769891221D73A5A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -233,15 +241,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		11EC26A8AD9A15F7D6E959BD /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				BD64C9E21465755B34901485 /* Pods.debug.xcconfig */,
-				438845221179F32CBD1187FE /* Pods.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 		2345A2981A7D3136007CB356 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -303,8 +302,8 @@
 				EFEAD8861C469CCC00C362DE /* cocktail-assassin-watch */,
 				EFEAD8951C469CCC00C362DE /* cocktail-assassin-watch Extension */,
 				237B076A1A6EA5F7001AA652 /* Products */,
-				11EC26A8AD9A15F7D6E959BD /* Pods */,
 				52EB9BD00F9E07763522F55F /* Frameworks */,
+				B680F04095EA933EAC64A0F2 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -385,8 +384,18 @@
 				234C64A41AA374A8003672AF /* Foundation.framework */,
 				234C64A21AA37476003672AF /* UIKit.framework */,
 				8D1068E656C146A8BB46FCBE /* Pods.framework */,
+				A5005CB7B7D3059B492E867E /* Pods_cocktail_assassin.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B680F04095EA933EAC64A0F2 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				D02BAA83C0B313F3EAA5903C /* Pods-cocktail-assassin.debug.xcconfig */,
+				CB38E34227D038F21613C9F8 /* Pods-cocktail-assassin.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 		EF3C629A1BDB230800DF9FDC /* Controllers */ = {
@@ -461,13 +470,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 237B07801A6EA5F7001AA652 /* Build configuration list for PBXNativeTarget "cocktail-assassin" */;
 			buildPhases = (
-				48EBC26FA3EB908C8BFFA3C7 /* Check Pods Manifest.lock */,
+				713AFE86AB4FE453A604D152 /* 📦 Check Pods Manifest.lock */,
 				237B07651A6EA5F7001AA652 /* Sources */,
 				237B07661A6EA5F7001AA652 /* Frameworks */,
 				237B07671A6EA5F7001AA652 /* Resources */,
-				88B4087A1B5A06CD4A65444E /* Copy Pods Resources */,
-				4A6CBE3676333E8B50CAB53B /* Embed Pods Frameworks */,
 				EFEAD8AF1C469CCC00C362DE /* Embed Watch Content */,
+				835E8A89B2DE363C654DBF12 /* 📦 Embed Pods Frameworks */,
+				4E4088D74445C4B98C1715A0 /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -503,6 +512,7 @@
 			buildPhases = (
 				EFEAD8831C469CCC00C362DE /* Resources */,
 				EFEAD8AD1C469CCC00C362DE /* Embed App Extensions */,
+				3ABD3E2B8769891221D73A5A /* Frameworks */,
 			);
 			buildRules = (
 			);
@@ -629,14 +639,29 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		48EBC26FA3EB908C8BFFA3C7 /* Check Pods Manifest.lock */ = {
+		4E4088D74445C4B98C1715A0 /* 📦 Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-cocktail-assassin/Pods-cocktail-assassin-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		713AFE86AB4FE453A604D152 /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -644,34 +669,19 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		4A6CBE3676333E8B50CAB53B /* Embed Pods Frameworks */ = {
+		835E8A89B2DE363C654DBF12 /* 📦 Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Embed Pods Frameworks";
+			name = "📦 Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		88B4087A1B5A06CD4A65444E /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-cocktail-assassin/Pods-cocktail-assassin-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -860,7 +870,7 @@
 		};
 		237B07811A6EA5F7001AA652 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BD64C9E21465755B34901485 /* Pods.debug.xcconfig */;
+			baseConfigurationReference = D02BAA83C0B313F3EAA5903C /* Pods-cocktail-assassin.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -878,7 +888,7 @@
 		};
 		237B07821A6EA5F7001AA652 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 438845221179F32CBD1187FE /* Pods.release.xcconfig */;
+			baseConfigurationReference = CB38E34227D038F21613C9F8 /* Pods-cocktail-assassin.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;

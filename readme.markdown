@@ -4,12 +4,12 @@
 
 
 #### Install dependencies
-	
-		sudo gem install cocoapods (need ruby 2.0 above, rvm list, rvm use 2.1.1)
+
+		sudo gem install cocoapods --pre (need ruby 2.0 above, rvm list, rvm use 2.3.0)
 		[optional] pod setup
 		pod install
 		open cocktail-assassin.xcworkspace
-		
-		
+
+
 ##### NOTE
 There is a `.gitattributes` file with `*.pbxproj binary merge=union` in there, be aware!!
