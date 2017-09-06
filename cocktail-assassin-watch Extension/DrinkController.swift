@@ -10,7 +10,7 @@ import WatchKit
 import Foundation
 import WatchConnectivity
 
-class DrinkController: WKInterfaceController, WCSessionDelegate {
+class DrinkController: WKInterfaceController {
     
     @IBOutlet weak var label: WKInterfaceLabel!
     @IBOutlet weak var image: WKInterfaceImage!
@@ -19,8 +19,8 @@ class DrinkController: WKInterfaceController, WCSessionDelegate {
     
     var drink: Drink?
     
-    override func awakeWithContext(context: AnyObject?) {
-        super.awakeWithContext(context)
+    override func awake(withContext context: Any?) {
+        super.awake(withContext: context)
         drink = context as? Drink
     }
     
@@ -28,9 +28,9 @@ class DrinkController: WKInterfaceController, WCSessionDelegate {
         label.setText(drink?.title)
         image.setImageNamed(drink?.image)
         
-        session = WCSession.defaultSession()
+        session = WCSession.default()
         session!.delegate = self
-        session!.activateSession()
+        session!.activate()
         
         super.willActivate()
     }
@@ -46,12 +46,20 @@ class DrinkController: WKInterfaceController, WCSessionDelegate {
             ["request": "pourDrink", "drinkName": drink!.title],
             replyHandler: { (response) -> Void in
                 puts("received response! \(response)")
-                self.pushControllerWithName("PourDrinkController", context: self.drink)
+                self.pushController(withName: "PourDrinkController", context: self.drink)
             },
             errorHandler: { (error) -> Void in
                 puts("received error response! \(error)")
             }
         )
+    }
+    
+}
+
+extension DrinkController: WCSessionDelegate {
+    
+    public func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
+        print("activationDidCompleteWith")
     }
     
 }

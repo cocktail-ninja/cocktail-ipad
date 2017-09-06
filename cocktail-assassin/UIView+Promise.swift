@@ -10,13 +10,13 @@ import UIKit
 import PromiseKit
 
 extension UIView {
-    class func transition(view: UIView, duration: NSTimeInterval, options: UIViewAnimationOptions, animations: () -> Void) -> Promise<Bool> {
-        return Promise { deferred in
-            self.transitionWithView(view, duration: duration, options: options, animations: animations, completion: deferred.fulfill)
+    class func transition(_ view: UIView, duration: TimeInterval, options: UIViewAnimationOptions, animations: @escaping () -> Void) -> Promise<Bool> {
+        return Promise { fulfill, _ in
+            self.transition(with: view, duration: duration, options: options, animations: animations, completion: fulfill)
         }
     }
     
-    func fadeIn(duration: NSTimeInterval, options: UIViewAnimationOptions) -> Promise<Bool> {
+    func fadeIn(_ duration: TimeInterval, options: UIViewAnimationOptions) -> Promise<Bool> {
         return UIView.transition(self, duration: duration, options: options, animations: {
             self.alpha = 1
         })

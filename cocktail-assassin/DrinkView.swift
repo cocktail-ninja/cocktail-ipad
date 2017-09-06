@@ -18,19 +18,19 @@ class DrinkView: UIView {
         addSubview(imageView)
         addSubview(nameLabel)
         
-        nameLabel.frame = CGRectMake(0, frame.height, frame.width, 40)
-        nameLabel.textAlignment = .Center;
+        nameLabel.frame = CGRect(x: 0, y: frame.height, width: frame.width, height: 40)
+        nameLabel.textAlignment = .center;
         nameLabel.font = UIFont(name: "HelveticaNeue-Light", size: 18)
         
-        imageView.frame =  CGRectMake(0, 0, frame.width, frame.height)
-        imageView.contentMode = .ScaleAspectFit
+        imageView.frame =  CGRect(x: 0, y: 0, width: frame.width, height: frame.height)
+        imageView.contentMode = .scaleAspectFit
     }
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func displayDrink(drink: Drink) {
+    func displayDrink(_ drink: Drink) {
         imageView.image = drink.image()
         nameLabel.text = drink.name
     }

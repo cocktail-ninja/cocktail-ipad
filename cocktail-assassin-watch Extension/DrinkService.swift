@@ -13,7 +13,7 @@ class DrinkService {
     
     var drinks = [Drink]()
     
-    func loadDrinks(session: WCSession, callback: ((NSError?) -> Void)?) {
+    func loadDrinks(_ session: WCSession, callback: ((NSError?) -> Void)?) {
         session.sendMessage(
             ["request": "drinks"],
             replyHandler: { (response) -> Void in
@@ -29,7 +29,7 @@ class DrinkService {
             },
             errorHandler: { (error) -> Void in
                 puts("received error response! \(error)")
-                callback?(error)
+                callback?(error as NSError)
             }
         )
     }

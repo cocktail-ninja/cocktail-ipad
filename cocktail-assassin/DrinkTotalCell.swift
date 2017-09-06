@@ -13,15 +13,15 @@ class DrinkTotalCell: UITableViewCell {
     @IBOutlet var totalLabel: UILabel!    
     @IBOutlet var totalAmountLabel: UILabel!
  
-    func update(drink: Drink) {
+    func update(_ drink: Drink) {
         let total = drink.total()
         totalAmountLabel.text = "\(total)ml"
         if total > DrinkService.maximumDrinkAmount() {
             totalLabel.textColor = ThemeColor.error
             totalAmountLabel.textColor = ThemeColor.error
         } else {
-            totalLabel.textColor = UIColor.blackColor()
-            totalAmountLabel.textColor = UIColor.blackColor()
+            totalLabel.textColor = UIColor.black
+            totalAmountLabel.textColor = UIColor.black
         }
     }
     

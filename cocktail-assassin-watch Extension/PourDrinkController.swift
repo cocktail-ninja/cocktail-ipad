@@ -10,22 +10,22 @@ import WatchKit
 import Foundation
 import WatchConnectivity
 
-class PourDrinkController: WKInterfaceController, WCSessionDelegate {
+class PourDrinkController: WKInterfaceController {
     
     @IBOutlet weak var label: WKInterfaceLabel!
     @IBOutlet weak var image: WKInterfaceImage!
     var session: WCSession?
     var drink: Drink?
     
-    override func awakeWithContext(context: AnyObject?) {
-        super.awakeWithContext(context)
+    override func awake(withContext context: Any?) {
+        super.awake(withContext: context)
         drink = context as? Drink
     }
     
     override func willActivate() {
-        session = WCSession.defaultSession()
+        session = WCSession.default()
         session!.delegate = self
-        session!.activateSession()
+        session!.activate()
         
         super.willActivate()
     }
@@ -35,9 +35,17 @@ class PourDrinkController: WKInterfaceController, WCSessionDelegate {
         super.didDeactivate()
     }
     
-    func session(session: WCSession, didReceiveMessage message: [String : AnyObject]) {
+    func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
         print("didReceiveMessage")
-        self.popController()
+        self.pop()
+    }
+    
+}
+
+extension PourDrinkController: WCSessionDelegate {
+    
+    public func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
+        print("activationDidCompleteWith")
     }
     
 }

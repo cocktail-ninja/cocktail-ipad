@@ -10,8 +10,8 @@ import Foundation
 import CoreData
 
 enum IngredientClass: Int16 {
-    case Alcoholic
-    case NonAlcoholic
+    case alcoholic
+    case nonAlcoholic
 }
 
 enum IngredientType: String {
@@ -35,7 +35,7 @@ class Ingredient: NSManagedObject {
 
     static let EntityName = "Ingredient"
     
-    @NSManaged private var type: String
+    @NSManaged fileprivate var type: String
     @NSManaged var pumpNumber: NSNumber
     @NSManaged var amountLeft: NSNumber
     @NSManaged var drinkIngredients: NSSet
@@ -55,8 +55,8 @@ class Ingredient: NSManagedObject {
         return ingredientType.rawValue
     }
 
-    class func newIngredient(type: IngredientType, pumpNumber: NSNumber, amountLeft: NSNumber, ingredientClass: IngredientClass, managedContext: NSManagedObjectContext) -> Ingredient {
-        let newIngredient = NSEntityDescription.insertNewObjectForEntityForName(EntityName, inManagedObjectContext:managedContext) as! Ingredient
+    class func newIngredient(_ type: IngredientType, pumpNumber: NSNumber, amountLeft: NSNumber, ingredientClass: IngredientClass, managedContext: NSManagedObjectContext) -> Ingredient {
+        let newIngredient = NSEntityDescription.insertNewObject(forEntityName: EntityName, into:managedContext) as! Ingredient
         newIngredient.type = type.rawValue
         newIngredient.pumpNumber = pumpNumber
         newIngredient.amountLeft = amountLeft
@@ -71,28 +71,28 @@ class Ingredient: NSManagedObject {
         return newIngredient
     }
     
-    class func getIngredient(type: IngredientType, managedContext: NSManagedObjectContext) -> Ingredient? {
-        let fetchRequest = NSFetchRequest(entityName: EntityName)
+    class func getIngredient(_ type: IngredientType, managedContext: NSManagedObjectContext) -> Ingredient? {
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: EntityName)
         fetchRequest.predicate = NSPredicate(format: "type = %@", type.rawValue)
         do {
-            let results = try managedContext.executeFetchRequest(fetchRequest) as! [Ingredient]
+            let results = try managedContext.fetch(fetchRequest) as! [Ingredient]
             return results.first
         } catch {
             return nil
         }
     }
 
-    class func allIngredients(managedContext: NSManagedObjectContext) -> [Ingredient] {
-        let fetchRequest = NSFetchRequest(entityName: EntityName)
+    class func allIngredients(_ managedContext: NSManagedObjectContext) -> [Ingredient] {
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: EntityName)
         do {
-            return try managedContext.executeFetchRequest(fetchRequest) as! [Ingredient]
+            return try managedContext.fetch(fetchRequest) as! [Ingredient]
         } catch {
             return [Ingredient]()
         }
     }
     
     func isAlcoholic() -> Bool {
-        return ingredientClass == .Alcoholic
+        return ingredientClass == .alcoholic
     }
 
 }

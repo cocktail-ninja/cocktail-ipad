@@ -10,6 +10,6 @@ import UIKit
 
 extension UIApplication {
     class func sharedDelegate() -> AppDelegate {
-        return UIApplication.sharedApplication().delegate as! AppDelegate
+        return UIApplication.shared.delegate as! AppDelegate
     }
 }

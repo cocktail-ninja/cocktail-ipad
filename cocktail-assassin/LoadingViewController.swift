@@ -27,13 +27,13 @@ class LoadingViewControler: UIViewController {
     }
     
     func showDrinks() {
-        performSegueWithIdentifier("Drinks", sender: nil)
+        performSegue(withIdentifier: "Drinks", sender: nil)
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        let destination = segue.destinationViewController as! DrinksViewController
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destination = segue.destination as! DrinksViewController
         destination.coreDataStack = coreDataStack
-        super.prepareForSegue(segue, sender: sender)
+        super.prepare(for: segue, sender: sender)
     }
     
 }

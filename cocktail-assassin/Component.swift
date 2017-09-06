@@ -10,14 +10,14 @@ import Foundation
 import CoreData
 
 @objc enum ComponentType: Int16 {
-    case Valve
-    case Pump
+    case valve
+    case pump
     
     func name() -> String {
         switch self {
-            case .Valve:
+            case .valve:
                 return "Valve"
-            case .Pump:
+            case .pump:
                 return "Pump"
         }
     }
@@ -33,8 +33,8 @@ class Component: NSManagedObject {
     @NSManaged var ingredient: Ingredient?
     var selected: Bool = false
     
-    class func newComponent(type: ComponentType, id: String, name: String, managedContext: NSManagedObjectContext) -> Component {
-        let newIngredient = NSEntityDescription.insertNewObjectForEntityForName(EntityName, inManagedObjectContext:managedContext) as! Component
+    class func newComponent(_ type: ComponentType, id: String, name: String, managedContext: NSManagedObjectContext) -> Component {
+        let newIngredient = NSEntityDescription.insertNewObject(forEntityName: EntityName, into:managedContext) as! Component
         newIngredient.type = type
         newIngredient.id = id
         newIngredient.name = name
@@ -48,32 +48,32 @@ class Component: NSManagedObject {
         return newIngredient
     }
     
-    class func all(managedContext: NSManagedObjectContext) -> [Component] {
-        let request = NSFetchRequest(entityName: EntityName)
+    class func all(_ managedContext: NSManagedObjectContext) -> [Component] {
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: EntityName)
         request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
         do {
-            return try managedContext.executeFetchRequest(request) as! [Component]
+            return try managedContext.fetch(request) as! [Component]
         } catch {
             return [Component]()
         }
     }
     
-    class func componentsOfType(type: ComponentType, managedContext: NSManagedObjectContext) -> [Component] {
-        let request = NSFetchRequest(entityName: EntityName)
-        request.predicate = NSPredicate(format: "type = %@", argumentArray: [NSNumber(short: type.rawValue)])
+    class func componentsOfType(_ type: ComponentType, managedContext: NSManagedObjectContext) -> [Component] {
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: EntityName)
+        request.predicate = NSPredicate(format: "type = %@", argumentArray: [NSNumber(value: type.rawValue as Int16)])
         request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]        
         do {
-            return try managedContext.executeFetchRequest(request) as! [Component]
+            return try managedContext.fetch(request) as! [Component]
         } catch {
             return [Component]()
         }
     }
     
-    class func componentMappedToIngredient(ingredient: Ingredient, context: NSManagedObjectContext) -> Component? {
-        let request = NSFetchRequest(entityName: "Component")
+    class func componentMappedToIngredient(_ ingredient: Ingredient, context: NSManagedObjectContext) -> Component? {
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Component")
         request.predicate = NSPredicate(format: "ingredient = %@", ingredient)
         do {
-            let results = try context.executeFetchRequest(request) as! [Component]
+            let results = try context.fetch(request) as! [Component]
             return results.first
         } catch {
             return nil

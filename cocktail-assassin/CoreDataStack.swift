@@ -8,33 +8,33 @@
 import Foundation
 import CoreData
 
-public class CoreDataStack {
+open class CoreDataStack {
     
-    public var context: NSManagedObjectContext!
-    private var privateContext : NSManagedObjectContext!
-    private var initCallback : () -> ()
-    private var bundleIdentifier = "com.twsg.cocktail-assassin"
-    private var dataModelName = "CocktailAssassin"
+    open var context: NSManagedObjectContext!
+    fileprivate var privateContext : NSManagedObjectContext!
+    fileprivate var initCallback : () -> ()
+    fileprivate var bundleIdentifier = "com.twsg.cocktail-assassin"
+    fileprivate var dataModelName = "CocktailAssassin"
     
-    public init(callback: () -> () ) {
+    public init(callback: @escaping () -> () ) {
         self.initCallback = callback
         self.initializeCoreData()
     }
     
-    public func save() {
+    open func save() {
         if !privateContext.hasChanges && !context.hasChanges {
             print("CoreDataStack: No changes to be saved.")
             return
         }
         
-        context.performBlockAndWait({
+        context.performAndWait({
             do {
                 try self.context.save()
             } catch {
                 assert(false, "Error saving main context")
             }
             
-            self.privateContext.performBlock({
+            self.privateContext.perform({
                 do {
                     try self.privateContext.save()
                 } catch {
@@ -44,28 +44,28 @@ public class CoreDataStack {
         })
     }
     
-    public func reset() {
+    open func reset() {
         context.reset()
     }
 
-    public func revert() {
+    open func revert() {
         context.rollback()
     }
     
-    public func save(context: NSManagedObjectContext) {
+    open func save(_ context: NSManagedObjectContext) {
         if !privateContext.hasChanges && !context.hasChanges {
             print("CoreDataStack: No changes to be saved.")
             return
         }
         
-        context.performBlockAndWait({
+        context.performAndWait({
             do {
                 try context.save()
             } catch {
                 assert(false, "Error saving a context")
             }
             
-            self.privateContext.performBlock({
+            self.privateContext.perform({
                 do {
                     try self.privateContext.save()
                 } catch {
@@ -76,65 +76,65 @@ public class CoreDataStack {
         
     }
     
-    public func createNewContext() -> NSManagedObjectContext {
-        let newContext = NSManagedObjectContext(concurrencyType: .MainQueueConcurrencyType)
+    open func createNewContext() -> NSManagedObjectContext {
+        let newContext = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
         newContext.persistentStoreCoordinator = privateContext.persistentStoreCoordinator
         return newContext
     }
     
-    private func initializeCoreData() {
+    fileprivate func initializeCoreData() {
         if context != nil {
             return
         }
-        let modelURL = NSBundle(identifier: bundleIdentifier)?.URLForResource(dataModelName, withExtension: "momd")
-        let mom = NSManagedObjectModel(contentsOfURL:modelURL!)
+        let modelURL = Bundle(identifier: bundleIdentifier)?.url(forResource: dataModelName, withExtension: "momd")
+        let mom = NSManagedObjectModel(contentsOf:modelURL!)
         assert(mom != nil, "No model to generate a store from")
         let coordinator = NSPersistentStoreCoordinator(managedObjectModel: mom!)
 
-        privateContext = NSManagedObjectContext(concurrencyType: .PrivateQueueConcurrencyType)
+        privateContext = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
         privateContext?.persistentStoreCoordinator = coordinator
 
-        context = NSManagedObjectContext(concurrencyType: .MainQueueConcurrencyType)
-        context.parentContext = privateContext
+        context = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
+        context.parent = privateContext
         
-        let priority = DISPATCH_QUEUE_PRIORITY_BACKGROUND
-        dispatch_async(dispatch_get_global_queue(priority, 0)) {
+        let priority = DispatchQueue.GlobalQueuePriority.background
+        DispatchQueue.global(priority: priority).async {
             let psc = self.privateContext.persistentStoreCoordinator
-            var options = [String: AnyObject]()
-            options[NSMigratePersistentStoresAutomaticallyOption] = true
-            options[NSInferMappingModelAutomaticallyOption] = true
-            options[NSSQLitePragmasOption] = [ "journal_mode" : "DELETE" ]
+            var options = [String: Any]()
+            options[NSMigratePersistentStoresAutomaticallyOption] = true as AnyObject
+            options[NSInferMappingModelAutomaticallyOption] = true as AnyObject
+            options[NSSQLitePragmasOption] = ["journal_mode": "DELETE"]
             
-            let documentsDirectory = NSFileManager.defaultManager().URLsForDirectory(
-                .DocumentDirectory,
-                inDomains: .UserDomainMask
-            )[0] as NSURL
-            let storeURL = documentsDirectory.URLByAppendingPathComponent("\(self.dataModelName).sqlite")
+            let documentsDirectory = FileManager.default.urls(
+                for: .documentDirectory,
+                in: .userDomainMask
+            )[0] as URL
+            let storeURL = documentsDirectory.appendingPathComponent("\(self.dataModelName).sqlite")
             print("Persistent Store URL: \(storeURL)")
             
             do {
-                try psc?.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: storeURL, options: options)
+                try psc?.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: storeURL, options: options)
             } catch {
                 assert(false, "Error initializing persistent store coordinator");
             }
             
-            dispatch_sync(dispatch_get_main_queue()) {
+            DispatchQueue.main.sync {
                 self.initCallback()
             }
         }
         
     }
     
-    public func executeFetchRequest(request: NSFetchRequest) throws -> [AnyObject]? {
-        return try context.executeFetchRequest(request)
+    open func executeFetchRequest(_ request: NSFetchRequest<NSFetchRequestResult>) throws -> [AnyObject]? {
+        return try context.fetch(request)
     }
 
-    public func performBackgroundOperation(operationBlock: ((context: NSManagedObjectContext) -> Void)) {
-        let temporaryContext = NSManagedObjectContext(concurrencyType: .PrivateQueueConcurrencyType)
-        temporaryContext.parentContext = context
+    open func performBackgroundOperation(_ operationBlock: @escaping ((_ context: NSManagedObjectContext) -> Void)) {
+        let temporaryContext = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
+        temporaryContext.parent = context
 
-        temporaryContext.performBlock() {
-            operationBlock(context: temporaryContext)
+        temporaryContext.perform() {
+            operationBlock(temporaryContext)
 
             do {
                 try temporaryContext.save()

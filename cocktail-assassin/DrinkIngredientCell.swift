@@ -2,8 +2,8 @@
 import UIKit
 
 protocol RemoveIngredientDelegate {
-    func removeDrinkIngredient(ingredient: DrinkIngredient)
-    func amountChanged(ingredient: DrinkIngredient)
+    func removeDrinkIngredient(_ ingredient: DrinkIngredient)
+    func amountChanged(_ ingredient: DrinkIngredient)
 }
 
 class DrinkIngredientCell: UITableViewCell {
@@ -22,15 +22,15 @@ class DrinkIngredientCell: UITableViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
 
-        slider?.addTarget(self, action: "sliderChanged", forControlEvents: .ValueChanged)
+        slider?.addTarget(self, action: #selector(DrinkIngredientCell.sliderChanged), for: .valueChanged)
         
         drinkNotesLabel?.textColor = ThemeColor.primary
         drinkNotesLabel?.font = UIFont(name: "HelveticaNeue-Light", size: 16)
-        drinkNotesLabel?.textAlignment = .Left
-        drinkNotesLabel?.hidden = true
+        drinkNotesLabel?.textAlignment = .left
+        drinkNotesLabel?.isHidden = true
         
-        removeButton?.hidden = !editMode
-        removeButton?.addTarget(self, action: "removeClicked", forControlEvents: .TouchUpInside)
+        removeButton?.isHidden = !editMode
+        removeButton?.addTarget(self, action: #selector(DrinkIngredientCell.removeClicked), for: .touchUpInside)
     }
     
     @IBAction func removeClicked() {
@@ -42,19 +42,19 @@ class DrinkIngredientCell: UITableViewCell {
             let value = Int(slider.value + Float(increment / 2))
             let adjustedValue = (value / increment) * increment
             slider.setValue(Float(adjustedValue), animated: true)
-            drinkIngredient?.amount = (Int)(slider.value)
+            drinkIngredient?.amount = NSNumber(value: slider.value)            
         }
         ingredientAmountLabel.text = "\(drinkIngredient!.amount)ml"
         delegate?.amountChanged(drinkIngredient!)
     }
     
-    func displayDrinkIngredient(drinkIngredient: DrinkIngredient) {
+    func displayDrinkIngredient(_ drinkIngredient: DrinkIngredient) {
         self.drinkIngredient = drinkIngredient
         ingredientNameLabel.text = drinkIngredient.ingredient.ingredientType.rawValue
         ingredientAmountLabel.text = "\(self.drinkIngredient!.amount)ml"
-        removeButton?.hidden = !editMode
+        removeButton?.isHidden = !editMode
         
-        if (drinkIngredient.ingredient.ingredientClass == .Alcoholic) {
+        if (drinkIngredient.ingredient.ingredientClass == .alcoholic) {
             slider?.minimumValue = 0
             slider?.maximumValue = 90
             increment = 5

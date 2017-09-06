@@ -11,7 +11,7 @@ import Foundation
 import WatchConnectivity
 
 
-class InterfaceController: WKInterfaceController, WCSessionDelegate {
+class InterfaceController: WKInterfaceController {
 
     @IBOutlet weak var cocktailPicker: WKInterfacePicker?
     @IBOutlet weak var cocktailTable: WKInterfaceTable?
@@ -19,8 +19,8 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
     let drinkService = DrinkService()
     var session: WCSession?
     
-    override func awakeWithContext(context: AnyObject?) {
-        super.awakeWithContext(context)
+    override func awake(withContext context: Any?) {
+        super.awake(withContext: context)
         
         cocktails = drinkService.drinks
     }
@@ -28,23 +28,23 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
     override func willActivate() {
         updateRows()
         
-        session = WCSession.defaultSession()
+        session = WCSession.default()
         session!.delegate = self
-        session!.activateSession()
+        session!.activate()
         
         super.willActivate()
     }
     
     func updateRows() {
         cocktailTable?.setNumberOfRows(cocktails.count, withRowType: "CocktailRow")
-        for (index, drink) in cocktails.enumerate() {
-            let rowController = cocktailTable?.rowControllerAtIndex(index) as! CocktailRowController
+        for (index, drink) in cocktails.enumerated() {
+            let rowController = cocktailTable?.rowController(at: index) as! CocktailRowController
             rowController.label.setText(drink.title)
             rowController.image.setImageNamed(drink.image)
         }
     }
     
-    func sessionReachabilityDidChange(session: WCSession) {
+    func sessionReachabilityDidChange(_ session: WCSession) {
         puts("sessionReachabilityDidChange")
     }
     
@@ -67,10 +67,18 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
         super.didDeactivate()
     }
     
-    override func table(table: WKInterfaceTable, didSelectRowAtIndex rowIndex: Int) {
+    override func table(_ table: WKInterfaceTable, didSelectRowAt rowIndex: Int) {
         puts("didSelectRowAtIndex \(rowIndex)")
         let drink = cocktails[rowIndex]
-        self.pushControllerWithName("DrinkController", context: drink)
+        self.pushController(withName: "DrinkController", context: drink)
     }
 
+}
+
+extension InterfaceController: WCSessionDelegate {
+    
+    public func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
+        print("activationDidCompleteWith")
+    }
+    
 }

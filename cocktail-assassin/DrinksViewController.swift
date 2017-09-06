@@ -17,15 +17,15 @@ class DrinksViewController: UIViewController, iCarouselDataSource, iCarouselDele
     
     var coreDataStack: CoreDataStack!
     
-    @IBOutlet private var carousel: iCarousel!
-    @IBOutlet private var pageControl: UIPageControl!
-    @IBOutlet private var drinkViewTemplate: UIView!
-    @IBOutlet private var adminButton: UIButton!
+    @IBOutlet fileprivate var carousel: iCarousel!
+    @IBOutlet fileprivate var pageControl: UIPageControl!
+    @IBOutlet fileprivate var drinkViewTemplate: UIView!
+    @IBOutlet fileprivate var adminButton: UIButton!
     
-    private var selectedDrinkIndex = 0
-    private var items:[Drink] = []
+    fileprivate var selectedDrinkIndex = 0
+    fileprivate var items:[Drink] = []
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: true)
         items = Drink.allDrinks(coreDataStack.context)
@@ -33,63 +33,63 @@ class DrinksViewController: UIViewController, iCarouselDataSource, iCarouselDele
         carousel.currentItemIndex = selectedDrinkIndex
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         carousel.reloadData()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor.whiteColor()
+        view.backgroundColor = UIColor.white
         
-        carousel.type = .Custom
+        carousel.type = .custom
         carousel.dataSource = self
         carousel.delegate = self
         carousel.centerItemWhenSelected = false
         
         pageControl.currentPageIndicatorTintColor = UIColor(red: 0.7, green: 0.7, blue: 0.7, alpha: 1)
         pageControl.pageIndicatorTintColor = UIColor(red: 0.7, green: 0.7, blue: 0.7, alpha: 0.4)
-        pageControl.addTarget(self, action: "pageControlChanged", forControlEvents: .ValueChanged)
+        pageControl.addTarget(self, action: #selector(DrinksViewController.pageControlChanged), for: .valueChanged)
         carouselCurrentItemIndexDidChange(carousel)
     }
     
     @IBAction func pageControlChanged() {
-        carousel.scrollToItemAtIndex(pageControl.currentPage, animated: true)
+        carousel.scrollToItem(at: pageControl.currentPage, animated: true)
     }
     
     @IBAction func adminClicked() {
         self.navigationController?.pushViewController(adminMenuOrLoginController(), animated: true)
     }
     
-    private func adminMenuOrLoginController() -> UIViewController {
+    fileprivate func adminMenuOrLoginController() -> UIViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         if AdminService.sharedInstance.isAdmin {
-            let controller = storyboard.instantiateViewControllerWithIdentifier("AdminViewController") as! AdminViewController
+            let controller = storyboard.instantiateViewController(withIdentifier: "AdminViewController") as! AdminViewController
             controller.coreDataStack = coreDataStack
             return controller
         } else {
-            let controller = storyboard.instantiateViewControllerWithIdentifier("AdminPasswordController") as! AdminPasswordController
+            let controller = storyboard.instantiateViewController(withIdentifier: "AdminPasswordController") as! AdminPasswordController
             controller.coreDataStack = coreDataStack
             return controller
         }
     }
     
     func sharedView() -> UIView! {
-        let drinkView = carousel.itemViewAtIndex(self.selectedDrinkIndex)! as! DrinkView
+        let drinkView = carousel.itemView(at: self.selectedDrinkIndex)! as! DrinkView
         return drinkView.imageView
     }
     
     // MARK: iCarousel Delegate Methods
     
-    func numberOfItemsInCarousel(carousel: iCarousel) -> Int {
+    func numberOfItems(in carousel: iCarousel) -> Int {
         return items.count + 1
     }
     
-    func carouselCurrentItemIndexDidChange(carousel: iCarousel) {
+    func carouselCurrentItemIndexDidChange(_ carousel: iCarousel) {
         pageControl.currentPage = carousel.currentItemIndex
     }
     
-    func carousel(_carousel: iCarousel, didSelectItemAtIndex index: Int) {
+    func carousel(_ _carousel: iCarousel, didSelectItemAt index: Int) {
         var drink: Drink
         if( index == items.count ) {
             drink = Drink.newDrink("", imageName: "add-drink", editable: true, managedContext: coreDataStack.context)
@@ -97,7 +97,7 @@ class DrinksViewController: UIViewController, iCarouselDataSource, iCarouselDele
             drink = self.items[index]
         }
         
-        let drinkDetailsVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("DrinkDetails") as! DrinkDetailsViewController
+        let drinkDetailsVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DrinkDetails") as! DrinkDetailsViewController
         drinkDetailsVC.drink = drink
         drinkDetailsVC.imageSize = drinkViewTemplate.frame.size
         drinkDetailsVC.coreDataStack = coreDataStack
@@ -108,7 +108,7 @@ class DrinksViewController: UIViewController, iCarouselDataSource, iCarouselDele
         self.navigationController?.pushViewController(drinkDetailsVC, animated: true)
     }
     
-    func carousel(carousel: iCarousel, itemTransformForOffset offset: CGFloat, baseTransform transform: CATransform3D) -> CATransform3D {
+    func carousel(_ carousel: iCarousel, itemTransformForOffset offset: CGFloat, baseTransform transform: CATransform3D) -> CATransform3D {
         let scale : CGFloat = DrinkCarouselTransformation.getScale(offset)
         let xOffset : CGFloat = DrinkCarouselTransformation.getXOffset(offset, carouselItemWidth: carousel.itemWidth)
         return
@@ -120,18 +120,18 @@ class DrinksViewController: UIViewController, iCarouselDataSource, iCarouselDele
             )
     }
 
-    func carousel(carousel: iCarousel, valueForOption option: iCarouselOption, withDefault value: CGFloat) -> CGFloat {
+    func carousel(_ carousel: iCarousel, valueFor option: iCarouselOption, withDefault value: CGFloat) -> CGFloat {
         switch option {
-        case .Wrap:
+        case .wrap:
             return 1
-        case .ShowBackfaces:
+        case .showBackfaces:
             return 0    
         default:
             return value
         }
     }
     
-    func carousel(carousel: iCarousel, viewForItemAtIndex index: Int, reusingView view: UIView?) -> UIView {
+    func carousel(_ carousel: iCarousel, viewForItemAt index: Int, reusing view: UIView?) -> UIView {
         let theView = view as? DrinkView ?? DrinkView(frame: drinkViewTemplate.frame)
         if index == items.count {
             theView.displayAddDrink()
@@ -144,11 +144,11 @@ class DrinksViewController: UIViewController, iCarouselDataSource, iCarouselDele
 }
 
 class DrinkCarouselTransformation {
-    class func getScale(offset: CGFloat) -> CGFloat {
+    class func getScale(_ offset: CGFloat) -> CGFloat {
         return max(1 - pow(offset * 0.3, 2), 0.3)
     }
     
-    class func getXOffset(offset: CGFloat, carouselItemWidth: CGFloat) -> CGFloat {
+    class func getXOffset(_ offset: CGFloat, carouselItemWidth: CGFloat) -> CGFloat {
         if (offset < -3 || offset > 3) {
             return offset * carouselItemWidth
         } else {

@@ -16,10 +16,10 @@ class ComponentMappingCell: UICollectionViewCell {
     var component: Component?
     var delegate: ComponentCollectionCellDelegate?
     
-    func update(component: Component) {
+    func update(_ component: Component) {
         self.component = component
         UIView.setAnimationsEnabled(false)
-        button.setTitle(component.name, forState: .Normal)
+        button.setTitle(component.name, for: UIControlState())
         ingredientLabel.text = component.ingredient?.name ?? ""
         self.layer.cornerRadius = 10.0
         UIView.setAnimationsEnabled(true)

@@ -2,9 +2,9 @@ import UIKit
 import MONActivityIndicatorView
 
 enum StartPouringButtonState {
-    case Normal
-    case Loading
-    case Error
+    case normal
+    case loading
+    case error
 }
 
 class ActionButton: UIButton, MONActivityIndicatorViewDelegate {
@@ -12,36 +12,36 @@ class ActionButton: UIButton, MONActivityIndicatorViewDelegate {
     let spinner: MONActivityIndicatorView
     
     required init?(coder aDecoder: NSCoder) {
-        errorLabel = UILabel(frame: CGRectZero)
-        spinner = MONActivityIndicatorView(frame: CGRectZero)
+        errorLabel = UILabel(frame: CGRect.zero)
+        spinner = MONActivityIndicatorView(frame: CGRect.zero)
         super.init(coder: aDecoder)
         configure()
     }
     
     override init(frame: CGRect) {
-        errorLabel = UILabel(frame: CGRectZero)
-        spinner = MONActivityIndicatorView(frame: CGRectZero)
+        errorLabel = UILabel(frame: CGRect.zero)
+        spinner = MONActivityIndicatorView(frame: CGRect.zero)
         super.init(frame: frame)
         configure()
     }
     
     func configure() {
-        backgroundColor = UIColor.clearColor()
+        backgroundColor = UIColor.clear
         setBorder(1.0, radius: 5.0)
         
-        setTitle("Hit me!", forState: .Normal)
+        setTitle("Hit me!", for: UIControlState())
         titleLabel?.font = UIFont(name: "HelveticaNeue-Light", size: CGFloat(30))
-        setTitleColor(ThemeColor.primary, forState: .Normal)
-        setTitleColor(ThemeColor.highlighted, forState: .Highlighted)
-        titleLabel?.textAlignment = .Center
+        setTitleColor(ThemeColor.primary, for: UIControlState())
+        setTitleColor(ThemeColor.highlighted, for: .highlighted)
+        titleLabel?.textAlignment = .center
         
-        errorLabel.frame = CGRect(origin: CGPointZero, size: CGSize(width: 350, height: 48))
+        errorLabel.frame = CGRect(origin: CGPoint.zero, size: CGSize(width: 350, height: 48))
         errorLabel.font = UIFont(name: "HelveticaNeue-Light", size: CGFloat(30))
         errorLabel.textColor = ThemeColor.error
         errorLabel.text = "No drinks for you!"
-        errorLabel.textAlignment = .Center
+        errorLabel.textAlignment = .center
 
-        spinner.frame = CGRect(origin: CGPointZero, size: CGSize(width: 350, height: 48))
+        spinner.frame = CGRect(origin: CGPoint.zero, size: CGSize(width: 350, height: 48))
         spinner.numberOfCircles = 5
         spinner.radius = 6
         spinner.internalSpacing = 15
@@ -55,7 +55,7 @@ class ActionButton: UIButton, MONActivityIndicatorViewDelegate {
         addSubview(spinner)
         self.placeAtCenter(spinner)
         
-        setState(.Normal)
+        setState(.normal)
     }
     
     override func layoutSubviews() {
@@ -64,42 +64,41 @@ class ActionButton: UIButton, MONActivityIndicatorViewDelegate {
         spinner.frame = spinner.frame.setSize(frame.size)
     }
     
-    func show(view: UIView){
-        setTitle(view == titleLabel ? "Hit me!" : "", forState: .Normal)
+    func show(_ view: UIView){
+        setTitle(view == titleLabel ? "Hit me!" : "", for: UIControlState())
         errorLabel.alpha = 0.0
         spinner.alpha = 0.0
         
-        view.fadeIn(0.5, options: .CurveEaseIn)
+        view.fadeIn(0.5, options: .curveEaseIn)
     }
     
-    func displayError(errorText: String) {
+    func displayError(_ errorText: String) {
         errorLabel.text = errorText
-        setState(.Error)
+        setState(.error)
     }
     
-    func setState(state: StartPouringButtonState) {
+    func setState(_ state: StartPouringButtonState) {
         switch state {
-            case .Normal:
-                enabled = true
-                setBorder(ThemeColor.primary.CGColor)
+            case .normal:
+                isEnabled = true
+                setBorder(ThemeColor.primary.cgColor)
                 show(titleLabel!)
-            case .Loading:
-                enabled = false
-                setBorder(ThemeColor.primary.CGColor)
+            case .loading:
+                isEnabled = false
+                setBorder(ThemeColor.primary.cgColor)
                 show(spinner)
-            case .Error:
-                enabled = false
-                setBorder(ThemeColor.error.CGColor)
+            case .error:
+                isEnabled = false
+                setBorder(ThemeColor.error.cgColor)
                 show(errorLabel)
-                let delayTime = dispatch_time(DISPATCH_TIME_NOW,
-                    Int64(1.5 * Double(NSEC_PER_SEC)))
-                dispatch_after(delayTime, dispatch_get_main_queue()) {
-                    self.setState(.Normal)
+                let delayTime = DispatchTime.now() + Double(Int64(1.5 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
+                DispatchQueue.main.asyncAfter(deadline: delayTime) {
+                    self.setState(.normal)
                 }
         }
     }
     
-    func activityIndicatorView(activityIndicatorView: MONActivityIndicatorView!, circleBackgroundColorAtIndex index: UInt) -> UIColor! {
+    func activityIndicatorView(_ activityIndicatorView: MONActivityIndicatorView!, circleBackgroundColorAt index: UInt) -> UIColor! {
         return ThemeColor.primary
     }
 

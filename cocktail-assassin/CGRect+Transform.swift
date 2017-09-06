@@ -10,7 +10,7 @@ import UIKit
 
 extension CGRect {
     
-    static func transform(rect: CGRect, x: CGFloat, y: CGFloat, width: CGFloat, height: CGFloat) -> CGRect {
+    static func transform(_ rect: CGRect, x: CGFloat, y: CGFloat, width: CGFloat, height: CGFloat) -> CGRect {
         return CGRect(
             x: rect.origin.x + x,
             y: rect.origin.y + y,
@@ -19,18 +19,18 @@ extension CGRect {
         )
     }
     
-    func transform(x: CGFloat, y: CGFloat, width: CGFloat, height: CGFloat) -> CGRect {
+    func transform(_ x: CGFloat, y: CGFloat, width: CGFloat, height: CGFloat) -> CGRect {
         return CGRect.transform(self, x: x, y: y, width: width, height: height)
     }
 
-    static func setSize(rect: CGRect, size: CGSize) -> CGRect {
+    static func setSize(_ rect: CGRect, size: CGSize) -> CGRect {
         return CGRect(
             origin: rect.origin,
             size: size
         )
     }
     
-    func setSize(size: CGSize) -> CGRect {
+    func setSize(_ size: CGSize) -> CGRect {
         return CGRect.setSize(self, size: size)
     }
     

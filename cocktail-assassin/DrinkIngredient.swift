@@ -15,8 +15,8 @@ class DrinkIngredient: NSManagedObject {
     @NSManaged var drink: Drink
     @NSManaged var ingredient: Ingredient
 
-    class func newDrinkIngredient(drink: Drink, ingredient: Ingredient, amount: NSNumber, managedContext: NSManagedObjectContext) -> DrinkIngredient {
-        let newDrinkIngredient = NSEntityDescription.insertNewObjectForEntityForName("DrinkIngredient", inManagedObjectContext:managedContext) as! DrinkIngredient
+    class func newDrinkIngredient(_ drink: Drink, ingredient: Ingredient, amount: NSNumber, managedContext: NSManagedObjectContext) -> DrinkIngredient {
+        let newDrinkIngredient = NSEntityDescription.insertNewObject(forEntityName: "DrinkIngredient", into:managedContext) as! DrinkIngredient
         newDrinkIngredient.drink = drink
         newDrinkIngredient.ingredient = ingredient
         newDrinkIngredient.amount = amount

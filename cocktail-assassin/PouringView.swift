@@ -20,15 +20,15 @@ class PouringView: UIView {
     
     override init(frame: CGRect) {
         var zeroFrame = frame;
-        zeroFrame.origin = CGPointZero
+        zeroFrame.origin = CGPoint.zero
         bwImageView = UIImageView(frame: zeroFrame)
         imageView = UIImageView(frame: zeroFrame)
         bwImageContainer = UIView(frame: zeroFrame)
         
         super.init(frame: frame)
         
-        imageView.contentMode = .ScaleAspectFit
-        bwImageView.contentMode = .ScaleAspectFit
+        imageView.contentMode = .scaleAspectFit
+        bwImageView.contentMode = .scaleAspectFit
         bwImageContainer.clipsToBounds = true
         bwImageContainer.alpha = 0
         bwImageContainer.addSubview(bwImageView)
@@ -37,18 +37,18 @@ class PouringView: UIView {
         addSubview(bwImageContainer)
     }
     
-    func setImage(image: UIImage) {
+    func setImage(_ image: UIImage) {
         imageView.image = image
         bwImageView.image = image.toGrayscale(TINT_COLOR)
     }
     
     
-    func animate(duration: Double) -> Promise<Bool> {
-        return bwImageContainer.fadeIn(0.2,  options: UIViewAnimationOptions.CurveLinear)
+    func animate(_ duration: Double) -> Promise<Bool> {
+        return bwImageContainer.fadeIn(0.2,  options: UIViewAnimationOptions.curveLinear)
             .then { (completed) -> Promise<Bool> in
                 return UIView.transition(self,
                             duration: duration,
-                            options:  UIViewAnimationOptions.CurveLinear,
+                            options:  UIViewAnimationOptions.curveLinear,
                             animations: {
                                 self.bwImageContainer.frame.size.height = 0
                         })

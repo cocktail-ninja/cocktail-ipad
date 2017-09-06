@@ -15,28 +15,28 @@ class SliderCollectionCell: UICollectionViewCell {
     @IBOutlet var sliderLabel: UILabel!
     @IBOutlet var startButton: UIButton!
     var secondsRemaining: Int = 0
-    var timer: NSTimer?
+    var timer: Timer?
     
     func showSlider() {
-        slider.hidden = false
-        progressBar.hidden = true
+        slider.isHidden = false
+        progressBar.isHidden = true
         sliderLabel.text = "Run for \(Int(slider.value)) seconds"
         self.progressBar.setProgress(0.0, animated: false)
-        startButton.enabled = true
+        startButton.isEnabled = true
     }
     
-    func animateProgressWithDuration(duration: NSTimeInterval) {
+    func animateProgressWithDuration(_ duration: TimeInterval) {
         secondsRemaining = Int(duration)
-        slider.hidden = true
-        progressBar.hidden = false
-        startButton.enabled = false
-        UIView.animateWithDuration(
-            duration,
+        slider.isHidden = true
+        progressBar.isHidden = false
+        startButton.isEnabled = false
+        UIView.animate(
+            withDuration: duration,
             animations: {
                 self.progressBar.setProgress(1.0, animated: true)
             }
         )
-        timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: "tick", userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(SliderCollectionCell.tick), userInfo: nil, repeats: true)
         timer?.fire()
     }
     
@@ -46,7 +46,7 @@ class SliderCollectionCell: UICollectionViewCell {
             showSlider()
         } else {
             sliderLabel.text = "Cleaning...    (\(secondsRemaining) sec remaining)"
-            secondsRemaining--
+            secondsRemaining -= 1
         }
     }
     

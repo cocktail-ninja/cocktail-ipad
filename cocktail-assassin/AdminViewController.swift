@@ -20,7 +20,7 @@ class AdminViewController: UIViewController {
     
     @IBAction func mappingCLicked() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let controller = storyboard.instantiateViewControllerWithIdentifier("IngredientMappingViewController") as! IngredientMappingViewController
+        let controller = storyboard.instantiateViewController(withIdentifier: "IngredientMappingViewController") as! IngredientMappingViewController
         controller.coreDataStack = coreDataStack
 
         navigationController?.pushViewController(controller, animated: true)
@@ -28,14 +28,14 @@ class AdminViewController: UIViewController {
     
     @IBAction func cleaningClicked() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let controller = storyboard.instantiateViewControllerWithIdentifier("CleaningViewController") as! CleaningViewController
+        let controller = storyboard.instantiateViewController(withIdentifier: "CleaningViewController") as! CleaningViewController
         controller.coreDataStack = coreDataStack
         navigationController?.pushViewController(controller, animated: true)
     }
 
     @IBAction func logoutClicked() {
         AdminService.sharedInstance.logout()
-        navigationController?.popViewControllerAnimated(true)
+        navigationController?.popViewController(animated: true)
     }
     
 }

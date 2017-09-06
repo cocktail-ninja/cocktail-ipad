@@ -6,7 +6,7 @@
 import UIKit
 
 protocol SelectIngredientDelegate {
-    func didSelectIngredient(ingredient: Ingredient?)
+    func didSelectIngredient(_ ingredient: Ingredient?)
     func didCancel()
 }
 
@@ -53,26 +53,26 @@ class SelectIngredientViewController : UITableViewController {
         super.viewDidLoad()
         
         self.navigationItem.title = "Select Ingredient"
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Cancel, target: self, action: "cancelClicked")
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(SelectIngredientViewController.cancelClicked))
     }
     
     func cancelClicked() {
         delegate?.didCancel()
     }
     
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 2;
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return ingredientsForSection(section)?.count ?? 0
     }
     
-    func ingredientForIndexPath(indexPath: NSIndexPath) -> Ingredient? {
+    func ingredientForIndexPath(_ indexPath: IndexPath) -> Ingredient? {
         return ingredientsForSection(indexPath.section)?[indexPath.row]
     }
     
-    func ingredientsForSection(section: Int) -> [Ingredient]? {
+    func ingredientsForSection(_ section: Int) -> [Ingredient]? {
         switch(section) {
         case(alcoholicSection):
             return alcoholicIngredients
@@ -83,23 +83,23 @@ class SelectIngredientViewController : UITableViewController {
         }
     }
 
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCellWithIdentifier("CELL")
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        var cell = tableView.dequeueReusableCell(withIdentifier: "CELL")
         if cell == nil {
-            cell = UITableViewCell(style: .Default, reuseIdentifier: "CELL")
+            cell = UITableViewCell(style: .default, reuseIdentifier: "CELL")
         }
         let ingredient = ingredientForIndexPath(indexPath)
         cell!.textLabel?.text = ingredient?.ingredientType.rawValue
         return cell!
     }
 
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let ingredient = ingredientForIndexPath(indexPath) {
             delegate?.didSelectIngredient(ingredient)
         }
     }
     
-    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch(section) {
         case(alcoholicSection):
             return "Alcoholic"

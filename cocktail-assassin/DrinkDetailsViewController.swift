@@ -8,7 +8,7 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
     var drink: Drink?
     var imageSize: CGSize!
     var imageFrame: CGRect!
-    var selectedIndexPath: NSIndexPath?
+    var selectedIndexPath: IndexPath?
     
     @IBOutlet var headerView: UIView!
     @IBOutlet var backButton: UIButton!
@@ -26,12 +26,12 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
     var editMode = false
     let nameTextField = UITextField()
     let imagePickerController = UIImagePickerController()
-    let resetIngredientButton = UIButton(type: UIButtonType.Custom)
+    let resetIngredientButton = UIButton(type: UIButtonType.custom)
     var selectIngredientController: SelectIngredientViewController?
-    let saveButton = ActionButton(frame: CGRectZero)
-    let cancelButton = UIButton(type: UIButtonType.Custom)
-    let deleteButton = UIButton(type: UIButtonType.Custom)
-    let selectImageButton = UIButton(type: UIButtonType.Custom)
+    let saveButton = ActionButton(frame: CGRect.zero)
+    let cancelButton = UIButton(type: UIButtonType.custom)
+    let deleteButton = UIButton(type: UIButtonType.custom)
+    let selectImageButton = UIButton(type: UIButtonType.custom)
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,19 +39,19 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
         imageWidth.constant = imageSize.width
         imageHeight.constant = imageSize.height
         
-        imagePickerController.modalPresentationStyle = .CurrentContext
+        imagePickerController.modalPresentationStyle = .currentContext
         
-        view.backgroundColor = UIColor.whiteColor()
+        view.backgroundColor = UIColor.white
 
         drinkImageView.image = drink?.image()
-        drinkImageView.userInteractionEnabled = false
+        drinkImageView.isUserInteractionEnabled = false
         
-        editButton.imageView?.contentMode = .ScaleAspectFit
+        editButton.imageView?.contentMode = .scaleAspectFit
         
         ingredientsTableView.delegate = self
         ingredientsTableView.dataSource = self
-        ingredientsTableView.scrollEnabled = true
-        ingredientsTableView.separatorStyle = .None
+        ingredientsTableView.isScrollEnabled = true
+        ingredientsTableView.separatorStyle = .none
         ingredientsTableView.allowsSelection = true
         ingredientsTableView.alwaysBounceVertical = false
         
@@ -89,44 +89,44 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
         
         nameLabel.text = drink?.name
         
-        backButton.addTarget(self, action: "dismiss", forControlEvents: .TouchUpInside)
-        editButton.addTarget(self, action: "edit", forControlEvents: .TouchUpInside)
-        pourButton.addTarget(self, action: "pour", forControlEvents: .TouchUpInside)
+        backButton.addTarget(self, action: #selector(DrinkDetailsViewController.dismiss as (DrinkDetailsViewController) -> () -> ()), for: .touchUpInside)
+        editButton.addTarget(self, action: #selector(DrinkDetailsViewController.edit), for: .touchUpInside)
+        pourButton.addTarget(self, action: #selector(DrinkDetailsViewController.pour), for: .touchUpInside)
         
         setupEditingUI()
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         let canEdit = AdminService.sharedInstance.isAdmin || drink!.editable
-        editButton.hidden = !canEdit
+        editButton.isHidden = !canEdit
     }
     
     func setupEditingUI() {
-        cancelButton.setImage(UIImage(named: "cancel"), forState: .Normal)
-        cancelButton.imageView?.contentMode = .ScaleAspectFit
-        cancelButton.hidden = true
-        cancelButton.addTarget(self, action: "cancel", forControlEvents: .TouchUpInside)
+        cancelButton.setImage(UIImage(named: "cancel"), for: UIControlState())
+        cancelButton.imageView?.contentMode = .scaleAspectFit
+        cancelButton.isHidden = true
+        cancelButton.addTarget(self, action: #selector(DrinkDetailsViewController.cancel), for: .touchUpInside)
         headerView.addSubview(cancelButton)
         
-        saveButton.setTitle("Save", forState: .Normal)
-        saveButton.hidden = true
-        saveButton.addTarget(self, action: "save", forControlEvents: .TouchUpInside)
+        saveButton.setTitle("Save", for: UIControlState())
+        saveButton.isHidden = true
+        saveButton.addTarget(self, action: #selector(DrinkDetailsViewController.save), for: .touchUpInside)
         view.addSubview(saveButton)
 
         nameTextField.frame = nameLabel.frame
         nameTextField.text = drink?.name
-        nameTextField.textAlignment = .Center
-        nameTextField.hidden = true
-        nameTextField.borderStyle = UITextBorderStyle.Line
+        nameTextField.textAlignment = .center
+        nameTextField.isHidden = true
+        nameTextField.borderStyle = UITextBorderStyle.line
         nameTextField.delegate = self
-        nameTextField.setBorder(1.0, color: UIColor.grayColor().CGColor, radius: 5)
+        nameTextField.setBorder(1.0, color: UIColor.gray.cgColor, radius: 5)
         headerView.addSubview(nameTextField)
         
-        selectImageButton.setImage(UIImage(named: "change_image"), forState: .Normal)
-        selectImageButton.frame = CGRectMake(20, view.frame.size.height-52, 32, 32)
-        selectImageButton.hidden = true
-        selectImageButton.addTarget(self, action: "selectImage", forControlEvents: .TouchUpInside)
+        selectImageButton.setImage(UIImage(named: "change_image"), for: UIControlState())
+        selectImageButton.frame = CGRect(x: 20, y: view.frame.size.height-52, width: 32, height: 32)
+        selectImageButton.isHidden = true
+        selectImageButton.addTarget(self, action: #selector(DrinkDetailsViewController.selectImage), for: .touchUpInside)
         view.addSubview(selectImageButton)
 
         // TODO: re-implement the delete button
@@ -138,14 +138,14 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
             self.selectIngredientController = SelectIngredientForDrinkViewController(drink: drink, coreDataStack: coreDataStack)
         }
         selectIngredientController?.delegate = self
-        selectIngredientController?.modalPresentationStyle = UIModalPresentationStyle.FormSheet
+        selectIngredientController?.modalPresentationStyle = UIModalPresentationStyle.formSheet
         
         imagePickerController.delegate = self
-        imagePickerController.sourceType = .SavedPhotosAlbum
+        imagePickerController.sourceType = .savedPhotosAlbum
         imagePickerController.allowsEditing = false
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         if editMode {
             edit()
@@ -155,9 +155,9 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
         }
     }
     
-    func drinkIngredientForIndexPath(indexPath: NSIndexPath) -> DrinkIngredient? {
+    func drinkIngredientForIndexPath(_ indexPath: IndexPath) -> DrinkIngredient? {
         let ingredients = drink?.drinkIngredients.allObjects as! [DrinkIngredient]
-        var sortedIngredients = ingredients.sort { first, second in
+        var sortedIngredients = ingredients.sorted { first, second in
             return first.ingredient.ingredientClass.rawValue <= second.ingredient.ingredientClass.rawValue &&
                 first.ingredient.ingredientType != .LimeJuice
         }
@@ -182,17 +182,19 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
         }
         
         let ingredientComponents = ingredients.map {"\($0.ingredient.component!.id)-\($0.amount)"}
-        let recipe = ingredientComponents.joinWithSeparator("/")
-        pourButton.setState(.Loading)
+        let recipe = ingredientComponents.joined(separator: "/")
+        pourButton.setState(.loading)
         
         // TODO: get this to work!
-        DrinkService.makeDrink(recipe: recipe).then() { duration -> Void in
+        firstly {
+            DrinkService.makeDrink(recipe: recipe)
+        }.then { duration -> Void in
             self.coreDataStack.revert()
             self.startPourAnimation(duration)
-            }.error() { error in
-                print("What is ErrorType ?? \(error)")
-                //            self.getErrorMessage(error)
-                self.pourButton.displayError("Error")
+        }.catch { error in
+            print("What is ErrorType ?? \(error)")
+            //            self.getErrorMessage(error)
+            self.pourButton.displayError("Error")
         }
     }
     
@@ -210,7 +212,7 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
     }
     
     @IBAction func cancel() {
-        if( !drink!.objectID.temporaryID ) {
+        if( !drink!.objectID.isTemporaryID ) {
             editMode = false
             nameTextField.resignFirstResponder()
             selectedIndexPath = nil
@@ -231,21 +233,21 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
             coreDataStack.save()
             updateUserInterface()
         } else {
-            let alertController = UIAlertController(title: errorMessage, message: "", preferredStyle: .Alert)
-            alertController.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
-            self.presentViewController(alertController, animated: true, completion: nil)
+            let alertController = UIAlertController(title: errorMessage, message: "", preferredStyle: .alert)
+            alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alertController, animated: true, completion: nil)
         }
     }
     
     @IBAction func delete() {
-        drink!.managedObjectContext?.deleteObject(drink!)
+        drink!.managedObjectContext?.delete(drink!)
         coreDataStack.save()
-        navigationController?.popViewControllerAnimated(true)
+        navigationController?.popViewController(animated: true)
     }
 
     @IBAction func selectImage() {
         if editMode {
-            self.presentViewController(imagePickerController, animated: true, completion: nil)
+            self.present(imagePickerController, animated: true, completion: nil)
         }
     }
     
@@ -256,7 +258,7 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
     
     func dismiss() {
         coreDataStack.revert()
-        navigationController?.popViewControllerAnimated(true)
+        navigationController?.popViewController(animated: true)
     }
     
     func validateDrink() -> String {
@@ -272,19 +274,19 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
 
     func updateUserInterface() {
         nameLabel.text = drink?.name
-        nameLabel.hidden = editMode
-        nameTextField.hidden = !editMode
-        editButton.hidden = editMode
-        cancelButton.hidden = !editMode
-        saveButton.hidden = !editMode
-        pourButton.hidden = editMode
-        deleteButton.hidden = !editMode
-        selectImageButton.hidden = !editMode
-        drinkImageView.userInteractionEnabled = editMode
+        nameLabel.isHidden = editMode
+        nameTextField.isHidden = !editMode
+        editButton.isHidden = editMode
+        cancelButton.isHidden = !editMode
+        saveButton.isHidden = !editMode
+        pourButton.isHidden = editMode
+        deleteButton.isHidden = !editMode
+        selectImageButton.isHidden = !editMode
+        drinkImageView.isUserInteractionEnabled = editMode
         ingredientsTableView.reloadData()
     }
     
-    func getErrorMessage(code: Int) -> String {
+    func getErrorMessage(_ code: Int) -> String {
         switch(code) {
             case 404:
                 return "404 - Glass Not Found!"
@@ -296,23 +298,23 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
 
     }
     
-    func isSelected(indexPath: NSIndexPath) -> Bool {
+    func isSelected(_ indexPath: IndexPath) -> Bool {
         return selectedIndexPath == indexPath
     }
 
     func isCompact() -> Bool {
-        return UIDevice.currentDevice().userInterfaceIdiom == .Phone
+        return UIDevice.current.userInterfaceIdiom == .phone
     }
     
-    func didSelectIngredient(ingredient: Ingredient?) {
+    func didSelectIngredient(_ ingredient: Ingredient?) {
         guard let ingredient = ingredient else {
             return
         }
-        selectIngredientController?.dismissViewControllerAnimated(true, completion: nil)
+        selectIngredientController?.dismiss(animated: true, completion: nil)
         if( drink!.hasIngredient(ingredient) ) {
-            let alertController = UIAlertController(title: "Ingredient Already Added", message: "", preferredStyle: .Alert)
-            alertController.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
-            self.presentViewController(alertController, animated: true, completion: nil)
+            let alertController = UIAlertController(title: "Ingredient Already Added", message: "", preferredStyle: .alert)
+            alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alertController, animated: true, completion: nil)
         } else {
             drink?.addIngredient(ingredient, amount: 30)
             updateUserInterface()
@@ -320,19 +322,19 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
     }
     
     func didCancel() {
-        selectIngredientController?.dismissViewControllerAnimated(true) { }
+        selectIngredientController?.dismiss(animated: true) { }
     }
 
-    func removeDrinkIngredient(ingredient: DrinkIngredient) {
+    func removeDrinkIngredient(_ ingredient: DrinkIngredient) {
         drink?.removeDrinkIngredient(ingredient)
         updateUserInterface()
     }
 
-    func amountChanged(ingredient: DrinkIngredient) {
+    func amountChanged(_ ingredient: DrinkIngredient) {
         ingredientsTableView.reloadData()
     }
     
-    func startPourAnimation(duration: Double) {
+    func startPourAnimation(_ duration: Double) {
         let pouringVC = PouringViewController(drink: drink!, duration: duration, imageSize: imageSize)
         navigationController?.pushViewController(pouringVC, animated: true)
     }
@@ -349,15 +351,15 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
     
     // MARK: UITableView Methods
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1;
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return editMode ? drink!.drinkIngredients.count+1 : drink!.drinkIngredients.count+1;
     }
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let height = tableView.frame.size.height / 6
         if isCompact() && isSelected(indexPath) {
             return height * 1.75
@@ -366,12 +368,12 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
         }
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if( indexPath.row == drink?.drinkIngredients.count ) {
             if editMode {
-                return tableView.dequeueReusableCellWithIdentifier("AddIngredient")!
+                return tableView.dequeueReusableCell(withIdentifier: "AddIngredient")!
             } else {
-                let cell = tableView.dequeueReusableCellWithIdentifier("TotalCell") as! DrinkTotalCell
+                let cell = tableView.dequeueReusableCell(withIdentifier: "TotalCell") as! DrinkTotalCell
                 cell.update(drink!)
                 return cell
             }
@@ -380,47 +382,47 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
         }
     }
     
-    func drinkIngredientCell(tableView: UITableView, indexPath: NSIndexPath) -> DrinkIngredientCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("IngredientCell") as? DrinkIngredientCell
+    func drinkIngredientCell(_ tableView: UITableView, indexPath: IndexPath) -> DrinkIngredientCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "IngredientCell") as? DrinkIngredientCell
         let drinkIngredient = drinkIngredientForIndexPath(indexPath)!
         
         cell!.editMode = self.editMode
-        cell!.editing =  self.editMode
+        cell!.isEditing =  self.editMode
         cell!.displayDrinkIngredient(drinkIngredient)
         cell!.delegate = self
         let hidden = isCompact() && !isSelected(indexPath)
         cell!.slider?.alpha = hidden ? 0.0 : 1.0
-        cell!.selectionStyle = .None
+        cell!.selectionStyle = .none
         
         return cell!
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if editMode && indexPath.row == drink?.drinkIngredients.count {
             let navController = UINavigationController(rootViewController: self.selectIngredientController!)
-            self.presentViewController(navController, animated: true) { }
+            self.present(navController, animated: true) { }
         } else if isCompact() {
             ingredientsTableView.beginUpdates()
             
             if let selectedIndexPath = selectedIndexPath {
-                if let cell = tableView.cellForRowAtIndexPath(selectedIndexPath) as? DrinkIngredientCell {
-                    UIView.animateWithDuration(0.3) {
+                if let cell = tableView.cellForRow(at: selectedIndexPath) as? DrinkIngredientCell {
+                    UIView.animate(withDuration: 0.3, animations: {
                         cell.slider?.alpha = 0.0
-                    }
+                    }) 
                 }
             }
             
             if selectedIndexPath != indexPath {
                 selectedIndexPath = indexPath
-                if let cell = tableView.cellForRowAtIndexPath(indexPath) as? DrinkIngredientCell {
-                    UIView.animateWithDuration(
-                        0.3,
+                if let cell = tableView.cellForRow(at: indexPath) as? DrinkIngredientCell {
+                    UIView.animate(
+                        withDuration: 0.3,
                         animations: {
                             cell.slider?.alpha = 1.0
                         }
                     )
                 }
-                var rect = tableView.rectForRowAtIndexPath(indexPath)
+                var rect = tableView.rectForRow(at: indexPath)
                 rect = rect.transform(0, y: 0, width: 0, height: rect.size.height * 0.75)
                 tableView.scrollRectToVisible(rect, animated: true)
             } else {
@@ -432,28 +434,28 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
     
     // MARK: UITextField Delegate
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         nameTextField.resignFirstResponder()
         return true
     }
     
-    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         let text = textField.text! as NSString
-        drink!.name = text.stringByReplacingCharactersInRange(range, withString:string)
+        drink!.name = text.replacingCharacters(in: range, with:string)
         return true
     }
     
     // MARK: ImagePicker Delegate
     
-    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
-        imagePickerController.dismissViewControllerAnimated(true) { }
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        imagePickerController.dismiss(animated: true) { }
     }
     
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String: AnyObject]) {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String: Any]) {
         let image = info[UIImagePickerControllerOriginalImage] as! UIImage
         drinkImageView.image = image
         drink?.saveImage(image)
-        imagePickerController.dismissViewControllerAnimated(true) { }
+        imagePickerController.dismiss(animated: true) { }
     }
 
 }

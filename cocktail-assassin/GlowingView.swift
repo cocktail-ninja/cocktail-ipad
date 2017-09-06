@@ -21,48 +21,48 @@ class GlowingView: UIView {
     
     override init(frame: CGRect) {
         var zeroFrame = frame;
-        zeroFrame.origin = CGPointZero
+        zeroFrame.origin = CGPoint.zero
         
         glowView = UIImageView(frame: zeroFrame)
         imageView = UIImageView(frame: zeroFrame)
         
         super.init(frame: frame)
         
-        glowView.contentMode = .ScaleAspectFit
-        imageView.contentMode = .ScaleAspectFit
+        glowView.contentMode = .scaleAspectFit
+        imageView.contentMode = .scaleAspectFit
         glowView.image = UIImage(named: "glow.png")
-        glowView.frame = CGRectMake((frame.width - GLOW_VIEW_DIAMETER)/2, (frame.height - GLOW_VIEW_DIAMETER)/2, GLOW_VIEW_DIAMETER, GLOW_VIEW_DIAMETER)        
-        glowView.contentMode = .ScaleAspectFit
+        glowView.frame = CGRect(x: (frame.width - GLOW_VIEW_DIAMETER)/2, y: (frame.height - GLOW_VIEW_DIAMETER)/2, width: GLOW_VIEW_DIAMETER, height: GLOW_VIEW_DIAMETER)        
+        glowView.contentMode = .scaleAspectFit
         glowView.alpha = 0
         
         addSubview(glowView)
         addSubview(imageView)
     }
     
-    func setImage(image: UIImage) {
+    func setImage(_ image: UIImage) {
         imageView.image = image
     }
     
-    func animate(duration: Double) -> Promise<Bool> {
-        return when([fadeInGlow(duration * 0.2), spinGlowView(duration)])
-            .then { (results) -> Promise<Bool> in
-                return Promise<Bool>(true)
-            }
+    func animate(_ duration: Double) -> Promise<Bool> {
+        return firstly {
+            when(fulfilled: fadeInGlow(duration * 0.2), spinGlowView(duration))
+        }.then { (_, _) -> Promise<Bool> in
+            return Promise(value: true)
+        }
     }
     
-    func fadeInGlow(duration: Double) -> Promise<Bool> {
-        return glowView.fadeIn(duration * 0.3, options: UIViewAnimationOptions.CurveLinear)
+    func fadeInGlow(_ duration: Double) -> Promise<Bool> {
+        return glowView.fadeIn(duration * 0.3, options: UIViewAnimationOptions.curveLinear)
     }
     
-    func spinGlowView(duration: Double) -> Promise<Bool> {
+    func spinGlowView(_ duration: Double) -> Promise<Bool> {
         return UIView.transition(self,
             duration: duration,
-            options:  UIViewAnimationOptions.CurveLinear,
+            options:  UIViewAnimationOptions.curveLinear,
             animations: {
-                self.glowView.transform = CGAffineTransformRotate(self.glowView.transform, 1/2 * π)
+                self.glowView.transform = self.glowView.transform.rotated(by: 1/2 * π)
                 return
         })
     }
-    
     
 }

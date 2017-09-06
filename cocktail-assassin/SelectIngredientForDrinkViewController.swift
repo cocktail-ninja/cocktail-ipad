@@ -22,24 +22,24 @@ class SelectIngredientForDrinkViewController: SelectIngredientViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationItem.title = "Select Ingredient For Drink"
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = super.tableView(tableView, cellForRowAtIndexPath: indexPath)
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = super.tableView(tableView, cellForRowAt: indexPath)
         let ingredient = ingredientForIndexPath(indexPath)!
-        cell.textLabel?.textColor = drink.containsIngredient(ingredient) ? UIColor.grayColor() : UIColor.blackColor()
+        cell.textLabel?.textColor = drink.containsIngredient(ingredient) ? UIColor.gray : UIColor.black
         return cell
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let ingredient = ingredientForIndexPath(indexPath)!
         if drink.containsIngredient(ingredient) {
-            let alertController = UIAlertController(title: "", message: "Drink already has \(ingredient.ingredientType.rawValue)", preferredStyle: .Alert)
-            alertController.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
-            presentViewController(alertController, animated: true, completion: nil)
+            let alertController = UIAlertController(title: "", message: "Drink already has \(ingredient.ingredientType.rawValue)", preferredStyle: .alert)
+            alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            present(alertController, animated: true, completion: nil)
             return
         }
         delegate?.didSelectIngredient(ingredient)

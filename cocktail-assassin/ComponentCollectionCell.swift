@@ -9,7 +9,7 @@
 import UIKit
 
 protocol ComponentCollectionCellDelegate {
-    func componentSelected(component: Component)
+    func componentSelected(_ component: Component)
 }
 
 class ComponentCollectionCell: UICollectionViewCell {
@@ -20,32 +20,32 @@ class ComponentCollectionCell: UICollectionViewCell {
     var component: Component?
     var delegate: ComponentCollectionCellDelegate?
     
-    func update(component: Component) {
+    func update(_ component: Component) {
         self.component = component
         UIView.setAnimationsEnabled(false)
-        button.setTitle(component.name, forState: .Normal)
-        button.setBackgroundImage(self.imageFromColor(UIColor.blueColor()), forState: .Selected)
-        self.button.selected = self.component!.selected
+        button.setTitle(component.name, for: UIControlState())
+        button.setBackgroundImage(self.imageFromColor(UIColor.blue), for: .selected)
+        self.button.isSelected = self.component!.selected
         self.layer.cornerRadius = 10.0
         UIView.setAnimationsEnabled(true)
     }
     
-    func imageFromColor(color: UIColor) -> UIImage {
+    func imageFromColor(_ color: UIColor) -> UIImage {
         let rect = CGRect(x: 0, y: 0, width: 1, height: 1)
         UIGraphicsBeginImageContext(rect.size)
         let context = UIGraphicsGetCurrentContext()
-        CGContextSetFillColorWithColor(context, color.CGColor)
-        CGContextFillRect(context, rect)
+        context?.setFillColor(color.cgColor)
+        context?.fill(rect)
         let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
-        return image
+        return image!
     }
     
     @IBAction func buttonClicked() {
         if let component = component {
             if buttonEnabled {
                 component.selected = !component.selected
-                button.selected = component.selected
+                button.isSelected = component.selected
                 delegate?.componentSelected(component)
             }
         }

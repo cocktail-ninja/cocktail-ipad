@@ -18,14 +18,14 @@ class DrinkService: NSObject {
     }
     
     // Recipe = "P1-30/P2-15/V3-150"
-    class func makeDrink(recipe recipe: String) -> Promise<Double> {
+    class func makeDrink(recipe: String) -> Promise<Double> {
         let url = Constants.baseUrl.prod + "/make_drink/" + recipe
         
         return Promise<Double> { fulfill, reject in
-            Alamofire.request(.POST, url)
+            Alamofire.request(url, method: .post)
                 .responseJSON { (response) in
                     switch response.result {
-                        case .Success(let value):
+                        case .success(let value):
                             let statusCode = response.response?.statusCode ?? 500
                             if statusCode == 200 {
                                 let stringValue = (value as! NSDictionary)["ready_in"] as! NSString
@@ -35,7 +35,7 @@ class DrinkService: NSObject {
                                 let statusError = NSError(domain: "DrinkService", code: statusCode, userInfo: nil)
                                 reject(statusError)
                             }
-                        case .Failure(let error):
+                        case .failure(let error):
                             reject(error)
                     }
             }
@@ -44,36 +44,36 @@ class DrinkService: NSObject {
         }
         
     }
-    class func initIngredients(managedContext: NSManagedObjectContext) {
-        Ingredient.newIngredient(.DarkRum,   pumpNumber: 1, amountLeft: 100, ingredientClass: .Alcoholic, managedContext: managedContext)
-        Ingredient.newIngredient(.LightRum,  pumpNumber: 2, amountLeft: 100, ingredientClass: .Alcoholic, managedContext: managedContext)
-        Ingredient.newIngredient(.Vodka,     pumpNumber: 3, amountLeft: 100, ingredientClass: .Alcoholic, managedContext: managedContext)
-        Ingredient.newIngredient(.Gin,       pumpNumber: 4, amountLeft: 100, ingredientClass: .Alcoholic,managedContext: managedContext)
-        Ingredient.newIngredient(.Tequila,   pumpNumber: 5, amountLeft: 50, ingredientClass: .Alcoholic, managedContext: managedContext)
-        Ingredient.newIngredient(.TripleSec, pumpNumber: 6, amountLeft: 50, ingredientClass: .Alcoholic,managedContext: managedContext)
+    class func initIngredients(_ managedContext: NSManagedObjectContext) {
+        Ingredient.newIngredient(.DarkRum,   pumpNumber: 1, amountLeft: 100, ingredientClass: .alcoholic, managedContext: managedContext)
+        Ingredient.newIngredient(.LightRum,  pumpNumber: 2, amountLeft: 100, ingredientClass: .alcoholic, managedContext: managedContext)
+        Ingredient.newIngredient(.Vodka,     pumpNumber: 3, amountLeft: 100, ingredientClass: .alcoholic, managedContext: managedContext)
+        Ingredient.newIngredient(.Gin,       pumpNumber: 4, amountLeft: 100, ingredientClass: .alcoholic,managedContext: managedContext)
+        Ingredient.newIngredient(.Tequila,   pumpNumber: 5, amountLeft: 50, ingredientClass: .alcoholic, managedContext: managedContext)
+        Ingredient.newIngredient(.TripleSec, pumpNumber: 6, amountLeft: 50, ingredientClass: .alcoholic,managedContext: managedContext)
       
-        Ingredient.newIngredient(.Coke,           pumpNumber: 7, amountLeft: 400, ingredientClass: .NonAlcoholic, managedContext: managedContext)
-        Ingredient.newIngredient(.Lemonade,       pumpNumber: 8, amountLeft: 500, ingredientClass: .NonAlcoholic, managedContext: managedContext)
-        Ingredient.newIngredient(.OrangeJuice,    pumpNumber: 9, amountLeft: 400, ingredientClass: .NonAlcoholic, managedContext: managedContext)
-        Ingredient.newIngredient(.CranberryJuice, pumpNumber: 10, amountLeft: 500, ingredientClass: .NonAlcoholic, managedContext: managedContext)
-        Ingredient.newIngredient(.LimeJuice,      pumpNumber: 11, amountLeft: 500, ingredientClass: .NonAlcoholic, managedContext: managedContext)
+        Ingredient.newIngredient(.Coke,           pumpNumber: 7, amountLeft: 400, ingredientClass: .nonAlcoholic, managedContext: managedContext)
+        Ingredient.newIngredient(.Lemonade,       pumpNumber: 8, amountLeft: 500, ingredientClass: .nonAlcoholic, managedContext: managedContext)
+        Ingredient.newIngredient(.OrangeJuice,    pumpNumber: 9, amountLeft: 400, ingredientClass: .nonAlcoholic, managedContext: managedContext)
+        Ingredient.newIngredient(.CranberryJuice, pumpNumber: 10, amountLeft: 500, ingredientClass: .nonAlcoholic, managedContext: managedContext)
+        Ingredient.newIngredient(.LimeJuice,      pumpNumber: 11, amountLeft: 500, ingredientClass: .nonAlcoholic, managedContext: managedContext)
     }
     
-    class func initComponents(managedContext: NSManagedObjectContext) {
-        Component.newComponent(.Valve, id: "V1", name: "Valve 1", managedContext: managedContext)
-        Component.newComponent(.Valve, id: "V2", name: "Valve 2", managedContext: managedContext)
-        Component.newComponent(.Valve, id: "V3", name: "Valve 3", managedContext: managedContext)
-        Component.newComponent(.Valve, id: "V4", name: "Valve 4", managedContext: managedContext)
+    class func initComponents(_ managedContext: NSManagedObjectContext) {
+        Component.newComponent(.valve, id: "V1", name: "Valve 1", managedContext: managedContext)
+        Component.newComponent(.valve, id: "V2", name: "Valve 2", managedContext: managedContext)
+        Component.newComponent(.valve, id: "V3", name: "Valve 3", managedContext: managedContext)
+        Component.newComponent(.valve, id: "V4", name: "Valve 4", managedContext: managedContext)
         
-        Component.newComponent(.Pump, id: "P1", name: "Pump 1", managedContext: managedContext)
-        Component.newComponent(.Pump, id: "P2", name: "Pump 2", managedContext: managedContext)
-        Component.newComponent(.Pump, id: "P3", name: "Pump 3", managedContext: managedContext)
-        Component.newComponent(.Pump, id: "P4", name: "Pump 4", managedContext: managedContext)
-        Component.newComponent(.Pump, id: "P5", name: "Pump 5", managedContext: managedContext)
-        Component.newComponent(.Pump, id: "P6", name: "Pump 6", managedContext: managedContext)
+        Component.newComponent(.pump, id: "P1", name: "Pump 1", managedContext: managedContext)
+        Component.newComponent(.pump, id: "P2", name: "Pump 2", managedContext: managedContext)
+        Component.newComponent(.pump, id: "P3", name: "Pump 3", managedContext: managedContext)
+        Component.newComponent(.pump, id: "P4", name: "Pump 4", managedContext: managedContext)
+        Component.newComponent(.pump, id: "P5", name: "Pump 5", managedContext: managedContext)
+        Component.newComponent(.pump, id: "P6", name: "Pump 6", managedContext: managedContext)
     }
     
-    class func createDrinkWithIngredient(name:String, imageName:String, ingredients: [IngredientType: NSNumber], editable: Bool, coreDataStack: CoreDataStack) -> Drink {
+    class func createDrinkWithIngredient(_ name:String, imageName:String, ingredients: [IngredientType: NSNumber], editable: Bool, coreDataStack: CoreDataStack) -> Drink {
         let drink = Drink.newDrink(name, imageName: imageName, editable: editable, managedContext: coreDataStack.context)
         
         for (ingredientType, amountNeeded) in ingredients{
@@ -84,7 +84,7 @@ class DrinkService: NSObject {
         return drink
     }
     
-    class func initDatabase(coreDataStack: CoreDataStack) {
+    class func initDatabase(_ coreDataStack: CoreDataStack) {
         DrinkService.initComponents(coreDataStack.context)
         DrinkService.initIngredients(coreDataStack.context)
 

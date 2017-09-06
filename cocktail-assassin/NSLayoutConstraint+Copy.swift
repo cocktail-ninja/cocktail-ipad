@@ -10,7 +10,7 @@ import UIKit
 
 extension NSLayoutConstraint {
     
-    func copyConstraintsFromView(sourceView: UIView, toView destView: UIView) {
+    func copyConstraintsFromView(_ sourceView: UIView, toView destView: UIView) {
         for constraint in sourceView.superview!.constraints {
             if constraint.firstItem as? NSObject == sourceView {
                 let newConstraint = NSLayoutConstraint(

@@ -14,7 +14,7 @@ class AdminService {
     
     static let sharedInstance = AdminService()
     
-    func login(password: String) -> Bool {
+    func login(_ password: String) -> Bool {
         if password == "tasty" {
             isAdmin = true
             return true

@@ -10,10 +10,12 @@ import UIKit
 import CoreData
 import iOSSharedViewTransition
 import WatchConnectivity
+import PromiseKit
 
-@UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
-                            
+
+@objc @UIApplicationMain
+class AppDelegate: UIResponder, UIApplicationDelegate {
+    
     var window: UIWindow?
     var coreDataStack: CoreDataStack!
     var navigationController: UINavigationController!
@@ -22,43 +24,43 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
         didSet {
             if let session = session {
                 session.delegate = self
-                session.activateSession()
+                session.activate()
             }
         }
     }
     
-    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject : AnyObject]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         coreDataStack = CoreDataStack() {
             print("Core Data Stack Initialized!")
             
             if WCSession.isSupported() {
                 print("Starting WatchConnectivity session")
-                self.session = WCSession.defaultSession()
+                self.session = WCSession.default()
             }
             
             self.displayMainUserInterface()
         }
         navigationController = self.window!.rootViewController as! UINavigationController
         
-        ASFSharedViewTransition.addTransitionWithFromViewControllerClass(
-            DrinksViewController.self,
+        ASFSharedViewTransition.addWith(
+            fromViewControllerClass: DrinksViewController.self,
             toViewControllerClass: DrinkDetailsViewController.self,
-            withNavigationController: navigationController,
+            with: navigationController,
             withDuration: 0.5
         )
         
-        ASFSharedViewTransition.addTransitionWithFromViewControllerClass(
-            DrinkDetailsViewController.self,
+        ASFSharedViewTransition.addWith(
+            fromViewControllerClass: DrinkDetailsViewController.self,
             toViewControllerClass: PouringViewController.self,
-            withNavigationController: navigationController,
+            with: navigationController,
             withDuration: 0.8
         )
 
-        ASFSharedViewTransition.addTransitionWithFromViewControllerClass(
-            PouringViewController.self,
+        ASFSharedViewTransition.addWith(
+            fromViewControllerClass: PouringViewController.self,
             toViewControllerClass: DrinksViewController.self,
-            withNavigationController: navigationController,
+            with: navigationController,
             withDuration: 0.5
         )
         
@@ -76,30 +78,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
         loadingViewController.showDrinks()
     }
     
-    func supportedInterfaceOrientationsForWindow(window: UIWindow) -> Int {
-        return Int(UIInterfaceOrientationMask.All.rawValue)
+    func supportedInterfaceOrientationsForWindow(_ window: UIWindow) -> Int {
+        return Int(UIInterfaceOrientationMask.all.rawValue)
     }
     
-    func session(session: WCSession, didReceiveMessage message: [String : AnyObject], replyHandler: ([String : AnyObject]) -> Void) {
+    func session(_ session: WCSession, didReceiveMessage message: [String : Any], replyHandler: @escaping ([String : Any]) -> Void) {
         puts("message received: \(message)")
         
         let requestType = message["request"] as! String
-        var response = [String: AnyObject]()
+        var response = [String: Any]()
         
         switch requestType {
         case "drinks":
             response = self.handleLoadDrinksRequest()
         case "pourDrink":
-            response = self.handlePourDrinkRequest(message)
+            response = self.handlePourDrinkRequest(message as [String : AnyObject])
         default:
-            response = ["status": "unknown request"]
+            response = ["status": "unknown request" as AnyObject]
         }
         
         puts("sending response: \(message)")
         replyHandler(response)
     }
     
-    func handleLoadDrinksRequest() -> [String: AnyObject] {
+    func handleLoadDrinksRequest() -> [String: Any] {
         let drinks = Drink.allDrinks(coreDataStack.context)
         let drinkData = drinks.map() { drink in
             return [
@@ -110,7 +112,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
         return ["drinks": drinkData]
     }
     
-    func handlePourDrinkRequest(message: [String : AnyObject]) -> [String: AnyObject] {
+    func handlePourDrinkRequest(_ message: [String : AnyObject]) -> [String: AnyObject] {
         let drinkName = message["drinkName"] as! String
         let drink = Drink.getDrinkByName(drinkName, context: coreDataStack.context)
         
@@ -125,19 +127,37 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
         ingredientComponents = ingredientComponents.filter() { value in
             return value != ""
         } as [String]
-        let recipe = ingredientComponents.joinWithSeparator("/")
+        let recipe = ingredientComponents.joined(separator: "/")
         
-        DrinkService.makeDrink(recipe: recipe).then() { duration -> Void in
-            self.performSelector("sendPourDuration", withObject: nil, afterDelay: duration)
-        }.error() { error in
+        firstly {
+            DrinkService.makeDrink(recipe: recipe)
+        }.then { duration -> Void in
+            self.perform(#selector(self.sendPourDuration), with: nil, afterDelay: duration)
+        }.catch { error in
             print("Error occurred while pouring drink from watch request")
         }
-        return ["status": "success"]
+        return ["status": "success" as AnyObject]
     }
     
     func sendPourDuration() {
         session!.sendMessage(["event": "drinkPoured"], replyHandler: nil, errorHandler: nil)
     }
     
+}
+
+extension AppDelegate: WCSessionDelegate {
+    
+    func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
+        print("activationDidCompleteWith")
+    }
+    
+    
+    public func sessionDidBecomeInactive(_ session: WCSession) {
+        print("sessionDidBecomeInactive")
+    }
+    
+    public func sessionDidDeactivate(_ session: WCSession) {
+        print("sessionDidDeactivate")
+    }
 }
 

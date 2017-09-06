@@ -25,7 +25,7 @@ class PouringViewController: UIViewController, ASFSharedViewTransitionDataSource
         self.duration = duration
         self.imageSize = imageSize
         
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let screen = appDelegate.window!.frame.size
         let origin = CGPoint(
             x: (screen.width - imageSize.width) / 2,
@@ -45,35 +45,35 @@ class PouringViewController: UIViewController, ASFSharedViewTransitionDataSource
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = UIColor.whiteColor()
+        view.backgroundColor = UIColor.white
         view.addSubview(pouringView)
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        animatePouring()
-            .then(addSuccessView)
-            .then(animateSuccess)
-            .then(dismiss)
+        _ = animatePouring()
+            .then(execute: addSuccessView)
+            .then(execute: animateSuccess)
+            .then(execute: dismiss)
     }
     
     func animatePouring() -> Promise<Bool> {
         return pouringView.animate(duration)
     }
     
-    func addSuccessView(finished: Bool) -> Promise<Bool> {
+    func addSuccessView(_ finished: Bool) -> Promise<Bool> {
         view.addSubview(successView)
-        return Promise<Bool>(true)
+        return Promise(value: true)
     }
     
-    func animateSuccess(finished: Bool) -> Promise<Bool> {
+    func animateSuccess(_ finished: Bool) -> Promise<Bool> {
         return successView.animate(SUCCESS_ANIMATION_DURATION)
     }
     
-    func dismiss(finished: Bool) {
+    func dismiss(_ finished: Bool) {
         let drinksController = self.navigationController!.viewControllers.filter {
-            $0.isKindOfClass(DrinksViewController)
+            $0.isKind(of: DrinksViewController.self)
         }.first!
         self.navigationController?.popToViewController(drinksController, animated: true)
     }
