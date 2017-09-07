@@ -25,6 +25,15 @@ class CleaningViewController: UICollectionViewController, ComponentCollectionCel
         case pumps = 2
     }
     
+    init(coreDataStack: CoreDataStack) {
+        self.coreDataStack = coreDataStack
+        super.init(nibName: "CleaningView", bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -80,7 +89,9 @@ class CleaningViewController: UICollectionViewController, ComponentCollectionCel
 
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: IndexPath) -> CGSize {
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAtIndexPath indexPath: IndexPath) -> CGSize {
         
         switch CleaningSection(rawValue: indexPath.section)! {
         case .slider:
@@ -107,11 +118,11 @@ class CleaningViewController: UICollectionViewController, ComponentCollectionCel
     }
     
     @IBAction func runSelectedPumpsClicked() {
-        let valveRecipe = valves.filter { $0.selected }.map() { "\($0.id)-\(self.seconds * 52)" }
-        let pumpRecipe = pumps.filter { $0.selected }.map() { "\($0.id)-\(self.seconds * 2)" }
+        let valveRecipe = valves.filter { $0.selected }.map { "\($0.id)-\(self.seconds * 52)" }
+        let pumpRecipe = pumps.filter { $0.selected }.map { "\($0.id)-\(self.seconds * 2)" }
         let recipe = (valveRecipe + pumpRecipe).joined(separator: "/")
         
-        DrinkService.makeDrink(recipe: recipe).then() { duration -> Void in
+        DrinkService.makeDrink(recipe: recipe).then { duration -> Void in
             self.seconds = Int(duration)
             self.cleaningInProgress = true
             self.collectionView?.reloadData()

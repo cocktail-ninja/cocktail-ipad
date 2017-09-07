@@ -10,12 +10,12 @@ import UIKit
 import iOSSharedViewTransition
 import PromiseKit
 
-class PouringViewController: UIViewController, ASFSharedViewTransitionDataSource {
-    let SUCCESS_ANIMATION_DURATION = 2.0
+class PouringViewController: UIViewController {
+    let successAnimationDuration = 2.0
     var imageSize: CGSize
     let pouringView: PouringView
     let successView: GlowingView
-    let duration : Double
+    let duration: Double
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -37,7 +37,7 @@ class PouringViewController: UIViewController, ASFSharedViewTransitionDataSource
         
         super.init(nibName: nil, bundle: nil)
         
-        let drinkImage = drink.image();
+        let drinkImage = drink.image()
         pouringView.setImage(drinkImage)
         successView.setImage(drinkImage)
     }
@@ -68,7 +68,7 @@ class PouringViewController: UIViewController, ASFSharedViewTransitionDataSource
     }
     
     func animateSuccess(_ finished: Bool) -> Promise<Bool> {
-        return successView.animate(SUCCESS_ANIMATION_DURATION)
+        return successView.animate(successAnimationDuration)
     }
     
     func dismiss(_ finished: Bool) {
@@ -78,7 +78,11 @@ class PouringViewController: UIViewController, ASFSharedViewTransitionDataSource
         self.navigationController?.popToViewController(drinksController, animated: true)
     }
     
+}
+
+extension PouringViewController: ASFSharedViewTransitionDataSource {
+ 
     func sharedView() -> UIView! {
         return pouringView
-    }    
+    }
 }

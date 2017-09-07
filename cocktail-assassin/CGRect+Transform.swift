@@ -19,7 +19,7 @@ extension CGRect {
         )
     }
     
-    func transform(_ x: CGFloat, y: CGFloat, width: CGFloat, height: CGFloat) -> CGRect {
+    func transform(x: CGFloat, y: CGFloat, width: CGFloat, height: CGFloat) -> CGRect {
         return CGRect.transform(self, x: x, y: y, width: width, height: height)
     }
 

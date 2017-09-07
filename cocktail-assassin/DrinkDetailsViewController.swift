@@ -2,7 +2,7 @@ import UIKit
 import iOSSharedViewTransition
 import PromiseKit
 
-class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataSource, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, SelectIngredientDelegate, RemoveIngredientDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPopoverControllerDelegate {
+class DrinkDetailsViewController: UIViewController {
 
     var coreDataStack: CoreDataStack!
     var drink: Drink?
@@ -89,7 +89,7 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
         
         nameLabel.text = drink?.name
         
-        backButton.addTarget(self, action: #selector(DrinkDetailsViewController.dismiss as (DrinkDetailsViewController) -> () -> ()), for: .touchUpInside)
+        backButton.addTarget(self, action: #selector(self.dismissView), for: .touchUpInside)
         editButton.addTarget(self, action: #selector(DrinkDetailsViewController.edit), for: .touchUpInside)
         pourButton.addTarget(self, action: #selector(DrinkDetailsViewController.pour), for: .touchUpInside)
         
@@ -156,10 +156,10 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
     }
     
     func drinkIngredientForIndexPath(_ indexPath: IndexPath) -> DrinkIngredient? {
-        let ingredients = drink?.drinkIngredients.allObjects as! [DrinkIngredient]
+        let ingredients = Array(drink!.drinkIngredients)
         var sortedIngredients = ingredients.sorted { first, second in
             return first.ingredient.ingredientClass.rawValue <= second.ingredient.ingredientClass.rawValue &&
-                first.ingredient.ingredientType != .LimeJuice
+                first.ingredient.ingredientType != .limeJuice
         }
         if sortedIngredients.count > indexPath.row {
             return sortedIngredients[indexPath.row] as DrinkIngredient
@@ -168,7 +168,7 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
     }
     
     @IBAction func pour() {
-        let ingredients = drink!.drinkIngredients.allObjects as! [DrinkIngredient]
+        let ingredients = Array(drink!.drinkIngredients)
         let missingIngredients = ingredients.filter { $0.ingredient.component == nil }
         if missingIngredients.count > 0 {
             let missingIngredient = missingIngredients[0]
@@ -185,7 +185,6 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
         let recipe = ingredientComponents.joined(separator: "/")
         pourButton.setState(.loading)
         
-        // TODO: get this to work!
         firstly {
             DrinkService.makeDrink(recipe: recipe)
         }.then { duration -> Void in
@@ -193,7 +192,6 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
             self.startPourAnimation(duration)
         }.catch { error in
             print("What is ErrorType ?? \(error)")
-            //            self.getErrorMessage(error)
             self.pourButton.displayError("Error")
         }
     }
@@ -212,7 +210,7 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
     }
     
     @IBAction func cancel() {
-        if( !drink!.objectID.isTemporaryID ) {
+        if !drink!.objectID.isTemporaryID {
             editMode = false
             nameTextField.resignFirstResponder()
             selectedIndexPath = nil
@@ -220,7 +218,7 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
             ingredientsTableView.reloadData()
             updateUserInterface()
         } else {
-            dismiss()
+            dismissView()
         }
     }
     
@@ -256,17 +254,17 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
         ingredientsTableView.reloadData()
     }
     
-    func dismiss() {
+    func dismissView() {
         coreDataStack.revert()
         navigationController?.popViewController(animated: true)
     }
     
     func validateDrink() -> String {
         var errorMessage = ""
-        if((nameTextField.text) == ""){
+        if nameTextField.text == "" {
             errorMessage = "Name for the drink?\n"
         }
-        if(drink?.drinkIngredients.count == 0){
+        if drink?.drinkIngredients.count == 0 {
             errorMessage =  "\(errorMessage) You need at least one ingredient, silly. 😋"
         }
         return errorMessage
@@ -287,7 +285,7 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
     }
     
     func getErrorMessage(_ code: Int) -> String {
-        switch(code) {
+        switch code {
             case 404:
                 return "404 - Glass Not Found!"
             case 503:
@@ -306,57 +304,59 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
         return UIDevice.current.userInterfaceIdiom == .phone
     }
     
-    func didSelectIngredient(_ ingredient: Ingredient?) {
-        guard let ingredient = ingredient else {
-            return
-        }
-        selectIngredientController?.dismiss(animated: true, completion: nil)
-        if( drink!.hasIngredient(ingredient) ) {
-            let alertController = UIAlertController(title: "Ingredient Already Added", message: "", preferredStyle: .alert)
-            alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-            self.present(alertController, animated: true, completion: nil)
-        } else {
-            drink?.addIngredient(ingredient, amount: 30)
-            updateUserInterface()
-        }
-    }
-    
-    func didCancel() {
-        selectIngredientController?.dismiss(animated: true) { }
-    }
-
-    func removeDrinkIngredient(_ ingredient: DrinkIngredient) {
-        drink?.removeDrinkIngredient(ingredient)
-        updateUserInterface()
-    }
-
-    func amountChanged(_ ingredient: DrinkIngredient) {
-        ingredientsTableView.reloadData()
-    }
-    
     func startPourAnimation(_ duration: Double) {
         let pouringVC = PouringViewController(drink: drink!, duration: duration, imageSize: imageSize)
         navigationController?.pushViewController(pouringVC, animated: true)
     }
-    
-    func sharedView() -> UIView! {
-        // Massive Hack! - Spent too long messing around with this stuff.
-        drinkImageView.frame = CGRect(
-            origin: CGPoint(x: 50, y: view.frame.size.height - imageSize.height - 20),
-            size: imageSize
-        )
-        
-        return drinkImageView
+
+}
+
+extension DrinkDetailsViewController: UITableViewDelegate {
+ 
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if editMode && indexPath.row == drink?.drinkIngredients.count {
+            let navController = UINavigationController(rootViewController: self.selectIngredientController!)
+            self.present(navController, animated: true) { }
+        } else if isCompact() {
+            ingredientsTableView.beginUpdates()
+            
+            if let selectedIndexPath = selectedIndexPath {
+                if let cell = tableView.cellForRow(at: selectedIndexPath) as? DrinkIngredientCell {
+                    UIView.animate(withDuration: 0.3, animations: {
+                        cell.slider?.alpha = 0.0
+                    })
+                }
+            }
+            
+            if selectedIndexPath != indexPath {
+                selectedIndexPath = indexPath
+                if let cell = tableView.cellForRow(at: indexPath) as? DrinkIngredientCell {
+                    UIView.animate(
+                        withDuration: 0.3,
+                        animations: {
+                            cell.slider?.alpha = 1.0
+                    }
+                    )
+                }
+                var rect = tableView.rectForRow(at: indexPath)
+                rect = rect.transform(x: 0, y: 0, width: 0, height: rect.size.height * 0.75)
+                tableView.scrollRectToVisible(rect, animated: true)
+            } else {
+                selectedIndexPath = nil
+            }
+            ingredientsTableView.endUpdates()
+        }
     }
-    
-    // MARK: UITableView Methods
+}
+
+extension DrinkDetailsViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1;
+        return 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return editMode ? drink!.drinkIngredients.count+1 : drink!.drinkIngredients.count+1;
+        return editMode ? drink!.drinkIngredients.count+1 : drink!.drinkIngredients.count+1
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -369,7 +369,7 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if( indexPath.row == drink?.drinkIngredients.count ) {
+        if indexPath.row == drink?.drinkIngredients.count {
             if editMode {
                 return tableView.dequeueReusableCell(withIdentifier: "AddIngredient")!
             } else {
@@ -396,44 +396,10 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
         
         return cell!
     }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if editMode && indexPath.row == drink?.drinkIngredients.count {
-            let navController = UINavigationController(rootViewController: self.selectIngredientController!)
-            self.present(navController, animated: true) { }
-        } else if isCompact() {
-            ingredientsTableView.beginUpdates()
-            
-            if let selectedIndexPath = selectedIndexPath {
-                if let cell = tableView.cellForRow(at: selectedIndexPath) as? DrinkIngredientCell {
-                    UIView.animate(withDuration: 0.3, animations: {
-                        cell.slider?.alpha = 0.0
-                    }) 
-                }
-            }
-            
-            if selectedIndexPath != indexPath {
-                selectedIndexPath = indexPath
-                if let cell = tableView.cellForRow(at: indexPath) as? DrinkIngredientCell {
-                    UIView.animate(
-                        withDuration: 0.3,
-                        animations: {
-                            cell.slider?.alpha = 1.0
-                        }
-                    )
-                }
-                var rect = tableView.rectForRow(at: indexPath)
-                rect = rect.transform(0, y: 0, width: 0, height: rect.size.height * 0.75)
-                tableView.scrollRectToVisible(rect, animated: true)
-            } else {
-                selectedIndexPath = nil
-            }
-            ingredientsTableView.endUpdates()
-        }
-    }
-    
-    // MARK: UITextField Delegate
-    
+}
+
+extension DrinkDetailsViewController: UITextFieldDelegate {
+ 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         nameTextField.resignFirstResponder()
         return true
@@ -444,18 +410,74 @@ class DrinkDetailsViewController: UIViewController, ASFSharedViewTransitionDataS
         drink!.name = text.replacingCharacters(in: range, with:string)
         return true
     }
+}
+
+extension DrinkDetailsViewController: SelectIngredientDelegate {
     
-    // MARK: ImagePicker Delegate
+    func didSelectIngredient(_ ingredient: Ingredient?) {
+        guard let ingredient = ingredient else {
+            return
+        }
+        selectIngredientController?.dismiss(animated: true, completion: nil)
+        if drink!.hasIngredient(ingredient) {
+            let alertController = UIAlertController(title: "Ingredient Already Added", message: "", preferredStyle: .alert)
+            alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alertController, animated: true, completion: nil)
+        } else {
+            drink?.addIngredient(ingredient, amount: 30)
+            updateUserInterface()
+        }
+    }
+    
+    func didCancel() {
+        selectIngredientController?.dismiss(animated: true) { }
+    }
+}
+
+extension DrinkDetailsViewController: ASFSharedViewTransitionDataSource {
+    
+    func sharedView() -> UIView! {
+        // Massive Hack! - Spent too long messing around with this stuff.
+        drinkImageView.frame = CGRect(
+            origin: CGPoint(x: 50, y: view.frame.size.height - imageSize.height - 20),
+            size: imageSize
+        )
+        
+        return drinkImageView
+    }
+}
+
+extension DrinkDetailsViewController: RemoveIngredientDelegate {
+    
+    func removeDrinkIngredient(_ ingredient: DrinkIngredient) {
+        drink?.removeDrinkIngredient(ingredient)
+        updateUserInterface()
+    }
+    
+    func amountChanged(_ ingredient: DrinkIngredient) {
+        ingredientsTableView.reloadData()
+    }
+}
+
+extension DrinkDetailsViewController: UIImagePickerControllerDelegate {
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         imagePickerController.dismiss(animated: true) { }
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String: Any]) {
-        let image = info[UIImagePickerControllerOriginalImage] as! UIImage
-        drinkImageView.image = image
-        drink?.saveImage(image)
+        if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            drinkImageView.image = image
+            drink?.saveImage(image)
+        }
         imagePickerController.dismiss(animated: true) { }
     }
+}
 
+extension DrinkDetailsViewController: UINavigationControllerDelegate {
+    
+}
+
+extension DrinkDetailsViewController: UIPopoverControllerDelegate {
+    
 }

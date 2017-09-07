@@ -10,18 +10,35 @@ import Foundation
 import UIKit
 import CoreData
 
-class AdminPasswordController: UIViewController, UITextFieldDelegate {
+class AdminPasswordController: UIViewController {
     
-    var coreDataStack: CoreDataStack!
+    let coreDataStack: CoreDataStack
     
     @IBOutlet var passwordField: UITextField!
+    
+    init(coreDataStack: CoreDataStack) {
+        self.coreDataStack = coreDataStack
+        super.init(nibName: "AdminPasswordView", bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         navigationItem.title = "Admin Password"
-        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(AdminPasswordController.cancelClicked))
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(AdminPasswordController.doneClicked))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(
+            barButtonSystemItem: .cancel,
+            target: self,
+            action: #selector(AdminPasswordController.cancelClicked)
+        )
+        navigationItem.rightBarButtonItem = UIBarButtonItem(
+            barButtonSystemItem: .done,
+            target: self,
+            action: #selector(AdminPasswordController.doneClicked)
+        )
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
@@ -32,24 +49,16 @@ class AdminPasswordController: UIViewController, UITextFieldDelegate {
     @IBAction func doneClicked() {
         if AdminService.sharedInstance.login(passwordField.text!) {
             let navController = self.navigationController!
-            let controllers = NSMutableArray(array: navController.viewControllers)
-            controllers.replaceObject(at: controllers.count-1, with: adminMenuController())
-            navController.setViewControllers(controllers as NSArray as! [UIViewController], animated: true)
+            var controllers = Array(navController.viewControllers)
+            controllers[controllers.count-1] = adminMenuController()
+            navController.setViewControllers(controllers, animated: true)
         } else {
             showIncorrectPasswordAlert()
         }
     }
     
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        doneClicked()
-        return true
-    }
-    
     fileprivate func adminMenuController() -> AdminViewController {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let controller = storyboard.instantiateViewController(withIdentifier: "AdminViewController") as! AdminViewController
-        controller.coreDataStack = coreDataStack
-        return controller
+        return AdminViewController(coreDataStack: coreDataStack)
     }
     
     func showIncorrectPasswordAlert() {
@@ -58,4 +67,12 @@ class AdminPasswordController: UIViewController, UITextFieldDelegate {
         self.present(controller, animated: true, completion: nil)
     }
             
+}
+
+extension AdminPasswordController: UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        doneClicked()
+        return true
+    }
 }

@@ -10,7 +10,11 @@ import UIKit
 import PromiseKit
 
 extension UIView {
-    class func transition(_ view: UIView, duration: TimeInterval, options: UIViewAnimationOptions, animations: @escaping () -> Void) -> Promise<Bool> {
+    
+    class func transition(_ view: UIView,
+                          duration: TimeInterval,
+                          options: UIViewAnimationOptions,
+                          animations: @escaping () -> Void) -> Promise<Bool> {
         return Promise { fulfill, _ in
             self.transition(with: view, duration: duration, options: options, animations: animations, completion: fulfill)
         }

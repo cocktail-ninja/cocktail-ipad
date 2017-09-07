@@ -19,10 +19,10 @@ class DrinkService {
             replyHandler: { (response) -> Void in
                 puts("received response! \(response)")
                 let drinkRecords = response["drinks"] as! [[String: String]]
-                let newDrinks = drinkRecords.map() { drinkData in
+                let newDrinks = drinkRecords.map { drinkData in
                     return Drink(title: drinkData["title"]!, image: drinkData["image"]!)
                 }
-                self.drinks = newDrinks.filter() { drink in
+                self.drinks = newDrinks.filter { drink in
                     return drink.title != "Mix Your Own!!"
                 }
                 callback?(nil)

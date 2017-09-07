@@ -10,7 +10,6 @@ import WatchKit
 import Foundation
 import WatchConnectivity
 
-
 class InterfaceController: WKInterfaceController {
 
     @IBOutlet weak var cocktailPicker: WKInterfacePicker?

@@ -64,7 +64,7 @@ class ActionButton: UIButton, MONActivityIndicatorViewDelegate {
         spinner.frame = spinner.frame.setSize(frame.size)
     }
     
-    func show(_ view: UIView){
+    func show(_ view: UIView) {
         setTitle(view == titleLabel ? "Hit me!" : "", for: UIControlState())
         errorLabel.alpha = 0.0
         spinner.alpha = 0.0

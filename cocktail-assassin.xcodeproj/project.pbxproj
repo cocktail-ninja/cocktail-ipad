@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		09188BC26AF7D72CAB754774 /* Pods_cocktail_assassinTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A48B78D0F2E82EEEC197B2D /* Pods_cocktail_assassinTests.framework */; };
 		10960D61DC74F6FD868E7ABC /* SelectIngredientViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 109606E630D6B6E9CBF36CEF /* SelectIngredientViewController.swift */; };
 		23191FC81B023830003AFB2E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 23191FC71B023830003AFB2E /* Images.xcassets */; };
 		2345A2BB1A7D317D007CB356 /* OpenSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2345A2B11A7D317D007CB356 /* OpenSans-Bold.ttf */; };
@@ -61,6 +62,12 @@
 		EFE621821BDFB8B2001D9660 /* CleaningViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE621811BDFB8B2001D9660 /* CleaningViewController.swift */; };
 		EFE621841BDFC046001D9660 /* ComponentCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE621831BDFC046001D9660 /* ComponentCollectionCell.swift */; };
 		EFE621861BDFD0F0001D9660 /* SliderCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE621851BDFD0F0001D9660 /* SliderCollectionCell.swift */; };
+		EFE6963C1F611CC100BEC194 /* UIStoryboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE6963B1F611CC100BEC194 /* UIStoryboard.swift */; };
+		EFE6963F1F61702300BEC194 /* AdminPasswordView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EFE6963E1F61702300BEC194 /* AdminPasswordView.xib */; };
+		EFE696411F618DD300BEC194 /* CleaningView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EFE696401F618DD300BEC194 /* CleaningView.xib */; };
+		EFE696431F618E5400BEC194 /* IngredientMappingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EFE696421F618E5400BEC194 /* IngredientMappingView.xib */; };
+		EFE696451F61900300BEC194 /* AdminView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EFE696441F61900300BEC194 /* AdminView.xib */; };
+		EFE696471F6197C100BEC194 /* drinks.json in Resources */ = {isa = PBXBuildFile; fileRef = EFE696461F6197C100BEC194 /* drinks.json */; };
 		EFEAD8891C469CCC00C362DE /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EFEAD8871C469CCC00C362DE /* Interface.storyboard */; };
 		EFEAD88B1C469CCC00C362DE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EFEAD88A1C469CCC00C362DE /* Assets.xcassets */; };
 		EFEAD8921C469CCC00C362DE /* cocktail-assassin-watch Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = EFEAD8911C469CCC00C362DE /* cocktail-assassin-watch Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -127,6 +134,7 @@
 
 /* Begin PBXFileReference section */
 		109606E630D6B6E9CBF36CEF /* SelectIngredientViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectIngredientViewController.swift; sourceTree = "<group>"; };
+		1D4967A16BCBCD83BBC2F6B7 /* Pods-cocktail-assassinTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-cocktail-assassinTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-cocktail-assassinTests/Pods-cocktail-assassinTests.release.xcconfig"; sourceTree = "<group>"; };
 		23191FC71B023830003AFB2E /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		2345A2B11A7D317D007CB356 /* OpenSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Bold.ttf"; sourceTree = "<group>"; };
 		2345A2B21A7D317D007CB356 /* OpenSans-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-BoldItalic.ttf"; sourceTree = "<group>"; };
@@ -160,6 +168,8 @@
 		23C0532C1A7A810F0060CABB /* DrinkView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrinkView.swift; sourceTree = "<group>"; };
 		23E6376C1A6EBE5600B71A0D /* DrinksViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrinksViewController.swift; sourceTree = "<group>"; };
 		23EEDBA01ADAAD8E007A28E9 /* ActionButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionButton.swift; sourceTree = "<group>"; };
+		3A48B78D0F2E82EEEC197B2D /* Pods_cocktail_assassinTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_cocktail_assassinTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3E10BBC322A78C40DDF7FB5E /* Pods-cocktail-assassinTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-cocktail-assassinTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-cocktail-assassinTests/Pods-cocktail-assassinTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5931BBFF1A8A489700895B64 /* CocktailAssassin.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CocktailAssassin.xcdatamodel; sourceTree = "<group>"; };
 		59AFC2E11A8A3C29006D14DF /* DrinkIngredient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrinkIngredient.swift; sourceTree = "<group>"; };
 		59AFC2E21A8A3C29006D14DF /* Ingredient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
@@ -190,6 +200,12 @@
 		EFE621811BDFB8B2001D9660 /* CleaningViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CleaningViewController.swift; sourceTree = "<group>"; };
 		EFE621831BDFC046001D9660 /* ComponentCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComponentCollectionCell.swift; sourceTree = "<group>"; };
 		EFE621851BDFD0F0001D9660 /* SliderCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SliderCollectionCell.swift; sourceTree = "<group>"; };
+		EFE6963B1F611CC100BEC194 /* UIStoryboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIStoryboard.swift; sourceTree = "<group>"; };
+		EFE6963E1F61702300BEC194 /* AdminPasswordView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AdminPasswordView.xib; path = Views/Admin/AdminPasswordView.xib; sourceTree = "<group>"; };
+		EFE696401F618DD300BEC194 /* CleaningView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CleaningView.xib; path = Views/Admin/CleaningView.xib; sourceTree = "<group>"; };
+		EFE696421F618E5400BEC194 /* IngredientMappingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = IngredientMappingView.xib; path = Views/Admin/IngredientMappingView.xib; sourceTree = "<group>"; };
+		EFE696441F61900300BEC194 /* AdminView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AdminView.xib; path = Views/Admin/AdminView.xib; sourceTree = "<group>"; };
+		EFE696461F6197C100BEC194 /* drinks.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = drinks.json; path = Resources/drinks.json; sourceTree = "<group>"; };
 		EFEAD8851C469CCC00C362DE /* cocktail-assassin-watch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "cocktail-assassin-watch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFEAD8881C469CCC00C362DE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
 		EFEAD88A1C469CCC00C362DE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -221,6 +237,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				09188BC26AF7D72CAB754774 /* Pods_cocktail_assassinTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -249,6 +266,7 @@
 				EF63100A1BD8890500390511 /* Launch Screen.storyboard */,
 				5931BBFE1A8A489700895B64 /* CocktailAssassin.xcdatamodeld */,
 				23191FC71B023830003AFB2E /* Images.xcassets */,
+				EFE696461F6197C100BEC194 /* drinks.json */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -290,6 +308,7 @@
 				23B338851AB85CDE002F3BE8 /* UIApplication+SharedDelegate.swift */,
 				EF30F8741BDA10DA007E8341 /* CGRect+Transform.swift */,
 				EF3C62961BDB062600DF9FDC /* NSLayoutConstraint+Copy.swift */,
+				EFE6963B1F611CC100BEC194 /* UIStoryboard.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -355,6 +374,7 @@
 		23906C281AD9C9CB00D3613D /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				EFE6963D1F616FF200BEC194 /* Admin */,
 				23C0532C1A7A810F0060CABB /* DrinkView.swift */,
 				EF21824A1AA5E8C900690EFD /* DrinkIngredientCell.swift */,
 				23EEDBA01ADAAD8E007A28E9 /* ActionButton.swift */,
@@ -385,6 +405,7 @@
 				234C64A21AA37476003672AF /* UIKit.framework */,
 				8D1068E656C146A8BB46FCBE /* Pods.framework */,
 				A5005CB7B7D3059B492E867E /* Pods_cocktail_assassin.framework */,
+				3A48B78D0F2E82EEEC197B2D /* Pods_cocktail_assassinTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -394,6 +415,8 @@
 			children = (
 				D02BAA83C0B313F3EAA5903C /* Pods-cocktail-assassin.debug.xcconfig */,
 				CB38E34227D038F21613C9F8 /* Pods-cocktail-assassin.release.xcconfig */,
+				3E10BBC322A78C40DDF7FB5E /* Pods-cocktail-assassinTests.debug.xcconfig */,
+				1D4967A16BCBCD83BBC2F6B7 /* Pods-cocktail-assassinTests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -420,6 +443,17 @@
 				EFE621811BDFB8B2001D9660 /* CleaningViewController.swift */,
 				EF02DB531BF8E4BD00A4A29A /* SelectIngredientForComponentViewController.swift */,
 				EF6F92671C50698B00812796 /* AdminPasswordController.swift */,
+			);
+			name = Admin;
+			sourceTree = "<group>";
+		};
+		EFE6963D1F616FF200BEC194 /* Admin */ = {
+			isa = PBXGroup;
+			children = (
+				EFE6963E1F61702300BEC194 /* AdminPasswordView.xib */,
+				EFE696401F618DD300BEC194 /* CleaningView.xib */,
+				EFE696421F618E5400BEC194 /* IngredientMappingView.xib */,
+				EFE696441F61900300BEC194 /* AdminView.xib */,
 			);
 			name = Admin;
 			sourceTree = "<group>";
@@ -492,9 +526,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 237B07831A6EA5F7001AA652 /* Build configuration list for PBXNativeTarget "cocktail-assassinTests" */;
 			buildPhases = (
+				E469BC8762188724384B5169 /* [CP] Check Pods Manifest.lock */,
 				237B07721A6EA5F7001AA652 /* Sources */,
 				237B07731A6EA5F7001AA652 /* Frameworks */,
 				237B07741A6EA5F7001AA652 /* Resources */,
+				EFE6963A1F60461B00BEC194 /* Run SwiftLint */,
+				DB0BBB9D25660C3BFD7DEF8C /* [CP] Embed Pods Frameworks */,
+				07A87682214BD12A2761D3B0 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -602,12 +640,17 @@
 			files = (
 				2345A2BC1A7D317D007CB356 /* OpenSans-BoldItalic.ttf in Resources */,
 				2345A2BB1A7D317D007CB356 /* OpenSans-Bold.ttf in Resources */,
+				EFE696471F6197C100BEC194 /* drinks.json in Resources */,
 				2345A2C01A7D317D007CB356 /* OpenSans-Light.ttf in Resources */,
+				EFE696451F61900300BEC194 /* AdminView.xib in Resources */,
 				EF6310091BD8849F00390511 /* Main.storyboard in Resources */,
+				EFE6963F1F61702300BEC194 /* AdminPasswordView.xib in Resources */,
 				EF63100B1BD8890500390511 /* Launch Screen.storyboard in Resources */,
 				2345A2BE1A7D317D007CB356 /* OpenSans-ExtraBoldItalic.ttf in Resources */,
 				23191FC81B023830003AFB2E /* Images.xcassets in Resources */,
 				2345A2C31A7D317D007CB356 /* OpenSans-Semibold.ttf in Resources */,
+				EFE696411F618DD300BEC194 /* CleaningView.xib in Resources */,
+				EFE696431F618E5400BEC194 /* IngredientMappingView.xib in Resources */,
 				2345A2BF1A7D317D007CB356 /* OpenSans-Italic.ttf in Resources */,
 				2345A2C11A7D317D007CB356 /* OpenSans-LightItalic.ttf in Resources */,
 				2345A2C21A7D317D007CB356 /* OpenSans-Regular.ttf in Resources */,
@@ -643,6 +686,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		07A87682214BD12A2761D3B0 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-cocktail-assassinTests/Pods-cocktail-assassinTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		4E4088D74445C4B98C1715A0 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -704,6 +762,58 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-cocktail-assassin/Pods-cocktail-assassin-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		DB0BBB9D25660C3BFD7DEF8C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-cocktail-assassinTests/Pods-cocktail-assassinTests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Nimble/Nimble.framework",
+				"${BUILT_PRODUCTS_DIR}/Quick/Quick.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nimble.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Quick.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-cocktail-assassinTests/Pods-cocktail-assassinTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E469BC8762188724384B5169 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-cocktail-assassinTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EFE6963A1F60461B00BEC194 /* Run SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Run SwiftLint";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -739,6 +849,7 @@
 				23C0532D1A7A810F0060CABB /* DrinkView.swift in Sources */,
 				23661CF21AA4A6EF00569DAD /* GlowingView.swift in Sources */,
 				EF3C629C1BDB262200DF9FDC /* LoadingViewController.swift in Sources */,
+				EFE6963C1F611CC100BEC194 /* UIStoryboard.swift in Sources */,
 				EFE621821BDFB8B2001D9660 /* CleaningViewController.swift in Sources */,
 				EFE621861BDFD0F0001D9660 /* SliderCollectionCell.swift in Sources */,
 				EFE6217F1BDFB89B001D9660 /* IngredientMappingViewController.swift in Sources */,
@@ -928,6 +1039,7 @@
 		};
 		237B07841A6EA5F7001AA652 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3E10BBC322A78C40DDF7FB5E /* Pods-cocktail-assassinTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/cocktail-assassin.app/cocktail-assassin";
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
@@ -947,6 +1059,7 @@
 		};
 		237B07851A6EA5F7001AA652 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1D4967A16BCBCD83BBC2F6B7 /* Pods-cocktail-assassinTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/cocktail-assassin.app/cocktail-assassin";
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";

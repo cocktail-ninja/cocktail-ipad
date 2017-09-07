@@ -19,7 +19,7 @@ class DrinkView: UIView {
         addSubview(nameLabel)
         
         nameLabel.frame = CGRect(x: 0, y: frame.height, width: frame.width, height: 40)
-        nameLabel.textAlignment = .center;
+        nameLabel.textAlignment = .center
         nameLabel.font = UIFont(name: "HelveticaNeue-Light", size: 18)
         
         imageView.frame =  CGRect(x: 0, y: 0, width: frame.width, height: frame.height)

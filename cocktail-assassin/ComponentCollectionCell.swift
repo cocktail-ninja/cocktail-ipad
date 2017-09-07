@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol ComponentCollectionCellDelegate {
+protocol ComponentCollectionCellDelegate: class {
     func componentSelected(_ component: Component)
 }
 
@@ -18,7 +18,7 @@ class ComponentCollectionCell: UICollectionViewCell {
     var buttonEnabled: Bool = true
     
     var component: Component?
-    var delegate: ComponentCollectionCellDelegate?
+    weak var delegate: ComponentCollectionCellDelegate?
     
     func update(_ component: Component) {
         self.component = component

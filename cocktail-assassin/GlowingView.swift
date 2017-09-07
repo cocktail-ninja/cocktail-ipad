@@ -9,18 +9,18 @@
 import UIKit
 import PromiseKit
 
-let π  = CGFloat(M_PI) // woot
+let π  = CGFloat(Double.pi)
 
 class GlowingView: UIView {
-    let GLOW_VIEW_DIAMETER : CGFloat = 600
-    let imageView, glowView : UIImageView
+    let glowViewDiameter: CGFloat = 600
+    let imageView, glowView: UIImageView
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
     override init(frame: CGRect) {
-        var zeroFrame = frame;
+        var zeroFrame = frame
         zeroFrame.origin = CGPoint.zero
         
         glowView = UIImageView(frame: zeroFrame)
@@ -31,7 +31,12 @@ class GlowingView: UIView {
         glowView.contentMode = .scaleAspectFit
         imageView.contentMode = .scaleAspectFit
         glowView.image = UIImage(named: "glow.png")
-        glowView.frame = CGRect(x: (frame.width - GLOW_VIEW_DIAMETER)/2, y: (frame.height - GLOW_VIEW_DIAMETER)/2, width: GLOW_VIEW_DIAMETER, height: GLOW_VIEW_DIAMETER)        
+        glowView.frame = CGRect(
+            x: (frame.width - glowViewDiameter)/2,
+            y: (frame.height - glowViewDiameter)/2,
+            width: glowViewDiameter,
+            height: glowViewDiameter
+        )
         glowView.contentMode = .scaleAspectFit
         glowView.alpha = 0
         

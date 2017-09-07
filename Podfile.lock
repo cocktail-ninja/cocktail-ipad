@@ -3,6 +3,7 @@ PODS:
   - iCarousel (1.8.3)
   - iOSSharedViewTransition (1.0.2)
   - MONActivityIndicatorView (0.0.3)
+  - Nimble (7.0.1)
   - OMGHTTPURLRQ (3.2.2):
     - OMGHTTPURLRQ/RQ (= 3.2.2)
   - OMGHTTPURLRQ/FormURLEncode (3.2.2)
@@ -21,14 +22,19 @@ PODS:
     - PromiseKit/CorePromise
   - PromiseKit/UIKit (4.4.0):
     - PromiseKit/CorePromise
+  - Quick (1.1.0)
+  - SwiftLint (0.22.0)
 
 DEPENDENCIES:
   - Alamofire (~> 4.5)
   - iCarousel (~> 1.8)
   - iOSSharedViewTransition (from `https://github.com/sbycrosz/iOSSharedViewTransition.git`)
   - MONActivityIndicatorView
+  - Nimble (~> 7.0)
   - OMGHTTPURLRQ (~> 3.2)
   - PromiseKit (~> 4.4)
+  - Quick (~> 1.1)
+  - SwiftLint (~> 0.22)
 
 EXTERNAL SOURCES:
   iOSSharedViewTransition:
@@ -44,9 +50,12 @@ SPEC CHECKSUMS:
   iCarousel: d782f635afac190c49bb8ee455882284cff8b85f
   iOSSharedViewTransition: efa7edf8a400e589c2fdf8ec51af8e4280e47133
   MONActivityIndicatorView: a00611695de16d956b17d03be25ee49a8effc5f2
+  Nimble: 657d000e11df8aebe27cdaf9d244de7f30ed87f7
   OMGHTTPURLRQ: edb14c7d28add69226b79d826f930805927a0ffa
   PromiseKit: ecf5fe92275d57ee77c9ede858af47a162e9b97e
+  Quick: dafc587e21eed9f4cab3249b9f9015b0b7a7f71d
+  SwiftLint: 1134786caedd2caab0560d2f36b76414a5a56808
 
-PODFILE CHECKSUM: 3594d3fe1774579b2d21ebea5ee2c784d16190bf
+PODFILE CHECKSUM: 340b2239ea028f2cc4ae672d82a9ee47e2d3db3e
 
 COCOAPODS: 1.3.1

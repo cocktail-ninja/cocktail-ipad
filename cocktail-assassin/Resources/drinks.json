@@ -1,0 +1,33 @@
+[
+  {
+    "name": "Long Island Iced Tea",
+    "image": "long-island-iced-tea",
+    "editable": true,
+    "ingredients": [
+      {
+        "name": "Vodka",
+        "amount": 15
+      },
+      {
+        "name": "Light Rum",
+        "amount": 15
+      },
+      {
+        "name": "Tequila",
+        "amount": 15
+      },
+      {
+        "name": "Triple Sec",
+        "amount": 15
+      },
+      {
+        "name": "Gin",
+        "amount": 15
+      },
+      {
+        "name": "Coke",
+        "amount": 15
+      }
+    ]
+  }
+]

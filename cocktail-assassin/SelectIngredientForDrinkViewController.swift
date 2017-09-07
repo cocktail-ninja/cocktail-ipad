@@ -37,7 +37,11 @@ class SelectIngredientForDrinkViewController: SelectIngredientViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let ingredient = ingredientForIndexPath(indexPath)!
         if drink.containsIngredient(ingredient) {
-            let alertController = UIAlertController(title: "", message: "Drink already has \(ingredient.ingredientType.rawValue)", preferredStyle: .alert)
+            let alertController = UIAlertController(
+                title: "",
+                message: "Drink already has \(ingredient.ingredientType.rawValue)",
+                preferredStyle: .alert
+            )
             alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
             present(alertController, animated: true, completion: nil)
             return

@@ -1,7 +1,6 @@
-
 import UIKit
 
-protocol RemoveIngredientDelegate {
+protocol RemoveIngredientDelegate: class {
     func removeDrinkIngredient(_ ingredient: DrinkIngredient)
     func amountChanged(_ ingredient: DrinkIngredient)
 }
@@ -15,7 +14,7 @@ class DrinkIngredientCell: UITableViewCell {
     @IBOutlet var drinkNotesLabel: UILabel?
     
     var drinkIngredient: DrinkIngredient?
-    var delegate: RemoveIngredientDelegate?
+    weak var delegate: RemoveIngredientDelegate?
     var editMode = false
     var increment: Int = 15
     
@@ -54,7 +53,7 @@ class DrinkIngredientCell: UITableViewCell {
         ingredientAmountLabel.text = "\(self.drinkIngredient!.amount)ml"
         removeButton?.isHidden = !editMode
         
-        if (drinkIngredient.ingredient.ingredientClass == .alcoholic) {
+        if drinkIngredient.ingredient.ingredientClass == .alcoholic {
             slider?.minimumValue = 0
             slider?.maximumValue = 90
             increment = 5

@@ -14,7 +14,7 @@ class ComponentMappingCell: UICollectionViewCell {
     @IBOutlet var ingredientLabel: UILabel!
     
     var component: Component?
-    var delegate: ComponentCollectionCellDelegate?
+    weak var delegate: ComponentCollectionCellDelegate?
     
     func update(_ component: Component) {
         self.component = component

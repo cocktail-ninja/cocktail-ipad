@@ -9,11 +9,11 @@
 import Foundation
 
 class AdminService {
-    
+
     var isAdmin = false
-    
+
     static let sharedInstance = AdminService()
-    
+
     func login(_ password: String) -> Bool {
         if password == "tasty" {
             isAdmin = true
@@ -21,9 +21,9 @@ class AdminService {
         }
         return false
     }
-    
+
     func logout() {
         isAdmin = false
     }
-    
+
 }

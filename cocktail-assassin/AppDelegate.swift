@@ -12,8 +12,7 @@ import iOSSharedViewTransition
 import WatchConnectivity
 import PromiseKit
 
-
-@objc @UIApplicationMain
+@UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
@@ -31,7 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
-        coreDataStack = CoreDataStack() {
+        coreDataStack = CoreDataStack {
             print("Core Data Stack Initialized!")
             
             if WCSession.isSupported() {
@@ -103,7 +102,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func handleLoadDrinksRequest() -> [String: Any] {
         let drinks = Drink.allDrinks(coreDataStack.context)
-        let drinkData = drinks.map() { drink in
+        let drinkData = drinks.map { drink in
             return [
                 "title": drink.name,
                 "image": drink.origImageName
@@ -112,11 +111,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return ["drinks": drinkData]
     }
     
-    func handlePourDrinkRequest(_ message: [String : AnyObject]) -> [String: AnyObject] {
-        let drinkName = message["drinkName"] as! String
+    func handlePourDrinkRequest(_ message: [String : Any]) -> [String: Any] {
+        let drinkName = message["drinkName"] as? String ?? ""
         let drink = Drink.getDrinkByName(drinkName, context: coreDataStack.context)
         
-        let ingredients = drink!.drinkIngredients.allObjects as! [DrinkIngredient]
+        let ingredients = Array(drink!.drinkIngredients)
         var ingredientComponents = ingredients.map {
             if let component = $0.ingredient.component {
                 return "\(component.id)-\($0.amount)"
@@ -124,7 +123,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 return ""
             }
         } as [String]
-        ingredientComponents = ingredientComponents.filter() { value in
+        ingredientComponents = ingredientComponents.filter { value in
             return value != ""
         } as [String]
         let recipe = ingredientComponents.joined(separator: "/")
@@ -133,10 +132,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             DrinkService.makeDrink(recipe: recipe)
         }.then { duration -> Void in
             self.perform(#selector(self.sendPourDuration), with: nil, afterDelay: duration)
-        }.catch { error in
+        }.catch { _ in
             print("Error occurred while pouring drink from watch request")
         }
-        return ["status": "success" as AnyObject]
+        return ["status": "success" as Any]
     }
     
     func sendPourDuration() {
@@ -151,7 +150,6 @@ extension AppDelegate: WCSessionDelegate {
         print("activationDidCompleteWith")
     }
     
-    
     public func sessionDidBecomeInactive(_ session: WCSession) {
         print("sessionDidBecomeInactive")
     }
@@ -160,4 +158,3 @@ extension AppDelegate: WCSessionDelegate {
         print("sessionDidDeactivate")
     }
 }
-

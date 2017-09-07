@@ -16,19 +16,19 @@ enum IngredientClass: Int16 {
 
 enum IngredientType: String {
     // Valves
-    case Coke = "Coke"
-    case Lemonade = "Lemonade"
-    case GingerBeer = "Ginger Beer"
-    case CranberryJuice = "Cranberry Juice"
-    case OrangeJuice = "Orange Juice"
+    case coke = "Coke"
+    case lemonade = "Lemonade"
+    case gingerBeer = "Ginger Beer"
+    case cranberryJuice = "Cranberry Juice"
+    case orangeJuice = "Orange Juice"
     // Pumps
-    case LimeJuice = "Lime Juice"
-    case Vodka = "Vodka"
-    case Gin = "Gin"
-    case Tequila = "Tequila"
-    case LightRum = "Light Rum"
-    case DarkRum = "Dark Rum"
-    case TripleSec = "Triple Sec"
+    case limeJuice = "Lime Juice"
+    case vodka = "Vodka"
+    case gin = "Gin"
+    case tequila = "Tequila"
+    case lightRum = "Light Rum"
+    case darkRum = "Dark Rum"
+    case tripleSec = "Triple Sec"
 }
 
 class Ingredient: NSManagedObject {
@@ -42,7 +42,7 @@ class Ingredient: NSManagedObject {
     @NSManaged var rawIngredientClass: Int16
     @NSManaged var component: Component?
 
-    var ingredientClass:IngredientClass {
+    var ingredientClass: IngredientClass {
         get { return IngredientClass(rawValue: self.rawIngredientClass)! }
         set { self.rawIngredientClass = newValue.rawValue }
     }
@@ -55,7 +55,12 @@ class Ingredient: NSManagedObject {
         return ingredientType.rawValue
     }
 
-    class func newIngredient(_ type: IngredientType, pumpNumber: NSNumber, amountLeft: NSNumber, ingredientClass: IngredientClass, managedContext: NSManagedObjectContext) -> Ingredient {
+    @discardableResult
+    class func newIngredient(_ type: IngredientType,
+                             pumpNumber: NSNumber,
+                             amountLeft: NSNumber,
+                             ingredientClass: IngredientClass,
+                             managedContext: NSManagedObjectContext) -> Ingredient {
         let newIngredient = NSEntityDescription.insertNewObject(forEntityName: EntityName, into:managedContext) as! Ingredient
         newIngredient.type = type.rawValue
         newIngredient.pumpNumber = pumpNumber
@@ -75,8 +80,8 @@ class Ingredient: NSManagedObject {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: EntityName)
         fetchRequest.predicate = NSPredicate(format: "type = %@", type.rawValue)
         do {
-            let results = try managedContext.fetch(fetchRequest) as! [Ingredient]
-            return results.first
+            let results = try managedContext.fetch(fetchRequest)
+            return results.first as? Ingredient
         } catch {
             return nil
         }

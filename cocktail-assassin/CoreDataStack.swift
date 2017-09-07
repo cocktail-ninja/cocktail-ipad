@@ -11,12 +11,12 @@ import CoreData
 open class CoreDataStack {
     
     open var context: NSManagedObjectContext!
-    fileprivate var privateContext : NSManagedObjectContext!
-    fileprivate var initCallback : () -> ()
+    fileprivate var privateContext: NSManagedObjectContext!
+    fileprivate var initCallback: () -> Void
     fileprivate var bundleIdentifier = "com.twsg.cocktail-assassin"
     fileprivate var dataModelName = "CocktailAssassin"
     
-    public init(callback: @escaping () -> () ) {
+    public init(callback: @escaping () -> Void) {
         self.initCallback = callback
         self.initializeCoreData()
     }
@@ -97,8 +97,7 @@ open class CoreDataStack {
         context = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
         context.parent = privateContext
         
-        let priority = DispatchQueue.GlobalQueuePriority.background
-        DispatchQueue.global(priority: priority).async {
+        DispatchQueue.global(qos: .background).async {
             let psc = self.privateContext.persistentStoreCoordinator
             var options = [String: Any]()
             options[NSMigratePersistentStoresAutomaticallyOption] = true as AnyObject
@@ -115,7 +114,7 @@ open class CoreDataStack {
             do {
                 try psc?.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: storeURL, options: options)
             } catch {
-                assert(false, "Error initializing persistent store coordinator");
+                assert(false, "Error initializing persistent store coordinator")
             }
             
             DispatchQueue.main.sync {
@@ -133,7 +132,7 @@ open class CoreDataStack {
         let temporaryContext = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
         temporaryContext.parent = context
 
-        temporaryContext.perform() {
+        temporaryContext.perform {
             operationBlock(temporaryContext)
 
             do {

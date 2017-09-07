@@ -10,7 +10,7 @@ import Foundation
 
 struct Constants {
     
-    struct baseUrl {
+    struct BaseUrl {
         static let dev = "http://private-4b044-cocktailninja.apiary-mock.com"
         static let prod = "http://192.168.240.1/arduino"
     }

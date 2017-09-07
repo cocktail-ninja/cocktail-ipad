@@ -62,7 +62,11 @@ class SelectIngrediantForComponentViewController: SelectIngredientViewController
             return
         }
         if let component = Component.componentMappedToIngredient(ingredient, context: coreDataStack.context) {
-            let alertController = UIAlertController(title: "", message: "\(ingredient.name) already mapped to \(component.name)", preferredStyle: .alert)
+            let alertController = UIAlertController(
+                title: "",
+                message: "\(ingredient.name) already mapped to \(component.name)",
+                preferredStyle: .alert
+            )
             alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
             present(alertController, animated: true, completion: nil)
             return

@@ -33,6 +33,7 @@ class Component: NSManagedObject {
     @NSManaged var ingredient: Ingredient?
     var selected: Bool = false
     
+    @discardableResult
     class func newComponent(_ type: ComponentType, id: String, name: String, managedContext: NSManagedObjectContext) -> Component {
         let newIngredient = NSEntityDescription.insertNewObject(forEntityName: EntityName, into:managedContext) as! Component
         newIngredient.type = type

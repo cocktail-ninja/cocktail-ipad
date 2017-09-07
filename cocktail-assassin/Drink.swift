@@ -16,10 +16,14 @@ class Drink: NSManagedObject {
     @NSManaged var imageName: String
     @NSManaged var origImageName: String
     @NSManaged var editable: Bool
-    @NSManaged var drinkIngredients: NSSet
+    @NSManaged var drinkIngredients: Set<DrinkIngredient>
 
+    var ingredients: [Ingredient] {
+        return self.drinkIngredients.map { $0.ingredient }
+    }
+    
     class func newDrink(_ name: String, imageName: String, editable: Bool, managedContext: NSManagedObjectContext) -> Drink {
-        let newDrink = NSEntityDescription.insertNewObject(forEntityName: "Drink", into:managedContext) as! Drink
+        let newDrink = NSEntityDescription.insertNewObject(forEntityName: "Drink", into: managedContext) as! Drink
         newDrink.name = name
         newDrink.origImageName = imageName
         newDrink.saveImage(UIImage(named: imageName)!)
@@ -27,8 +31,12 @@ class Drink: NSManagedObject {
         return newDrink
     }
     
+    private var documentPath: NSString {
+        let documentPaths = NSSearchPathForDirectoriesInDomains(.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)
+        return documentPaths.first! as NSString
+    }
+    
     func saveImage(_ image: UIImage) {
-        let documentPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)[0] as NSString
         var identifier = self.objectID.uriRepresentation().absoluteString
         identifier = identifier.replacingOccurrences(of: "x-coredata://", with: "", options: NSString.CompareOptions.literal, range: nil)
         identifier = identifier.replacingOccurrences(of: "/", with: "-", options: NSString.CompareOptions.literal, range: nil)
@@ -40,17 +48,15 @@ class Drink: NSManagedObject {
     }
     
     func image() -> UIImage {
-        let documentPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)[0] as NSString
         let imagePath = documentPath.appendingPathComponent(self.imageName)
         return UIImage(contentsOfFile: imagePath)!
     }
     
     func addIngredient(_ ingredient: Ingredient, amount: NSNumber) {
-        DrinkIngredient.newDrinkIngredient(self, ingredient: ingredient, amount: amount, managedContext: self.managedObjectContext!)
+        _ = DrinkIngredient.newDrinkIngredient(self, ingredient: ingredient, amount: amount, managedContext: self.managedObjectContext!)
     }
 
     func containsIngredient(_ ingredient: Ingredient) -> Bool {
-        let ingredients = self.drinkIngredients.map() { ($0 as! DrinkIngredient).ingredient } as [Ingredient]
         return ingredients.contains(ingredient)
     }
     
@@ -59,13 +65,9 @@ class Drink: NSManagedObject {
         self.managedObjectContext?.processPendingChanges()
     }
     
+    // TODO: remove duplicate function 'containsIngredient'
     func hasIngredient(_ ingredient: Ingredient) -> Bool {
-        for drinkIngredient in self.drinkIngredients {
-            if (drinkIngredient as! DrinkIngredient).ingredient == ingredient {
-                return true
-            }
-        }
-        return false
+        return containsIngredient(ingredient)
     }
     
     class func allDrinks(_ context: NSManagedObjectContext) -> [Drink] {
@@ -90,8 +92,7 @@ class Drink: NSManagedObject {
     }
  
     func total() -> Int {
-        let ingredients = drinkIngredients.allObjects as! [DrinkIngredient]
-        return ingredients.reduce(0) { total, ingredient in
+        return drinkIngredients.reduce(0) { total, ingredient in
             return total + ingredient.amount.intValue
         }
     }

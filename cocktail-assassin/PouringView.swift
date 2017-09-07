@@ -10,16 +10,15 @@ import UIKit
 import PromiseKit
 
 class PouringView: UIView {
-    let TINT_COLOR : UIColor = UIColor(white: 0.8, alpha: 1.0)
-    let bwImageView, imageView : UIImageView
-    let bwImageContainer : UIView
+    let bwImageView, imageView: UIImageView
+    let bwImageContainer: UIView
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
     override init(frame: CGRect) {
-        var zeroFrame = frame;
+        var zeroFrame = frame
         zeroFrame.origin = CGPoint.zero
         bwImageView = UIImageView(frame: zeroFrame)
         imageView = UIImageView(frame: zeroFrame)
@@ -39,21 +38,22 @@ class PouringView: UIView {
     
     func setImage(_ image: UIImage) {
         imageView.image = image
-        bwImageView.image = image.toGrayscale(TINT_COLOR)
+        bwImageView.image = image.toGrayscale(UIColor(white: 0.8, alpha: 1.0))
     }
-    
     
     func animate(_ duration: Double) -> Promise<Bool> {
-        return bwImageContainer.fadeIn(0.2,  options: UIViewAnimationOptions.curveLinear)
-            .then { (completed) -> Promise<Bool> in
-                return UIView.transition(self,
-                            duration: duration,
-                            options:  UIViewAnimationOptions.curveLinear,
-                            animations: {
-                                self.bwImageContainer.frame.size.height = 0
-                        })
-            }
+        return firstly {
+            bwImageContainer.fadeIn(0.2, options: UIViewAnimationOptions.curveLinear)
+        }.then { _ -> Promise<Bool> in
+            return UIView.transition(
+                self,
+                duration: duration,
+                options: UIViewAnimationOptions.curveLinear,
+                animations: {
+                    self.bwImageContainer.frame.size.height = 0
+                }
+            )
+        }
     }
-    
     
 }

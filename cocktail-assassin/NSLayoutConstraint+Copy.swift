@@ -23,8 +23,7 @@ extension NSLayoutConstraint {
                     constant: constraint.constant
                 )
                 sourceView.superview!.addConstraint(newConstraint)
-            }
-            else if constraint.secondItem as? NSObject == sourceView {
+            } else if constraint.secondItem as? NSObject == sourceView {
                 let newConstraint = NSLayoutConstraint(
                     item: constraint.firstItem,
                     attribute: constraint.firstAttribute,

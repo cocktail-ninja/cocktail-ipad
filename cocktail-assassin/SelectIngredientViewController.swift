@@ -5,16 +5,16 @@
 
 import UIKit
 
-protocol SelectIngredientDelegate {
+protocol SelectIngredientDelegate: class {
     func didSelectIngredient(_ ingredient: Ingredient?)
     func didCancel()
 }
 
-class SelectIngredientViewController : UITableViewController {
+class SelectIngredientViewController: UITableViewController {
 
     var ingredients: [Ingredient]
     var coreDataStack: CoreDataStack
-    var delegate: SelectIngredientDelegate?
+    weak var delegate: SelectIngredientDelegate?
     
     var alcoholicSection: Int = 0
     var nonAlcoholicSection: Int = 1
@@ -34,17 +34,17 @@ class SelectIngredientViewController : UITableViewController {
     }
 
     var alcoholicIngredients: [Ingredient] {
-        var results = ingredients.filter() { $0.isAlcoholic() }
+        var results = ingredients.filter { $0.isAlcoholic() }
         if hideUnavailableIngredients {
-            results = results.filter() { $0.component != nil }
+            results = results.filter { $0.component != nil }
         }
         return results
     }
     
     var nonAlcoholicIngredients: [Ingredient] {
-        var results = ingredients.filter() { !$0.isAlcoholic() }
+        var results = ingredients.filter { !$0.isAlcoholic() }
         if hideUnavailableIngredients {
-            results = results.filter() { $0.component != nil }
+            results = results.filter { $0.component != nil }
         }
         return results
     }
@@ -53,7 +53,11 @@ class SelectIngredientViewController : UITableViewController {
         super.viewDidLoad()
         
         self.navigationItem.title = "Select Ingredient"
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(SelectIngredientViewController.cancelClicked))
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(
+            barButtonSystemItem: .cancel,
+            target: self,
+            action: #selector(SelectIngredientViewController.cancelClicked)
+        )
     }
     
     func cancelClicked() {
@@ -61,7 +65,7 @@ class SelectIngredientViewController : UITableViewController {
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 2;
+        return 2
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -73,7 +77,7 @@ class SelectIngredientViewController : UITableViewController {
     }
     
     func ingredientsForSection(_ section: Int) -> [Ingredient]? {
-        switch(section) {
+        switch section {
         case(alcoholicSection):
             return alcoholicIngredients
         case(nonAlcoholicSection):
@@ -100,7 +104,7 @@ class SelectIngredientViewController : UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        switch(section) {
+        switch section {
         case(alcoholicSection):
             return "Alcoholic"
         case(nonAlcoholicSection):
