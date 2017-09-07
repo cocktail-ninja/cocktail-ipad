@@ -11,6 +11,7 @@ import PromiseKit
 
 extension UIView {
     
+    @discardableResult
     class func transition(_ view: UIView,
                           duration: TimeInterval,
                           options: UIViewAnimationOptions,
@@ -20,6 +21,7 @@ extension UIView {
         }
     }
     
+    @discardableResult
     func fadeIn(_ duration: TimeInterval, options: UIViewAnimationOptions) -> Promise<Bool> {
         return UIView.transition(self, duration: duration, options: options, animations: {
             self.alpha = 1

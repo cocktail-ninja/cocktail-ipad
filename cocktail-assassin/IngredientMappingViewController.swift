@@ -12,18 +12,16 @@ import CoreData
 
 class IngredientMappingViewController: UICollectionViewController {
     
-    let MARGIN = 20
+    let margin = 20
     var coreDataStack: CoreDataStack!
     var sections: [[Component]]!
     var selectedComponent: Component?
     
-    init(coreDataStack: CoreDataStack) {
-        self.coreDataStack = coreDataStack
-        super.init(nibName: "IngredientMappingView", bundle: nil)
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    static func initialise(coreDataStack: CoreDataStack) -> IngredientMappingViewController {
+        let storyboard = UIStoryboard(name: "IngredientMappingView", bundle: nil)
+        let controller = storyboard.instantiateInitialViewController() as! IngredientMappingViewController
+        controller.coreDataStack = coreDataStack
+        return controller
     }
     
     override func viewDidLoad() {
@@ -97,7 +95,7 @@ class IngredientMappingViewController: UICollectionViewController {
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAtIndexPath indexPath: IndexPath) -> CGSize {
         let count = self.collectionView(collectionView, numberOfItemsInSection: indexPath.section)
-        let width = (view.frame.size.width - CGFloat((count-1) * MARGIN) - 40) / CGFloat(count)
+        let width = (view.frame.size.width - CGFloat((count-1) * margin) - 40) / CGFloat(count)
         return CGSize(width: width, height: 100)
     }
 

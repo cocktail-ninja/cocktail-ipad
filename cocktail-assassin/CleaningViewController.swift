@@ -10,8 +10,9 @@ import Foundation
 import UIKit
 
 class CleaningViewController: UICollectionViewController, ComponentCollectionCellDelegate {
+
     let stepSize: Float = 1.0
-    let MARGIN = 20
+    let margin = 20
     
     var coreDataStack: CoreDataStack!
     var valves: [Component]!
@@ -25,13 +26,11 @@ class CleaningViewController: UICollectionViewController, ComponentCollectionCel
         case pumps = 2
     }
     
-    init(coreDataStack: CoreDataStack) {
-        self.coreDataStack = coreDataStack
-        super.init(nibName: "CleaningView", bundle: nil)
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    static func initialise(coreDataStack: CoreDataStack) -> CleaningViewController {
+        let storyboard = UIStoryboard(name: "CleaningView", bundle: nil)
+        let controller = storyboard.instantiateInitialViewController() as! CleaningViewController
+        controller.coreDataStack = coreDataStack
+        return controller
     }
     
     override func viewDidLoad() {
@@ -98,11 +97,11 @@ class CleaningViewController: UICollectionViewController, ComponentCollectionCel
             return CGSize(width: view.frame.size.width - 40, height: 80)
         case .valves:
             let count = self.collectionView(collectionView, numberOfItemsInSection: indexPath.section)
-            let width = (view.frame.size.width - CGFloat((count-1) * MARGIN) - 40) / CGFloat(count)
+            let width = (view.frame.size.width - CGFloat((count-1) * margin) - 40) / CGFloat(count)
             return CGSize(width: width, height: 100)
         case .pumps:
             let count = self.collectionView(collectionView, numberOfItemsInSection: indexPath.section)
-            let width = (view.frame.size.width - CGFloat((count-1) * MARGIN) - 40) / CGFloat(count)
+            let width = (view.frame.size.width - CGFloat((count-1) * margin) - 40) / CGFloat(count)
             return CGSize(width: width, height: 100)
         }
     }

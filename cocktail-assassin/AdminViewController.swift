@@ -33,13 +33,13 @@ class AdminViewController: UIViewController {
     
     @IBAction
     func mappingClicked() {
-        let controller = IngredientMappingViewController(coreDataStack: coreDataStack)
+        let controller = IngredientMappingViewController.initialise(coreDataStack: coreDataStack)
         navigationController?.pushViewController(controller, animated: true)
     }
     
     @IBAction
     func cleaningClicked() {
-        let controller = CleaningViewController(coreDataStack: coreDataStack)
+        let controller = CleaningViewController.initialise(coreDataStack: coreDataStack)
         navigationController?.pushViewController(controller, animated: true)
     }
 

@@ -64,17 +64,16 @@
 		EFE621861BDFD0F0001D9660 /* SliderCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE621851BDFD0F0001D9660 /* SliderCollectionCell.swift */; };
 		EFE6963C1F611CC100BEC194 /* UIStoryboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE6963B1F611CC100BEC194 /* UIStoryboard.swift */; };
 		EFE6963F1F61702300BEC194 /* AdminPasswordView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EFE6963E1F61702300BEC194 /* AdminPasswordView.xib */; };
-		EFE696411F618DD300BEC194 /* CleaningView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EFE696401F618DD300BEC194 /* CleaningView.xib */; };
-		EFE696431F618E5400BEC194 /* IngredientMappingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EFE696421F618E5400BEC194 /* IngredientMappingView.xib */; };
 		EFE696451F61900300BEC194 /* AdminView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EFE696441F61900300BEC194 /* AdminView.xib */; };
 		EFE696471F6197C100BEC194 /* drinks.json in Resources */ = {isa = PBXBuildFile; fileRef = EFE696461F6197C100BEC194 /* drinks.json */; };
+		EFE696491F61A62C00BEC194 /* IngredientMappingView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EFE696481F61A62C00BEC194 /* IngredientMappingView.storyboard */; };
+		EFE6964B1F61A6F500BEC194 /* CleaningView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EFE6964A1F61A6F500BEC194 /* CleaningView.storyboard */; };
 		EFEAD8891C469CCC00C362DE /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EFEAD8871C469CCC00C362DE /* Interface.storyboard */; };
 		EFEAD88B1C469CCC00C362DE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EFEAD88A1C469CCC00C362DE /* Assets.xcassets */; };
 		EFEAD8921C469CCC00C362DE /* cocktail-assassin-watch Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = EFEAD8911C469CCC00C362DE /* cocktail-assassin-watch Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		EFEAD8991C469CCC00C362DE /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFEAD8981C469CCC00C362DE /* InterfaceController.swift */; };
 		EFEAD89B1C469CCC00C362DE /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFEAD89A1C469CCC00C362DE /* ExtensionDelegate.swift */; };
 		EFEAD89D1C469CCC00C362DE /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFEAD89C1C469CCC00C362DE /* NotificationController.swift */; };
-		EFEAD89F1C469CCC00C362DE /* GlanceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFEAD89E1C469CCC00C362DE /* GlanceController.swift */; };
 		EFEAD8A11C469CCC00C362DE /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFEAD8A01C469CCC00C362DE /* ComplicationController.swift */; };
 		EFEAD8A31C469CCC00C362DE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EFEAD8A21C469CCC00C362DE /* Assets.xcassets */; };
 		EFEAD8A71C469CCC00C362DE /* cocktail-assassin-watch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = EFEAD8851C469CCC00C362DE /* cocktail-assassin-watch.app */; };
@@ -202,10 +201,10 @@
 		EFE621851BDFD0F0001D9660 /* SliderCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SliderCollectionCell.swift; sourceTree = "<group>"; };
 		EFE6963B1F611CC100BEC194 /* UIStoryboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIStoryboard.swift; sourceTree = "<group>"; };
 		EFE6963E1F61702300BEC194 /* AdminPasswordView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AdminPasswordView.xib; path = Views/Admin/AdminPasswordView.xib; sourceTree = "<group>"; };
-		EFE696401F618DD300BEC194 /* CleaningView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CleaningView.xib; path = Views/Admin/CleaningView.xib; sourceTree = "<group>"; };
-		EFE696421F618E5400BEC194 /* IngredientMappingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = IngredientMappingView.xib; path = Views/Admin/IngredientMappingView.xib; sourceTree = "<group>"; };
 		EFE696441F61900300BEC194 /* AdminView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AdminView.xib; path = Views/Admin/AdminView.xib; sourceTree = "<group>"; };
 		EFE696461F6197C100BEC194 /* drinks.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = drinks.json; path = Resources/drinks.json; sourceTree = "<group>"; };
+		EFE696481F61A62C00BEC194 /* IngredientMappingView.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = IngredientMappingView.storyboard; path = Views/Admin/IngredientMappingView.storyboard; sourceTree = "<group>"; };
+		EFE6964A1F61A6F500BEC194 /* CleaningView.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = CleaningView.storyboard; path = Views/Admin/CleaningView.storyboard; sourceTree = "<group>"; };
 		EFEAD8851C469CCC00C362DE /* cocktail-assassin-watch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "cocktail-assassin-watch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFEAD8881C469CCC00C362DE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
 		EFEAD88A1C469CCC00C362DE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -215,7 +214,6 @@
 		EFEAD8981C469CCC00C362DE /* InterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceController.swift; sourceTree = "<group>"; };
 		EFEAD89A1C469CCC00C362DE /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
 		EFEAD89C1C469CCC00C362DE /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
-		EFEAD89E1C469CCC00C362DE /* GlanceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlanceController.swift; sourceTree = "<group>"; };
 		EFEAD8A01C469CCC00C362DE /* ComplicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
 		EFEAD8A21C469CCC00C362DE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EFEAD8A41C469CCC00C362DE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -450,10 +448,10 @@
 		EFE6963D1F616FF200BEC194 /* Admin */ = {
 			isa = PBXGroup;
 			children = (
+				EFE696481F61A62C00BEC194 /* IngredientMappingView.storyboard */,
 				EFE6963E1F61702300BEC194 /* AdminPasswordView.xib */,
-				EFE696401F618DD300BEC194 /* CleaningView.xib */,
-				EFE696421F618E5400BEC194 /* IngredientMappingView.xib */,
 				EFE696441F61900300BEC194 /* AdminView.xib */,
+				EFE6964A1F61A6F500BEC194 /* CleaningView.storyboard */,
 			);
 			name = Admin;
 			sourceTree = "<group>";
@@ -476,7 +474,6 @@
 				EFEAD8B01C46AE3C00C362DE /* CocktailRowController.swift */,
 				EFEAD89A1C469CCC00C362DE /* ExtensionDelegate.swift */,
 				EFEAD89C1C469CCC00C362DE /* NotificationController.swift */,
-				EFEAD89E1C469CCC00C362DE /* GlanceController.swift */,
 				EFEAD8A01C469CCC00C362DE /* ComplicationController.swift */,
 				EFEAD8A21C469CCC00C362DE /* Assets.xcassets */,
 				EFEAD8A41C469CCC00C362DE /* Info.plist */,
@@ -587,7 +584,7 @@
 			attributes = {
 				LastSwiftMigration = 0700;
 				LastSwiftUpdateCheck = 0720;
-				LastUpgradeCheck = 0700;
+				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = tw;
 				TargetAttributes = {
 					237B07681A6EA5F7001AA652 = {
@@ -646,11 +643,11 @@
 				EF6310091BD8849F00390511 /* Main.storyboard in Resources */,
 				EFE6963F1F61702300BEC194 /* AdminPasswordView.xib in Resources */,
 				EF63100B1BD8890500390511 /* Launch Screen.storyboard in Resources */,
+				EFE696491F61A62C00BEC194 /* IngredientMappingView.storyboard in Resources */,
 				2345A2BE1A7D317D007CB356 /* OpenSans-ExtraBoldItalic.ttf in Resources */,
 				23191FC81B023830003AFB2E /* Images.xcassets in Resources */,
 				2345A2C31A7D317D007CB356 /* OpenSans-Semibold.ttf in Resources */,
-				EFE696411F618DD300BEC194 /* CleaningView.xib in Resources */,
-				EFE696431F618E5400BEC194 /* IngredientMappingView.xib in Resources */,
+				EFE6964B1F61A6F500BEC194 /* CleaningView.storyboard in Resources */,
 				2345A2BF1A7D317D007CB356 /* OpenSans-Italic.ttf in Resources */,
 				2345A2C11A7D317D007CB356 /* OpenSans-LightItalic.ttf in Resources */,
 				2345A2C21A7D317D007CB356 /* OpenSans-Regular.ttf in Resources */,
@@ -883,7 +880,6 @@
 				EFEAD8991C469CCC00C362DE /* InterfaceController.swift in Sources */,
 				EFC1683C1C4F7F6D003062E4 /* PourDrinkController.swift in Sources */,
 				EFEAD8B31C46AF4100C362DE /* Drink.swift in Sources */,
-				EFEAD89F1C469CCC00C362DE /* GlanceController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -932,8 +928,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -942,6 +940,7 @@
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -976,8 +975,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -985,6 +986,7 @@
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -994,6 +996,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				METAL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = 2;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1076,11 +1079,11 @@
 		EFEAD8A81C469CCC00C362DE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
 				IBSC_MODULE = cocktail_assassin_watch_Extension;
 				INFOPLIST_FILE = "cocktail-assassin-watch/Info.plist";
@@ -1098,12 +1101,12 @@
 		EFEAD8A91C469CCC00C362DE /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
 				IBSC_MODULE = cocktail_assassin_watch_Extension;
 				INFOPLIST_FILE = "cocktail-assassin-watch/Info.plist";

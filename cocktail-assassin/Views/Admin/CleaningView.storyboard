@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="efb-2T-QqB">
+    <device id="retina4_7" orientation="landscape">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Cleaning View Controller-->
+        <scene sceneID="d6e-QJ-XIf">
+            <objects>
+                <collectionViewController storyboardIdentifier="CleaningViewController" id="efb-2T-QqB" customClass="CleaningViewController" customModule="cocktail_assassin" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="W4C-Z3-jPQ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="NHR-CY-hXi">
+                            <size key="itemSize" width="100" height="100"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="SliderCell" id="WV9-dw-2EV" customClass="SliderCollectionCell" customModule="cocktail_assassin" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="10" width="540.5" height="80"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="540.5" height="80"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Run for 30 seconds" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ghZ-hg-SCD">
+                                            <rect key="frame" x="110" y="39" width="320" height="20.5"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="320" id="mjh-Y3-MxD"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Eoq-54-qxC">
+                                            <rect key="frame" x="466" y="7.5" width="74" height="36"/>
+                                            <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="36" id="Tgi-WX-D1H"/>
+                                                <constraint firstAttribute="width" constant="74" id="Vkc-Kf-qMI"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
+                                            <state key="normal" title="GO!"/>
+                                            <state key="selected" title="GO!">
+                                                <color key="titleColor" red="0.51052631579999996" green="0.021052631580000002" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="runSelectedPumpsClicked" destination="efb-2T-QqB" eventType="touchUpInside" id="DDt-Sr-42W"/>
+                                            </connections>
+                                        </button>
+                                        <progressView hidden="YES" opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progressViewStyle="bar" translatesAutoresizingMaskIntoConstraints="NO" id="96k-mW-V4e">
+                                            <rect key="frame" x="8" y="24" width="450" height="2.5"/>
+                                        </progressView>
+                                        <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="30" minValue="0.0" maxValue="60" translatesAutoresizingMaskIntoConstraints="NO" id="4s8-Wm-MeU">
+                                            <rect key="frame" x="6" y="10" width="454" height="31"/>
+                                            <connections>
+                                                <action selector="sliderChanged:" destination="efb-2T-QqB" eventType="valueChanged" id="AOd-aO-0BS"/>
+                                            </connections>
+                                        </slider>
+                                    </subviews>
+                                </view>
+                                <constraints>
+                                    <constraint firstItem="96k-mW-V4e" firstAttribute="top" secondItem="WV9-dw-2EV" secondAttribute="topMargin" constant="16" id="0gq-c7-ZgG"/>
+                                    <constraint firstItem="ghZ-hg-SCD" firstAttribute="centerX" secondItem="WV9-dw-2EV" secondAttribute="centerX" id="3Ld-t7-b5w"/>
+                                    <constraint firstItem="Eoq-54-qxC" firstAttribute="centerY" secondItem="4s8-Wm-MeU" secondAttribute="centerY" id="3fP-ng-sUc"/>
+                                    <constraint firstAttribute="trailing" secondItem="Eoq-54-qxC" secondAttribute="trailing" id="8Ys-SI-kaa"/>
+                                    <constraint firstItem="Eoq-54-qxC" firstAttribute="leading" secondItem="4s8-Wm-MeU" secondAttribute="trailing" constant="8" id="DpV-OA-SkP"/>
+                                    <constraint firstItem="Eoq-54-qxC" firstAttribute="leading" secondItem="96k-mW-V4e" secondAttribute="trailing" constant="8" id="SrW-d1-4Hw"/>
+                                    <constraint firstItem="ghZ-hg-SCD" firstAttribute="top" secondItem="4s8-Wm-MeU" secondAttribute="bottom" constant="-1" id="aaA-L9-i4F"/>
+                                    <constraint firstAttribute="leadingMargin" secondItem="4s8-Wm-MeU" secondAttribute="leading" id="bf4-mr-gub"/>
+                                    <constraint firstAttribute="leadingMargin" secondItem="96k-mW-V4e" secondAttribute="leading" id="iag-QJ-NrT"/>
+                                    <constraint firstItem="4s8-Wm-MeU" firstAttribute="top" secondItem="WV9-dw-2EV" secondAttribute="topMargin" constant="2" id="nX5-AH-8ee"/>
+                                </constraints>
+                                <size key="customSize" width="540.5" height="80"/>
+                                <connections>
+                                    <outlet property="progressBar" destination="96k-mW-V4e" id="O6P-JY-7XR"/>
+                                    <outlet property="slider" destination="4s8-Wm-MeU" id="EAZ-e9-xgk"/>
+                                    <outlet property="sliderLabel" destination="ghZ-hg-SCD" id="GrL-q6-C6s"/>
+                                    <outlet property="startButton" destination="Eoq-54-qxC" id="YpB-ND-fhq"/>
+                                </connections>
+                            </collectionViewCell>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ComponentCell" id="NmU-YM-w60" customClass="ComponentCollectionCell" customModule="cocktail_assassin" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="100" width="100" height="100"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ile-ll-i0o">
+                                            <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                                            <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <state key="normal" title="Valve 1">
+                                                <color key="titleColor" red="0.0" green="0.46274998779999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </state>
+                                            <state key="selected">
+                                                <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </state>
+                                            <state key="highlighted">
+                                                <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="buttonClicked" destination="NmU-YM-w60" eventType="touchUpInside" id="7mL-g2-URg"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                </view>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="ile-ll-i0o" firstAttribute="leading" secondItem="NmU-YM-w60" secondAttribute="leadingMargin" constant="-8" id="Luy-Rd-k5P"/>
+                                    <constraint firstAttribute="bottomMargin" secondItem="ile-ll-i0o" secondAttribute="bottom" constant="-8" id="PLd-lH-h2i"/>
+                                    <constraint firstAttribute="trailingMargin" secondItem="ile-ll-i0o" secondAttribute="trailing" constant="-8" id="hXm-ue-4z8"/>
+                                    <constraint firstItem="ile-ll-i0o" firstAttribute="top" secondItem="NmU-YM-w60" secondAttribute="topMargin" constant="-8" id="mhh-jl-Yhw"/>
+                                </constraints>
+                                <size key="customSize" width="100" height="100"/>
+                                <connections>
+                                    <outlet property="button" destination="ile-ll-i0o" id="sWW-qa-dKW"/>
+                                </connections>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="efb-2T-QqB" id="jpW-n3-TFD"/>
+                            <outlet property="delegate" destination="efb-2T-QqB" id="rHT-zl-BMq"/>
+                        </connections>
+                    </collectionView>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="320" height="480"/>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SMZ-Dc-z4J" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1572" y="-452"/>
+        </scene>
+    </scenes>
+</document>
