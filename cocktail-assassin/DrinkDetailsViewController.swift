@@ -419,7 +419,7 @@ extension DrinkDetailsViewController: SelectIngredientDelegate {
             return
         }
         selectIngredientController?.dismiss(animated: true, completion: nil)
-        if drink!.hasIngredient(ingredient) {
+        if drink!.containsIngredient(ingredient) {
             let alertController = UIAlertController(title: "Ingredient Already Added", message: "", preferredStyle: .alert)
             alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
             self.present(alertController, animated: true, completion: nil)

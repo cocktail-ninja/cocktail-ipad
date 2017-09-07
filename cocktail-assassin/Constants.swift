@@ -9,12 +9,6 @@ import UIKit
 
 struct Constants {
     
-    // TODO: remove these after they're removed from the pouring drink view.
-    struct DrinkFrames {
-        static let basicFrame = CGRect(x: 387, y: 134, width: 250, height: 500)
-        static let expandedFrame = CGRect(x: 80, y: 94, width: 320, height: 640)
-    }
-    
     struct BaseUrl {
         static let dev = "http://private-4b044-cocktailninja.apiary-mock.com"
         static let prod = "http://192.168.240.1/arduino"

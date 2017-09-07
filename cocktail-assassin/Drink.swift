@@ -63,12 +63,7 @@ class Drink: NSManagedObject {
     func removeDrinkIngredient(_ drinkIngredient: DrinkIngredient) {
         self.managedObjectContext?.delete(drinkIngredient)
         self.managedObjectContext?.processPendingChanges()
-    }
-    
-    // TODO: remove duplicate function 'containsIngredient'
-    func hasIngredient(_ ingredient: Ingredient) -> Bool {
-        return containsIngredient(ingredient)
-    }
+    }    
     
     class func allDrinks(_ context: NSManagedObjectContext) -> [Drink] {
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Drink")
