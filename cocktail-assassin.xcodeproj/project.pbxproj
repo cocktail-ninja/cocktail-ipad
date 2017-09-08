@@ -581,21 +581,26 @@
 						CreatedOnToolsVersion = 6.0;
 						DevelopmentTeam = 9269KSNZG8;
 						LastSwiftMigration = 0830;
+						ProvisioningStyle = Manual;
 					};
 					237B07751A6EA5F7001AA652 = {
 						CreatedOnToolsVersion = 6.0;
+						DevelopmentTeam = 9269KSNZG8;
 						LastSwiftMigration = 0830;
+						ProvisioningStyle = Manual;
 						TestTargetID = 237B07681A6EA5F7001AA652;
 					};
 					EFEAD8841C469CCC00C362DE = {
 						CreatedOnToolsVersion = 7.2;
 						DevelopmentTeam = 9269KSNZG8;
 						LastSwiftMigration = 0830;
+						ProvisioningStyle = Manual;
 					};
 					EFEAD8901C469CCC00C362DE = {
 						CreatedOnToolsVersion = 7.2;
 						DevelopmentTeam = 9269KSNZG8;
 						LastSwiftMigration = 0830;
+						ProvisioningStyle = Manual;
 					};
 				};
 			};
@@ -995,12 +1000,14 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 9269KSNZG8;
 				INFOPLIST_FILE = "cocktail-assassin/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.twsg.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "1ec7308a-94e2-436d-8cd3-7b3b00f44b01";
+				PROVISIONING_PROFILE_SPECIFIER = "match Development com.twsg.cocktail-assassin";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1013,13 +1020,15 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				DEVELOPMENT_TEAM = 9269KSNZG8;
 				INFOPLIST_FILE = "cocktail-assassin/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.twsg.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "208e53e4-9623-4737-9ea2-3dc003c95da1";
+				PROVISIONING_PROFILE_SPECIFIER = "match AppStore com.twsg.cocktail-assassin";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
