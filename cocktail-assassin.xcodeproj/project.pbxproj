@@ -76,7 +76,6 @@
 		EFEAD89D1C469CCC00C362DE /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFEAD89C1C469CCC00C362DE /* NotificationController.swift */; };
 		EFEAD8A11C469CCC00C362DE /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFEAD8A01C469CCC00C362DE /* ComplicationController.swift */; };
 		EFEAD8A31C469CCC00C362DE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EFEAD8A21C469CCC00C362DE /* Assets.xcassets */; };
-		EFEAD8A71C469CCC00C362DE /* cocktail-assassin-watch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = EFEAD8851C469CCC00C362DE /* cocktail-assassin-watch.app */; };
 		EFEAD8B11C46AE3C00C362DE /* CocktailRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFEAD8B01C46AE3C00C362DE /* CocktailRowController.swift */; };
 		EFEAD8B31C46AF4100C362DE /* Drink.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFEAD8B21C46AF4100C362DE /* Drink.swift */; };
 		EFEAD8B51C47299600C362DE /* DrinkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFEAD8B41C47299600C362DE /* DrinkController.swift */; };
@@ -96,13 +95,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = EFEAD8901C469CCC00C362DE;
 			remoteInfo = "cocktail-assassin-watch Extension";
-		};
-		EFEAD8A51C469CCC00C362DE /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 237B07611A6EA5F7001AA652 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = EFEAD8841C469CCC00C362DE;
-			remoteInfo = "cocktail-assassin-watch";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -124,7 +116,6 @@
 			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
 			dstSubfolderSpec = 16;
 			files = (
-				EFEAD8A71C469CCC00C362DE /* cocktail-assassin-watch.app in Embed Watch Content */,
 			);
 			name = "Embed Watch Content";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -512,7 +503,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				EFEAD8A61C469CCC00C362DE /* PBXTargetDependency */,
 			);
 			name = "cocktail-assassin";
 			productName = "cocktail-assassin";
@@ -895,11 +885,6 @@
 			isa = PBXTargetDependency;
 			target = EFEAD8901C469CCC00C362DE /* cocktail-assassin-watch Extension */;
 			targetProxy = EFEAD8931C469CCC00C362DE /* PBXContainerItemProxy */;
-		};
-		EFEAD8A61C469CCC00C362DE /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = EFEAD8841C469CCC00C362DE /* cocktail-assassin-watch */;
-			targetProxy = EFEAD8A51C469CCC00C362DE /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

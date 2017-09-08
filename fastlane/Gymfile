@@ -1,0 +1,8 @@
+scheme "cocktail-assassin"
+
+sdk "iphoneos10.3"
+
+clean true
+
+output_directory "./build"
+output_name "cocktail-assassin"

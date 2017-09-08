@@ -214,3 +214,4 @@ xcuserdata
 #
 #*.xccheckout
 Pods
+fastlane/test_output
