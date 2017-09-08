@@ -10,7 +10,9 @@ target "cocktail-assassin" do
   pod 'Alamofire', '~> 4.5'
   pod 'iOSSharedViewTransition', :git => 'https://github.com/sbycrosz/iOSSharedViewTransition.git'
   pod 'MONActivityIndicatorView'
-
+  pod 'Fabric'
+  pod 'Crashlytics'
+  
   target "cocktail-assassinTests" do
     inherit! :search_paths
 
