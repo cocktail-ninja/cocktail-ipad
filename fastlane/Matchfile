@@ -1,4 +1,4 @@
-git_url "git@github.com:col/bot_tender_certificates.git"
+git_url "git@github.com:col/fastlane_certificates.git"
 
 type "development" # The default type, can be: appstore, adhoc, enterprise or development
 
